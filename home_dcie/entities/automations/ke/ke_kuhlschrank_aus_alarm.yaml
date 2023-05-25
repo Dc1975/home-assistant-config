@@ -1,0 +1,30 @@
+- id: '1682864670526'
+  alias: KE Kühlschrank aus Alarm
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: 1c721b9e25b044149c84be80d5233d87
+    entity_id: switch.kellersteckdose_kuhlschrank
+    domain: switch
+  condition: []
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_benachrichtigung
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_fridge_temperatur_alert_notification_title')}}"
+        msg_message: >
+          {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
+          {{states('input_text.it_fridge_temperatur_alert_notification_message')}} Kellerkühlschrank ist {{locale.get(states('switch.kellersteckdose_kuhlschrank'))}}
+  - service: notify.alexa_media_uberall
+    data:
+      title: "{{states('input_text.it_fridge_temperatur_alert_notification_title')}}"
+      message: >
+        {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
+        {{states('input_text.it_fridge_temperatur_alert_notification_message')}} Kellerkühlschrank ist {{locale.get(states('switch.kellersteckdose_kuhlschrank'))}}
+      data:
+        type: announce
+        method: all
+  mode: single

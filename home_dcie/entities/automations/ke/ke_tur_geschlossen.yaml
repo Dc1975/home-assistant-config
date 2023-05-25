@@ -1,0 +1,16 @@
+- id: '1680098146885'
+  alias: KE Kellertür geschlossen
+  description: ''
+  trigger:
+  - type: not_opened
+    platform: device
+    device_id: 592d970e006dff95f733c4ace9b81931
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_10
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 19318c94a454b8e151de37d2f9ee0fb1
+    entity_id: switch.kellerlicht
+    domain: switch
+  mode: single
