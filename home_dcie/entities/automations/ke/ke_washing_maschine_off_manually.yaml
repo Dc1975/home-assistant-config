@@ -1,0 +1,41 @@
+- id: '1682261471087'
+  alias: KE Waschmaschine aus manuell
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.kellersteckdose_waschmaschine_energy_power
+    for:
+      hours: 0
+      minutes: 2
+      seconds: 0
+    below: 0.5
+  condition:
+  - condition: device
+    type: is_on
+    device_id: 7309dd32c8b93a2a6ee0ac3f3aa567f4
+    entity_id: switch.kellersteckdose_waschmaschine
+    domain: switch    
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_benachrichtigung
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_general_notification_title')}} Waschmaschine"
+        msg_message: "Die Waschmaschine wird ausgeschaltet"
+  - service: notify.alexa_media_uberall
+    data:
+      title: "{{states('input_text.it_general_notification_title')}} Waschmaschine"
+      message: "Die Waschmaschine wird ausgeschaltet"
+      data:
+        type: announce
+        method: all    
+  - data:
+      option: ausgeschaltet
+    entity_id: input_select.is_ke_state_washing_machine
+    service: input_select.select_option        
+  - type: turn_off
+    device_id: 7309dd32c8b93a2a6ee0ac3f3aa567f4
+    entity_id: switch.kellersteckdose_waschmaschine
+    domain: switch  
+  mode: single

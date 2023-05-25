@@ -1,0 +1,4 @@
+it_post_notification_message:
+  name: "Benachrichtigung Post - Text:"
+  #initial: ""
+  icon: mdi:cellphone-information

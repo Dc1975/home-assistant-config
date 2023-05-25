@@ -1,0 +1,8 @@
+is_ku_state_dish_washer:
+  name: Staus Geschirrspüler
+  icon: mdi:dishwasher
+  options:
+    - ausgeschaltet
+    - läuft
+    - fertig
+  initial: ausgeschaltet

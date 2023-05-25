@@ -1,0 +1,6 @@
+idt_ku_cover_up_weekend:
+  name: "Küchenrolladen hoch Wochenende"
+  #initial: ""
+  icon: mdi:window-shutter-open
+  has_time: true
+  has_date: false

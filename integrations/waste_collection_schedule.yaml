@@ -1,0 +1,30 @@
+waste_collection_schedule:
+  sources:
+    - name: ics
+      args:
+        file: "www/group.calendar.google.com.ics"
+      customize:
+        - type: Braune Tonne
+          alias: braun
+          #picture: "/local/img/brown.png"
+          icon: mdi:file                   
+        - type: Graue Tonne
+          alias: grau
+          #picture: "/local/img/grey.png"
+          icon: mdi:trash-can          
+        - type: Wertstofftonne
+          alias: gelb
+          #picture: "/local/img/yellow.png"
+          icon: mdi:recycle    
+        - type: Blaue Tonne
+          alias: blau
+          #picture: "/local/img/blue.png"
+          icon: mdi:leaf       
+        - type: Nächste Tonne
+          alias: next
+          #picture: "/local/img/next.png"
+          icon: mdi:trash-can               
+  fetch_time: "04:00"
+  day_switch_time: "13:00"
+  #separator: ","
+# https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/installation.md

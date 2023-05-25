@@ -1,0 +1,29 @@
+dg_rolladen_ab:
+  alias: DG Rolladen ab
+  fields:    
+    cover_position:
+      # All sub-options are only used for creating a representation of this script in the UI.
+      description: "Position to set cover to"
+      example: "60"
+      name: cover_position    
+  sequence:
+  - if:
+    - condition: device
+      device_id: c1999553e55883ac0269aec24d553b01
+      domain: cover
+      entity_id: cover.dachgeschossfensterrolladen
+      type: is_position
+      above: 0
+    then:
+    - service: cover.set_cover_position
+      data:
+        position: "{{cover_position | int}}"
+      target:
+        entity_id: cover.dachgeschossfensterrolladen        
+#    - device_id: c1999553e55883ac0269aec24d553b01
+#      domain: cover
+#      entity_id: cover.dachgeschossfensterrolladen
+#      type: set_position
+#      position: 0
+  mode: single
+  icon: mdi:window-shutter

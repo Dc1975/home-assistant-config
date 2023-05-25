@@ -1,0 +1,52 @@
+- id: '1682519743139'
+  alias: HA Timers Speichern
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - timer.ti_sz_az_motion_lights
+    - timer.ti_bz_motion_lights
+    - timer.ti_dg_motion_lights
+    - timer.ti_fl_motion_lights
+    - timer.ti_gt_motion_lights
+    - timer.ti_ku_motion_lights
+    - timer.ti_sz_motion_lights
+    - timer.ti_tr_mitte_motion_lights
+    - timer.ti_tr_oben_motion_lights
+    - timer.ti_tr_unten_motion_lights
+  condition: []
+  action:
+  - variables:
+      timers:
+      - timer.ti_sz_az_motion_lights
+      - timer.ti_bz_motion_lights
+      - timer.ti_dg_motion_lights
+      - timer.ti_fl_motion_lights
+      - timer.ti_gt_motion_lights
+      - timer.ti_ku_motion_lights
+      - timer.ti_sz_motion_lights
+      - timer.ti_tr_mitte_motion_lights
+      - timer.ti_tr_oben_motion_lights
+      - timer.ti_tr_unten_motion_lights      
+      prefix:
+      - timer.ti_
+      modes:
+      - active
+      - paused
+  - repeat:
+      count: 2
+      sequence:
+      - variables:
+          mode: '{{ modes[repeat.index-1] }}'
+      - service: input_text.set_value
+        data:
+          entity_id: input_text.it_timers_{{ mode }}
+          value: >
+            {% set ns = namespace(timers = []) %}
+            {% for t in expand(timers) | selectattr('state', 'eq', mode) | list  %}
+              {% set d = t.attributes.remaining.split(':') | map('int') | list %}
+              {% set s = d[0]*3600 + d[1]*60 + d[2] + (t.last_changed.timestamp()|int if mode == 'active' else 0) %}              
+              {% set ns.timers = ns.timers + ['{} {}'.format(t.object_id[3:-14] , s)] %}              
+            {% endfor %}
+            {{ ns.timers | join(',')}}          
+  mode: queued

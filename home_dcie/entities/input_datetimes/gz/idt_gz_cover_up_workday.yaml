@@ -1,0 +1,6 @@
+idt_gz_cover_up_workday:
+  name: "Gästezimmerrolladen hoch Wertktags"
+  #initial: ""
+  icon: mdi:window-shutter-open
+  has_time: true
+  has_date: false

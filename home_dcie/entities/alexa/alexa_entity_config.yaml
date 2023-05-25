@@ -1,0 +1,9 @@
+switch.kuchenlicht:
+  name: Küchenlicht
+  description: Beleuchtung Küche
+  display_categories: SWITCH
+
+switch.kuchengerate:
+  name: Küchengeräte
+  description: Arbeitsgeräte Küche
+  display_categories: SWITCH

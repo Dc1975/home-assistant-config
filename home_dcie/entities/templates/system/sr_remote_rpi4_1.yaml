@@ -1,0 +1,266 @@
+### Remote Sensor - 192.168.0.4 Unifi ###
+# https://github.com/ironsheep/RPi-Reporter-MQTT2HA-Daemon
+# unique_id: is not used to identify the enmtities, so we must use name: instead
+sensor:
+  # helper sensor for icon evaluation to avoid redundant code
+  - name: remote_rpi_icon
+    unique_id: remote_rpi_icon
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'cpu') is none %}
+      {% if state_attr('sensor.rpi_monitor_raspberrypi4_1', 'cpu').model | contains('ARMv7') %}
+      mdi:cpu-32-bit
+      {% else %}
+      mdi:cpu-64-bit
+      {% endif %}
+      {% endif %}
+
+  #- name: Zeitstempel
+  - name: remote_rpi_timestamp
+    unique_id: remote_rpi_timestamp
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'timestamp') is none %}
+        {{ as_timestamp(state_attr('sensor.rpi_monitor_raspberrypi4_1', 'timestamp' )) | timestamp_custom('%d.%m.%Y %H:%M') }}
+      {% endif %}
+
+  #- name: Model
+  - name: remote_rpi_rpi_model
+    unique_id: remote_rpi_rpi_model
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'rpi_model') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'rpi_model') }}    
+      {% endif %}
+
+  #- name: Hostname
+  - name: remote_rpi_host_name
+    unique_id: remote_rpi_host_name
+    state: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'host_name') }}
+
+  #- name: IP
+  - name: remote_rpi_ip
+    unique_id: remote_rpi_ip
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'networking') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'networking') ['eth0'].IP }}
+      {% endif %}
+    icon: mdi:ip-network
+
+  #- name: CPU Model
+  - name: remote_rpi_cpu_model
+    unique_id: remote_rpi_cpu_model
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'cpu') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'cpu').model }}    
+      {% endif %}
+    icon: "{{states('sensor.remote_rpi_icon')}}"
+
+  #- name: CPU Kerne
+  - name: remote_rpi_cpu_cores
+    unique_id: remote_rpi_cpu_cores
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'cpu') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'cpu').number_cores }}
+      {%endif%}
+    icon: "{{states('sensor.remote_rpi_icon')}}"
+
+  #- name: CPU Auslastung
+  - name: remote_rpi_cpu_usage
+    unique_id: remote_rpi_cpu_usage
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'cpu') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'cpu').load_1min_prcnt | float }}
+      {% else %}
+        0.0        
+      {% endif %}
+    state_class: measurement            
+    unit_of_measurement: '%'    
+    icon: "{{states('sensor.remote_rpi_icon')}}"
+
+  #- name: CPU Temperatur
+  - name: remote_rpi_cpu_temperature
+    unique_id: remote_rpi_cpu_temperature
+    state: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'temperature_c') }}
+    device_class: temperature        
+    state_class: measurement
+    unit_of_measurement: "°C"    
+    icon: "{{states('sensor.remote_rpi_icon')}}"
+
+  #- name: Festplattenkapazität in GB
+  - name: remote_rpi_fs_total_gb
+    unique_id: remote_rpi_fs_total_gb
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'fs_total_gb') is none %}    
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'fs_total_gb') | float }}
+      {% endif %}
+    availability: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'fs_total_gb') | is_number  }}
+    device_class: data_size      
+    unit_of_measurement: "GB"    
+    icon: mdi:harddisk
+
+  #- name: Freier Festplattenplatz in Prozent
+  - name: remote_rpi_fs_free_prcnt
+    unique_id: remote_rpi_fs_free_prcnt
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'fs_free_prcnt') is none %}    
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'fs_free_prcnt') | float }}
+      {% endif %}
+    availability: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'fs_free_prcnt') | is_number  }}      
+    state_class: measurement    
+    unit_of_measurement: "%"
+    icon: mdi:harddisk
+
+  #- name: Benutzter Festplattenplatz in Prozent
+  - name: remote_rpi_fs_used_prcnt
+    unique_id: remote_rpi_fs_used_prcnt
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'fs_used_prcnt') is none %}    
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'fs_used_prcnt') | float }}
+      {% endif %}
+    availability: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'fs_used_prcnt') | is_number  }}    
+    state_class: measurement      
+    unit_of_measurement: "%"    
+    icon: mdi:harddisk
+
+  #- name: Benutzter Festplattenplatz in GB
+  - name: remote_rpi_fs_used
+    unique_id: remote_rpi_fs_used
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'fs_total_gb') is none %}    
+        {{ (((state_attr('sensor.rpi_monitor_raspberrypi4_1', 'fs_total_gb') | float) *
+        (state_attr('sensor.rpi_monitor_raspberrypi4_1', 'fs_used_prcnt') | float)) / 100) | round(2) }}
+      {% endif %}
+    availability: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'fs_total_gb') | is_number  }}
+    device_class: data_size      
+    state_class: measurement        
+    unit_of_measurement: "GB"    
+    icon: mdi:harddisk
+
+#- name: Speichergröße in MB
+  - name: remote_rpi_memory_size    
+    unique_id: remote_rpi_memory_size
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory').size_mb | float }}
+      {% endif %}
+    availability: >
+      {{ not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory') is none and state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory').size_mb | is_number  }}
+    device_class: data_size      
+    unit_of_measurement: "MB"    
+    icon: "mdi:memory"
+ 
+ #- name: Speichergröße in GB
+  - name: remote_rpi_memory_size_gb    
+    unique_id: remote_rpi_memory_size_gb
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory') is none %}
+        {{ ((state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory').size_mb | float) / 1024) | round(2)}}
+      {% endif %}
+    availability: >
+      {{ not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory') is none and state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory').size_mb | is_number  }}
+    device_class: data_size      
+    unit_of_measurement: "GB"    
+    icon: "mdi:memory"
+
+    #- name: Freier Speicher in MB
+  - name: remote_rpi_memory_free
+    unique_id: remote_rpi_memory_free
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory') is none %}        
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory').free_mb | float }}
+      {%endif%}
+    availability: >
+      {{ not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory') is none and state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory').free_mb | is_number  }}
+    device_class: data_size    
+    state_class: measurement
+    unit_of_measurement: "MB"        
+    icon: "mdi:memory"
+
+  #- name: Benutzter Speicher in Prozent
+  - name: remote_rpi_memory_used_prcnt
+    unique_id: remote_rpi_memory_used_prcnt
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'mem_used_prcnt') is none %}            
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'mem_used_prcnt') | float }}
+      {% endif %}
+    availability: >
+      {{ not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'mem_used_prcnt') is none and state_attr('sensor.rpi_monitor_raspberrypi4_1', 'mem_used_prcnt') | is_number  }}
+    state_class: measurement      
+    unit_of_measurement: "%"          
+    icon: "mdi:memory"
+
+  #- name: Benutzter Speicher in MB
+  - name: remote_rpi_memory_used
+    unique_id: remote_rpi_memory_used
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory') is none %}        
+        {{ (((state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory').size_mb | float) -
+           (state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory').free_mb | float))) | round(2)}}
+      {% endif %}
+    availability: >
+      {{ not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory') is none and state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory').size_mb | is_number  }}
+    device_class: data_size    
+    state_class: measurement
+    unit_of_measurement: "MB"        
+    icon: "mdi:memory"
+
+  #- name: Benutzter Speicher in GB
+  - name: remote_rpi_memory_size_used_gb    
+    unique_id: remote_rpi_memory_size_used_gb
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory') is none %}        
+        {{ (((state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory').size_mb | float) -
+           (state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory').free_mb | float)) / 1024) | round(2)}}
+      {% endif %}
+    availability: >
+      {{ not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory') is none and state_attr('sensor.rpi_monitor_raspberrypi4_1', 'memory').size_mb | is_number  }}
+    device_class: data_size 
+    state_class: measurement     
+    unit_of_measurement: "GB"    
+    icon: "mdi:memory"
+
+    #- name: Laufzeit
+  - name: remote_rpi_up_time
+    unique_id: remote_rpi_up_time
+    state: >
+      {% set myString = state_attr('sensor.rpi_monitor_raspberrypi4_1', 'up_time') %}
+      {% if 'days' in myString %} 
+        {% set myString =  myString | replace("days","Tage") %}
+      {% elif 'day' in myString %}
+        {% set myString =  myString | replace("day","Tag") %}
+      {% elif 'weeks' in myString %}
+        {% set myString =  myString | replace("weeks","Wochen") %}  
+      {% elif 'week' in myString %}
+        {% set myString =  myString | replace("week","Woche") %}  
+      {% elif 'months' in myString %}
+        {% set myString =  myString | replace("months","Monate") %}  
+      {% elif 'month' in myString %}
+        {% set myString =  myString | replace("month","Monat") %}  
+      {% elif 'mins' in myString %}
+        {% set myString =  myString | replace("mins","Minuten") %}    
+      {% elif 'min' in myString %}
+        {% set myString =  myString | replace("min","Minute") %}    
+      {% elif 'hours' in myString %}
+        {% set myString =  myString | replace("hours","Stunden") %}    
+      {% elif 'hour' in myString %}
+        {% set myString =  myString | replace("hour","Stunde") %}      
+      {% endif %}
+      {{ myString }}
+    availability: >
+      {{ not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'up_time') is none }}
+
+    #- name: Release
+  - name: remote_rpi_ux_release    
+    unique_id: remote_rpi_ux_release
+    state: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'ux_release') }}
+
+    #- name: Version
+  - name: remote_rpi_ux_version    
+    unique_id: remote_rpi_ux_version
+    state: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_1', 'ux_version') }}

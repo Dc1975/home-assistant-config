@@ -1,0 +1,8 @@
+in_ha_covers_lux_treshhold:
+  name: Lichtschwelle
+  min: 0
+  max: 200000
+  step: 1
+  unit_of_measurement: lx
+  mode: box
+  icon: mdi:brightness-percent

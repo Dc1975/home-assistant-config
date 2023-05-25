@@ -1,0 +1,6 @@
+#Wann wird der Müll abgeholt
+#Wann kommt die Müllabfuhr
+speech:
+  type: plain
+  text: >
+    {{state_attr('sensor.sr_waste_next_ex', 'extended')}}

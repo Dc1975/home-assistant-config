@@ -1,0 +1,6 @@
+idt_bz_cover_up_workday:
+  name: "Badezimmerrolladen hoch Wertktags"
+  #initial: ""
+  icon: mdi:window-shutter-open
+  has_time: true
+  has_date: false

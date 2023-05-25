@@ -1,0 +1,17 @@
+>
+  {{ [
+    "OK",
+    "Sicher",
+    "Wenn du darauf bestehst",
+    "Erledigt",
+    "Kein Sorge",
+    "Ich kann das machen",
+    "Überlass es mir",
+    "Betrachten Sie es als erledigt",
+    "Wie du möchtest",
+    "Auf deinen Befehl",
+    "Positiv",
+    "Ja oh Verehrter",
+    "Wie du bestimmst, so soll es sein",
+    "Wie du bestimmst, so soll es sein"
+  ] | random }}

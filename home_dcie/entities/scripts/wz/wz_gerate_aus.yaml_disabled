@@ -1,0 +1,18 @@
+wz_gerate_aus:
+  alias: WZ Geräte aus
+  sequence:
+    - service: homeassistant.turn_on
+      data: {}
+      target:
+        entity_id: script.mm_multimedia_beenden
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 30
+        milliseconds: 0
+    - service: homeassistant.turn_off
+      data: {}
+      target:
+        entity_id: switch.wz_grp_schalter        
+  mode: single
+  icon: mdi:toggle-switch-variant-off

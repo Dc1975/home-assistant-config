@@ -1,0 +1,4 @@
+it_post_received:
+  name: "Letzte Post am: "
+  #initial: ""
+  icon: mdi:email

@@ -1,0 +1,46 @@
+- id: '1680513246495'
+  alias: BZ Bewegung erkannt Timer start
+  description: ''
+  trigger:
+    - type: motion
+      platform: device
+      device_id: 4fcefcf464dc0cbbae25cedfb20a226c
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_9
+      domain: binary_sensor
+  condition:
+    - condition: and
+      conditions:
+      # use this condition to prevent light turn off if they werere manually turned on
+        - condition: device
+          type: is_off
+          device_id: c6bb0b6f3377311ff4ed30d81a5b59ec
+          entity_id: switch.badezimmerschrank
+          domain: switch  
+        - condition: or
+          conditions:
+          - condition: template
+            value_template: "{{ state_attr('cover.badezimmerfensterrolladen', 'current_position')
+              | int <= states('input_number.in_ha_covers_open_threshold') | int }}"
+          - condition: numeric_state
+            entity_id: sun.sun
+            attribute: elevation
+            below: input_number.in_ha_sun_elevation_treshhold              
+#          - condition: sun
+#            before: sunrise
+#            after: sunset
+          - condition: template
+            value_template: >
+              {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_9') %}
+                {{ states('sensor.lumi_lumi_motion_ac02_illuminance_9') |
+                int <=  states('input_number.in_ha_lux_treshhold') | int }}
+              {% endif %}                
+  action:
+    - type: turn_on
+      device_id: c6bb0b6f3377311ff4ed30d81a5b59ec
+      entity_id: switch.badezimmerschrank
+      domain: switch
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_bz_motion_lights
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"			    
+  mode: single

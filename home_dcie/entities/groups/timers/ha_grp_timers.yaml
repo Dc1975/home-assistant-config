@@ -1,0 +1,3 @@
+ha_grp_timers:
+  name: ha_grp_timers
+  entities: !include_dir_merge_list ../../default/timers

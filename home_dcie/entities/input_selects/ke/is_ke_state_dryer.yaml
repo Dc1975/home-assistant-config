@@ -1,0 +1,8 @@
+is_ke_state_dryer:
+  name: Staus Trockner
+  icon: mdi:tumble-dryer
+  options:
+    - ausgeschaltet
+    - läuft
+    - fertig
+  initial: ausgeschaltet

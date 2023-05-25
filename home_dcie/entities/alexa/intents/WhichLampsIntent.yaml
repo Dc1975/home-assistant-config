@@ -1,0 +1,16 @@
+#Welche Lampen sind eingeschaltet
+speech:
+  type: plain
+  text: >
+    {% set toExclucde = namespace(entities=['light.first_led_hardware_instance', 'light.first_led_hardware_instance_2']) %}
+    {%-  for state in expand(states.light)
+      if state.state == "on" and
+      not state.entity_id in toExclucde.entities
+      and state.entity_id in expand('light.ha_grp_lampen') | map(attribute='entity_id') | list 
+    -%}
+    {%- if loop.first %}
+      Die Lampe {% elif loop.last %} und die Lampe {% else %}, die Lampe {% endif -%}    
+      {{ state.name -}} {% if loop.last %} ist eingeschaltet. {% endif -%}      
+    {% else %}
+      Es sind keine Lampen eingeschaltet.
+    {% endfor %} 

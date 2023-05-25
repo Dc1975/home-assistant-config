@@ -1,0 +1,30 @@
+- id: '1682864063394'
+  alias: KU Kühlschrank aus Alarm
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: 7e160a018d77a6f5bbae0e2653c11dfa
+    entity_id: switch.kuchensteckdose_kuhlschrank
+    domain: switch
+  condition: []
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_benachrichtigung
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_fridge_temperatur_alert_notification_title')}}"
+        msg_message: >
+          {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
+          {{states('input_text.it_fridge_temperatur_alert_notification_message')}} Küchenkühlschrank ist {{locale.get(states('switch.kuchensteckdose_kuhlschrank'))}}        
+  - service: notify.alexa_media_uberall
+    data:
+      title: "{{states('input_text.it_fridge_temperatur_alert_notification_title')}}"
+      message: >
+        {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
+        {{states('input_text.it_fridge_temperatur_alert_notification_message')}} Küchenkühlschrank ist {{locale.get(states('switch.kuchensteckdose_kuhlschrank'))}}
+      data:
+        type: announce
+        method: all
+  mode: single

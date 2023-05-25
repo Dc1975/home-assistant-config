@@ -1,0 +1,25 @@
+{% macro get_batteries_info_custom(operator) %}
+{% set toExclucde = namespace(entities=['binary_sensor.nuki_haustur_battery_critical', 'binary_sensor.nuki_haustur_keypad_battery_critical']) %}
+{% set result = namespace(sensors=[]) %}
+{%- for state in states.sensor | selectattr('attributes.device_class', 'defined')
+    | selectattr('attributes.device_class', 'eq', 'battery') -%}
+    {%- if not state.entity_id in toExclucde.entities -%}          
+        {%- if operator == "name" -%}
+            {%- set result.sensors = result.sensors + [state.name ~ ' (' ~ state.state ~ ' %)'] -%}
+        {%- elif operator == "entity_id" -%}    
+            {%- set result.sensors = result.sensors + [state.entity_id] -%}            
+        {%- endif -%} 
+    {%- endif -%}
+{%- endfor -%}      
+{%- for state in states.binary_sensor | selectattr('attributes.device_class', 'defined')
+    | selectattr('attributes.device_class', 'eq', 'battery') -%}
+    {%- if not state.entity_id in toExclucde.entities -%}          
+        {%- if operator == "name" -%}
+            {%- set result.sensors = result.sensors + [state.name ~ ' (' ~ state.state ~ ' %)'] -%}
+        {%- elif operator == "entity_id" -%}    
+            {%- set result.sensors = result.sensors + [state.entity_id] -%}            
+        {%- endif -%} 
+    {%- endif -%} 
+{%- endfor -%}
+{{result.sensors | sort | list}}
+{% endmacro %} 

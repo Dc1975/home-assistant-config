@@ -1,0 +1,15 @@
+{% macro invert_cover_position(cover_position) %}
+{% set result = cover_position %}
+{% if cover_position == 0 %} 
+  {% set result = 100 %} 
+{% elif  cover_position == 100 %} 
+  {% set result = 0 %} 
+{% elif  cover_position > 100 %}   
+  {% set result = 100 %} 
+{% elif  cover_position < 0 %}   
+  {% set result = 0 %}   
+{% else %} 
+  {% set result = 100 - result %} 
+{% endif %} 
+{{result}}
+{% endmacro %}

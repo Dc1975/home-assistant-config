@@ -1,0 +1,6 @@
+idt_sz_cover_down_weekend:
+  name: "Schlafzimmerrolladen runter Wochenende"
+  #initial: ""
+  icon: mdi:window-shutter
+  has_time: true
+  has_date: false

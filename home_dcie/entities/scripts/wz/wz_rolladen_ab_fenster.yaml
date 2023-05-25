@@ -1,0 +1,29 @@
+wz_rolladen_ab_fenster:
+  alias: WZ Rolladen ab Fenster
+  fields:    
+    cover_position:
+      # All sub-options are only used for creating a representation of this script in the UI.
+      description: "Position to set cover to"
+      example: "60"
+      name: cover_position
+  sequence:  
+  - if:
+    - condition: device
+      device_id: 615241c999f893e7d65b3e65eede3d02
+      domain: cover
+      entity_id: cover.wohnzimmerfensterrolladen
+      type: is_position
+      above: 0
+    then:
+    - service: cover.set_cover_position
+      data:
+        position: "{{cover_position | int}}"
+      target:
+        entity_id: cover.wohnzimmerfensterrolladen    
+#    - device_id: 615241c999f893e7d65b3e65eede3d02
+#      domain: cover
+#      entity_id: cover.wohnzimmerfensterrolladen
+#      type: set_position
+#      position: 0
+  mode: single
+  icon: mdi:window-shutter

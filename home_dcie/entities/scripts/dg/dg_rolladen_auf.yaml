@@ -1,0 +1,18 @@
+dg_rolladen_auf:
+  alias: DG Rolladen auf
+  sequence:
+  - if:
+    - condition: device
+      device_id: c1999553e55883ac0269aec24d553b01
+      domain: cover
+      entity_id: cover.dachgeschossfensterrolladen
+      type: is_position
+      below: 100
+    then:
+    - device_id: c1999553e55883ac0269aec24d553b01
+      domain: cover
+      entity_id: cover.dachgeschossfensterrolladen
+      type: set_position
+      position: 100  
+  mode: single
+  icon: mdi:window-shutter-open

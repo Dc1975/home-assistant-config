@@ -1,0 +1,40 @@
+- id: '1679339678190'
+  alias: HA Müllabholungserinnerung
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.idt_ha_waste_notify_time
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: sensor.sr_waste_next_ex
+      attribute: days_to
+      state: 1
+    - condition: state
+      entity_id: sensor.sr_waste_next_ex
+      attribute: days_to
+      state: 0
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_benachrichtigung
+    data:
+      variables:
+        msg_title: '{{states(''input_text.it_waste_notification_title'')}}'
+        msg_message: '{{states(''input_text.it_waste_notification_message'')}} {{'' ''}}
+          {{ state_attr(''sensor.sr_waste_next_ex'', ''extended'') }}'
+# - if:
+#   - condition: zone
+#     entity_id: person.dcie
+#     zone: zone.home
+#   then:          
+  - service: notify.alexa_media_uberall
+    data:
+      title: '{{states(''input_text.it_waste_notification_title'')}}'
+      message: '{{states(''input_text.it_waste_notification_message'')}} {{'' ''}} {{state_attr(''sensor.sr_waste_next_ex'',
+        ''extended'')}}'
+      data:
+        type: announce
+        method: all
+  mode: single

@@ -1,0 +1,18 @@
+sensor:
+  - name: sr_ha_open_windows
+    unique_id: sr_ha_open_windows
+    state: >
+      {{expand('group.ha_grp_windows') | count}}
+    attributes:
+      open_windows: >    
+        {% set toExclucde = namespace(entities=[]) %}
+        {%-  for state in expand('group.ha_grp_windows')
+          if state.state == "on" and
+          not state.entity_id in toExclucde.entities    
+        -%}
+        {%- if loop.first %}
+          Das Fenster {% elif loop.last %}und das Fenster {% else %}, das Fenster {% endif -%} {{ state.name }} {% if loop.last %}ist geöffnet.{% endif -%}
+        {% else %}
+          Es sind keine Fenster geöffnet.        
+        {% endfor %}      
+            

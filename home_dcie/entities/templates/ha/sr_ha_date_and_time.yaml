@@ -1,0 +1,7 @@
+sensor:
+  - name: sr_ha_date_and_time
+    unique_id: sr_ha_date_and_time
+    # " Mittwoch 15.02.2023 12:06"
+    state: >
+      {% set days = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'] %} {{ days[now().weekday()] }} {{ now().timestamp() | timestamp_custom('%d.%m.%Y %H:%M') }}       
+    icon: mdi:calendar-clock

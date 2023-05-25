@@ -1,0 +1,165 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "home assistant",
+            "intents": [
+                {
+                    "name": "ActivateSceneIntent",
+                    "slots": [
+                        {
+                            "name": "Scene",
+                            "type": "Scenes"
+                        }
+                    ],
+                    "samples": [
+                        "aktiviere Szene {Scene}"
+                    ]
+                },
+                {
+                    "name": "WhichLampsIntent",
+                    "slots": [],
+                    "samples": [
+                        "Welche Lampen sind eingeschaltet"
+                    ]
+                },
+                {
+                    "name": "WhichLightSwitchesIntent",
+                    "slots": [],
+                    "samples": [
+                        "Welche Lichtschalter sind eingeschaltet"
+                    ]
+                },
+                {
+                    "name": "WhichSwitchesIntent",
+                    "slots": [],
+                    "samples": [
+                        "Welche Geräte sind eingeschaltet"
+                    ]
+                },
+                {
+                    "name": "WhichLightsAndSwitchesIntent",
+                    "slots": [],
+                    "samples": [
+                        "Welche Lichtschalter und Lampen sind eingeschaltet"
+                    ]
+                },
+                {
+                    "name": "WhichWindowsIntent",
+                    "slots": [],
+                    "samples": [
+                        "Welche Fenster sind geöffnet",
+                        "Welche Fenster sind offen"
+                    ]
+                },
+                {
+                    "name": "WhichDoorsIntent",
+                    "slots": [],
+                    "samples": [
+                        "Welche Türen sind geöffnet",
+                        "Welche Türen sind offen"
+                    ]
+                },
+                {
+                    "name": "IsFrontDoorLockedIntent",
+                    "slots": [],
+                    "samples": [
+                        "Ist die Haus Tür verschlossen",
+                        "Ist die Haus Tür aufgeschlossen",
+                        "Ist die Haus Tür verriegelt",
+                        "Ist die Haus Tür entriegelt"
+                    ]
+                },
+                {
+                    "name": "IsFrontDoorOpenedIntent",
+                    "slots": [],
+                    "samples": [
+                        "Ist die Haus Tür geöffnet",
+                        "Ist die Haus Tür offen"
+                    ]
+                },
+                {
+                    "name": "HowIsFrontDoorStatusIntent",
+                    "slots": [],
+                    "samples": [
+                        "Wie ist der Satus der Haus Tür"
+                    ]
+                },
+                {
+                    "name": "WhichCoversIntent",
+                    "slots": [],
+                    "samples": [
+                        "Welche Rolladen sind geöffnet",
+                        "Welche Rolladen sind offen"
+                    ]
+                },
+                {
+                    "name": "WhenWasteNextIntent",
+                    "slots": [],
+                    "samples": [
+                        "Wann wird der Müll abgeholt",
+                        "Wann kommt die Müllabfuhr"
+                    ]
+                },
+                {
+                    "name": "RunScriptIntent",
+                    "slots": [
+                        {
+                            "name": "Script",
+                            "type": "Scripts"
+                        }
+                    ],
+                    "samples": [
+                        "starte Skript {Script}"
+                    ]
+                },
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                }
+            ],
+            "types": [
+                {
+                    "name": "Scenes",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "DG Schreibtischlicht einschalten"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "DG Wandlicht einschalten"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "Scripts",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "DG Schreibtischlicht ausschalten"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

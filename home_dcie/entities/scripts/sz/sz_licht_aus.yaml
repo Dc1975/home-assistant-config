@@ -1,0 +1,29 @@
+sz_licht_aus:
+  alias: SZ Licht aus
+  sequence:
+  - type: turn_off
+    device_id: 7286e6ff524d9298293da6ccca931525
+    entity_id: switch.schlafzimmerlicht
+    domain: switch
+  - type: turn_off
+    device_id: f0dd0d79f81f2be59baaa2d11656fe4c
+    entity_id: switch.ankleidezimmerlicht
+    domain: switch
+  - type: turn_off
+    device_id: 25659d9518a8475b626a58ac86dacb68
+    entity_id: switch.bettlicht_rechts
+    domain: switch
+  - type: turn_off
+    device_id: 77e39e66381e65d85ba743eb661c177b
+    entity_id: switch.bettlichtlicht_links
+    domain: switch
+  - type: turn_off
+    device_id: 058963ee289319bd06d6128d8cb9252d
+    entity_id: switch.schlafzimmerspiegel
+    domain: switch
+  - type: turn_off
+    device_id: 058963ee289319bd06d6128d8cb9252d
+    entity_id: switch.schlafzimmerregal
+    domain: switch
+  mode: single
+  icon: mdi:toggle-switch-variant-off

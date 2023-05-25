@@ -1,0 +1,35 @@
+smart_home:
+  locale: de-DE
+  endpoint: https://api.eu.amazonalexa.com/v3/events
+  client_id: !secret alexa_client_id
+  client_secret: !secret alexa_client_secret
+
+  filter:
+    exclude_domains:
+      # This does not exclude devices/domains of from apps e.g. smart life or elsion
+      # see https://www.nabucasa.com/config/amazon_alexa/
+      - alarm_control_panel #(alarm control panels must not require an arm code)
+      - alert
+      - automation #(enables/disables)
+      - binary_sensor
+      - camera
+      - climate
+      - cover
+      - fan #(supports on/off and set speed)
+      - group
+      - input_boolean
+      - light
+      - lock #(lock and unlock, but unlock is untested as Amazon has disabled unlock for now)
+      - media_player #(play, pause, stop, set volume, adjust volume, next track, and previous track)      
+      - scene
+      - script #(enables/disables)
+      - sensor
+      - switch  
+      - timer    
+    include_entities: !include_dir_merge_list ../default
+    include_entity_globs: !include alexa_include_scripts.yaml
+
+  entity_config: !include alexa_entity_config.yaml
+
+flash_briefings: !include alexa_flash_briefings.yaml
+

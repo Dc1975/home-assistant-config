@@ -1,0 +1,11 @@
+ha_grp_covers_closed_by_summer_mode:
+  name: ha_grp_covers_closed_by_summer_mode
+  entities: 
+    - input_boolean.ib_bz_covers_closed_by_summer_mode
+    - input_boolean.ib_dg_covers_closed_by_summer_mode
+    - input_boolean.ib_gz_covers_closed_by_summer_mode
+    - input_boolean.ib_ku_covers_closed_by_summer_mode
+    - input_boolean.ib_sz_covers_closed_by_summer_mode
+    - input_boolean.ib_sz_az_covers_closed_by_summer_mode 
+    - input_boolean.ib_wz_fenster_covers_closed_by_summer_mode
+    - input_boolean.ib_wz_tur_covers_closed_by_summer_mode

@@ -1,0 +1,6 @@
+idt_sz_az_cover_up_workday:
+  name: "Ankleidezimmerrolladen hoch Wertktags"
+  #initial: ""
+  icon: mdi:window-shutter-open
+  has_time: true
+  has_date: false

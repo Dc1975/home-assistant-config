@@ -1,0 +1,6 @@
+idt_wz_window_cover_down_workday:
+  name: "Wohnzimmerfensterrolladen runter Wertktags"
+  #initial: ""
+  icon: mdi:window-shutter
+  has_time: true
+  has_date: false

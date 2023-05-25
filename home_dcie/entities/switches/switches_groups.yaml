@@ -1,0 +1,29 @@
+- platform: group
+  name: ha_grp_schalter
+  entities: !include_dir_merge_list ../default/switches/others
+  unique_id: ha_grp_schalter
+
+- platform: group
+  name: dg_grp_schalter
+  entities: !include_dir_merge_list ../default/switches/others/dg
+  unique_id: dg_grp_schalter
+
+- platform: group
+  name: ku_grp_schalter
+  entities: !include_dir_merge_list ../default/switches/others/ku
+  unique_id: ku_grp_schalter
+
+- platform: group
+  name: sz_grp_schalter
+  entities: !include_dir_merge_list ../default/switches/others/sz
+  unique_id: sz_grp_schalter
+
+- platform: group
+  name: wz_grp_schalter
+  entities: !include_dir_merge_list ../default/switches/others/wz
+  unique_id: wz_grp_schalter
+  
+- platform: group
+  name: ke_grp_schalter
+  entities: !include_dir_merge_list ../default/switches/others/ke
+  unique_id: ke_grp_schalter

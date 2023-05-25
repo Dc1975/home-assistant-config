@@ -1,0 +1,18 @@
+ku_rolladen_auf:
+  alias: KU Rolladen auf
+  sequence:
+  - if:
+    - condition: device
+      device_id: 08c98394bf120af8b8d83907469128e7
+      domain: cover
+      entity_id: cover.kuchenfensterrolladen
+      type: is_position
+      below: 100
+    then:
+    - device_id: 08c98394bf120af8b8d83907469128e7
+      domain: cover
+      entity_id: cover.kuchenfensterrolladen
+      type: set_position
+      position: 100    
+  mode: single
+  icon: mdi:window-shutter-open

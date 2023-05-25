@@ -1,0 +1,6 @@
+idt_ha_covers_close_summer_after:
+  name: "Betrieb nach"
+  #initial: ""
+  icon: mdi:clock-time-seven
+  has_time: true
+  has_date: false

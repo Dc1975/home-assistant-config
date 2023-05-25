@@ -1,0 +1,6 @@
+shell_command:
+  #copy_influxdb_docker: bash /config/copy_influxdb_docker.sh
+  #mount_homeassistant_samba_backup: bash /config/mount_homeassistant_samba_backup.sh
+  #mount_homeassistant_samba_backup: 'mkdir -p /mnt/data/supervisor/homeassistant-samba-backup;mount -t nfs 192.168.0.111:/volume2/DATA/Backup/HomeAssistant/AutoBackup /mnt/data/supervisor/homeassistant-samba-backup'
+  mount_homeassistant_samba_backup: 'mkdir -p /media/homeassistant-samba-backup; mount -t nfs 192.168.0.111:/volume2/DATA/Backup/HomeAssistant/AutoBackup /media/homeassistant-samba-backup'
+  

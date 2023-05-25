@@ -1,0 +1,14 @@
+- platform: group
+  name: dg_grp_plugs_always_on
+  entities: !include_dir_merge_list ../default/switches/plugs/dg_always_on
+  unique_id: dg_grp_plugs_always_on
+
+- platform: group
+  name: ke_grp_plugs_always_on
+  entities: !include_dir_merge_list ../default/switches/plugs/ke_always_on
+  unique_id: ke_grp_plugs_always_on
+
+- platform: group
+  name: ku_grp_plugs_always_on
+  entities: !include_dir_merge_list ../default/switches/plugs/ku_always_on
+  unique_id: ku_grp_plugs_always_on

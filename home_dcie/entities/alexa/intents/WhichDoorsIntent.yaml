@@ -1,0 +1,18 @@
+#Welche Türen sind geöffnet
+#Welche Türen sind offen
+speech:
+  type: plain
+  text: >    
+    {% set toExclucde = namespace(entities=[]) %}
+    {%-  for state in expand(states.binary_sensor)
+      if state.state == "on"
+      and not state.entity_id in toExclucde.entities
+      and state.entity_id in expand('group.ha_grp_doors')
+      | map(attribute='entity_id') | list 
+    -%}
+    {%- if loop.first -%}
+      Die Tür {% elif loop.last %} und die Tür {% else %}, die Tür {% endif -%}
+    {{ state.name -}} {% if loop.last %} ist geöffnet. {% endif -%}      
+    {% else %}
+      Es sind keine Türen geöffnet.
+    {% endfor %}  

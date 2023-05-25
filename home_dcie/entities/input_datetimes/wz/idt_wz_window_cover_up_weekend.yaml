@@ -1,0 +1,6 @@
+idt_wz_window_cover_up_weekend:
+  name: "Wohnzimmerfensterrolladen hoch Wochenende"
+  #initial: ""
+  icon: mdi:window-shutter-open
+  has_time: true
+  has_date: false

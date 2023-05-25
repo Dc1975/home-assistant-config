@@ -1,0 +1,6 @@
+idt_gz_cover_down_workday:
+  name: "Gästezimmerrolladen runter Wertktags"
+  #initial: ""
+  icon: mdi:window-shutter
+  has_time: true
+  has_date: false

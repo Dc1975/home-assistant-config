@@ -1,0 +1,6 @@
+#Welche Fenster sind geöffnet
+#Welche Fenster sind offen
+speech:
+  type: plain
+  text: >
+    {{state_attr('sensor.sr_ha_open_windows', 'open_windows')}}

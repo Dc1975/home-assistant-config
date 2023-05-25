@@ -1,0 +1,43 @@
+wz_gerate_aus:
+  alias: WZ Geräte aus
+  sequence:
+    - service: homeassistant.turn_on
+      data: {}
+      target:
+        entity_id: script.mm_multimedia_beenden        
+    - if:
+        - condition: state
+          entity_id: binary_sensor.bs_beamer_ping
+          state: "on"
+      then:
+        - service: timer.start
+          data_template:
+            entity_id: timer.ti_mm_beamer_off_timeout
+            duration: "00:00:{{states('input_number.in_mm_beamer_off_delay') | int}}"			                
+        - repeat:
+            until:
+              #- condition: and
+              - condition: or
+                conditions:
+                  - condition: state
+                    entity_id: binary_sensor.bs_beamer_ping
+                    state: "off"
+                  - condition: template
+                    value_template: >
+                      {% if states('timer.ti_mm_beamer_off_timeout') == 'idle' %}
+                        true
+                      {% else %}  
+                        false
+                      {% endif %}
+            sequence:
+              - delay:
+                  hours: 0
+                  minutes: 0
+                  seconds: 0
+                  milliseconds: 500
+    - service: homeassistant.turn_off
+      data: {}
+      target:
+        entity_id: switch.wz_grp_schalter        
+  mode: single
+  icon: mdi:toggle-switch-variant-off

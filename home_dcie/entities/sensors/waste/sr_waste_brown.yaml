@@ -1,0 +1,7 @@
+platform: waste_collection_schedule
+name: sr_waste_brown
+details_format: "upcoming"
+#value_template: '{{ value.daysTo }}'
+value_template: '{{value.types|join(", ")}}|{{value.daysTo}}|{{value.date.strftime("%d.%m.%Y")}}|{{value.date.strftime("%A")}}'
+types:
+  - braun

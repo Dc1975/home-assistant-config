@@ -1,0 +1,39 @@
+- id: '1682362100783'
+  alias: KE Trocker aus automatisch
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.kellersteckdose_trockner_energy_power
+    above: 0.5
+    below: 3
+    for: 00:04:00
+  condition: 
+  - condition: device
+    type: is_on
+    device_id: c9f3adb9682ccab5ba3a737d01c0ad2d
+    entity_id: switch.kellersteckdose_trockner
+    domain: switch  
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_benachrichtigung
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_general_notification_title')}} Trockner"
+        msg_message: "Der Trockner wird ausgeschaltet"
+  - service: notify.alexa_media_uberall
+    data:
+      title: "{{states('input_text.it_general_notification_title')}} Trockner"
+      message: "Der Trockner wird ausgeschaltet"
+      data:
+        type: announce
+        method: all  
+  - data:
+      option: ausgeschaltet
+    entity_id: input_select.is_ke_state_dryer
+    service: input_select.select_option  
+  - type: turn_off
+    device_id: c9f3adb9682ccab5ba3a737d01c0ad2d
+    entity_id: switch.kellersteckdose_trockner
+    domain: switch  
+  mode: single

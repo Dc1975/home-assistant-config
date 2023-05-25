@@ -1,0 +1,13 @@
+#Ist die Haus Tür verschlossen
+#Ist die Haus Tür aufgeschlossen
+#Ist die Haus Tür verriegelt
+#Ist die Haus Tür entriegelt
+speech:
+  type: plain
+  text: >
+    {% set locked = states('sensor.nuki_haustur_state') %}
+    {% if locked == 'locked' %}
+      Die Haustür ist verriegelt.
+    {% else %}
+      Die Haustür ist entriegelt.
+    {% endif %}  

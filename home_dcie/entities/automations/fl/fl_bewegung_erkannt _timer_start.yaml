@@ -1,0 +1,42 @@
+- id: '1681677567605'
+  alias: FL Bewegung erkannt Timer start
+  description: ''
+  trigger:
+    - type: motion
+      platform: device
+      device_id: 149930cedf64a5c1e82be32fd55e95e5
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_7
+      domain: binary_sensor
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.ib_ha_schlafen_runs
+          state: 'off'      
+        # use this condition to prevent light turn off if they were manually turned on
+        - condition: state
+          entity_id: light.lampe_flur_4_2
+          state: "off"
+        - condition: or
+          conditions:
+          - condition: numeric_state
+            entity_id: sun.sun
+            attribute: elevation
+            below: input_number.in_ha_sun_elevation_treshhold              
+          # there is not enough light in the hallway to use this condition
+#          - condition: template
+#            value_template: >
+#              {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_9') %}
+#                {{ states('sensor.lumi_lumi_motion_ac02_illuminance_9') |
+#                int <=  states('input_number.in_ha_lux_treshhold') | int }}
+#              {% endif %}                
+  action:
+    - service: light.turn_on
+      data: {}
+      target:
+        entity_id: light.lampe_flur_4_2
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_fl_motion_lights
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"			    
+  mode: single

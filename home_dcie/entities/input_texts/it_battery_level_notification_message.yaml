@@ -1,0 +1,4 @@
+it_battery_level_notification_message:
+  name: "Benachrichtigung Batteriestand - Text:"
+  #initial: ""
+  icon: mdi:cellphone-information

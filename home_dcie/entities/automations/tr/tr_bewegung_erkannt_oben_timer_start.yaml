@@ -1,0 +1,38 @@
+- id: '1680357461773'
+  alias: TR Bewegung erkannt oben Timer start
+  description: ''
+  trigger:
+    - type: motion
+      platform: device
+      device_id: def102ad77b3f393cc3220eb60243303
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_4
+      domain: binary_sensor
+  condition:
+    - condition: and
+      conditions:
+      # use this condition to prevent light turn off if they werere manually turned on            
+      - condition: state
+        entity_id: light.tr_grp_lampen_oben
+        state: "off"          
+#      - condition: sun
+#        after: sunset
+#        before: sunrise
+      - condition: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        below: input_number.in_ha_sun_elevation_treshhold    
+      - condition: state
+        entity_id: input_boolean.ib_ha_schlafen_runs
+        state: 'off'
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 5
+        color_temp: 500          
+      target:
+        entity_id: light.tr_grp_lampen_oben
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_tr_oben_motion_lights
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"			    
+  mode: single

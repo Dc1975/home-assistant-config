@@ -1,0 +1,15 @@
+mm_onkyo_radiosender_vor:
+  alias: MM Onkyo Radiosender vor
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.harmonyelitehubby
+    data:
+      hold_secs: 0.2
+      command:
+      - PresetNext
+      num_repeats: 1
+      device: '52440711'
+      delay_secs: 0.2
+  icon: mdi:remote-tv
+  mode: single

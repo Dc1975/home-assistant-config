@@ -1,0 +1,21 @@
+{% macro get_batteries_info_name(operator) %}
+{% set toExclucde = namespace(entities=['binary_sensor.nuki_haustur_battery_critical', 'binary_sensor.nuki_haustur_keypad_battery_critical']) %}
+{% set result = namespace(sensors=[]) %}
+{%- for state in states.sensor | selectattr('attributes.device_class', 'defined')
+    | selectattr('attributes.device_class', 'eq', 'battery') -%}
+    {%- if not state.entity_id in toExclucde.entities -%}          
+        {%- set result.sensors = result.sensors + [state.name] -%}
+    {%- endif -%}
+{%- endfor -%}      
+{%- for state in states.binary_sensor | selectattr('attributes.device_class', 'defined')
+    | selectattr('attributes.device_class', 'eq', 'battery') -%}
+    {%- if not state.entity_id in toExclucde.entities -%}          
+        {% set result.sensors = result.sensors + [state.name] -%}
+    {%- endif -%} 
+{%- endfor -%}
+{% if operator == "count"%}
+    {{result.sensors | count}}
+{% elif operator == "list" %}    
+    {{result.sensors | sort | list}}
+{% endif %} 
+{% endmacro %} 

@@ -1,0 +1,6 @@
+idt_sz_cover_up_weekend:
+  name: "Schlafzimmerrolladen hoch Wochenende"
+  #initial: ""
+  icon: mdi:window-shutter-open
+  has_time: true
+  has_date: false

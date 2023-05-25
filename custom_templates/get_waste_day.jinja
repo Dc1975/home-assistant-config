@@ -1,0 +1,7 @@
+{% macro get_waste_day(waste) %}
+{% set locale = { 'Monday':'Montag', 'Tuesday':'Dienstag', 'Wednesday':'Mittwoch', 'Thursday':'Donnerstag', 'Friday':'Freitag', 'Saturday':'Samstag', 'Sunday':'Sonntag' } %}
+{% set sensor = "sensor.sr_waste_" +  waste %}
+{% set fullString =  states(sensor) %}    
+{% set day = fullString.split("|")[3] %}
+{{ locale.get(day) }}      
+{% endmacro %} 

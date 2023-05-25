@@ -1,0 +1,6 @@
+idt_ha_low_batteries_workday_notify:
+  name: "Batteriestände Werktags"
+  #initial: ""
+  icon: mdi:clock-time-seven
+  has_time: true
+  has_date: false

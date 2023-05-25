@@ -1,0 +1,18 @@
+gz_rolladen_auf:
+  alias: GZ Rolladen auf
+  sequence:
+  - if:
+    - condition: device
+      device_id: e30601eb64e746facff314e41e3251c1
+      domain: cover
+      entity_id: cover.gastezimmerfensterrolladen
+      type: is_position
+      below: 100
+    then:
+    - device_id: e30601eb64e746facff314e41e3251c1
+      domain: cover
+      entity_id: cover.gastezimmerfensterrolladen
+      type: set_position
+      position: 100  
+  mode: single
+  icon: mdi:window-shutter-open

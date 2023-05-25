@@ -1,0 +1,18 @@
+bz_rolladen_auf:
+  alias: BZ Rolladen auf
+  sequence:
+  - if:
+    - condition: device
+      device_id: 6203547afbeff442d197ec828d2cfaa3
+      domain: cover
+      entity_id: cover.badezimmerfensterrolladen
+      type: is_position
+      below: 100
+    then:
+    - device_id: 6203547afbeff442d197ec828d2cfaa3
+      domain: cover
+      entity_id: cover.badezimmerfensterrolladen
+      type: set_position
+      position: 100     
+  mode: single
+  icon: mdi:window-shutter-open

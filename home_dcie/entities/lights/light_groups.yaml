@@ -1,0 +1,76 @@
+- platform: group
+  name: ha_grp_lampen
+  entities: !include_dir_merge_list ../default/lights
+  unique_id: ha_grp_lampen
+
+- platform: group
+  name: dg_grp_lampen
+  entities: !include_dir_merge_list ../default/lights/dg
+  unique_id: dg_grp_lampen
+
+- platform: group
+  name: ez_grp_lampen
+  entities: !include_dir_merge_list ../default/lights/ez
+  unique_id: ez_grp_lampen
+
+- platform: group
+  name: fl_grp_lampen
+  entities: !include_dir_merge_list ../default/lights/fl
+  unique_id: fl_grp_lampen
+
+- platform: group
+  name: ka_grp_lampen
+  entities: !include_dir_merge_list ../default/lights/ka
+  unique_id: ka_grp_lampen
+
+- platform: group
+  name: ku_grp_lampen
+  entities: !include_dir_merge_list ../default/lights/ku
+  unique_id: ku_grp_lampen
+
+- platform: group
+  name: of_grp_lampen
+  entities: !include_dir_merge_list ../default/lights/of
+  unique_id: of_grp_lampen
+
+- platform: group
+  name: sz_grp_lampen
+  entities: !include_dir_merge_list ../default/lights/sz
+  unique_id: sz_grp_lampen
+
+- platform: group
+  name: tk_grp_lampen
+  entities: !include_dir_merge_list ../default/lights/tk
+  unique_id: tk_grp_lampen
+
+- platform: group
+  name: tr_grp_lampen
+  entities: !include_dir_merge_list ../default/lights/tr
+  unique_id: tr_grp_lampen
+
+- platform: group
+  name: tr_grp_lampen_oben
+  entities: !include_dir_merge_list ../default/lights/tr/oben
+  unique_id: tr_grp_lampen_oben
+
+- platform: group
+  name: tr_grp_lampen_mitte
+  entities: !include_dir_merge_list ../default/lights/tr/mitte
+  unique_id: tr_grp_lampen_mitte
+
+- platform: group
+  name: tr_grp_lampen_unten
+  entities: !include_dir_merge_list ../default/lights/tr/unten
+  unique_id: tr_grp_lampen_unten
+
+- platform: group
+  name: tr_grp_lampen_oben_unten
+  entities: 
+    - light.tr_grp_lampen_unten
+    - light.tr_grp_lampen_oben
+  unique_id: tr_grp_lampen_oben_unten
+
+- platform: group
+  name: wz_grp_lampen
+  entities: !include_dir_merge_list ../default/lights/wz
+  unique_id: wz_grp_lampen

@@ -1,0 +1,9 @@
+{% macro get_waste_days_to_formatted(waste) %}
+{% set locale = { 'Monday':'Montag', 'Tuesday':'Dienstag', 'Wednesday':'Mittwoch', 'Thursday':'Donnerstag', 'Friday':'Freitag', 'Saturday':'Samstag', 'Sunday':'Sonntag' } %}
+{% set sensor = "sensor.sr_waste_" +  waste %}
+{% set fullString =  states(sensor) %}        
+{% set date = fullString.split("|")[2] %}
+{% set day = fullString.split("|")[3] %}
+{% set daysTo = fullString.split("|")[1] | int %}
+{% if daysTo == 0 %}heute{% elif daysTo == 1 %}morgen{% else %}in {{daysTo}} Tagen{% endif %} am {{ locale.get(day) }}
+{% endmacro %} 

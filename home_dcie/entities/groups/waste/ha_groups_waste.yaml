@@ -1,0 +1,7 @@
+ha_groups_waste:
+  name: ha_groups_waste
+  entities: 
+    - sensor.sr_waste_grey_ex
+    - sensor.sr_waste_yellow_ex
+    - sensor.sr_waste_blue_ex
+    - sensor.sr_waste_brown_ex  

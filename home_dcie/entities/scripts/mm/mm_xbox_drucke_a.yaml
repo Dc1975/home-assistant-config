@@ -1,0 +1,14 @@
+mm_xbox_drucke_a:
+  alias: MM XBox drücke A
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.harmonyelitehubby         
+    data:
+      num_repeats: 1
+      delay_secs: 0.4
+      hold_secs: 0
+      device: "52440802"
+      command: A
+  mode: single
+  icon: mdi:gamepad

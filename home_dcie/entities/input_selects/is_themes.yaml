@@ -1,0 +1,9 @@
+is_themes:
+  name: Themes
+  icon: mdi:format-paint
+  options:
+    - "noctis"
+    - "Mushroom"
+    - "Mushroom Custom"
+    - "Google Dark Theme"
+    - "Github Dark Theme"

@@ -1,0 +1,6 @@
+idt_bz_cover_down_workday:
+  name: "Badezimmerrolladen runter Wertktags"
+  #initial: ""
+  icon: mdi:window-shutter
+  has_time: true
+  has_date: false

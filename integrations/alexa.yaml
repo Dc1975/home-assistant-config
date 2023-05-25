@@ -1,0 +1,1 @@
+alexa: !include ../home_dcie/entities/alexa/alexa_config.yaml

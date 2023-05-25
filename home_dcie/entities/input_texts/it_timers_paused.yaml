@@ -1,0 +1,3 @@
+it_timers_paused:
+  name: it_timers_paused
+  max: 255

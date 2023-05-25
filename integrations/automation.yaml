@@ -1,0 +1,2 @@
+automation split: !include_dir_merge_list ../home_dcie/entities/automations
+automation: !include ../automations.yaml

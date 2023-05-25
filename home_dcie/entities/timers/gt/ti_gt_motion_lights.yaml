@@ -1,0 +1,4 @@
+ti_gt_motion_lights:
+  duration: "00:00:00"
+  restore: true
+  name: Timer Gästetoilette

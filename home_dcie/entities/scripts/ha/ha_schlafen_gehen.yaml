@@ -1,0 +1,95 @@
+ha_schlafen_gehen:
+  alias: HA Schlafen gehen
+  sequence:
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.ib_ha_schlafen_runs
+    - device_id: d9ed990d7a946b541ddf7e82de436181
+      domain: cover
+      entity_id: cover.leinwand
+      type: set_position
+      position: 100
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id:
+          - script.ha_alle_rolladen_ab
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id:
+          - script.ha_alle_gerate_aus          
+    - if:
+        - condition: template
+          value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
+      then:    
+        - wait_template: "{{is_state('script.ha_alle_gerate_aus', 'off') }}"                
+          continue_on_timeout: true                       
+    - service: script.turn_on
+      target:
+        entity_id:
+          - script.ha_alle_lichter_aus
+      data:
+        variables:
+          delay_FL_lamps: 0          
+          wait_for_script: "{{states('input_boolean.ib_wait_for_script')}}" 
+    - if:
+        - condition: template
+          value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
+      then:    
+        - wait_template: "{{is_state('script.ha_alle_lichter_aus', 'off') }}"      
+          continue_on_timeout: true             
+    - service: light.turn_on
+      data:
+        brightness: 5
+        color_temp: 500
+      target:
+        entity_id: light.tr_grp_lampen_mitte
+    - type: turn_on
+      device_id: 77e39e66381e65d85ba743eb661c177b
+      entity_id: switch.bettlichtlicht_links
+      domain: switch
+    # call the scene extern cause we have to wait for the network connect of the lamps
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id:
+          - script.ku_kuche_lampen_nacht
+
+    # for using a scene, first turn on the switch
+#    - type: turn_on
+#      device_id: 3fac30d786557e08e60dd17cdb131eee
+#      entity_id: switch.kuchenlicht
+#      domain: switch
+#    - service: scene.turn_on
+#      target:
+#        entity_id: scene.kuche_lampen_nacht
+#      metadata: {}      
+#    - service: timer.start
+#      data_template:
+#        entity_id: timer.ti_ku_motion_lights
+#        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"
+    # the switch will be automatically turned of by the timer
+    
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_alexa_wz_benachrichtigung
+      data:
+        variables:
+          msg_title: HomeAssistant - Erinnerung
+          msg_message: Wie ist der Akkustand von Harmony?
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 5
+        milliseconds: 0          
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_alexa_wz_benachrichtigung
+      data:
+        variables:
+          msg_title: HomeAssistant - Offene Fenster
+          msg_message: "{{state_attr('sensor.sr_ha_open_windows', 'open_windows')}}"          
+  mode: single
+  icon: mdi:lightbulb-group-off

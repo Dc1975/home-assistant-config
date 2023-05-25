@@ -1,0 +1,6 @@
+idt_ha_low_battery_workday_after_notify:
+  name: "Batteriestand Werktags nach"
+  #initial: ""
+  icon: mdi:clock-time-seven
+  has_time: true
+  has_date: false

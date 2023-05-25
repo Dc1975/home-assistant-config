@@ -1,0 +1,238 @@
+# waste
+sensor.sr_waste_grey:
+  friendly_name: Restmüll
+  icon: mdi:trash-can
+sensor.sr_waste_brown:
+  friendly_name: Biomüll
+  icon: mdi:leaf
+sensor.sr_waste_yellow:
+  friendly_name: Wertstoff
+  icon: mdi:recycle
+sensor.sr_waste_blue:
+  friendly_name: Papier
+  icon: mdi:file
+sensor.sr_waste_next:
+  friendly_name: Abholung
+  icon: mdi:trash-can
+sensor.sr_waste_grey_ex:
+  friendly_name: Restmüll
+sensor.sr_waste_brown_ex:
+  friendly_name: Biomüll
+sensor.sr_waste_yellow_ex:
+  friendly_name: Wertstoff
+sensor.sr_waste_blue_ex:
+  friendly_name: Papier
+sensor.sr_waste_next_ex:
+  friendly_name: Abholung
+# RBP 4
+sensor.remote_rpi_timestamp:
+  friendly_name: Zeitstempel
+sensor.remote_rpi_rpi_model:
+  friendly_name: Model
+sensor.remote_rpi_host_name:
+  friendly_name: Hostname
+sensor.remote_rpi_ip:
+  friendly_name: IP
+sensor.remote_rpi_cpu_model:
+  friendly_name: CPU
+sensor.remote_rpi_cpu_cores:
+  friendly_name: CPU Kerne
+sensor.remote_rpi_cpu_usage:
+  friendly_name: CPU Auslastung
+sensor.remote_rpi_cpu_temperature:
+  friendly_name: CPU Temperatur
+sensor.remote_rpi_fs_total_gb:
+  friendly_name: SSD Größe
+sensor.remote_rpi_fs_free_prcnt:
+  friendly_name: SSD Frei
+sensor.remote_rpi_fs_used_prcnt:
+  friendly_name: SSD Benutzt
+sensor.remote_rpi_memory_size:
+  friendly_name: Speicher Total
+sensor.remote_rpi_memory_free:
+  friendly_name: Speicher Frei
+sensor.remote_rpi_memory_used_prcnt:
+  friendly_name: Speicher Benutzt
+sensor.remote_rpi_up_time:
+  friendly_name: Laufzeit
+sensor.remote_rpi_ux_release:
+  friendly_name: OS Release
+sensor.remote_rpi_ux_version:
+  friendly_name: OS Version
+sensor.local_rpi_timestamp:
+  friendly_name: Zeitstempel
+sensor.local_rpi_rpi_model:
+  friendly_name: Model
+sensor.local_rpi_host_name:
+  friendly_name: Hostname
+sensor.local_rpi_ip:
+  friendly_name: IP
+sensor.local_rpi_cpu_model:
+  friendly_name: CPU
+sensor.local_rpi_cpu_cores:
+  friendly_name: CPU Kerne
+sensor.local_rpi_cpu_usage:
+  friendly_name: CPU Auslastung
+sensor.local_rpi_cpu_temperature:
+  friendly_name: CPU Temperatur
+sensor.local_rpi_fs_total_gb:
+  friendly_name: SSD Größe
+sensor.local_rpi_fs_free_prcnt:
+  friendly_name: SSD Frei
+sensor.local_rpi_fs_used_prcnt:
+  friendly_name: SSD Benutzt
+sensor.local_rpi_memory_size:
+  friendly_name: Speicher Total
+sensor.local_rpi_memory_free:
+  friendly_name: Speicher Frei
+sensor.local_rpi_memory_used_prcnt:
+  friendly_name: Speicher Benutzt
+sensor.local_rpi_up_time:
+  friendly_name: Laufzeit
+sensor.local_rpi_ux_release:
+  friendly_name: OS Release
+sensor.local_rpi_ux_version:
+  friendly_name: OS Version
+# Energy plugs  
+sensor.um_dg_steckdose_unifi_server_daily:  
+  friendly_name: Unifi Server täglich  
+sensor.um_dg_steckdose_unifi_server_weekly:  
+  friendly_name: Unifi Server wöchentlich  
+sensor.um_dg_steckdose_unifi_server_monthly:  
+  friendly_name: Unifi Server monatlich  
+sensor.um_dg_steckdose_unifi_server_yearly:  
+  friendly_name: Unifi Server jährlich        
+sensor.um_dg_steckdose_homeassistant_server_daily:  
+  friendly_name: HomeAssistant Server täglich  
+sensor.um_dg_steckdose_homeassistant_server_weekly:  
+  friendly_name: HomeAssistant Server wöchentlich  
+sensor.um_dg_steckdose_homeassistant_server_monthly:  
+  friendly_name: HomeAssistant Server monatlich  
+sensor.um_dg_steckdose_homeassistant_server_yearly:  
+  friendly_name: HomeAssistant Server jährlich          
+sensor.um_ku_steckdose_kuhlschrank_daily:  
+  friendly_name: Küchenkühlschrank täglich  
+sensor.um_ku_steckdose_kuhlschrank_weekly:  
+  friendly_name: Küchenkühlschrank wöchentlich  
+sensor.um_ku_steckdose_kuhlschrank_monthly:  
+  friendly_name: Küchenkühlschrank monatlich  
+sensor.um_ku_steckdose_kuhlschrank_yearly:  
+  friendly_name: Küchenkühlschrank jährlich            
+sensor.um_ku_steckdose_spulmaschine_daily:  
+  friendly_name: Spülmaschine täglich  
+sensor.um_ku_steckdose_spulmaschine_weekly:  
+  friendly_name: Spülmaschine wöchentlich  
+sensor.um_ku_steckdose_spulmaschine_monthly:  
+  friendly_name: Spülmaschine monatlich  
+sensor.um_ku_steckdose_spulmaschine_yearly:  
+  friendly_name: Spülmaschine jährlich    
+sensor.um_ke_steckdose_kuhlschrank_daily:  
+  friendly_name: Kellerkühlschrank täglich  
+sensor.um_ke_steckdose_kuhlschrank_weekly:  
+  friendly_name: Kellerkühlschrank wöchentlich  
+sensor.um_ke_steckdose_kuhlschrank_monthly:  
+  friendly_name: Kellerkühlschrank monatlich  
+sensor.um_ke_steckdose_kuhlschrank_yearly:  
+  friendly_name: Kellerkühlschrank jährlich    
+sensor.um_ke_steckdose_waschmaschine_daily:  
+  friendly_name: Waschmaschine täglich  
+sensor.um_ke_steckdose_waschmaschine_weekly:  
+  friendly_name: Waschmaschine wöchentlich  
+sensor.um_ke_steckdose_waschmaschine_monthly:  
+  friendly_name: Waschmaschine monatlich  
+sensor.um_ke_steckdose_waschmaschine_yearly:  
+  friendly_name: Waschmaschine jährlich   
+sensor.um_ke_steckdose_trockner_daily:  
+  friendly_name: Trockner täglich  
+sensor.um_ke_steckdose_trockner_weekly:  
+  friendly_name: Trockner wöchentlich  
+sensor.um_ke_steckdose_trockner_monthly:  
+  friendly_name: Trockner monatlich  
+sensor.um_ke_steckdose_trockner_yearly:  
+  friendly_name: Trockner jährlich     
+# EcoWitt
+sensor.gw1100a_v2_2_3_outdoor_temperature:
+  friendly_name: Temperatur
+sensor.gw1100a_v2_2_3_humidity:
+  friendly_name: Luftfeuchte
+sensor.gw1100a_v2_2_3_rain_rate:
+  friendly_name: Regenmenge
+sensor.gw1100a_v2_2_3_wind_speed:
+  friendly_name: Wind
+sensor.gw1100a_v2_2_3_wind_gust:
+  friendly_name: Windböe
+sensor.gw1100a_v2_2_3_wind_direction:
+  friendly_name: Windrichtung    
+sensor.gw1100a_v2_2_3_solar_lux:
+  friendly_name: Außenlux
+sensor.gw1100a_v2_2_3_uv_index:
+  friendly_name: UV-Index
+sensor.gw1100a_v2_2_3_daily_rain_rate:
+  friendly_name: Tägliche Regenmenge
+sensor.gw1100a_v2_2_3_absolute_pressure:
+  friendly_name: Luftdruck
+# add historical statistic to sensors
+sensor.sr_local_nuc_cpu_temperature:
+  state_class: measurement  
+# system sensors
+sensor.sr_count_entities:
+  friendly_name: Anzahl der Entitäten
+sensor.sr_count_switch:
+  friendly_name: Anzahl der Schalter
+sensor.sr_count_alerts:
+  friendly_name: Anzahl der Alarme
+sensor.sr_count_automations:
+  friendly_name: Anzahl der Automationen  
+sensor.sr_count_binary_sensors:
+  friendly_name: Anzahl der Binärsensoren
+sensor.sr_count_cameras:
+  friendly_name: Anzahl der online Kameras  
+sensor.sr_count_climates:
+  friendly_name: Anzahl der Klimageräte    
+sensor.sr_count_counters:
+  friendly_name: Anzahl der Zähler      
+sensor.sr_count_devices:
+  friendly_name: Anzahl der Geräte-Tracker
+sensor.sr_count_groups:
+  friendly_name: Anzahl der Gruppen
+sensor.sr_count_image_processing:
+  friendly_name: Anzahl der Bildverarbeitungen
+sensor.sr_count_boolean:
+  friendly_name: Anzahl der Boolschen Eingabefelder  
+sensor.sr_count_datetime:
+  friendly_name: Anzahl der Datums/Zeit Eingabefelder    
+sensor.sr_count_number:
+  friendly_name: Anzahl der Nummerischen Eingabefelder
+sensor.sr_count_select:
+  friendly_name: Anzahl der Auswahl Eingabefelder
+sensor.sr_count_text:
+  friendly_name: Anzahl der Text Eingabefelder 
+sensor.sr_count_lights:
+  friendly_name: Anzahl der Lampen     
+sensor.sr_count_locks:
+  friendly_name: Anzahl der Schlösser   
+sensor.sr_count_media_player:
+  friendly_name: Anzahl der Medienabspieler   
+sensor.sr_count_person:
+  friendly_name: Anzahl der Personen  
+sensor.sr_count_plants:
+  friendly_name: Anzahl der Pflanzen   
+sensor.sr_count_rest:
+  friendly_name: Anzahl der Rest-Aufrufe 
+sensor.sr_count_script:
+  friendly_name: Anzahl der Skripte
+sensor.sr_count_sensors:
+  friendly_name: Anzahl der Sensoren
+sensor.sr_count_timer:
+  friendly_name: Anzahl der Timer  
+sensor.sr_count_utility_meter:
+  friendly_name: Anzahl der Verbrauchszähler 
+sensor.sr_count_vacuum:
+  friendly_name: Anzahl der Staubsauger    
+sensor.sr_count_weather:
+  friendly_name: Anzahl der Wetterstationen    
+sensor.sr_count_code_lines:
+  friendly_name: Anzahl der Codezeilen (YAML)
+# some stuff
+sensor.local_ip:
+  friendly_name: IP

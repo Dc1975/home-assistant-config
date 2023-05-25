@@ -1,0 +1,6 @@
+{% macro get_waste_date(waste) %}
+{% set sensor = "sensor.sr_waste_" +  waste %}
+{% set fullString =  states(sensor) %}    
+{% set date = fullString.split("|")[2] %}
+{{date}}    
+{% endmacro %} 

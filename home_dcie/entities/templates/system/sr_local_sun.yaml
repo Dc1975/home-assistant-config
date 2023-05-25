@@ -1,0 +1,65 @@
+sensor:
+  - name: sr_local_sun
+    unique_id: sr_local_sun
+    state: >
+      {% set locale = {'above_horizon':'Über dem Horizont', 'below_horizon':'Unter dem Horizont'} %}
+      {% set sun_state = states('sun.sun') %}
+      {{ locale.get(sun_state)}}
+    availability: >
+      {{ not states('sun.sun') is none  }}
+
+  - name: sr_local_sun_rising
+    unique_id: sr_local_sun_rising
+    state: >
+      {{ as_timestamp(state_attr("sun.sun", "next_rising"))
+          |timestamp_custom("%H:%M:%S") }}
+#      {{ (state_attr('sun.sun', 'next_rising')  | as_datetime | as_local).strftime('%H:%M:%S') }}          
+    availability: >
+      {{ not state_attr('sun.sun', 'next_rising') is none  }}
+      
+  - name: sr_local_sun_set
+    unique_id: sr_local_sun_set
+    state: >
+      {{ as_timestamp(state_attr("sun.sun", "next_setting")) | timestamp_custom("%H:%M:%S") }}
+#      {{ (state_attr('sun.sun', 'next_setting') | as_datetime | as_local).strftime('%H:%M:%S') }}
+    availability: >
+      {{ not state_attr('sun.sun', 'next_setting') is none }}
+      
+  - name: sr_local_sun_set_in_hours
+    unique_id: sr_local_sun_set_in_hours
+    state: >
+      {% set today =  as_timestamp(now()) | timestamp_custom("%d.%m.%y") %}
+      {% set sunrise_at = as_timestamp(state_attr("sun.sun", "next_setting"))  | timestamp_custom("%d.%m.%y")%}
+      {% if today == sunrise_at  -%}
+        {% set hours = as_timestamp(state_attr("sun.sun", "next_setting")) | timestamp_custom("%H") | int - as_timestamp(now()) | timestamp_custom("%H") | int %}        
+        {% set minutes = as_timestamp(state_attr("sun.sun", "next_setting")) | timestamp_custom("%M") | int - as_timestamp(now()) | timestamp_custom("%M") | int %}                
+        {% if hours > 1 %}In {{ hours }} Stunden {% elif hours == 0 %}In {{ minutes }} Minuten {% else %} In {{ hours }} Stunde {% endif%}       
+      {% else -%}
+        {% set hours = as_timestamp(state_attr("sun.sun", "next_setting")) | timestamp_custom("%H") | int + (24 - as_timestamp(now()) | timestamp_custom("%H") | int) %}
+        Morgen (in {{ hours }} {% if hours > 1 %}Stunden{% else %}Stunde{% endif%})
+      {% endif -%}    
+    availability: >
+      {{ not state_attr('sun.sun', 'next_setting') is none }}
+      
+  - name: sr_local_sun_rising_in_hours
+    unique_id: sr_local_sun_rising_in_hours
+    state: >
+      {% set today =  as_timestamp(now()) | timestamp_custom("%d.%m.%y") %}
+      {% set sunrise_at = as_timestamp(state_attr("sun.sun", "next_rising"))  | timestamp_custom("%d.%m.%y")%}
+      {% if today == sunrise_at  -%}        
+        {% set hours = as_timestamp(state_attr("sun.sun", "next_rising")) | timestamp_custom("%H") | int - as_timestamp(now()) | timestamp_custom("%H") | int %}        
+        {% set minutes = as_timestamp(state_attr("sun.sun", "next_rising")) | timestamp_custom("%M") | int - as_timestamp(now()) | timestamp_custom("%M") | int %}                        
+        {% if hours > 1 %}In {{ hours }} Stunden {% elif hours == 0 %}In {{ minutes }} Minuten {% else %} In {{ hours }} Stunde {% endif%}               
+      {% else -%}
+        {% set hours = 24 - as_timestamp(now()) | timestamp_custom("%H") | int + as_timestamp(state_attr("sun.sun", "next_rising")) | timestamp_custom("%H") | int %}
+        Morgen (in {{ hours }} {% if hours > 1 %}Stunden{% else %}Stunde{% endif%})
+      {% endif %}          
+    availability: >
+      {{ not state_attr('sun.sun', 'next_rising') is none }}      
+      
+  - name: sr_local_sun_elevation
+    unique_id: sr_local_sun_elevation
+    state: >
+      Höhe {{ state_attr('sun.sun', 'elevation') }}
+    availability: >
+      {{ not state_attr('sun.sun', 'elevation') is none }}            

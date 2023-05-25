@@ -1,0 +1,11 @@
+#Ist die Haus Tür geöffnet
+#Ist die Haus Tür offen
+speech:
+  type: plain
+  text: >
+    {% set opened = states('sensor.nuki_haustur_door_state') %}
+    {% if opened == 'door closed' %}      
+      Die Haustür ist geschlossen.
+    {% else %}
+      Die Haustür ist geöffnet.
+    {% endif %}  

@@ -1,0 +1,7 @@
+{% macro get_cover_close_position(isCover) %}
+{% if isCover == true %}
+    {{ 0 }}
+{% else %}
+    {{ 100 }}
+{% endif %}
+{% endmacro %}

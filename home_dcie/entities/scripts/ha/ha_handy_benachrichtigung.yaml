@@ -1,0 +1,18 @@
+ha_handy_benachrichtigung:
+  alias: HA Handy Benachrichtigung
+  fields:
+    msg_title:
+      description: The title of the message
+      example: Title of message
+      name: msg_title
+    msg_message:
+      description: The message body
+      example: Here is the message
+      name: msg_message
+  sequence:
+  - service: notify.mobile_app_sm_s916b
+    data:
+      message: '{{ msg_message }}'
+      title: '{{ msg_title }}'
+  mode: parallel
+  icon: mdi:cellphone-text

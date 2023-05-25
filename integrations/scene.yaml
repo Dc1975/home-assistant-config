@@ -1,0 +1,2 @@
+scene split: !include_dir_list ../home_dcie/entities/scenes
+scene: !include ../scenes.yaml

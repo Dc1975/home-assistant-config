@@ -1,0 +1,35 @@
+- id: '1675604172029'
+  alias: BZ Rolladen ab
+  description: ""
+  trigger:
+    - platform: time
+      at: input_datetime.idt_bz_cover_down_workday
+      id: window_workday
+    - platform: time
+      at: input_datetime.idt_bz_cover_down_weekend
+      id: window_weekend
+  condition:
+    - condition: or
+      conditions:
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: window_workday
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "on"
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: window_weekend
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "off"
+  action:
+    - service: script.turn_on
+      data: 
+        variables:
+          cover_position: 0        
+      target:
+        entity_id: script.bz_rolladen_ab
+  mode: single

@@ -1,0 +1,6 @@
+idt_dg_cover_up_weekend:
+  name: "Dachgeschossrolladen hoch Wochenende"
+  #initial: ""
+  icon: mdi:window-shutter-open
+  has_time: true
+  has_date: false

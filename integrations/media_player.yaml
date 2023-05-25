@@ -1,0 +1,16 @@
+  media_player:
+    - platform: onkyo
+      host: !secret onkyo_ip
+      name: Onkyo
+      sources:
+        dvd: "DVD"
+        video1: "BD/DVD"
+        video2: "CBL/SAT"        
+        video3: "STRM BOX"
+        video4: "PC"
+        cd: "DV"
+        fm: "Radio"
+        network: "Internetradio"
+        usb: "USB"
+        bluetooth: "Bluetooth"      
+        

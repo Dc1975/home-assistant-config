@@ -1,0 +1,6 @@
+idt_dg_cover_down_weekend:
+  name: "Dachgeschossrolladen runter Wochenende"
+  #initial: ""
+  icon: mdi:window-shutter
+  has_time: true
+  has_date: false

@@ -1,0 +1,9 @@
+platform: command_line
+name: sr_influxdb_size
+#command: sudo du -s /usr/share/hassio/addons/data/a0d7b954_influxdb # fix the path to your database, this is mine.
+command: "cat /share/influxdb2size"
+value_template: >
+  {{ (value.split('\t')[0]|int/(1024*1024))|round(1) }}
+unit_of_measurement: "MB"
+device_class: data_size
+state_class: measurement

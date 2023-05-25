@@ -1,0 +1,9 @@
+sz_gerate_aus:
+  alias: SZ Geräte aus
+  sequence:
+  - type: turn_off
+    device_id: bf378a2730c818cd8ecd4768b5e9284a
+    entity_id: switch.schlafzimmerradio
+    domain: switch
+  mode: single
+  icon: mdi:toggle-switch-variant-off

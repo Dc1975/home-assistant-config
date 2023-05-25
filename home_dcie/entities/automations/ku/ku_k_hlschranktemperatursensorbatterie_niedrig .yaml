@@ -1,0 +1,42 @@
+- id: '1682770335122'
+  alias: KU Kühlschranktemperatursensorbatterie niedrig
+  description: ''
+  trigger:
+  - platform: template
+    value_template: >      
+      {% set state_sensor = states('sensor.lumi_lumi_weather_battery_10') %}
+      {% set state_threshold = states('input_number.in_ha_batteries_threshold') %}
+      {% if is_number(state_sensor) and is_number(state_threshold) and state_sensor | int <= state_threshold | int  %}
+        true
+      {% else %}
+        false
+      {% endif %}      
+  condition: 
+  - condition: or
+    conditions:
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+        after: input_datetime.idt_ha_low_battery_workday_after_notify
+        before: input_datetime.idt_ha_low_battery_workday_before_notify
+      - condition: time
+        weekday:
+          - sat
+          - sun
+        after: input_datetime.idt_ha_low_battery_weekend_after_notify
+        before: input_datetime.idt_ha_low_battery_weekend_before_notify  
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_benachrichtigung
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_battery_level_notification_title')}} {{states('input_number.in_ha_batteries_threshold') | int}}%"
+        msg_message: > 
+          {{states('input_text.it_battery_level_notification_message')}} Küchenkühlschranktemperatursensor, 
+          {{states('sensor.lumi_lumi_weather_battery_10') | int}}%
+  mode: parallel

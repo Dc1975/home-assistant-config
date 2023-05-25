@@ -1,0 +1,6 @@
+idt_ha_low_battery_weekend_before_notify:
+  name: "Batteriestand Wochenende vor"
+  #initial: ""
+  icon: mdi:clock-time-seven
+  has_time: true
+  has_date: false

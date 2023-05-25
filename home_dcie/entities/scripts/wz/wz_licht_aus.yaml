@@ -1,0 +1,17 @@
+wz_licht_aus:
+  alias: WZ Licht aus
+  sequence:
+  - type: turn_off
+    device_id: 5a9bafa612daa6401258700617b0c4d7
+    entity_id: switch.kaminlicht
+    domain: switch
+  - type: turn_off
+    device_id: 5a9bafa612daa6401258700617b0c4d7
+    entity_id: switch.wohnzimmertischlicht
+    domain: switch
+  - type: turn_off
+    device_id: bb07faad5b2c3a11732aca0a5defab90
+    entity_id: light.stehlampe_2
+    domain: light
+  mode: single
+  icon: mdi:toggle-switch-variant-off

@@ -1,0 +1,38 @@
+# Generic ignores
+*.log
+*.log.*
+*.db
+*.db-shm
+*.db-wal
+*.pyc
+._*
+__pycache__
+
+# Specific keeps
+!.gitignore
+!*.md
+
+# Directory (contents) ignores
+.cloud
+.storage
+.ssl
+.ssh
+.cache
+deps
+node-red
+
+# Ignore vendored stuff
+themes
+www/community
+custom_components
+
+# Build-in blueprints ignores
+blueprints/*/homeassistant
+
+# Specific file ignores
+harmony*.conf
+core
+ip_bans.yaml
+secrets.yaml
+known_devices.yaml
+watchman_report.txt

@@ -1,0 +1,21 @@
+password: !secret alexa_flash_briefing_password
+status:
+  - title: Aktueller Status
+    text: >
+      Heute ist es {{ states("sensor.sr_ha_date_and_time") }}.
+      Momentan ist es im Dachgeschoss {{ states("sensor.lumi_lumi_weather_temperature_8") }} Grad,
+      im Badezimmer {{ states("sensor.lumi_lumi_weather_temperature") }} Grad,
+      im Schlafzimmer {{ states("sensor.lumi_lumi_weather_temperature_7") }} Grad,
+      im Gästezimmer {{ states("sensor.lumi_lumi_weather_temperature_6") }} Grad,
+      in der Gästetoilette {{ states("sensor.lumi_lumi_weather_temperature_4") }} Grad,      
+      in der Küche {{ states("sensor.lumi_lumi_weather_temperature_3") }} Grad,
+      im Wohnzimmer {{ states("sensor.lumi_lumi_weather_temperature_2") }} Grad,
+      im Keller {{ states("sensor.lumi_lumi_weather_temperature_5") }} Grad,
+      und in der Garage {{ states("sensor.lumi_lumi_weather_temperature_9") }} Grad.
+      Draussen ist es {{ states("sensor.sr_forecast_gladbeck_condition") }} und morgen wird
+      es {{ states("sensor.sr_forecast_gladbeck_forecast") }}.
+      Zur Zeit beträgt die Aussentemperatur {{ states("sensor.gw1100a_v2_2_3_outdoor_temperature") }} Grad,
+      die Luftfeuchtigkeit ist {{ states("sensor.gw1100a_v2_2_3_humidity") }} %,
+      die Windgeschwindigkeit beträgt {{ states("sensor.gw1100a_v2_2_3_wind_speed") }} kmh
+      und der Luftdruck beträgt {{ states("sensor.gw1100a_v2_2_3_absolute_pressure") }} Hektopascal.
+      {{state_attr('sensor.sr_ha_open_windows', 'open_windows')}}.

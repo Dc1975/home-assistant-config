@@ -1,0 +1,9 @@
+http:
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+  server_port: !secret home_assistant_port
+  use_x_forwarded_for: true
+  trusted_proxies: !secret trusted_proxy_list
+  cors_allowed_origins:
+    - https://google.com
+    - https://www.home-assistant.io

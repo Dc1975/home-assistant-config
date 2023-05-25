@@ -1,0 +1,35 @@
+- id: '1675803956293'
+  alias: WZ Rolladen ab Fenster
+  description: ""
+  trigger:
+    - platform: time
+      at: input_datetime.idt_wz_window_cover_down_workday
+      id: window_workday
+    - platform: time
+      at: input_datetime.idt_wz_window_cover_down_weekend
+      id: window_weekend
+  condition:
+    - condition: or
+      conditions:
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: window_workday
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "on"
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: window_weekend
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "off"
+  action:
+    - service: script.turn_on
+      data:
+        variables:
+          cover_position: 0
+      target:
+        entity_id: script.wz_rolladen_ab_fenster
+  mode: single

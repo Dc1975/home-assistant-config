@@ -1,0 +1,47 @@
+- id: '1682519889771'
+  alias: HA Timers Laden
+  mode: single
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+  - variables:
+      modes:
+      - active
+      - paused
+  - repeat:
+      count: 2
+      sequence:
+      - variables:
+          mode: '{{ modes[repeat.index-1] }}'
+          timers_text: "{{ states('input_text.it_timers_' ~ mode) }}"
+      - choose:
+        - conditions: '{{ timers_text | length > 0 }}'
+          sequence:
+          - variables:
+              timers: "{{ timers_text.split(',') }}"
+          - repeat:
+              count: '{{ timers | count }}'
+              sequence:
+              - variables:
+                  t: '{{ timers[repeat.index-1].split() }}'
+                  id: 'timer.ti_{{t[0]}}_motion_lights'
+                  d: >
+                     {% set ts = t[1]|int %}
+                     {% if mode == 'active' %}
+                       {% set ts = ts - now().timestamp()|int %}
+                       {{ ts if ts > 0 else 1 }}
+                     {% else %}
+                       {{ ts }}
+                     {% endif %}                  
+              - condition: template
+                value_template: '{{ d > 0 }}'
+              - service: timer.start
+                data:
+                  entity_id: '{{ id }}'
+                  duration: '{{ d }}'
+              - condition: template
+                value_template: "{{ mode == 'paused' }}"
+              - service: timer.pause
+                data:
+                  entity_id: '{{ id }}'

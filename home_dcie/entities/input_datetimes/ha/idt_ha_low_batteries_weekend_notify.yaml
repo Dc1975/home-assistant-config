@@ -1,0 +1,6 @@
+idt_ha_low_batteries_wekeend_notify:
+  name: "Batteriestände Wochenende"
+  #initial: ""
+  icon: mdi:clock-time-seven
+  has_time: true
+  has_date: false

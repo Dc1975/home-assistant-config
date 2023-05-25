@@ -1,0 +1,15 @@
+mm_wechsel_onkyo_zu_inputcbl_sat:
+  alias: MM wechsel Onkyo zu InputCbl/Sat
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.harmonyelitehubby
+    data:
+      num_repeats: 1
+      hold_secs: 0.1
+      command:
+      - InputCbl/Sat
+      delay_secs: 0.5
+      device: 52440711
+  mode: single
+  icon: mdi:remote-tv

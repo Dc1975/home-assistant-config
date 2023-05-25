@@ -1,0 +1,32 @@
+- id: '1682777391351'
+  alias: KU Kühlschranktemperatur Alarm
+  description: ''
+  trigger:
+  - platform: template
+    value_template: >
+      {% set state_sensor = states('sensor.lumi_lumi_weather_temperature_10') %}
+      {% set state_threshold = states('input_number.in_ha_fridge_temperatur_alarm_treshhold') %}    
+      {% if is_number(state_sensor) and is_number(state_threshold) and (state_sensor | float >= state_threshold | float) %}
+        true
+      {% else %}
+        false
+      {% endif %}      
+    for:
+      minutes: "{{ states('input_number.in_ha_fridge_temepratur_alarm_period') | int }}"
+  condition: []
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_benachrichtigung
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_fridge_temperatur_alert_notification_title')}}"
+        msg_message: "{{states('input_text.it_fridge_temperatur_alert_notification_message')}} Küchenkühlschrank ist bei {{states('sensor.lumi_lumi_weather_temperature_10') | float}} °C"
+  - service: notify.alexa_media_uberall
+    data:
+      title: "{{states('input_text.it_fridge_temperatur_alert_notification_title')}}"
+      message: "{{states('input_text.it_fridge_temperatur_alert_notification_message')}} Küchenkühlschrank ist bei {{states('sensor.lumi_lumi_weather_temperature_10') | float}} Grad"
+      data:
+        type: announce
+        method: all
+  mode: single

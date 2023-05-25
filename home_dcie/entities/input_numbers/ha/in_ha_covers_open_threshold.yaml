@@ -1,0 +1,8 @@
+in_ha_covers_open_threshold:
+  name: Rolladen Öffnugsgrenze für Beleuchtung
+  min: 0
+  max: 100
+  step: 1
+  unit_of_measurement: "%"
+  icon: mdi:window-shutter-settings
+  mode: box

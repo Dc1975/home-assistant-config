@@ -1,0 +1,6 @@
+idt_ku_cover_down_workday:
+  name: "Küchenrolladen runter Wertktags"
+  #initial: ""
+  icon: mdi:window-shutter
+  has_time: true
+  has_date: false

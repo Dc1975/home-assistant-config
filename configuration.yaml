@@ -1,0 +1,10 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+homeassistant:
+  customize: !include customize.yaml
+  packages: !include_dir_named integrations
+  allowlist_external_dirs:
+    - "/config"
+    - "/backup"
+    - "/homeassistant-samba-backup"

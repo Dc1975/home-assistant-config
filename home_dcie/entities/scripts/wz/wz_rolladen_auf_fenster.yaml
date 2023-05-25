@@ -1,0 +1,18 @@
+wz_rolladen_auf_fenster:
+  alias: WZ Rolladen auf Fenster
+  sequence:  
+  - if:
+    - condition: device
+      device_id: 615241c999f893e7d65b3e65eede3d02
+      domain: cover
+      entity_id: cover.wohnzimmerfensterrolladen
+      type: is_position
+      below: 100
+    then:
+    - device_id: 615241c999f893e7d65b3e65eede3d02
+      domain: cover
+      entity_id: cover.wohnzimmerfensterrolladen
+      type: set_position
+      position: 100
+  mode: single
+  icon: mdi:window-shutter

@@ -1,0 +1,42 @@
+- id: '1682262336868'
+  alias: KE Trocker fertig
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.kellersteckdose_trockner_energy_power
+    above: 0.5
+    below: 3
+    for: 00:02:00
+  condition:
+  - condition: state
+    entity_id: input_select.is_ke_state_dryer
+    state: läuft
+  action:
+  - data:
+      option: fertig
+    entity_id: input_select.is_ke_state_dryer
+    service: input_select.select_option
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_benachrichtigung
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_general_notification_title')}} Trockner"
+        msg_message: "Der Trockner ist {{states('input_select.is_ke_state_dryer')}}"
+  - service: notify.alexa_media_uberall
+    data:
+      title: "{{states('input_text.it_general_notification_title')}} Trockner"
+      message: "Der Trockner ist {{states('input_select.is_ke_state_dryer')}}"
+      data:
+        type: announce
+        method: all
+  - service: input_text.set_value
+    data:
+      value: >-
+        {% set time_start = states('input_text.it_ke_dryer_last_machine_time_helper') %}
+        {% if states(time_start) %}  
+          {{ ((now().timestamp() - time_start | float) | as_datetime).strftime('%H:%M:%S')  }} am {{ now().timestamp() | timestamp_custom('%d.%m.%Y %H:%M') }}
+        {% endif %}                     
+    target:
+      entity_id: input_text.it_ke_dryer_last_machine_time        
+  mode: single

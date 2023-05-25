@@ -1,0 +1,6 @@
+idt_wz_door_cover_down_weekend:
+  name: "Wohnzimmertürrolladen runter Wochenende"
+  #initial: ""
+  icon: mdi:window-shutter
+  has_time: true
+  has_date: false

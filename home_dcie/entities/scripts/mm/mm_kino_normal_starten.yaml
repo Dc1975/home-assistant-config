@@ -1,0 +1,58 @@
+mm_kino_normal_starten:
+  alias: MM Kino normal starten
+  sequence:
+  - device_id: d9ed990d7a946b541ddf7e82de436181
+    domain: cover
+    entity_id: cover.leinwand
+    type: set_position
+    position: 0
+  - if:
+      - condition: or
+        conditions:  
+          - condition: numeric_state
+            entity_id: sun.sun
+            attribute: elevation
+            below: input_number.in_ha_sun_elevation_treshhold           
+          - condition: and
+            conditions:
+              - condition: template
+                value_template: >-
+                  {% from 'invert_cover_position.jinja' import invert_cover_position %}
+                  {{ invert_cover_position(state_attr('cover.wohnzimmertur_curtain',
+                  'current_position')) | int <=
+                  states('input_number.in_ha_covers_open_threshold') | int }}
+              - condition: template
+                value_template: >-                  
+                  {{ state_attr('cover.wohnzimmerfensterrolladen',
+                  'current_position') | int <=
+                  states('input_number.in_ha_covers_open_threshold') | int
+                  }}              
+    then:     
+      - type: turn_on
+        device_id: bb07faad5b2c3a11732aca0a5defab90
+        entity_id: light.stehlampe_2
+        domain: light
+        brightness_pct: 10
+  - type: turn_on
+    device_id: 6d1dc6b552b4647fd3e3e0515848070a
+    entity_id: switch.subwoofer
+    domain: switch
+  - type: turn_on
+    device_id: f4551e68dd9d8b2519ce000d0b490f5b
+    entity_id: switch.beamer
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - type: turn_on
+    device_id: 1aa4cb31590d29e7150e342946e029b1
+    entity_id: remote.harmonyelitehubby
+    domain: remote
+  - device_id: 1aa4cb31590d29e7150e342946e029b1
+    domain: select
+    entity_id: select.harmonyelitehubby_activities
+    type: select_option
+    option: BEA-DVR
+  mode: single

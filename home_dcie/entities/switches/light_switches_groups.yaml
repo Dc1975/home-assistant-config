@@ -1,0 +1,44 @@
+- platform: group
+  name: ha_grp_lichtschalter
+  entities: !include_dir_merge_list ../default/switches/lights
+  unique_id: ha_grp_lichtschalter
+
+- platform: group
+  name: bz_grp_lichtschalter
+  entities: !include_dir_merge_list ../default/switches/lights/bz
+  unique_id: bz_grp_lichtschalter
+  
+- platform: group
+  name: dg_grp_lichtschalter
+  entities: !include_dir_merge_list ../default/switches/lights/dg
+  unique_id: dg_grp_lichtschalter
+
+- platform: group
+  name: gt_grp_lichtschalter
+  entities: !include_dir_merge_list ../default/switches/lights/gt
+  unique_id: gt_grp_lichtschalter
+
+- platform: group
+  name: gz_grp_lichtschalter
+  entities: !include_dir_merge_list ../default/switches/lights/gz
+  unique_id: gz_grp_lichtschalter
+  
+- platform: group
+  name: ku_grp_lichtschalter
+  entities: !include_dir_merge_list ../default/switches/lights/ku
+  unique_id: ku_grp_lichtschalter
+
+- platform: group
+  name: sz_grp_lichtschalter
+  entities: !include_dir_merge_list ../default/switches/lights/sz
+  unique_id: sz_grp_lichtschalter
+
+- platform: group
+  name: wz_grp_lichtschalter
+  entities: !include_dir_merge_list ../default/switches/lights/wz
+  unique_id: wz_grp_lichtschalter
+
+- platform: group
+  name: ke_grp_lichtschalter
+  entities: !include_dir_merge_list ../default/switches/lights/ke
+  unique_id: ke_grp_lichtschalter

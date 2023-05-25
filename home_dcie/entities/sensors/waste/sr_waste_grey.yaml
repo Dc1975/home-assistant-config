@@ -1,0 +1,8 @@
+platform: waste_collection_schedule
+name: sr_waste_grey
+details_format: "upcoming"
+#value_template: '{{ value.daysTo }}'
+value_template: '{{value.types|join(", ")}}|{{value.daysTo}}|{{value.date.strftime("%d.%m.%Y")}}|{{value.date.strftime("%A")}}'
+date_template: '{{value.date.strftime("%A, %m/%d/%Y")}}'
+types:
+  - grau

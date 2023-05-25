@@ -1,0 +1,184 @@
+### Local Sensor - 192.168.0.6 HomeAssistant ###
+# https://github.com/ironsheep/RPi-Reporter-MQTT2HA-Daemon
+# unique_id: is not used to identify the enmtities, so we must use name: instead
+sensor:
+  # helper sensor for icon evaluation to avoid redundant code
+  - name: local_rpi_icon
+    unique_id: local_rpi_icon
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'cpu') is none %}
+      {% if state_attr('sensor.rpi_monitor_raspberrypi4_2', 'cpu').model | contains('ARMv7') %}
+      mdi:cpu-32-bit
+      {% else %}
+      mdi:cpu-64-bit
+      {% endif %}
+      {% endif %}
+
+  # - name: Zeitstempel
+  - name: local_rpi_timestamp
+    unique_id: local_rpi_timestamp
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'timestamp') is none %}
+        {{ as_timestamp(state_attr('sensor.rpi_monitor_raspberrypi4_2', 'timestamp' )) | timestamp_custom('%d.%m.%Y %H:%M') }}
+      {%endif%}
+
+  #- name: Model
+  - name: local_rpi_rpi_model
+    unique_id: local_rpi_rpi_model
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'rpi_model') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'rpi_model') }}    
+      {%endif%}
+
+  #- name: Hostname
+  - name: local_rpi_host_name
+    unique_id: local_rpi_host_name
+    state: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'host_name') }}
+
+  #- name: IP
+  - name: local_rpi_ip
+    unique_id: local_rpi_ip
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'networking') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'networking') ['eth0'].IP }}
+      {%endif%}
+    icon: mdi:ip-network
+
+  #- name: CPU Model
+  - name: local_rpi_cpu_model
+    unique_id: local_rpi_cpu_model
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'cpu') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'cpu').model }}
+      {%endif%}
+    icon: "{{states('sensor.local_rpi_icon')}}"
+
+  #- name: CPU Kerne
+  - name: local_rpi_cpu_cores
+    unique_id: local_rpi_cpu_cores
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'cpu') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'cpu').number_cores }}
+      {%endif%}
+    icon: "{{states('sensor.local_rpi_icon')}}"
+
+  #- name: CPU Auslastung
+  - name: local_rpi_cpu_usage
+    unique_id: local_rpi_cpu_usage
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'cpu') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'cpu').load_1min_prcnt | float }}
+      {% else %}
+        0.0
+      {%endif%}
+    state_class: measurement            
+    unit_of_measurement: '%'
+    icon: "{{states('sensor.local_rpi_icon')}}"
+
+  #- name: CPU Temperatur
+  - name: local_rpi_cpu_temperature
+    unique_id: local_rpi_cpu_temperature
+    state: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'temperature_c') }}
+    device_class: temperature      
+    state_class: measurement      
+    unit_of_measurement: "°C"    
+    icon: "{{states('sensor.local_rpi_icon')}}"
+
+  #- name: Festplattenkapazität
+  - name: local_rpi_fs_total_gb
+    unique_id: local_rpi_fs_total_gb
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'fs_total_gb') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'fs_total_gb') | float }}
+      {%endif%}
+    availability: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'fs_total_gb') | is_number  }}      
+    device_class: data_size      
+    unit_of_measurement: "GB"    
+    icon: mdi:harddisk
+
+  #- name: Freier Festplattenplatz
+  - name: local_rpi_fs_free_prcnt
+    unique_id: local_rpi_fs_free_prcnt
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'fs_free_prcnt') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'fs_free_prcnt') | float }}
+      {%endif%}
+    availability: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'fs_free_prcnt') | is_number  }}
+    state_class: measurement      
+    unit_of_measurement: "%"        
+    icon: mdi:harddisk
+
+  #- name: Benutzter Festplattenplatz
+  - name: local_rpi_fs_used_prcnt
+    unique_id: local_rpi_fs_used_prcnt
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'fs_used_prcnt') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'fs_used_prcnt') | float }}
+      {%endif%}
+    availability: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'fs_used_prcnt') | is_number  }}
+    state_class: measurement      
+    unit_of_measurement: "%"    
+    icon: mdi:harddisk
+    
+    #- name: Speichergröße
+  - name: local_rpi_memory_size
+    unique_id: local_rpi_memory_size
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'memory') is none %}
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'memory').size_mb | float }}
+      {%endif%}
+    availability: >
+      {{ not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'memory') is none and state_attr('sensor.rpi_monitor_raspberrypi4_2', 'memory').size_mb | is_number  }}
+    device_class: data_size      
+    unit_of_measurement: "MB"
+    icon: "mdi:memory"
+
+    #- name: Freier Speicher
+  - name: local_rpi_memory_free
+    unique_id: local_rpi_memory_free
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'memory') is none %}    
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'memory').free_mb | float }}
+      {%endif%}
+    availability: >
+      {{ not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'memory') is none and state_attr('sensor.rpi_monitor_raspberrypi4_2', 'memory').free_mb | is_number  }}
+    device_class: data_size    
+    state_class: measurement
+    unit_of_measurement: "MB"        
+    icon: "mdi:memory"
+
+    #- name: Benutzter Speicher
+  - name: local_rpi_memory_used_prcnt
+    unique_id: local_rpi_memory_used_prcnt
+    state: >
+      {% if not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'mem_used_prcnt') is none %}        
+        {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'mem_used_prcnt') | float }}
+      {%endif%}
+    availability: >
+      {{ not state_attr('sensor.rpi_monitor_raspberrypi4_2', 'mem_used_prcnt') is none and state_attr('sensor.rpi_monitor_raspberrypi4_2', 'mem_used_prcnt') | is_number  }}    
+    state_class: measurement      
+    unit_of_measurement: "%"    
+    icon: "mdi:memory"
+
+    #- name: Laufzeit
+  - name: local_rpi_up_time    
+    unique_id: local_rpi_up_time
+    state: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'up_time') }}
+
+    #- name: Release
+  - name: local_rpi_ux_release    
+    unique_id: local_rpi_ux_release
+    state: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'ux_release') }}
+
+    #- name: Version
+  - name: local_rpi_ux_version    
+    unique_id: local_rpi_ux_version
+    state: >
+      {{ state_attr('sensor.rpi_monitor_raspberrypi4_2', 'ux_version') }}

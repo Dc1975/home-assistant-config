@@ -1,0 +1,17 @@
+influxdb:
+  host: !secret server_home_assistant_ip
+  port: !secret influxdb_port
+  username: !secret influxdb_user
+  password: !secret influxdb_pass
+  database: homeassistant
+  max_retries: 3
+  default_measurement: state
+  include:
+    domains:      
+      - binary_sensor
+      - climate      
+      - cover
+      - light            
+      - sensor      
+      - sun
+      - weather 

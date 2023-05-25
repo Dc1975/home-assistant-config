@@ -1,0 +1,5 @@
+ha_grp_lightswitches_lights:
+  name: ha_grp_lightswitches_lights
+  entities:
+    - light.ha_grp_lampen
+    - switch.ha_grp_lichtschalter

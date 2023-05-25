@@ -1,0 +1,6 @@
+idt_ha_waste_notify_time:
+  name: "Müllabholungserinnerung"
+  #initial: ""
+  icon: mdi:clock-time-seven
+  has_time: true
+  has_date: false  

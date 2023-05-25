@@ -1,0 +1,2 @@
+script split: !include_dir_merge_named ../home_dcie/entities/scripts
+script: !include ../scripts.yaml

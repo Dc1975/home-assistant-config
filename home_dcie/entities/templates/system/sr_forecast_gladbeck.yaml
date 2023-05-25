@@ -1,0 +1,79 @@
+sensor:
+  - name: sr_forecast_gladbeck_temperature
+    unique_id: sr_forecast_gladbeck_temperature
+    unit_of_measurement: "°C"
+    device_class: temperature
+    state: >
+      {{ state_attr('weather.forecast_homeofdcie', 'temperature') }}
+
+  - name: sr_forecast_gladbeck_humidity
+    unique_id: sr_forecast_gladbeck_humidity
+    unit_of_measurement: "%"
+    device_class: humidity
+    state: >
+      {{ state_attr('weather.forecast_homeofdcie', 'humidity') }}
+
+  - name: sr_forecast_gladbeck_pressure
+    unique_id: sr_forecast_gladbeck_pressure
+    unit_of_measurement: hPa
+    device_class: pressure
+    state: >
+      {{ state_attr('weather.forecast_homeofdcie', 'pressure') }}
+
+  - name: sr_forecast_gladbeck_wind_speed
+    unique_id: sr_forecast_gladbeck_wind_speed
+    unit_of_measurement: km/h
+    device_class: wind_speed
+    state: >
+      {{ state_attr('weather.forecast_homeofdcie', 'wind_speed') }}
+
+  - name: sr_forecast_gladbeck_condition
+    unique_id: sr_forecast_gladbeck_condition
+    state: >
+      {% set result = states('weather.forecast_homeofdcie') %}
+      {% set weather = {
+        'clear-night': "klare Nacht",
+        'cloudy': "wolkig",
+        'exceptional': "außergewöhnlich",
+        'fog': "neblig",
+        'hail': "hagel",
+        'lightning': "gewittrig",
+        'lightning-rainy': "gewittrig regnerisch",
+        'partlycloudy': "teilweise wolkig",
+        'pouring': "stark regen",
+        'rainy': "regnerisch",
+        'snowy': "schneebedeckt",
+        'snowy-rainy': "verschneit-regnerisch",
+        'sunny': "sonnig",
+        'windy': "windig",
+        'windy-variant': "abwechselnd windig"}
+      %}
+      {{weather[result]}}
+
+  - name: sr_forecast_gladbeck_forecast
+    unique_id: sr_forecast_gladbeck_forecast
+    # see https://developers.home-assistant.io/docs/core/entity/weather/
+    state: >
+      {%set days = 5%}
+      {% if not state_attr('weather.forecast_homeofdcie', 'forecast') is none %}      
+        {%set days = state_attr('weather.forecast_homeofdcie', 'forecast')[:days]
+        | map(attribute='condition') | list %}
+        {% set weather = {
+          'clear-night': "klare Nacht",
+          'cloudy': "wolkig",
+          'exceptional': "außergewöhnlich",
+          'fog': "neblig",
+          'hail': "hagel",
+          'lightning': "gewittrig",
+          'lightning-rainy': "gewittrig regnerisch",
+          'partlycloudy': "teilweise wolkig",
+          'pouring': "stark regen",
+          'rainy': "regnerisch",
+          'snowy': "schneebedeckt",
+          'snowy-rainy': "verschneit-regnerisch",
+          'sunny': "sonnig",
+          'windy': "windig",
+          'windy-variant': "abwechselnd windig"}
+        %}
+      {% endif %}        
+      {{weather[days[0]]}}

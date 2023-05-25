@@ -1,0 +1,8 @@
+in_ha_fridge_temepratur_alarm_period:
+  name: Wartezeit Kühlschranktemepraturalarm
+  min: 0
+  max: 60
+  step: 1
+  unit_of_measurement: min
+  icon: mdi:timer-alert
+  mode: box
