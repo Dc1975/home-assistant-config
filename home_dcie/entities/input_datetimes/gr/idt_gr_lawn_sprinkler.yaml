@@ -1,0 +1,5 @@
+idt_gr_lawn_sprinkler:
+  name: "Rasenbewässerung"
+  icon: mdi:sprinkler-variant
+  has_time: true
+  has_date: false
