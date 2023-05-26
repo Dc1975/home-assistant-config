@@ -55,7 +55,7 @@ ha_schlafen_gehen:
       data: {}
       target:
         entity_id:
-          - script.ku_kuche_lampen_nacht
+          - script.ku_lamps_night
 
     # for using a scene, first turn on the switch
 #    - type: turn_on

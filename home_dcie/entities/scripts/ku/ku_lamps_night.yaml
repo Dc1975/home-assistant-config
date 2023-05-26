@@ -1,0 +1,23 @@
+ku_lamps_night:
+  alias: KU Küche Lampen Nacht
+  sequence:
+  # for using a scene, first turn on the switch
+  - type: turn_on
+    device_id: 3fac30d786557e08e60dd17cdb131eee
+    entity_id: switch.kuchenlicht
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0    
+  # the switch will be automatically turned of by the timer
+  - service: scene.turn_on
+    target:
+      entity_id: scene.ku_lamps_night
+    metadata: {}
+  - service: timer.start
+    data_template:
+      entity_id: timer.ti_ku_motion_lights
+      duration: 00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}
+  mode: single
