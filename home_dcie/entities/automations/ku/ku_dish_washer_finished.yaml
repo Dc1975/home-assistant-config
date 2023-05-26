@@ -39,4 +39,8 @@
         {% endif %}    
     target:
       entity_id: input_text.it_ku_dishwasher_last_machine_time        
+  - service: timer.start
+    data_template:
+      entity_id: timer.ti_ku_dish_washer_off_automatic
+      duration: "{{states('input_number.in_ku_delay_dish_washer_off_automatic') | int}}:00:00"      
   mode: single

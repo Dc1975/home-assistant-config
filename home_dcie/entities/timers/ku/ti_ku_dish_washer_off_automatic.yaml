@@ -1,0 +1,4 @@
+ti_ku_dish_washer_off_automatic:
+  duration: "00:00:00"
+  restore: true
+  name: Timer Spülmaschine aus automatisch

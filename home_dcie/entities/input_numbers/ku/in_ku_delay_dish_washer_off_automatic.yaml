@@ -1,0 +1,8 @@
+in_ku_delay_dish_washer_off_automatic:
+  name: Spülmaschine ausschalten nach 
+  min: 0
+  max: 8
+  step: 1
+  unit_of_measurement: h
+  icon: mdi:timer
+  mode: box
