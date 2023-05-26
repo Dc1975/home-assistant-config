@@ -22,18 +22,18 @@
     data:
       variables:
         msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
-        msg_message: "Der Rasen wird für {{states('input_datetime.idt_gr_lawn_sprinkler')}} Minuten bewässert"
+        msg_message: "Der Rasen wird für {{states('input_number.in_gr_duration_lawn_sprinkler')}} Minuten bewässert"
   - service: notify.alexa_media_uberall
     data:
       title: "{{states('input_text.it_general_notification_title')}} Garten"
-      message: "Der Rasen wird für {{states('input_datetime.idt_gr_lawn_sprinkler')}} Minuten bewässert"
+      message: "Der Rasen wird für {{states('input_number.in_gr_duration_lawn_sprinkler')}} Minuten bewässert"
       data:
         type: announce
         method: all
   - service: switch.turn_on
     data: {}
     target:
-      entity_id: switch.garten
+      entity_id: switch.brunnen
   - delay:
       hours: 0
       minutes: "{{states('input_number.in_gr_duration_lawn_sprinkler') | int }}"
@@ -41,5 +41,5 @@
   - service: switch.turn_off
     data: {}
     target:
-      entity_id: switch.garten
+      entity_id: switch.brunnen
   mode: single
