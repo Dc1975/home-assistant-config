@@ -1,0 +1,20 @@
+- id: '1685114073801'
+  alias: GR Gartenbewässerung Timer stop
+  description: ''
+  trigger:
+#    - platform: state
+#      entity_id:
+#      - timer.ti_bz_motion_lights
+#      to: idle
+# see Bug https://github.com/home-assistant/home-assistant.io/pull/26352
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.ti_gr_lawn_sprinkler
+  condition: []
+  action:  
+    - service: switch.turn_off
+      data: {}
+      target:
+        entity_id: switch.brunnen
+  mode: single
