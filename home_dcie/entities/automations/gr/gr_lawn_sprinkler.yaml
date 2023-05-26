@@ -22,10 +22,10 @@
     data:
       variables:
         msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
-        msg_message: "Der Rasen wird für {{states(''input_datetime.idt_gr_lawn_sprinkler')}} Minuten bewässert"
+        msg_message: "Der Rasen wird für {{states('input_datetime.idt_gr_lawn_sprinkler')}} Minuten bewässert"
   - service: notify.alexa_media_uberall
     data:
-      title: "{{states('input_text.it_general_notification_title'}} Garten"
+      title: "{{states('input_text.it_general_notification_title')}} Garten"
       message: "Der Rasen wird für {{states('input_datetime.idt_gr_lawn_sprinkler')}} Minuten bewässert"
       data:
         type: announce
