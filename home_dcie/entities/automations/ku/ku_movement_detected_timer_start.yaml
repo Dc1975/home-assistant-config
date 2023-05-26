@@ -1,0 +1,43 @@
+- id: '1680809820169'
+  alias: KU Bewegung erkannt Timer start
+  description: ''
+  trigger:
+    - type: motion
+      platform: device
+      device_id: d7b40fcbead485c0a3bc9e7bbd3f0c0f
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_5
+      domain: binary_sensor
+  condition:
+    - condition: and
+      conditions:
+      # use this condition to prevent light turn off if they werere manually turned on
+      - condition: device
+        type: is_off
+        device_id: 3fac30d786557e08e60dd17cdb131eee
+        entity_id: switch.kuchenlicht
+        domain: switch      
+      - condition: or
+        conditions:
+#        - condition: sun
+#          before: sunrise
+#          after: sunset
+        - condition: numeric_state
+          entity_id: sun.sun
+          attribute: elevation
+          below: input_number.in_ha_sun_elevation_treshhold    
+        - condition: template
+          value_template: >
+            {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_5') %}
+              {{ states('sensor.lumi_lumi_motion_ac02_illuminance_5') |
+              int <=  states('input_number.in_ha_lux_treshhold') | int }}
+            {% endif %}
+  action:
+    - type: turn_on
+      device_id: 3fac30d786557e08e60dd17cdb131eee
+      entity_id: switch.kuchenlicht
+      domain: switch
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_ku_motion_lights
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"			 
+  mode: single

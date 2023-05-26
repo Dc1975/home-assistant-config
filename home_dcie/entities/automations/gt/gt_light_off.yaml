@@ -1,0 +1,20 @@
+
+- id: '1680866008464'
+  alias: GT Licht aus
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: bd1f4e41415a2a37bb5d6efcfa0e84ee
+    entity_id: switch.gastetoilettenlicht
+    domain: switch
+  condition:
+  - condition: state
+    entity_id: timer.ti_gt_motion_lights
+    state: active
+  action:
+  - service: timer.finish
+    data: {}
+    target:
+      entity_id: timer.ti_gt_motion_lights
+  mode: single

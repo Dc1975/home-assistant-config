@@ -1,0 +1,70 @@
+- id: '1679779279929'
+  alias: SZ AZ Bewegung erkannt Timer start
+  description: ""
+  trigger:
+    - type: motion
+      platform: device
+      device_id: 3117bf6e656720d90e8b658531ab8136
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion
+      domain: binary_sensor
+  condition:
+    - condition: or
+      conditions:
+        - condition: and
+          conditions:
+            # use this condition to prevent light turn off if they werere manually turned on
+            - condition: device
+              type: is_off
+              device_id: f0dd0d79f81f2be59baaa2d11656fe4c
+              entity_id: switch.ankleidezimmerlicht
+              domain: switch              
+            - condition: time
+              before: "23:30:00"
+              weekday:
+                - sun
+                - sat
+                - fri
+                - thu
+                - wed
+                - tue
+                - mon
+            - condition: sun
+              after: sunset
+        - condition: and
+          conditions:
+            # use this condition to prevent light turn off if they werere manually turned on
+            - condition: device
+              type: is_off
+              device_id: f0dd0d79f81f2be59baaa2d11656fe4c
+              entity_id: switch.ankleidezimmerlicht
+              domain: switch               
+            - condition: sun
+              after: sunrise
+            - condition: template
+              value_template: "{{ state_attr('cover.ankleidezimmerfensterrolladen', 'current_position') | int 
+                <= states('input_number.in_ha_covers_open_threshold') | int }}"
+            - condition: or                
+              conditions:
+                - condition: time
+                  weekday:
+                    - mon
+                    - tue
+                    - wed
+                    - thu
+                    - fri
+                  after: "08:45:00"
+                - condition: time
+                  weekday:
+                    - sun
+                    - sat
+                  after: "11:00:00"
+  action:
+    - type: turn_on
+      device_id: f0dd0d79f81f2be59baaa2d11656fe4c
+      entity_id: switch.ankleidezimmerlicht
+      domain: switch
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_sz_az_motion_lights
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"			    
+  mode: single

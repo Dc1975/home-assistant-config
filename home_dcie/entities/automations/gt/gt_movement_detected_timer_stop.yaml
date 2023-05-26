@@ -1,0 +1,32 @@
+- id: '1680519590483'
+  alias: GT Bewegung erkannt Timer stop
+  description: ''
+  trigger:
+#    - platform: state
+#      entity_id:
+#      - timer.ti_gt_motion_lights
+#      to: idle
+# see Bug https://github.com/home-assistant/home-assistant.io/pull/26352
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.ti_gt_motion_lights      
+  condition: []
+  action:
+  - if:
+      - condition: state
+        entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_6
+        state: "on"
+    then:
+      - service: timer.start
+        data_template:
+          entity_id: timer.ti_gt_motion_lights
+          duration: >-
+            00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_secondary')
+            | int}}
+    else:
+      - type: turn_off
+        device_id: bd1f4e41415a2a37bb5d6efcfa0e84ee
+        entity_id: switch.gastetoilettenlicht
+        domain: switch
+  mode: single

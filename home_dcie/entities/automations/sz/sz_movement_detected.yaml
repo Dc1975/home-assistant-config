@@ -1,0 +1,22 @@
+- id: '1680766054663'
+  alias: SZ Bewegung erkannt
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 3117bf6e656720d90e8b658531ab8136
+    entity_id: binary_sensor.lumi_lumi_motion_ac02_motion
+    domain: binary_sensor
+  condition:
+  - condition: state
+    entity_id: input_boolean.ib_ha_schlafen_runs
+    state: 'on'
+  - condition: state
+    entity_id: light.tr_grp_lampen_mitte
+    state: 'on'
+  action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.tr_grp_lampen_mitte
+  mode: single

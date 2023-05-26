@@ -1,0 +1,43 @@
+- id: '1675455966123'
+  alias: GT Bewegung erkannt Timer start
+  description: ''
+  trigger:
+    - type: motion
+      platform: device
+      device_id: 4aa02ed4fe6eb0e13b7a972677d64d67
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_6
+      domain: binary_sensor
+  condition:
+    - condition: and
+      conditions:
+      # use this condition to prevent light turn off if they werere manually turned on
+      - condition: device
+        type: is_off
+        device_id: bd1f4e41415a2a37bb5d6efcfa0e84ee
+        entity_id: switch.gastetoilettenlicht
+        domain: switch      
+      - condition: or
+        conditions:
+#        - condition: sun
+#          before: sunrise
+#          after: sunset
+        - condition: numeric_state
+          entity_id: sun.sun
+          attribute: elevation
+          below: input_number.in_ha_sun_elevation_treshhold    
+        - condition: template
+          value_template: >
+            {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_6') %}
+              {{ states('sensor.lumi_lumi_motion_ac02_illuminance_6') |
+              int <=  states('input_number.in_ha_lux_treshhold') | int }}
+            {% endif %}              
+  action:
+    - type: turn_on
+      device_id: bd1f4e41415a2a37bb5d6efcfa0e84ee
+      entity_id: switch.gastetoilettenlicht
+      domain: switch
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_gt_motion_lights
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"			 
+  mode: single

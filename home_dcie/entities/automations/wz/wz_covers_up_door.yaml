@@ -1,0 +1,33 @@
+- id: '1675804010718'
+  alias: WZ Rolladen auf Tür
+  description: ""
+  trigger:
+    - platform: time
+      at: input_datetime.idt_wz_door_cover_up_workday
+      id: window_workday
+    - platform: time
+      at: input_datetime.idt_wz_door_cover_up_weekend
+      id: window_weekend
+  condition:
+    - condition: or
+      conditions:
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: window_workday
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "on"
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: window_weekend
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "off"
+  action:
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.wz_rolladen_auf_tur
+  mode: single

@@ -1,0 +1,31 @@
+- id: '1675611270109'
+  alias: SZ Bewegung erkannt Timer start
+  description: ''
+  trigger:
+    - type: motion
+      platform: device
+      device_id: 3117bf6e656720d90e8b658531ab8136
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion
+      domain: binary_sensor
+  condition:
+    - condition: and
+      conditions:
+      # use this condition to prevent light turn off if they werere manually turned on      
+      - condition: device
+        type: is_off
+        device_id: 55dac17008640f7464befffb87286bae
+        entity_id: light.wasserbettlichtstreifen
+        domain: light   
+      - condition: state
+        entity_id: schedule.sz_bewegung_zeitplan
+        state: 'on'
+  action:
+    - type: turn_on
+      device_id: 55dac17008640f7464befffb87286bae
+      entity_id: light.wasserbettlichtstreifen
+      domain: light
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_sz_motion_lights
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_light_stripes_off') | int}}"			    
+  mode: single

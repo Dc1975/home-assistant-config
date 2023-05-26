@@ -1,0 +1,46 @@
+- id: '1680519576419'
+  alias: DG Bewegung erkannt Timer stop
+  description: ''
+  trigger:
+#    - platform: state
+#      entity_id:
+#      - timer.ti_dg_motion_lights
+#      to: idle
+# see Bug https://github.com/home-assistant/home-assistant.io/pull/26352
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.ti_dg_motion_lights
+  condition: []
+  action:
+    - if:
+        - type: is_not_open
+          condition: device
+          device_id: 4015a990830d0f68357aa30d8b72b5cd
+          entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_11
+          domain: binary_sensor
+        - condition: and
+          conditions:
+            - type: is_not_open
+              condition: device
+              device_id: 4015a990830d0f68357aa30d8b72b5cd
+              entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_11
+              domain: binary_sensor
+            - condition: device
+              type: is_on
+              device_id: a7937ef9a91758d83069e25e34b9789e
+              entity_id: switch.dachgeschossdeckenlicht
+              domain: switch          
+      then:
+        - service: timer.start
+          data_template:
+            entity_id: timer.ti_dg_motion_lights
+            duration: >-
+              00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_secondary')
+              | int}}
+      else:
+        - type: turn_off
+          device_id: a7937ef9a91758d83069e25e34b9789e
+          entity_id: switch.dachgeschossdeckenlicht
+          domain: switch
+  mode: single

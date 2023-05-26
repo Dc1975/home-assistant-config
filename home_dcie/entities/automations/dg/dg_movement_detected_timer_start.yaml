@@ -1,0 +1,48 @@
+- id: '1679690287362'
+  alias: DG Bewegung erkannt Timer start
+  description: ''
+  trace:
+    stored_traces: 10
+  trigger:
+    - type: motion
+      platform: device
+      device_id: 8fbc48e736b872034e64649a5b2bb8eb
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_2
+      domain: binary_sensor
+  condition:
+    - condition: and
+      conditions:
+      # use this condition to prevent light turn off if they werere manually turned on
+      - condition: device
+        type: is_off
+        device_id: a7937ef9a91758d83069e25e34b9789e
+        entity_id: switch.dachgeschossdeckenlicht
+        domain: switch    
+      - condition: or
+        conditions:
+#        - condition: sun
+#          before: sunrise
+#          after: sunset
+        - condition: numeric_state
+          entity_id: sun.sun
+          attribute: elevation
+          below: input_number.in_ha_sun_elevation_treshhold    
+        - condition: template
+          value_template: >
+            {{ state_attr('cover.dachgeschossfensterrolladen', 'current_position') | int <= states('input_number.in_ha_covers_open_threshold') | int }}
+        - condition: template
+          value_template: >
+            {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_2') %}
+              {{ states('sensor.lumi_lumi_motion_ac02_illuminance_2') |
+              int <=  states('input_number.in_ha_lux_treshhold') | int }}
+            {% endif %}              
+  action:
+    - type: turn_on
+      device_id: a7937ef9a91758d83069e25e34b9789e
+      entity_id: switch.dachgeschossdeckenlicht
+      domain: switch
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_dg_motion_lights
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"			    
+  mode: single
