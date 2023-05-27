@@ -3,7 +3,9 @@
   description: ''
   trigger:
   - platform: time
-    at: input_datetime.idt_gr_lawn_sprinkler
+    at: input_datetime.idt_gr_lawn_sprinkler_1
+  - platform: time
+    at: input_datetime.idt_gr_lawn_sprinkler_2    
   condition:
   - condition: and
     conditions:
