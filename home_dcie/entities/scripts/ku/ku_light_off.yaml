@@ -1,0 +1,9 @@
+ku_light_off:
+  alias: KU Licht aus
+  sequence:
+  - type: turn_off
+    device_id: 3fac30d786557e08e60dd17cdb131eee
+    entity_id: switch.kuchenlicht
+    domain: switch
+  mode: single
+  icon: mdi:toggle-switch-variant-off

@@ -1,0 +1,9 @@
+ez_light_off:
+  alias: EZ Licht aus
+  sequence:
+  - type: turn_off
+    device_id: 661e0e20316c14eb0f80344efb02386d
+    entity_id: switch.esstischlicht
+    domain: switch
+  mode: single
+  icon: mdi:toggle-switch-variant-off

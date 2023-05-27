@@ -1,0 +1,9 @@
+gz_light_off:
+  alias: GZ Licht aus
+  sequence:
+  - type: turn_off
+    device_id: fce120d9035154afcd9c79733eb8ea1a
+    entity_id: switch.gastezimmerlicht
+    domain: switch
+  mode: single
+  icon: mdi:toggle-switch-variant-off

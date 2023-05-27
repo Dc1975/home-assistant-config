@@ -29,5 +29,5 @@
     - service: script.turn_on
       data: {}
       target:
-        entity_id: script.dg_rolladen_auf
+        entity_id: script.dg_covers_up
   mode: single

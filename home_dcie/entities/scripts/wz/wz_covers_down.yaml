@@ -1,0 +1,27 @@
+wz_covers_down:
+  alias: WZ Rolladen ab
+  fields:    
+    cover_position:
+      # All sub-options are only used for creating a representation of this script in the UI.
+      description: "Position to set cover to"
+      example: "60"
+      name: cover_position  
+  sequence:
+  - service: script.turn_on
+    target:
+      entity_id: script.wz_covers_down_window
+    data:
+      variables:
+        cover_position: "{{ cover_position | int}}"
+  - service: script.turn_on
+    target:
+      entity_id: script.wz_covers_down_door
+    data:
+      variables:
+        cover_position: "{{ cover_position | int}}"        
+  mode: single
+  icon: mdi:window-shutter
+
+
+
+

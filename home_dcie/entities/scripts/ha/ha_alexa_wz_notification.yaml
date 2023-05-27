@@ -1,0 +1,19 @@
+ha_alexa_wz_notification:
+  alias: HA Alexa Wohnzimmer Benachrichtigung
+  fields:
+    msg_title:
+      description: The title of the message
+      example: Title of message
+      name: msg_title
+    msg_message:
+      description: The message body
+      example: Here is the message
+      name: msg_message
+  sequence:
+  # don't use type: announce, cause we can't set it automatically to false
+  - service: notify.alexa_media_echo_wohnzimmer
+    data:
+      message: '{{ msg_message }}'
+      title: '{{ msg_title }}'
+  mode: single
+  icon: mdi:cellphone-text

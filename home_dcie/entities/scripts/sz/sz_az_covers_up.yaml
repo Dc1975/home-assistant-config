@@ -1,0 +1,18 @@
+sz_az_covers_up:
+  alias: SZ AZ Rolladen auf
+  sequence:  
+  - if:
+    - condition: device
+      device_id: 669cab44c5b1a0f90cb15a04dec7601c
+      domain: cover
+      entity_id: cover.ankleidezimmerfensterrolladen
+      type: is_position
+      below: 100
+    then:
+    - device_id: 669cab44c5b1a0f90cb15a04dec7601c
+      domain: cover
+      entity_id: cover.ankleidezimmerfensterrolladen
+      type: set_position
+      position: 100        
+  mode: single
+  icon: mdi:window-shutter-open

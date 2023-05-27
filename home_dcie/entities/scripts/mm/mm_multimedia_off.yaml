@@ -1,0 +1,14 @@
+mm_multimedia_off:
+  alias: MM Multimedia beenden
+  sequence:
+  - service: homeassistant.turn_on
+    data: {}
+    target:
+      entity_id: script.mm_beamer_off
+  - wait_template: "{{ is_state('script.mm_beamer_off', 'off') }}"                      
+  - service: homeassistant.turn_on
+    data: {}
+    target:
+      entity_id: script.mm_harmony_off
+  mode: single
+  icon: mdi:toggle-switch-variant-off

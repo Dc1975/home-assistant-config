@@ -1,0 +1,15 @@
+mm_sky_rewind:
+  alias: MM Sky zurückspulen
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.harmonyelitehubby
+    data:
+      hold_secs: 0.2
+      command:
+      - Rewind
+      num_repeats: 2
+      device: '53386103'
+      delay_secs: 0.2
+  mode: single
+  icon: mdi:remote-tv

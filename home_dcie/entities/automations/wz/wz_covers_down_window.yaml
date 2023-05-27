@@ -31,5 +31,5 @@
         variables:
           cover_position: 0
       target:
-        entity_id: script.wz_rolladen_ab_fenster
+        entity_id: script.wz_covers_down_window
   mode: single

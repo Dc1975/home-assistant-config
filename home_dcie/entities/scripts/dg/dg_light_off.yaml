@@ -1,0 +1,11 @@
+dg_light_off:
+  alias: DG Licht aus
+  sequence:
+    - service: homeassistant.turn_off
+      data: {}
+      target:
+        entity_id:
+          - light.dg_grp_lampen
+          - switch.dg_grp_lichtschalter
+  mode: single
+  icon: mdi:lightbulb-off

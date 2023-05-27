@@ -75,7 +75,7 @@
             #cover_position: "{{ (states('input_number.in_ha_covers_close_position_summer') | int)  - 25}}"
             cover_position: "{{ (states('input_number.in_ha_covers_close_position_summer') | int)  - 0}}"            
         target:
-          entity_id: script.wz_rolladen_ab_tur
+          entity_id: script.wz_covers_down_door
       - service: input_boolean.turn_on
         data: {}
         target:
@@ -92,7 +92,7 @@
           variables:
             cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
         target:
-          entity_id: script.wz_rolladen_ab_fenster
+          entity_id: script.wz_covers_down_window
       - service: input_boolean.turn_on
         data: {}
         target:
@@ -106,7 +106,7 @@
       then:    
         - service: script.turn_on
           target:
-            entity_id: script.dg_rolladen_ab
+            entity_id: script.dg_covers_down
           data:
             variables:
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
@@ -123,7 +123,7 @@
       then:    
       - service: script.turn_on
         target:
-          entity_id: script.sz_az_rolladen_ab
+          entity_id: script.sz_az_covers_down
         data:
           variables:
             cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
@@ -140,7 +140,7 @@
       then:    
       - service: script.turn_on
         target:
-          entity_id: script.sz_rolladen_ab
+          entity_id: script.sz_covers_down
         data:
           variables:
             cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
@@ -160,7 +160,7 @@
           variables:
             cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
         target:
-          entity_id: script.gz_rolladen_ab                
+          entity_id: script.gz_covers_down                
       - service: input_boolean.turn_on
         data: {}
         target:
@@ -177,7 +177,7 @@
           variables:
             cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
         target:
-          entity_id: script.ku_rolladen_ab                
+          entity_id: script.ku_covers_down                
       - service: input_boolean.turn_on
         data: {}
         target:
@@ -194,7 +194,7 @@
           variables:
             cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
         target:
-          entity_id: script.bz_rolladen_ab                
+          entity_id: script.bz_covers_down                
       - service: input_boolean.turn_on
         data: {}
         target:

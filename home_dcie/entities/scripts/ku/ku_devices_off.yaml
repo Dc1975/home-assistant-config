@@ -1,0 +1,9 @@
+ku_devices_off:
+  alias: KU Geräte aus
+  sequence:
+  - type: turn_off
+    device_id: a05bbca4447e8136df4a8af9ab2b3a05
+    entity_id: switch.kuchengerate
+    domain: switch
+  mode: single
+  icon: mdi:toggle-switch-variant-off

@@ -1,9 +1,0 @@
-tr_lampen_aus:
-  alias: TR Lampen aus
-  sequence:
-    - service: homeassistant.turn_off
-      data: {}
-      target:
-        entity_id: light.tr_grp_lampen
-  mode: single
-  icon: mdi:lightbulb-off

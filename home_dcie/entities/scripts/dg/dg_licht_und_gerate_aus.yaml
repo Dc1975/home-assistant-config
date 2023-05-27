@@ -1,9 +1,0 @@
-dg_licht_und_gerate_aus:
-  alias: DG Licht und Geräte aus
-  sequence:
-  - service: script.dg_licht_aus
-    data: {}
-  - service: script.dg_gerate_aus
-    data: {}
-  mode: single
-  icon: mdi:toggle-switch-variant-off

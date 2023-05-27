@@ -1,0 +1,47 @@
+ha_all_covers_down:
+  alias: HA Alle Rolläden ab
+  sequence:
+  - service: script.turn_on
+    target:
+      entity_id: script.dg_covers_down
+    data: 
+      variables:
+        cover_position: 0  
+  - service: script.turn_on
+    target:
+      entity_id: script.gz_covers_down
+    data: 
+      variables:
+        cover_position: 0  
+  - service: script.turn_on
+    target:
+      entity_id: script.ku_covers_down
+    data:
+      variables:
+        cover_position: 0      
+  - service: script.turn_on
+    target:
+      entity_id: script.bz_covers_down
+    data: 
+      variables:
+        cover_position: 0      
+  - service: script.turn_on
+    target:
+      entity_id: script.sz_az_covers_down
+    data: 
+      variables:
+        cover_position: 0        
+  - service: script.turn_on
+    target:
+      entity_id: script.sz_covers_down
+    data: 
+      variables:
+        cover_position: 0    
+  - service: script.turn_on
+    target:
+      entity_id: script.wz_covers_down
+    data: 
+      variables:
+        cover_position: 0    
+  mode: single
+  icon: mdi:window-shutter

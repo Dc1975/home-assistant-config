@@ -1,0 +1,18 @@
+wz_covers_up_door:
+  alias: WZ Rolladen auf Tür
+  sequence:
+  - if:
+    - condition: device
+      device_id: ee4d7cb70398e6fc2ace5470e09aee95
+      domain: cover
+      entity_id: cover.wohnzimmerturrolladen
+      type: is_position
+      below: 100
+    then:
+    - device_id: ee4d7cb70398e6fc2ace5470e09aee95
+      domain: cover
+      entity_id: cover.wohnzimmerturrolladen
+      type: set_position
+      position: 100
+  mode: single
+  icon: mdi:window-shutter

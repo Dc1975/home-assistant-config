@@ -1,9 +1,0 @@
-gt_licht_aus:
-  alias: GT Licht aus
-  sequence:
-  - type: turn_off
-    device_id: bd1f4e41415a2a37bb5d6efcfa0e84ee
-    entity_id: switch.gastetoilettenlicht
-    domain: switch
-  mode: single
-  icon: mdi:toggle-switch-variant-off

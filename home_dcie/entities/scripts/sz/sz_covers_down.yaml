@@ -1,0 +1,29 @@
+sz_covers_down:
+  alias: SZ Rolladen ab
+  fields:    
+    cover_position:
+      # All sub-options are only used for creating a representation of this script in the UI.
+      description: "Position to set cover to"
+      example: "60"
+      name: cover_position  
+  sequence:  
+  - if:
+    - condition: device
+      device_id: 9d8918faa2bb571b915a53ea565a1b55
+      domain: cover
+      entity_id: cover.schlafzimmerfensterrolladen
+      type: is_position
+      above: 0
+    then:
+    - service: cover.set_cover_position
+      data:
+        position: "{{cover_position | int}}"
+      target:
+        entity_id: cover.schlafzimmerfensterrolladen        
+#    - device_id: 9d8918faa2bb571b915a53ea565a1b55
+#      domain: cover
+#      entity_id: cover.schlafzimmerfensterrolladen
+#      type: set_position
+#      position: 0
+  mode: single
+  icon: mdi:window-shutter

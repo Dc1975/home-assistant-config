@@ -31,5 +31,5 @@
         variables:
           cover_position: 0        
       target:
-        entity_id: script.dg_rolladen_ab
+        entity_id: script.dg_covers_down
   mode: single

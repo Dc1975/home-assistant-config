@@ -1,9 +1,0 @@
-wz_rolladen_auf:
-  alias: WZ Rolladen auf
-  sequence:
-  - service: script.wz_rolladen_auf_tur
-    data: {}
-  - service: script.wz_rolladen_auf_fenster
-    data: {}
-  mode: single
-  icon: mdi:window-shutter-open

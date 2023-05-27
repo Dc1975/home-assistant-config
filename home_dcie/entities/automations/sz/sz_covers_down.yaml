@@ -31,5 +31,5 @@
         variables:
           cover_position: 0      
       target:
-        entity_id: script.sz_rolladen_ab
+        entity_id: script.sz_covers_down
   mode: single

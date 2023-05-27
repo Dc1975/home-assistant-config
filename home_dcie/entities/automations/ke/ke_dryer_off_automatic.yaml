@@ -16,7 +16,7 @@
   action:
   - service: script.turn_on
     target:
-      entity_id: script.ha_handy_benachrichtigung
+      entity_id: script.ha_handy_notification
     data:
       variables:
         msg_title: "{{states('input_text.it_general_notification_title')}} Trockner"

@@ -1,0 +1,9 @@
+of_lamps_off:
+  alias: OF Lampen aus
+  sequence:
+    - service: homeassistant.turn_off
+      data: {}
+      target:
+        entity_id: light.of_grp_lampen
+  mode: single
+  icon: mdi:lightbulb-off

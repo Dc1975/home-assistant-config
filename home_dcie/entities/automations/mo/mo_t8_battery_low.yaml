@@ -32,7 +32,7 @@
   action:
   - service: script.turn_on
     target:
-      entity_id: script.ha_alexa_wz_benachrichtigung
+      entity_id: script.ha_alexa_wz_notification
     data:
       variables:
         msg_title: "{{states('input_text.it_battery_level_notification_title')}} {{states('input_number.in_ha_batteries_threshold') | int}}%"

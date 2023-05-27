@@ -1,0 +1,9 @@
+wz_covers_up:
+  alias: WZ Rolladen auf
+  sequence:
+  - service: script.wz_covers_up_door
+    data: {}
+  - service: script.wz_covers_up_window
+    data: {}
+  mode: single
+  icon: mdi:window-shutter-open

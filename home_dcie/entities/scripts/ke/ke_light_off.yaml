@@ -1,0 +1,9 @@
+ke_light_off:
+  alias: KE Licht aus
+  sequence:
+  - type: turn_off
+    device_id: 19318c94a454b8e151de37d2f9ee0fb1
+    entity_id: switch.kellerlicht
+    domain: switch
+  mode: single
+  icon: mdi:toggle-switch-variant-off

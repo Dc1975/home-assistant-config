@@ -1,0 +1,21 @@
+ha_all_devices_off:
+  alias: HA Alle Geräte aus
+  sequence:
+  - service: script.turn_on
+    data: {}
+    target:
+      entity_id: script.wz_devices_off  
+  - service: script.turn_on
+    data: {}
+    target:
+      entity_id: script.dg_devices_off
+  - service: script.turn_on
+    data: {}
+    target:
+      entity_id: script.ku_devices_off
+  - service: script.turn_on
+    data: {}
+    target:
+      entity_id: script.sz_devices_off
+  mode: single
+  icon: mdi:toggle-switch-variant-off

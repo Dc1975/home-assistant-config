@@ -1,0 +1,13 @@
+bz_light_off:
+  alias: BZ Licht aus
+  sequence:
+  - type: turn_off
+    device_id: c6bb0b6f3377311ff4ed30d81a5b59ec
+    entity_id: switch.badezimmerdeckenlicht
+    domain: switch
+  - type: turn_off
+    device_id: c6bb0b6f3377311ff4ed30d81a5b59ec
+    entity_id: switch.badezimmerschrank
+    domain: switch
+  mode: single
+  icon: mdi:toggle-switch-variant-off

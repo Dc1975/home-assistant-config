@@ -1,0 +1,10 @@
+dg_devices_off:
+  alias: DG Geräte aus
+  sequence:
+    - service: homeassistant.turn_off
+      data: {}
+      target:
+        #entity_id: switch.dg_gerategruppe
+        entity_id: switch.dg_grp_schalter
+  mode: single
+  icon: mdi:toggle-switch-variant-off
