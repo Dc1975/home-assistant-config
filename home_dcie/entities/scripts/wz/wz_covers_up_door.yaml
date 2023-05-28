@@ -2,17 +2,14 @@ wz_covers_up_door:
   alias: WZ Rolladen auf Tür
   sequence:
   - if:
-    - condition: device
-      device_id: ee4d7cb70398e6fc2ace5470e09aee95
-      domain: cover
-      entity_id: cover.wohnzimmerturrolladen
-      type: is_position
-      below: 100
+      - condition: template
+        value_template: >  
+          {{ state_attr('sensor.sr_wz_cover_door', 'is_open') == false }}  
     then:
-    - device_id: ee4d7cb70398e6fc2ace5470e09aee95
-      domain: cover
-      entity_id: cover.wohnzimmerturrolladen
-      type: set_position
-      position: 100
+      - service: cover.set_cover_position
+        data:
+          position: "{{invert_cover_position(states('input_number.in_ha_covers_close_position') | int) | int}}"
+        target:
+          entity_id: cover.wohnzimmertur_curtain       
   mode: single
   icon: mdi:window-shutter

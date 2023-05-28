@@ -8,22 +8,14 @@ ku_covers_down:
       name: cover_position   
   sequence:
   - if:
-    - condition: device
-      device_id: 08c98394bf120af8b8d83907469128e7
-      domain: cover
-      entity_id: cover.kuchenfensterrolladen
-      type: is_position
-      above: 0
+      - condition: template
+        value_template: >  
+          {{ state_attr('sensor.sr_ku_cover', 'is_closed') == false }}        
     then:
     - service: cover.set_cover_position
       data:
         position: "{{cover_position | int}}"
       target:
-        entity_id: cover.kuchenfensterrolladen     
-#    - device_id: 08c98394bf120af8b8d83907469128e7
-#      domain: cover
-#      entity_id: cover.kuchenfensterrolladen
-#      type: set_position
-#      position: 0  
+        entity_id: cover.kuchenfenster_curtain     
   mode: single
   icon: mdi:window-shutter

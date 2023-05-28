@@ -13,7 +13,7 @@
 # Wohnzimemrtür
     - if:
         - condition: template
-          value_template: "{{states('input_boolean.ib_wz_tur_covers_closed_by_summer_mode') == 'on'}}"
+          value_template: "{{states('input_boolean.ib_wz_door_covers_closed_by_summer_mode') == 'on'}}"
       then:    
         - service: script.turn_on
           target:
@@ -22,11 +22,11 @@
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_wz_tur_covers_closed_by_summer_mode          
+            entity_id: input_boolean.ib_wz_door_covers_closed_by_summer_mode          
 # Wohnzimemrfenster
     - if:
         - condition: template
-          value_template: "{{states('input_boolean.ib_wz_fenster_covers_closed_by_summer_mode') == 'on'}}"
+          value_template: "{{states('input_boolean.ib_wz_window_covers_closed_by_summer_mode') == 'on'}}"
       then:    
         - service: script.turn_on
           target:
@@ -35,7 +35,7 @@
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_wz_fenster_covers_closed_by_summer_mode                      
+            entity_id: input_boolean.ib_wz_window_covers_closed_by_summer_mode                      
 # Dachgeschoss
     - if:
         - condition: template

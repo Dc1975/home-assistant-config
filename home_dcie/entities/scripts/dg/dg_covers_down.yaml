@@ -8,22 +8,14 @@ dg_covers_down:
       name: cover_position    
   sequence:
   - if:
-    - condition: device
-      device_id: c1999553e55883ac0269aec24d553b01
-      domain: cover
-      entity_id: cover.dachgeschossfensterrolladen
-      type: is_position
-      above: 0
+      - condition: template
+        value_template: >  
+          {{ state_attr('sensor.sr_dg_cover', 'is_closed') == false }}          
     then:
     - service: cover.set_cover_position
       data:
-        position: "{{cover_position | int}}"
+        position: "{{ cover_position | int}}"
       target:
-        entity_id: cover.dachgeschossfensterrolladen        
-#    - device_id: c1999553e55883ac0269aec24d553b01
-#      domain: cover
-#      entity_id: cover.dachgeschossfensterrolladen
-#      type: set_position
-#      position: 0
+        entity_id: cover.dachgeschossfenster_curtain        
   mode: single
   icon: mdi:window-shutter

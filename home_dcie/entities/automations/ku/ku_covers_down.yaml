@@ -29,7 +29,7 @@
     - service: script.turn_on
       data: 
         variables:
-          cover_position: 0        
+          cover_position: "{{states('input_number.in_ha_covers_close_position') | int}}"        
       target:
         entity_id: script.ku_covers_down
   mode: single

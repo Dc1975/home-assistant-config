@@ -8,22 +8,14 @@ bz_covers_down:
       name: cover_position   
   sequence:
   - if:
-    - condition: device
-      device_id: f5c8d885215c93fce0c4b79329282750
-      domain: cover
-      entity_id: cover.badezimmerfensterrolladen
-      type: is_position
-      above: 0
+      - condition: template
+        value_template: >  
+          {{ state_attr('sensor.sr_bz_cover', 'is_closed') == false }}            
     then:
     - service: cover.set_cover_position
       data:
         position: "{{cover_position | int}}"
       target:
-        entity_id: cover.badezimmerfensterrolladen         
-#    - device_id: f5c8d885215c93fce0c4b79329282750
-#      domain: cover
-#      entity_id: cover.badezimmerfensterrolladen
-#      type: set_position
-#      position: 0
+        entity_id: cover.badezimmerfenster_curtain         
   mode: single
   icon: mdi:window-shutter

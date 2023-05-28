@@ -1,0 +1,8 @@
+in_ha_covers_close_position:
+  name: Absolute Schließungsposition
+  min: 0
+  max: 100
+  step: 1
+  unit_of_measurement: "%"
+  icon: mdi:window-shutter-settings
+  mode: box

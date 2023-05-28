@@ -7,5 +7,5 @@ ha_grp_covers_closed_by_summer_mode:
     - input_boolean.ib_ku_covers_closed_by_summer_mode
     - input_boolean.ib_sz_covers_closed_by_summer_mode
     - input_boolean.ib_sz_az_covers_closed_by_summer_mode 
-    - input_boolean.ib_wz_fenster_covers_closed_by_summer_mode
-    - input_boolean.ib_wz_tur_covers_closed_by_summer_mode
+    - input_boolean.ib_wz_window_covers_closed_by_summer_mode
+    - input_boolean.ib_wz_door_covers_closed_by_summer_mode

@@ -20,16 +20,13 @@
         domain: switch    
       - condition: or
         conditions:
-#        - condition: sun
-#          before: sunrise
-#          after: sunset
         - condition: numeric_state
           entity_id: sun.sun
           attribute: elevation
           below: input_number.in_ha_sun_elevation_treshhold    
         - condition: template
           value_template: >
-            {{ state_attr('cover.dachgeschossfensterrolladen', 'current_position') | int <= states('input_number.in_ha_covers_open_threshold') | int }}
+            {{ state_attr('sensor.sr_dg_cover', 'get_position') | int > states('input_number.in_ha_covers_open_threshold') | int }}
         - condition: template
           value_template: >
             {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_2') %}

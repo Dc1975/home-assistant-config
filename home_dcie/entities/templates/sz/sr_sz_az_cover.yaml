@@ -1,0 +1,15 @@
+sensor:
+  - name: sr_sz_az_cover
+    state: >
+      {% if states('cover.ankleidezimmerfenster_curtain') == 'closed' %}
+        opened
+      {% else %}
+        closed
+      {% endif %}      
+    attributes:
+      is_open: >    
+        {{ state_attr('cover.ankleidezimmerfenster_curtain', 'current_position') | int  == 0}}            
+      is_closed: >
+        {{ state_attr('cover.ankleidezimmerfenster_curtain', 'current_position') | int  == 100}}                  
+      get_position: >
+        {{ state_attr('cover.ankleidezimmerfenster_curtain', 'current_position')}}                  

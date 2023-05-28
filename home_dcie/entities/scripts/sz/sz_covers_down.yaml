@@ -8,22 +8,14 @@ sz_covers_down:
       name: cover_position  
   sequence:  
   - if:
-    - condition: device
-      device_id: 9d8918faa2bb571b915a53ea565a1b55
-      domain: cover
-      entity_id: cover.schlafzimmerfensterrolladen
-      type: is_position
-      above: 0
+      - condition: template
+        value_template: >  
+          {{ state_attr('sensor.sr_sz_cover', 'is_closed') == false }}            
     then:
     - service: cover.set_cover_position
       data:
         position: "{{cover_position | int}}"
       target:
-        entity_id: cover.schlafzimmerfensterrolladen        
-#    - device_id: 9d8918faa2bb571b915a53ea565a1b55
-#      domain: cover
-#      entity_id: cover.schlafzimmerfensterrolladen
-#      type: set_position
-#      position: 0
+        entity_id: cover.schlafzimmerfenster_curtain        
   mode: single
   icon: mdi:window-shutter

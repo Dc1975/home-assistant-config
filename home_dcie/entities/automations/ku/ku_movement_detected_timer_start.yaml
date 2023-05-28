@@ -18,9 +18,6 @@
         domain: switch      
       - condition: or
         conditions:
-#        - condition: sun
-#          before: sunrise
-#          after: sunset
         - condition: numeric_state
           entity_id: sun.sun
           attribute: elevation

@@ -2,27 +2,6 @@
   alias: HA Rolladen ab Sommerbetrieb
   description: ""
   trigger:  
-#    - platform: template
-#      # TODO check this automation every 5 minutes during the time intervall from
-#      # idt_ha_covers_close_summer_after and idt_ha_covers_close_summer_before
-#      value_template: >
-#        {% set state_sensor = states('sensor.gw1100a_v2_2_3_outdoor_temperature')
-#        %} {% set state_threshold =
-#        states('input_number.in_ha_covers_temperature_treshhold') %}     {% if
-#        is_number(state_sensor) and is_number(state_threshold) and (state_sensor |
-#        float >= state_threshold | float) %}
-#          true
-#        {% else %}
-#          false
-#        {% endif %}      
-#    - enabled: false
-#      platform: sun
-#      event: sunset
-#      platform: template
-#      value_template: > 
-#        {% set now = now().timestamp() %}
-#          {{ now | timestamp_custom('%H:%M')  >= (state_attr('input_datetime.idt_ha_covers_close_summer_before', 'timestamp') | as_datetime).strftime('%H:%M') or
-#            now | timestamp_custom('%H:%M')  <= (state_attr('input_datetime.idt_ha_covers_close_summer_after', 'timestamp') | as_datetime).strftime('%H:%M') }}
     - platform: state
       entity_id:
         - sensor.gw1100a_v2_2_3_outdoor_temperature        
@@ -64,9 +43,8 @@
     - if:
         - condition: template
           value_template: >
-            {% from 'invert_cover_position.jinja' import invert_cover_position %}                              
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{states('input_boolean.ib_wz_tur_covers_use_summer_mode') == 'on' and ( invert_cover_position(state_attr('cover.wohnzimmertur_curtain', 'current_position')) | int) > positionToSet }}
+            {{ states('input_boolean.ib_wz_door_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_wz_cover_door', 'get_position') | int) < positionToSet }}                          
       then:    
       - service: script.turn_on
         data:
@@ -79,13 +57,13 @@
       - service: input_boolean.turn_on
         data: {}
         target:
-          entity_id: input_boolean.ib_wz_tur_covers_closed_by_summer_mode
+          entity_id: input_boolean.ib_wz_door_covers_closed_by_summer_mode
 # Wohnzimmerfenster
     - if:
         - condition: template
           value_template: >
-            {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{states('input_boolean.ib_wz_fenster_covers_use_summer_mode') == 'on' and (state_attr('cover.wohnzimmerfensterrolladen', 'current_position') | int) > positionToSet }}
+            {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}            
+            {{ states('input_boolean.ib_wz_window_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_wz_cover_window', 'get_position') | int) < positionToSet }}                          
       then:    
       - service: script.turn_on
         data:
@@ -96,13 +74,13 @@
       - service: input_boolean.turn_on
         data: {}
         target:
-          entity_id: input_boolean.ib_wz_fenster_covers_closed_by_summer_mode                              
+          entity_id: input_boolean.ib_wz_window_covers_closed_by_summer_mode                              
 # Dachgeschoss
     - if:
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{states('input_boolean.ib_dg_covers_use_summer_mode') == 'on' and (state_attr('cover.dachgeschossfensterrolladen', 'current_position') | int) > positionToSet }}
+            {{ states('input_boolean.ib_dg_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_dg_cover', 'get_position') | int) < positionToSet }}                          
       then:    
         - service: script.turn_on
           target:
@@ -118,8 +96,8 @@
     - if:
         - condition: template
           value_template: >
-            {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{states('input_boolean.ib_sz_az_covers_use_summer_mode') == 'on' and (state_attr('cover.ankleidezimmerfensterrolladen', 'current_position') | int) > positionToSet }}
+            {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}            
+            {{ states('input_boolean.ib_sz_az_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_sz_az_cover', 'get_position') | int) < positionToSet }}
       then:    
       - service: script.turn_on
         target:
@@ -136,7 +114,7 @@
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{states('input_boolean.ib_sz_covers_use_summer_mode') == 'on' and (state_attr('cover.schlafzimmerfensterrolladen', 'current_position') | int) > positionToSet }}
+            {{ states('input_boolean.ib_sz_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_sz_cover', 'get_position') | int) < positionToSet }}
       then:    
       - service: script.turn_on
         target:
@@ -153,7 +131,7 @@
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{states('input_boolean.ib_gz_covers_use_summer_mode') == 'on' and (state_attr('cover.gastezimmerfensterrolladen', 'current_position') | int) > positionToSet }}
+            {{ states('input_boolean.ib_gz_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_gz_cover', 'get_position') | int) < positionToSet }}                                      
       then:    
       - service: script.turn_on
         data:
@@ -170,7 +148,7 @@
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{states('input_boolean.ib_ku_covers_use_summer_mode') == 'on' and (state_attr('cover.kuchenfensterrolladen', 'current_position') | int) > positionToSet }}          
+            {{ states('input_boolean.ib_ku_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_ku_cover', 'get_position') | int) < positionToSet }}                                      
       then:    
       - service: script.turn_on
         data:
@@ -187,7 +165,7 @@
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{states('input_boolean.ib_bz_covers_use_summer_mode') == 'on' and (state_attr('cover.badezimmerfensterrolladen', 'current_position') | int) > positionToSet }}                    
+            {{ states('input_boolean.ib_bz_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_bz_cover', 'get_position') | int) < positionToSet }}                          
       then:    
       - service: script.turn_on
         data:
