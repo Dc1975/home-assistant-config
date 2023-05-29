@@ -5,7 +5,7 @@
     - type: motion
       platform: device
       device_id: 3117bf6e656720d90e8b658531ab8136
-      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_11
       domain: binary_sensor
   condition:
     - condition: or
