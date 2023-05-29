@@ -28,8 +28,10 @@
                 - wed
                 - tue
                 - mon
-            - condition: sun
-              after: sunset
+            - condition: numeric_state
+              entity_id: sun.sun
+              attribute: elevation
+              below: input_number.in_ha_sun_elevation_treshhold 
         - condition: and
           conditions:
             # use this condition to prevent light turn off if they werere manually turned on
