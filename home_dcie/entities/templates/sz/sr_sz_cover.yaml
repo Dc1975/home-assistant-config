@@ -2,7 +2,7 @@ sensor:
   - name: sr_sz_cover
     state: >
       {% if states('cover.schlafzimmerfenster_curtain') == 'closed' %}
-        opened
+        open
       {% else %}
         closed
       {% endif %}      
