@@ -8,21 +8,21 @@ sensor:
       open_covers: >
         {% set windows =  expand('group.ha_grp_rolladen') | selectattr('state', 'eq', 'open') %}
         {% set filter = ['cover.leinwand'] %}
-        {% set windows =  windows | rejectattr('entity_id', 'in', filter) | map(attribute='name') | list %}
+        {% set windows =  windows | rejectattr('entity_id', 'in', filter) | map(attribute='name') | list %}        
         {% if (windows | length) == 0 %}
           Es sind keine Rolladen geöffnet.
         {% elif (windows | length) == 1 %}
           Der Rolladen {{windows}} ist geöffnet. 
         {%- else  -%}
-          Die Rolladen {{""}}
+          Die Rolladen von {{""}}
           {%- for i in range(windows|length) -%}
             {%- if i == (windows|length)-1 -%}
-              {{""}}und {{windows[i]}} sind geöffnet.
+              {{""}}und {{windows[i].split("rolladen")[0]}} sind geöffnet.
             {%- else -%}
-              {{windows[i]}}{{", "}} 
+              {{windows[i].split("rolladen")[0]}}{{", "}} 
             {%- endif -%}    
           {% endfor %}
-        {% endif %}       
+        {% endif %}      
 #    {% set toExclucde = namespace(entities=['cover.leinwand']) %}
 #    {%-  for state in states.cover
 #      if state.state == "open" and
