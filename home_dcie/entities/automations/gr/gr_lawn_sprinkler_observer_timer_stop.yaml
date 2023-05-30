@@ -1,5 +1,5 @@
-- id: '1685479544527'
-  alias: GR Gartenbewässerung Timer stop
+- id: '1685479368270'
+  alias: GR Gartenbewässerung Überwachung Timer stop
   description: ''
   trigger:
 #    - platform: state
@@ -10,7 +10,7 @@
     - platform: event
       event_type: timer.finished
       event_data:
-        entity_id: timer.ti_gr_lawn_sprinkler
+        entity_id: timer.ti_gr_lawn_sprinkler_observer
   condition: []
   action:
     - if:
@@ -42,12 +42,14 @@
         data:
           variables:
             msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
-            msg_message: "Die Rasenbewässerung wurde nach {{states('input_number.in_gr_duration_lawn_sprinkler') | round(0) }} Minuten beendet."
+            msg_message: "Die Rasenbewässerung läuft länger als {{state_attr('input_number.in_gr_duration_lawn_sprinkler',
+              'max') | int}} Minuten und wird abgeschaltet"
       - service: notify.alexa_media_uberall
         data:
           title: "{{states('input_text.it_general_notification_title')}} Garten"
-          message: "Die Rasenbewässerung wurde nach {{states('input_number.in_gr_duration_lawn_sprinkler') | round(0) }} Minuten beendet."
+          message: "Die Rasenbewässerung läuft länger als {{state_attr('input_number.in_gr_duration_lawn_sprinkler',
+            'max') | int}} Minuten und wird abgeschaltet"
           data:
             type: announce
-            method: all        
+            method: all   
   mode: single

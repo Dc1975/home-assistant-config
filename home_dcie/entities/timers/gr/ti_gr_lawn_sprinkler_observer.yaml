@@ -1,0 +1,4 @@
+ti_gr_lawn_sprinkler_observer:
+  duration: "00:00:00"
+  restore: true
+  name: Timer Rasenbewässerung-Überwachung

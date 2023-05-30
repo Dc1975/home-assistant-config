@@ -1,0 +1,16 @@
+- id: '1685479896984'
+  alias: GR Rasenbewässerung Überwachung stop
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: d2baac79c45912a95219ff03b16a46cc
+    entity_id: switch.brunnen
+    domain: switch
+  condition: []
+  action:
+  - service: timer.cancel
+    data: {}
+    target:
+      entity_id: timer.ti_gr_lawn_sprinkler_observer
+  mode: single
