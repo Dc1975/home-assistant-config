@@ -3,8 +3,23 @@ gr_lawn_sprinkler:
   sequence:
   - if:
     - condition: template
-      value_template: "{{ states('switch.brunnen') != 'unavailable' }}"
+      value_template: "{{ states('switch.brunnen') == 'unavailable' }}"
     then:
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_handy_notification
+      data:
+        variables:
+          msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
+          msg_message: "Der Rasen kann nicht bewässert werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
+    - service: notify.alexa_media_uberall
+      data:
+        title: "{{states('input_text.it_general_notification_title')}} Garten"
+        message: "Der Rasen kann nicht bewässert werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
+        data:
+          type: announce
+          method: all              
+    else:  
     - service: script.turn_on
       target:
         entity_id: script.ha_handy_notification
@@ -27,19 +42,4 @@ gr_lawn_sprinkler:
       data_template:
         entity_id: timer.ti_gr_lawn_sprinkler
         duration: "00:{{states('input_number.in_gr_duration_lawn_sprinkler') | int}}:00"
-      else:          
-      - service: script.turn_on
-        target:
-          entity_id: script.ha_handy_notification
-        data:
-          variables:
-            msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
-            msg_message: "Der Rasen kann nicht bewässert werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
-      - service: notify.alexa_media_uberall
-        data:
-          title: "{{states('input_text.it_general_notification_title')}} Garten"
-          message: "Der Rasen kann nicht bewässert werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
-          data:
-            type: announce
-            method: all      
   mode: single
