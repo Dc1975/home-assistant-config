@@ -3,15 +3,4 @@
 speech:
   type: plain
   text: >
-    {% set toExclucde = namespace(entities=['cover.leinwand']) %}
-    {%-  for state in states.cover
-      if state.state == "open" and
-      not state.entity_id in toExclucde.entities
-      and state.entity_id in expand('group.ha_grp_rolladen') | map(attribute='entity_id') | list 
-    -%}
-    {%- if loop.first %}
-      Der Rolladen von {% elif loop.last %} und der Rolladen von {% else %}, der Rolladen von {% endif -%}    
-      {{ state.name.split("rolladen")[0] }} {%- if loop.last %} ist geöffnet. {% endif -%}      
-    {% else %}
-      Es sind keine Rolladen geöffnet.
-    {% endfor %}
+    {{state_attr('sensor.sr_ha_open_covers', 'open_covers')}}

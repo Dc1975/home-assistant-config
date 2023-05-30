@@ -4,15 +4,30 @@ sensor:
     state: >
       {{expand('group.ha_grp_windows') | count}}
     attributes:
-      open_windows: >    
-        {% set toExclucde = namespace(entities=[]) %}
-        {%-  for state in expand('group.ha_grp_windows')
-          if state.state == "on" and
-          not state.entity_id in toExclucde.entities    
-        -%}
-        {%- if loop.first %}
-          Das Fenster {% elif loop.last %}und das Fenster {% else %}, das Fenster {% endif -%} {{ state.name }} {% if loop.last %}ist geöffnet.{% endif -%}
-        {% else %}
-          Es sind keine Fenster geöffnet.        
-        {% endfor %}      
+      open_windows: >
+        {% set windows =  expand('group.ha_grp_windows') | selectattr('state', 'eq', 'on') | map(attribute='name') | list %}
+        {% if (windows | length) == 0 %}
+          Es sind keine Fenster geöffnet.
+        {% elif (windows | length) == 1 %}
+          Das Fenster {{windows}} ist geöffnet. 
+        {%- else  -%}
+          Die Fenster {{""}}
+          {%- for i in range(windows|length) -%}
+            {%- if i == (windows|length)-1 -%}
+              {{""}}und {{windows[i]}} sind geöffnet.
+            {%- else -%}
+              {{windows[i]}}{{", "}} 
+            {%- endif -%}    
+          {% endfor %}
+        {% endif %}         
+#        {% set toExclucde = namespace(entities=[]) %}
+#        {%-  for state in expand('group.ha_grp_windows')
+#          if state.state == "on" and
+#          not state.entity_id in toExclucde.entities    
+#        -%}
+#        {%- if loop.first %}
+#          Das Fenster {% elif loop.last %}und das Fenster {% else %}, das Fenster {% endif -%} {{ state.name }} {% if loop.last %}ist geöffnet.{% endif -%}
+#        {% else %}
+#          Es sind keine Fenster geöffnet.        
+#        {% endfor %}      
             
