@@ -1,25 +1,30 @@
+#Welche Rolladen sind geöffnet
+#Welche Rolladen sind offen
 sensor:
-  - name: sr_ha_open_covers
-    unique_id: sr_ha_open_covers
+  - name: sr_ha_covers_open
+    unique_id: sr_ha_covers_open
     state: >    
       {{expand('group.ha_grp_rolladen') | count - 1}}
 # Subtract the cover.leinwand
     attributes:
-      open_covers: >
-        {% set windows =  expand('group.ha_grp_rolladen') | selectattr('state', 'eq', 'open') %}
+      covers_open: >
+        {% set covers =  expand('group.ha_grp_rolladen') | selectattr('state', 'eq', 'open') %}
         {% set filter = ['cover.leinwand'] %}
-        {% set windows =  windows | rejectattr('entity_id', 'in', filter) | map(attribute='name') | list %}        
-        {% if (windows | length) == 0 %}
+        {% set covers =  covers | rejectattr('entity_id', 'in', filter) | map(attribute='name') | list %}        
+        {% if (covers | length) == 0 %}
           Es sind keine Rolladen geöffnet.
-        {% elif (windows | length) == 1 %}
-          Der Rolladen {{windows}} ist geöffnet. 
+        {% elif (covers | length) == 1 %}
+          Der Rolladen {{covers[0]}} ist geöffnet. 
         {%- else  -%}
           Die Rolladen von {{""}}
-          {%- for i in range(windows|length) -%}
-            {%- if i == (windows|length)-1 -%}
-              {{""}}und {{windows[i].split("rolladen")[0]}} sind geöffnet.
+          {%- for i in range(covers|length) -%}
+            {%- if i == (covers|length)-1 -%}
+              {{" "}}und {{covers[i].split("rolladen")[0]}} sind geöffnet.
             {%- else -%}
-              {{windows[i].split("rolladen")[0]}}{{", "}} 
+              {{covers[i].split("rolladen")[0]}}
+              {%- if (i + 2) in range(covers|length) -%}
+                {{", "}}
+              {%- endif %}                
             {%- endif -%}    
           {% endfor %}
         {% endif %}      
