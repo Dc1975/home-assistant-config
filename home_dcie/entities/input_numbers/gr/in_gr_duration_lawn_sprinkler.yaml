@@ -1,7 +1,7 @@
 in_gr_duration_lawn_sprinkler:
   name: Dauer Rasensprinkler
   min: 0
-  max: 60
+  max: 40
   step: 1
   unit_of_measurement: min
   icon: mdi:timer
