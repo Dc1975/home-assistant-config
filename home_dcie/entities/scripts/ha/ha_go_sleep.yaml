@@ -90,6 +90,6 @@ ha_go_sleep:
       data:
         variables:
           msg_title: HomeAssistant - Offene Fenster
-          msg_message: "{{state_attr('sensor.sr_ha_open_windows', 'open_windows')}}"          
+          msg_message: "{{state_attr('sensor.sr_ha_windows_open', 'windows_open')}}"          
   mode: single
   icon: mdi:lightbulb-group-off
