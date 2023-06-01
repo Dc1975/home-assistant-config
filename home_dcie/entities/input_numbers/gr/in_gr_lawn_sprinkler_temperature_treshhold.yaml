@@ -1,0 +1,8 @@
+in_gr_lawn_sprinkler_temperature_treshhold:
+  name: Temperaturschwelle Rasenbewässerung
+  min: 15
+  max: 45
+  step: 0.1
+  unit_of_measurement: °C
+  icon: mdi:thermometer-alert
+  mode: box

@@ -14,7 +14,7 @@
     - condition: template
       value_template: "{{ states('sensor.gw1100a_v2_2_3_daily_rain_rate') | float == 0 }}"
     - condition: template
-      value_template: "{{ states('sensor.gw1100a_v2_2_3_outdoor_temperature') | float >= 18 }}"
+      value_template: "{{ states('sensor.sr_gr_average_statistic_temperature') | float >= states('input_number.in_gr_lawn_sprinkler_temperature_treshhold') | float }}"
     - condition: template
       value_template: "{{now().month | string in states('input_text.it_ha_covers_close_summer_months')}}"
   action:
