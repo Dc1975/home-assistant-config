@@ -1,6 +1,6 @@
 platform: statistics
 name: sr_gr_average_statistic_temperature
 entity_id: sensor.gw1100a_v2_2_3_outdoor_temperature
-state_characteristic: mean
+state_characteristic: average_linear
 max_age:
   hours: 24
