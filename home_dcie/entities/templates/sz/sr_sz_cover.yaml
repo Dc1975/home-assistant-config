@@ -8,8 +8,14 @@ sensor:
       {% endif %}      
     attributes:
       is_open: >    
-        {{ state_attr('cover.schlafzimmerfenster_curtain', 'current_position') | int  == 0}}            
+        {% if not state_attr('cover.schlafzimmerfenster_curtain', 'current_position') is none %}      
+          {{ state_attr('cover.schlafzimmerfenster_curtain', 'current_position') | int  == 0}}            
+        {% endif %}
       is_closed: >
-        {{ state_attr('cover.schlafzimmerfenster_curtain', 'current_position') | int  == 100}}                  
+        {% if not state_attr('cover.schlafzimmerfenster_curtain', 'current_position') is none %}      
+          {{ state_attr('cover.schlafzimmerfenster_curtain', 'current_position') | int  == 100}}                  
+        {% endif %}
       get_position: >
-        {{ state_attr('cover.schlafzimmerfenster_curtain', 'current_position')}}                  
+        {% if not state_attr('cover.schlafzimmerfenster_curtain', 'current_position') is none %}      
+          {{ state_attr('cover.schlafzimmerfenster_curtain', 'current_position')}}                  
+        {% endif %}
