@@ -8,6 +8,6 @@ ha_grp_switches_motion_detectors:
     - input_boolean.ib_sz_az_switch_motion_detector
     - input_boolean.ib_gt_switch_motion_detector
     - input_boolean.ib_fl_switch_motion_detector
-    - input_boolean.ib_tr_switch_motion_detector_above
-    - input_boolean.ib_tr_switch_motion_detector_center
-    - input_boolean.ib_tr_switch_motion_detector_below
+    - input_boolean.ib_tr_above_switch_motion_detector
+    - input_boolean.ib_tr_center_switch_motion_detector
+    - input_boolean.ib_tr_below_switch_motion_detector
