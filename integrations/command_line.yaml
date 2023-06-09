@@ -1,0 +1,1 @@
+ command_line: !include_dir_list ../home_dcie/entities/command_line

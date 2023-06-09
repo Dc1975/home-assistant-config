@@ -1,0 +1,4 @@
+sensor:
+  # Counter that tracks total number of lines in YAML
+  name: sr_count_code_lines
+  command: " find /config/ -name '*.yaml' | xargs cat | wc -l"
