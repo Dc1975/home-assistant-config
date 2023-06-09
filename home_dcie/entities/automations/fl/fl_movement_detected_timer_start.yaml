@@ -11,6 +11,9 @@
     - condition: and
       conditions:
         - condition: state
+          entity_id: input_boolean.ib_fl_switch_motion_detector
+          state: "on"      
+        - condition: state
           entity_id: input_boolean.ib_ha_schlafen_runs
           state: 'off'      
         # use this condition to prevent light turn off if they were manually turned on

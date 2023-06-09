@@ -12,6 +12,9 @@
       conditions:
         - condition: and
           conditions:
+            - condition: state
+              entity_id: input_boolean.ib_sz_az_switch_motion_detector
+              state: "on"      
             # use this condition to prevent light turn off if they werere manually turned on
             - condition: device
               type: is_off
@@ -36,6 +39,9 @@
               after: sunset
         - condition: and
           conditions:
+            - condition: state
+              entity_id: input_boolean.ib_sz_az_switch_motion_detector
+              state: "on"      
             # use this condition to prevent light turn off if they werere manually turned on
             - condition: device
               type: is_off

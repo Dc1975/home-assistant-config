@@ -10,13 +10,13 @@
   condition:
     - condition: and
       conditions:
+      - condition: state
+        entity_id: input_boolean.ib_tr_above_switch_motion_detector
+        state: "on"      
       # use this condition to prevent light turn off if they werere manually turned on            
       - condition: state
         entity_id: light.tr_grp_lampen_oben
         state: "off"          
-#      - condition: sun
-#        after: sunset
-#        before: sunrise
       - condition: numeric_state
         entity_id: sun.sun
         attribute: elevation

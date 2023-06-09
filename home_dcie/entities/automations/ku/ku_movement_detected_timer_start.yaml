@@ -10,6 +10,9 @@
   condition:
     - condition: and
       conditions:
+      - condition: state
+        entity_id: input_boolean.ib_ku_switch_motion_detector
+        state: "on"      
       # use this condition to prevent light turn off if they werere manually turned on
       - condition: device
         type: is_off

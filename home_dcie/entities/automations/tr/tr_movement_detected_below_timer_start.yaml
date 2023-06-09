@@ -7,9 +7,12 @@
       device_id: f6c7251fe9d4cedba30b9556159ef326
       entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_3
       domain: binary_sensor
-  condition:
+  condition:  
     - condition: and
       conditions:
+      - condition: state
+        entity_id: input_boolean.ib_tr_below_switch_motion_detector
+        state: "on"            
       # use this condition to prevent light turn off if they werere manually turned on      
       - condition: state
         entity_id: light.tr_grp_lampen_unten
