@@ -36,5 +36,4 @@ ip_bans.yaml
 secrets.yaml
 known_devices.yaml
 watchman_report.txt
-.HA_VERSION
 go2rtc*
