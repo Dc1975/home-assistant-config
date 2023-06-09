@@ -152,25 +152,74 @@ sensor.um_ke_steckdose_trockner_yearly:
   friendly_name: Trockner jährlich     
 # EcoWitt
 sensor.gw1100a_v2_2_3_outdoor_temperature:
-  friendly_name: Temperatur
+  friendly_name: Außentemperatur
+sensor.gw1100a_v2_2_3_feels_like_temperature:  
+  friendly_name: Gefühlte Außentemperatur
+sensor.gw1100a_v2_2_3_indoor_temperature:
+    friendly_name: Innentemperatur
 sensor.gw1100a_v2_2_3_humidity:
-  friendly_name: Luftfeuchte
-sensor.gw1100a_v2_2_3_rain_rate:
-  friendly_name: Regenmenge
+  friendly_name: Außenluftfeuchte
+sensor.gw1100a_v2_2_3_indoor_humidity:
+  friendly_name: Innenluftfeuchte
 sensor.gw1100a_v2_2_3_wind_speed:
-  friendly_name: Wind
+  friendly_name: Windgeschwindigkeit
 sensor.gw1100a_v2_2_3_wind_gust:
   friendly_name: Windböe
+sensor.gw1100a_v2_2_3_max_daily_gust:
+  friendly_name: Tägliche Windböe
 sensor.gw1100a_v2_2_3_wind_direction:
-  friendly_name: Windrichtung    
+  friendly_name: Windrichtung  
+sensor.gw1100a_v2_2_3_windchill:
+  friendly_name: Windkühle  
 sensor.gw1100a_v2_2_3_solar_lux:
   friendly_name: Außenlux
 sensor.gw1100a_v2_2_3_uv_index:
   friendly_name: UV-Index
-sensor.gw1100a_v2_2_3_daily_rain_rate:
-  friendly_name: Tägliche Regenmenge
 sensor.gw1100a_v2_2_3_absolute_pressure:
-  friendly_name: Luftdruck
+  friendly_name: Absoluter Luftdruck
+sensor.gw1100a_v2_2_3_relative_pressure:
+  friendly_name: Relativer Luftdruck  
+sensor.gw1100a_v2_2_3_solar_radiation:  
+  friendly_name: Energieleistung
+sensor.gw1100a_v2_2_3_dewpoint:
+  friendly_name: Außentaupunkt
+sensor.gw1100a_v2_2_3_indoor_dewpoint:  
+  friendly_name: Innentaupunkt
+# https://www.wetterstationsforum.info/viewtopic.php?t=241
+#Yearly - Jahresregenmenge seit dem 01.01. 00:00 Uhr
+#Monthly - Gesamtregenmenge im aktuellen Monat; beginnend mit dem Monatsersten
+#Weekly - Gesamtregenmenge in der aktuellen Woche - Achtung! Aktuell beginnt die Woche immer am Sonntag, 00:00 Uhr1
+#Daily - Gesamtregenmenge des laufenden Tages; Beginn 00:00 Uhr
+#Hourly - Gesamtregenmenge innerhalb der letzten 60 Minuten (T-60)
+#Rain Rate - auf eine Stunde hochgerechnete Regenmenge bei aktueller Regenrate
+#Event - Regenmenge des aktuellen Regen-Ereignisses; beginnt mit der ersten Wippenentleerung und endet, wenn eine Stunde lang kein Regen gefallen ist
+
+#Rain Rate is defined as the rainfall in the last 10 minutes, multiplied by 6 (10 minutes x 6 = 1 hour). This is also referred to as instantaneous rain per hour.
+#Hourly Rain is defined as the rainfall in the last hour.
+#Rain event is defined as continuous rain, and resets to zero if accumulated rainfall is less than 1 mm (0.039 in) in a 24 hour period. Some weather stations may calculate this slightly differently and the customer should reference the User Manual.
+#Daily Rain is defined as the rainfall since midnight (00:00).
+#24 Hour Rain is defined as the rainfall in the last 24 hours. For example, if it is currently 5:00 pm, 24 hour rain would be the amount of rain that has fallen since 5:00 pm yesterday.
+#Weekly Rain is defined as the calendar week total, and resets on Sunday morning at midnight (Sunday thru Saturday).
+#Monthly Rain is defined as the calendar month total, and resets on the first day of the Month.
+#Yearly Rain is defined as the calendar year total, and resets on the first day of the Year. The WS-1000 series weather stations allow you to change the month rain is reset to 0.00 (referred to as Rainfall Season).
+#Total Rain is defined as the running total since station was powered up.   
+sensor.gw1100a_v2_2_3_rain_rate:
+  friendly_name: Aktueller Niederschlag
+sensor.gw1100a_v2_2_3_hourly_rain_rate:
+  friendly_name: Stündlicher Niederschlag
+sensor.gw1100a_v2_2_3_daily_rain_rate:
+  friendly_name: Täglicher Niederschlag
+sensor.gw1100a_v2_2_3_weekly_rain_rate:
+  friendly_name: Wöchentlicher Niederschlag
+sensor.gw1100a_v2_2_3_monthly_rain_rate:
+  friendly_name: Monatlicher Niederschlag
+sensor.gw1100a_v2_2_3_yearly_rain_rate:
+  friendly_name: Jährlicher Niederschlag
+sensor.gw1100a_v2_2_3_total_rain:
+  friendly_name: Gessamter Niederschlag
+sensor.gw1100a_v2_2_3_event_rain_rate:
+  friendly_name: Event Niederschlag
+
 # add historical statistic to sensors
 sensor.sr_local_nuc_cpu_temperature:
   state_class: measurement  
