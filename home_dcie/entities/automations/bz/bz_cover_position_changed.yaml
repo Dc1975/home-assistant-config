@@ -1,0 +1,18 @@
+- id: '1686334956723'
+  alias: BZ Rolladenposition geändert
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - cover.badezimmerfenster_curtain
+    attribute: current_position
+  condition:
+  - condition: state
+    entity_id: input_boolean.ib_bz_covers_closed_by_summer_mode
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.ib_bz_covers_closed_by_summer_mode
+  mode: single

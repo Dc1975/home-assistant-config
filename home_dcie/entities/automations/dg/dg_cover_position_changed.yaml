@@ -1,0 +1,18 @@
+- id: '1686334654164'
+  alias: DG Rolladenposition geändert
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - cover.dachgeschossfenster_curtain
+    attribute: current_position
+  condition:
+  - condition: state
+    entity_id: input_boolean.ib_dg_covers_closed_by_summer_mode
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.ib_dg_covers_closed_by_summer_mode
+  mode: single

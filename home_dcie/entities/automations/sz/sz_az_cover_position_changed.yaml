@@ -1,0 +1,18 @@
+- id: '1686335209422'
+  alias: SZ AZ Rolladenposition geändert
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - cover.ankleidezimmerfenster_curtain
+    attribute: current_position
+  condition:
+  - condition: state
+    entity_id: input_boolean.ib_sz_az_covers_closed_by_summer_mode
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.ib_sz_az_covers_closed_by_summer_mode
+  mode: single
