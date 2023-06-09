@@ -8,7 +8,7 @@ ha_house_leave_short:
   - service: notify.alexa_media_echo_wohnzimmer
     data:
       title: HomeAssistant - Offene Fenster
-      message: "{{state_attr('sensor.sr_ha_open_windows', 'open_windows')}}"      
+      message: "{{state_attr('sensor.sr_ha_windows_open', 'windows_open')}}"      
       data:
         type: announce
         method: all

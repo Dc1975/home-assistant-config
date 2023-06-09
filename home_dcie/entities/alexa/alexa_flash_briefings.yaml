@@ -18,4 +18,4 @@ status:
       die Luftfeuchtigkeit ist {{ states("sensor.gw1100a_v2_2_3_humidity") }} %,
       die Windgeschwindigkeit beträgt {{ states("sensor.gw1100a_v2_2_3_wind_speed") }} kmh
       und der Luftdruck beträgt {{ states("sensor.gw1100a_v2_2_3_absolute_pressure") }} Hektopascal.
-      {{state_attr('sensor.sr_ha_open_windows', 'open_windows')}}.
+      {{state_attr('sensor.sr_ha_windows_open', 'windows_open')}}.
