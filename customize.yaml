@@ -285,3 +285,24 @@ sensor.sr_count_code_lines:
 # some stuff
 sensor.local_ip:
   friendly_name: IP
+# motion detector helper switches
+input_boolean.ib_dg_switch_motion_detector:
+  friendly_name: Dachgeschoss Bewegungsmelder
+input_boolean.ib_bz_switch_motion_detector:
+  friendly_name: Badezimmer Bewegungsmelder
+input_boolean.ib_ku_switch_motion_detector:
+  friendly_name: Küche Bewegungsmelder
+input_boolean.ib_sz_switch_motion_detector:
+  friendly_name: Schlafzimmer Bewegungsmelder
+input_boolean.ib_sz_az_switch_motion_detector:
+  friendly_name: Ankleidezimmer Bewegungsmelder
+input_boolean.ib_gt_switch_motion_detector:
+  friendly_name: Gästetoilette Bewegungsmelder
+input_boolean.ib_fl_switch_motion_detector:
+  friendly_name: Flur Bewegungsmelder
+input_boolean.ib_tr_above_switch_motion_detector:
+  friendly_name: Treppnehaus oben Bewegungsmelder
+input_boolean.ib_tr_center_switch_motion_detector:
+  friendly_name: Treppnehaus mitte Bewegungsmelder
+input_boolean.ib_tr_below_switch_motion_detector:
+  friendly_name: Treppnehaus unten Bewegungsmelder
