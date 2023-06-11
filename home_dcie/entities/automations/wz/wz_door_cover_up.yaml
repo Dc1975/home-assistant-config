@@ -30,4 +30,8 @@
       data: {}
       target:
         entity_id: script.wz_covers_up_door
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.ib_wz_door_cover_position_changed
   mode: single

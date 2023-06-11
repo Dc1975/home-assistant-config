@@ -30,4 +30,8 @@
       data: {}
       target:
         entity_id: script.sz_az_covers_up
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.ib_sz_az_cover_position_changed        
   mode: single

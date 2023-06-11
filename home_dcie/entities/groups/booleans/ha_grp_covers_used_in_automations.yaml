@@ -1,0 +1,11 @@
+ha_grp_covers_used_in_automations:
+  name: ha_grp_covers_used_in_automations
+  entities: 
+    - input_boolean.ib_wz_door_cover_used_in_automations
+    - input_boolean.ib_wz_window_cover_used_in_automations
+    - input_boolean.ib_sz_az_cover_used_in_automations
+    - input_boolean.ib_sz_cover_used_in_automations
+    - input_boolean.ib_ku_cover_used_in_automations
+    - input_boolean.ib_gz_cover_used_in_automations 
+    - input_boolean.ib_dg_cover_used_in_automations
+    - input_boolean.ib_bz_cover_used_in_automations

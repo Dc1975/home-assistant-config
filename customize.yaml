@@ -306,3 +306,6 @@ input_boolean.ib_tr_center_switch_motion_detector:
   friendly_name: Treppnehaus mitte Bewegungsmelder
 input_boolean.ib_tr_below_switch_motion_detector:
   friendly_name: Treppnehaus unten Bewegungsmelder
+# covers
+input_boolean.ib_wz_door_cover_used_in_automations:
+  friendly_name: In Automationen benutzen

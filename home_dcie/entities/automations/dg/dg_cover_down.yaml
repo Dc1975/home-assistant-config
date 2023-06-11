@@ -32,4 +32,8 @@
           cover_position: "{{states('input_number.in_ha_covers_close_position') | int}}"        
       target:
         entity_id: script.dg_covers_down
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.ib_dg_cover_position_changed        
   mode: single

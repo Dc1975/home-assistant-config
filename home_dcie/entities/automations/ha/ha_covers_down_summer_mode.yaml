@@ -39,13 +39,20 @@
             {{now().month | string in
             states('input_text.it_ha_covers_close_summer_months')}}            
   action:
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.ib_ha_covers_down_summer_mode_runs
 # Wohnzimmertür
     - if:
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{ states('input_boolean.ib_wz_door_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_wz_cover_door', 'get_position') | int) < positionToSet and
-              states('input_boolean.ib_wz_door_covers_closed_by_summer_mode') == 'off' }}                          
+            {{ states('input_boolean.ib_wz_door_covers_use_summer_mode') == 'on'
+              and (state_attr('sensor.sr_wz_cover_door', 'get_position') | int) < positionToSet              
+              and states('input_boolean.ib_wz_door_cover_position_changed') == 'off'
+              and states('input_boolean.ib_wz_door_cover_used_in_automations') == 'on'
+              and states('input_boolean.ib_wz_door_covers_closed_by_summer_mode') == 'off' }}                          
       then:    
       - service: script.turn_on
         data:
@@ -59,13 +66,22 @@
         data: {}
         target:
           entity_id: input_boolean.ib_wz_door_covers_closed_by_summer_mode
+#      - if:
+#          - condition: template
+#            value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
+#        then:    
+#          - wait_template: "{{is_state('script.wz_covers_down_door', 'off') }}"                
+#            continue_on_timeout: true             
 # Wohnzimmerfenster
     - if:
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}            
-            {{ states('input_boolean.ib_wz_window_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_wz_cover_window', 'get_position') | int) < positionToSet and
-              states('input_boolean.ib_wz_window_covers_closed_by_summer_mode') == 'off' }}                          
+            {{ states('input_boolean.ib_wz_window_covers_use_summer_mode') == 'on' 
+              and (state_attr('sensor.sr_wz_cover_window', 'get_position') | int) < positionToSet 
+              and states('input_boolean.ib_wz_window_cover_position_changed') == 'off'
+              and states('input_boolean.ib_wz_window_cover_used_in_automations') == 'on'            
+              and states('input_boolean.ib_wz_window_covers_closed_by_summer_mode') == 'off' }}                          
       then:    
       - service: script.turn_on
         data:
@@ -82,8 +98,11 @@
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{ states('input_boolean.ib_dg_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_dg_cover', 'get_position') | int) < positionToSet and
-              states('input_boolean.ib_dg_covers_closed_by_summer_mode') == 'off' }}                          
+            {{ states('input_boolean.ib_dg_covers_use_summer_mode') == 'on'
+              and (state_attr('sensor.sr_dg_cover', 'get_position') | int) < positionToSet 
+              and states('input_boolean.ib_dg_cover_position_changed') == 'off'
+              and states('input_boolean.ib_dg_cover_used_in_automations') == 'on'                          
+              and states('input_boolean.ib_dg_covers_closed_by_summer_mode') == 'off' }}                          
       then:    
         - service: script.turn_on
           target:
@@ -100,8 +119,11 @@
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}            
-            {{ states('input_boolean.ib_sz_az_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_sz_az_cover', 'get_position') | int) < positionToSet and
-              states('input_boolean.ib_sz_az_covers_closed_by_summer_mode') == 'off' }}
+            {{ states('input_boolean.ib_sz_az_covers_use_summer_mode') == 'on'
+              and (state_attr('sensor.sr_sz_az_cover', 'get_position') | int) < positionToSet
+              and states('input_boolean.ib_sz_az_cover_position_changed') == 'off'
+              and states('input_boolean.ib_sz_az_cover_used_in_automations') == 'on'                       
+              and states('input_boolean.ib_sz_az_covers_closed_by_summer_mode') == 'off' }}
       then:    
       - service: script.turn_on
         target:
@@ -118,8 +140,11 @@
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{ states('input_boolean.ib_sz_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_sz_cover', 'get_position') | int) < positionToSet and
-              states('input_boolean.ib_sz_covers_closed_by_summer_mode') == 'off' }}
+            {{ states('input_boolean.ib_sz_covers_use_summer_mode') == 'on'
+              and (state_attr('sensor.sr_sz_cover', 'get_position') | int) < positionToSet
+              and states('input_boolean.ib_sz_cover_position_changed') == 'off'
+              and states('input_boolean.ib_sz_cover_used_in_automations') == 'on'                 
+              and states('input_boolean.ib_sz_covers_closed_by_summer_mode') == 'off' }}
       then:    
       - service: script.turn_on
         target:
@@ -136,8 +161,11 @@
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{ states('input_boolean.ib_gz_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_gz_cover', 'get_position') | int) < positionToSet and
-              states('input_boolean.ib_gz_covers_closed_by_summer_mode') == 'off' }}                                      
+            {{ states('input_boolean.ib_gz_covers_use_summer_mode') == 'on'
+              and (state_attr('sensor.sr_gz_cover', 'get_position') | int) < positionToSet
+              and states('input_boolean.ib_gz_cover_position_changed') == 'off'
+              and states('input_boolean.ib_gz_cover_used_in_automations') == 'on'                                      
+              and states('input_boolean.ib_gz_covers_closed_by_summer_mode') == 'off' }}                                      
       then:    
       - service: script.turn_on
         data:
@@ -154,8 +182,11 @@
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{ states('input_boolean.ib_ku_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_ku_cover', 'get_position') | int) < positionToSet and
-              states('input_boolean.ib_ku_covers_closed_by_summer_mode') == 'off' }}                                      
+            {{ states('input_boolean.ib_ku_covers_use_summer_mode') == 'on'
+              and (state_attr('sensor.sr_ku_cover', 'get_position') | int) < positionToSet
+              and states('input_boolean.ib_ku_cover_position_changed') == 'off'
+              and states('input_boolean.ib_ku_cover_used_in_automations') == 'on'                                                    
+              and states('input_boolean.ib_ku_covers_closed_by_summer_mode') == 'off' }}                                      
       then:    
       - service: script.turn_on
         data:
@@ -172,8 +203,11 @@
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}
-            {{ states('input_boolean.ib_bz_covers_use_summer_mode') == 'on' and (state_attr('sensor.sr_bz_cover', 'get_position') | int) < positionToSet and
-              states('input_boolean.ib_bz_covers_closed_by_summer_mode') == 'off' }}                          
+            {{ states('input_boolean.ib_bz_covers_use_summer_mode') == 'on'
+              and (state_attr('sensor.sr_bz_cover', 'get_position') | int) < positionToSet
+              and states('input_boolean.ib_bz_cover_position_changed') == 'off'
+              and states('input_boolean.ib_bz_cover_used_in_automations') == 'on'                          
+              and states('input_boolean.ib_bz_covers_closed_by_summer_mode') == 'off' }}                          
       then:    
       - service: script.turn_on
         data:
@@ -185,4 +219,14 @@
         data: {}
         target:
           entity_id: input_boolean.ib_bz_covers_closed_by_summer_mode                          
+# delay max span time of covers          
+    - delay:
+        hours: 0
+        minutes: 0
+        seconds: 40
+        milliseconds: 0             
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.ib_ha_covers_down_summer_mode_runs          
   mode: single

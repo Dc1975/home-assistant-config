@@ -10,6 +10,10 @@
         {{now().month | string in
         states('input_text.it_ha_covers_close_summer_months')}}
   action:
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.ib_ha_covers_up_summer_mode_runs
 # Wohnzimemrtür
     - if:
         - condition: template
@@ -22,7 +26,7 @@
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_wz_door_covers_closed_by_summer_mode          
+            entity_id: input_boolean.ib_wz_door_covers_closed_by_summer_mode                                       
 # Wohnzimemrfenster
     - if:
         - condition: template
@@ -113,5 +117,9 @@
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_bz_covers_closed_by_summer_mode              
+            entity_id: input_boolean.ib_bz_covers_closed_by_summer_mode
+    - service: input_boolean.turn_off
+      data: {}
+      target:
+        entity_id: input_boolean.ib_ha_covers_up_summer_mode_runs            
   mode: single
