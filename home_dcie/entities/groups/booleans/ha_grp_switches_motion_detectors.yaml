@@ -11,3 +11,4 @@ ha_grp_switches_motion_detectors:
     - input_boolean.ib_tr_above_switch_motion_detector
     - input_boolean.ib_tr_center_switch_motion_detector
     - input_boolean.ib_tr_below_switch_motion_detector
+  all: true

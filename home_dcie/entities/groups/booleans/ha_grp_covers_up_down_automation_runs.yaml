@@ -9,3 +9,4 @@ ha_grp_covers_up_down_automation_runs:
     - input_boolean.ib_gz_cover_up_down_automation_runs 
     - input_boolean.ib_dg_cover_up_down_automation_runs
     - input_boolean.ib_bz_cover_up_down_automation_runs
+  all: true    

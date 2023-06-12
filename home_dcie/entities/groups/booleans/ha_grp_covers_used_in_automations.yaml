@@ -9,3 +9,4 @@ ha_grp_covers_used_in_automations:
     - input_boolean.ib_gz_cover_used_in_automations 
     - input_boolean.ib_dg_cover_used_in_automations
     - input_boolean.ib_bz_cover_used_in_automations
+  all: true    

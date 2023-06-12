@@ -9,3 +9,4 @@ ha_grp_cover_position_changed:
     - input_boolean.ib_wz_window_cover_position_changed 
     - input_boolean.ib_sz_cover_position_changed
     - input_boolean.ib_sz_az_cover_position_changed
+  all: true    
