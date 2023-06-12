@@ -44,5 +44,9 @@
     - service: input_boolean.turn_off
       data: {}
       target:
+        entity_id: input_boolean.ib_dg_covers_closed_by_summer_mode     
+    - service: input_boolean.turn_off
+      data: {}
+      target:
         entity_id: input_boolean.ib_dg_cover_up_down_automation_runs              
   mode: single
