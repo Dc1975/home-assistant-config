@@ -308,4 +308,18 @@ input_boolean.ib_tr_below_switch_motion_detector:
   friendly_name: Treppnehaus unten Bewegungsmelder
 # covers
 input_boolean.ib_wz_door_cover_used_in_automations:
+  friendly_name: In Automationen benutzen (Tür)
+input_boolean.ib_wz_window_cover_used_in_automations:
+  friendly_name: In Automationen benutzen (Fenster)
+input_boolean.ib_sz_az_cover_used_in_automations:
+  friendly_name: In Automationen benutzen (Ankleidezimmer)
+input_boolean.ib_sz_cover_used_in_automations:
+  friendly_name: In Automationen benutzen (Schlafzimmer)
+input_boolean.ib_ku_cover_used_in_automations:
+  friendly_name: In Automationen benutzen
+input_boolean.ib_gz_cover_used_in_automations:
+  friendly_name: In Automationen benutzen
+input_boolean.ib_dg_cover_used_in_automations:
+  friendly_name: In Automationen benutzen
+input_boolean.ib_bz_cover_used_in_automations : 
   friendly_name: In Automationen benutzen

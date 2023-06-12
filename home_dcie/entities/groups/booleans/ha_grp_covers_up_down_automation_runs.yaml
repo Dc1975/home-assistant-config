@@ -1,0 +1,11 @@
+ha_grp_covers_up_down_automation_runs:
+  name: ha_grp_covers_up_down_automation_runs
+  entities: 
+    - input_boolean.ib_wz_door_cover_up_down_automation_runs
+    - input_boolean.ib_wz_window_cover_up_down_automation_runs
+    - input_boolean.ib_sz_cover_up_down_automation_runs
+    - input_boolean.ib_sz_az_cover_up_down_automation_runs
+    - input_boolean.ib_ku_cover_up_down_automation_runs
+    - input_boolean.ib_gz_cover_up_down_automation_runs 
+    - input_boolean.ib_dg_cover_up_down_automation_runs
+    - input_boolean.ib_bz_cover_up_down_automation_runs

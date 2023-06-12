@@ -1,0 +1,5 @@
+in_ha_executed_automations_of_summer_mode:
+  name: in_ha_executed_automations_of_summer_mode
+  min: 0
+  max: 100
+  step: 1

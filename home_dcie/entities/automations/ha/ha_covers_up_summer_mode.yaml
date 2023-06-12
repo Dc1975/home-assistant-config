@@ -13,7 +13,7 @@
     - service: input_boolean.turn_on
       data: {}
       target:
-        entity_id: input_boolean.ib_ha_covers_up_summer_mode_runs
+        entity_id: input_boolean.ib_ha_covers_up_down_summer_mode_runs
 # Wohnzimemrtür
     - if:
         - condition: template
@@ -121,5 +121,5 @@
     - service: input_boolean.turn_off
       data: {}
       target:
-        entity_id: input_boolean.ib_ha_covers_up_summer_mode_runs            
+        entity_id: input_boolean.ib_ha_covers_up_down_summer_mode_runs            
   mode: single

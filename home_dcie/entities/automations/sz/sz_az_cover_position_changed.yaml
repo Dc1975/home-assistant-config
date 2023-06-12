@@ -10,10 +10,10 @@
     - condition: and
       conditions:  
         - condition: state
-          entity_id: input_boolean.ib_ha_covers_down_summer_mode_runs
+          entity_id: input_boolean.ib_ha_covers_up_down_summer_mode_runs
           state: 'off'    
         - condition: state
-          entity_id: input_boolean.ib_ha_covers_up_summer_mode_runs
+          entity_id: input_boolean.ib_sz_az_cover_up_down_automation_runs
           state: 'off' 
   action:
   - service: input_boolean.turn_on
