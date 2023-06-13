@@ -321,5 +321,8 @@ input_boolean.ib_gz_cover_used_in_automations:
   friendly_name: In Automationen benutzen
 input_boolean.ib_dg_cover_used_in_automations:
   friendly_name: In Automationen benutzen
-input_boolean.ib_bz_cover_used_in_automations : 
+input_boolean.ib_bz_cover_used_in_automations: 
+  friendly_name: In Automationen benutzen
+# garden
+input_boolean.ib_gr_lawn_sprinkler_used_in_automations:
   friendly_name: In Automationen benutzen
