@@ -7,15 +7,17 @@ gz_covers_down:
       example: "60"
       name: cover_position    
   sequence:
-  - if:
-      - condition: template
-        value_template: >  
-          {{ state_attr('sensor.sr_gz_cover', 'is_closed') == false }}            
-    then:
-    - service: cover.set_cover_position
-      data:
-        position: "{{cover_position | int}}"
-      target:
-        entity_id: cover.gastezimmerfenster_curtain     
+    - condition: template
+      value_template: "{{states('input_boolean.ib_gz_cover_used_in_automations') == 'on' }}"    
+    - if:
+        - condition: template
+          value_template: >  
+            {{ state_attr('sensor.sr_gz_cover', 'is_closed') == false }}            
+      then:
+      - service: cover.set_cover_position
+        data:
+          position: "{{cover_position | int}}"
+        target:
+          entity_id: cover.gastezimmerfenster_curtain     
   mode: single
   icon: mdi:window-shutter

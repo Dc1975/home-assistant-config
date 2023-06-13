@@ -9,8 +9,6 @@
       at: input_datetime.idt_sz_az_cover_down_weekend
       id: window_weekend
   condition:
-    - condition: template
-      value_template: "{{states('input_boolean.ib_sz_az_cover_used_in_automations') == 'on' }}"  
     - condition: or
       conditions:
         - condition: and

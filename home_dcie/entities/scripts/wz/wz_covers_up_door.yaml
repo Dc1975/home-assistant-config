@@ -1,17 +1,19 @@
 wz_covers_up_door:
   alias: WZ Rolladen auf Tür
   sequence:
-  - if:
-      - condition: template
-        value_template: >  
-          {{ state_attr('sensor.sr_wz_cover_door', 'is_open') == false }}  
-    then:
-      - service: cover.set_cover_position
-        data:
-          position: >
-            {% from 'invert_cover_position.jinja' import invert_cover_position %}        
-            {{invert_cover_position(states('input_number.in_ha_covers_close_position') | int)}}
-        target:
-          entity_id: cover.wohnzimmertur_curtain       
+    - condition: template
+      value_template: "{{states('input_boolean.ib_wz_door_cover_used_in_automations') == 'on' }}"    
+    - if:
+        - condition: template
+          value_template: >  
+            {{ state_attr('sensor.sr_wz_cover_door', 'is_open') == false }}  
+      then:
+        - service: cover.set_cover_position
+          data:
+            position: >
+              {% from 'invert_cover_position.jinja' import invert_cover_position %}        
+              {{invert_cover_position(states('input_number.in_ha_covers_close_position') | int)}}
+          target:
+            entity_id: cover.wohnzimmertur_curtain       
   mode: single
   icon: mdi:window-shutter

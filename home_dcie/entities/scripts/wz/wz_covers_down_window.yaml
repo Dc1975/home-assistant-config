@@ -7,15 +7,17 @@ wz_covers_down_window:
       example: "60"
       name: cover_position
   sequence:  
-  - if:
-      - condition: template
-        value_template: >  
-          {{ state_attr('sensor.sr_wz_cover_window', 'is_closed') == false }}
-    then:
-    - service: cover.set_cover_position
-      data:
-        position: "{{cover_position | int}}"
-      target:
-        entity_id: cover.wohnzimmerfenster_curtain         
+    - condition: template
+      value_template: "{{states('input_boolean.ib_wz_window_cover_used_in_automations') == 'on' }}"      
+    - if:
+        - condition: template
+          value_template: >  
+            {{ state_attr('sensor.sr_wz_cover_window', 'is_closed') == false }}
+      then:
+      - service: cover.set_cover_position
+        data:
+          position: "{{cover_position | int}}"
+        target:
+          entity_id: cover.wohnzimmerfenster_curtain         
   mode: single
   icon: mdi:window-shutter
