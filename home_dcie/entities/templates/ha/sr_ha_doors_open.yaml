@@ -1,0 +1,26 @@
+sensor:
+  - name: sr_ha_doors_open
+    unique_id: sr_ha_doors_open
+    state: >
+      {{expand('group.ha_grp_doors') | count}}
+    attributes:
+      doors_open: >
+        {% set doors =  expand('group.ha_grp_doors') | selectattr('state', 'eq', 'on') | map(attribute='name') | list %}
+        {% if (doors | length) == 0 %}
+          Es sind keine Türen geöffnet.
+        {% elif (doors | length) == 1 %}
+          Die Tür {{doors[0]}} ist geöffnet. 
+        {%- else  -%}
+          Die Türen {{""}}
+          {%- for i in range(doors|length) -%}
+            {%- if i == (doors|length)-1 -%}
+              {{" "}}und {{doors[i]}} sind geöffnet.
+            {%- else -%}
+              {{doors[i]}}
+              {%- if (i + 2) in range(doors|length) -%}
+                {{", "}}
+              {%- endif %}               
+            {%- endif -%}    
+          {% endfor %}
+        {% endif %}         
+            
