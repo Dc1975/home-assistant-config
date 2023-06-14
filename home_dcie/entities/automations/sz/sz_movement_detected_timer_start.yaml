@@ -16,7 +16,7 @@
       # use this condition to prevent light turn off if they werere manually turned on      
       - condition: device
         type: is_off
-        device_id: 95b18c97e208faefc5c937e0e37f4839
+        device_id: b6d3f1299823351fd2b37b2d03baadfb
         entity_id: light.schlafzimmerbettlichtstreifen
         domain: light   
       - condition: state
@@ -24,7 +24,7 @@
         state: 'on'
   action:
     - type: turn_on
-      device_id: 95b18c97e208faefc5c937e0e37f4839
+      device_id: b6d3f1299823351fd2b37b2d03baadfb
       entity_id: light.schlafzimmerbettlichtstreifen
       domain: light
     - service: timer.start
