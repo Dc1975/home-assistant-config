@@ -16,16 +16,16 @@
       # use this condition to prevent light turn off if they werere manually turned on      
       - condition: device
         type: is_off
-        device_id: 55dac17008640f7464befffb87286bae
-        entity_id: light.wasserbettlichtstreifen
+        device_id: 95b18c97e208faefc5c937e0e37f4839
+        entity_id: light.schlafzimmerbettlichtstreifen
         domain: light   
       - condition: state
         entity_id: schedule.sz_bewegung_zeitplan
         state: 'on'
   action:
     - type: turn_on
-      device_id: 55dac17008640f7464befffb87286bae
-      entity_id: light.wasserbettlichtstreifen
+      device_id: 95b18c97e208faefc5c937e0e37f4839
+      entity_id: light.schlafzimmerbettlichtstreifen
       domain: light
     - service: timer.start
       data_template:
