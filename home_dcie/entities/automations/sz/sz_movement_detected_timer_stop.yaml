@@ -14,7 +14,7 @@
   condition: []
   action:
     - type: turn_off
-      device_id: 95b18c97e208faefc5c937e0e37f4839
+      device_id: b6d3f1299823351fd2b37b2d03baadfb
       entity_id: light.schlafzimmerbettlichtstreifen
       domain: light
   mode: single
