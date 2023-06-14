@@ -7,4 +7,4 @@ homeassistant:
   allowlist_external_dirs:
     - "/config"
     - "/backup"
-    - "/homeassistant-samba-backup"
+    - "/share/homeassistant_samba_backup"
