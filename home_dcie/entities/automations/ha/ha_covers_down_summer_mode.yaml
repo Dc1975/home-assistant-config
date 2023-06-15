@@ -68,6 +68,7 @@
               cover_position: "{{ (states('input_number.in_ha_covers_close_position_summer') | int)  - 0}}"            
           target:
             entity_id: script.wz_covers_down_door
+# changed by this automation, not manually            
         - service: input_boolean.turn_on
           data: {}
           target:
@@ -93,6 +94,7 @@
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
           target:
             entity_id: script.wz_covers_down_window
+# changed by this automation, not manually            
         - service: input_boolean.turn_on
           data: {}
           target:
@@ -118,6 +120,7 @@
           data:
             variables:
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
+# changed by this automation, not manually              
         - service: input_boolean.turn_on
           data: {}
           target:
@@ -143,6 +146,7 @@
           data:
             variables:
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
+# changed by this automation, not manually              
         - service: input_boolean.turn_on
           data: {}
           target:
@@ -168,6 +172,7 @@
           data:
             variables:
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
+# changed by this automation, not manually              
         - service: input_boolean.turn_on
           data: {}
           target:
@@ -192,7 +197,8 @@
             variables:
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
           target:
-            entity_id: script.gz_covers_down                
+            entity_id: script.gz_covers_down  
+# changed by this automation, not manually                          
         - service: input_boolean.turn_on
           data: {}
           target:
@@ -217,7 +223,8 @@
             variables:
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
           target:
-            entity_id: script.ku_covers_down                
+            entity_id: script.ku_covers_down    
+# changed by this automation, not manually                        
         - service: input_boolean.turn_on
           data: {}
           target:
@@ -243,7 +250,7 @@
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
           target:
             entity_id: script.bz_covers_down                
-# changed by this automation            
+# changed by this automation, not manually            
         - service: input_boolean.turn_on
           data: {}
           target:
