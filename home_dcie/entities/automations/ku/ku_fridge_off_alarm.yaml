@@ -4,7 +4,7 @@
   trigger:
   - platform: device
     type: turned_off
-    device_id: 7e160a018d77a6f5bbae0e2653c11dfa
+    device_id: 67b0500a7549c241d60749ec6de29eaa
     entity_id: switch.kuchensteckdose_kuhlschrank
     domain: switch
   condition: []
