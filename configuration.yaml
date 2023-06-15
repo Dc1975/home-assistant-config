@@ -6,5 +6,5 @@ homeassistant:
   packages: !include_dir_named integrations
   allowlist_external_dirs:
     - "/config"
-    - "/backup"
+    - "/share/backup"
     - "/share/homeassistant_samba_backup"
