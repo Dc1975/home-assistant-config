@@ -15,5 +15,14 @@ sz_covers_up:
               {{invert_cover_position(states('input_number.in_ha_covers_close_position') | int)}}
           target:
             entity_id: cover.schlafzimmerfenster_curtain              
+        - service: input_boolean.turn_on
+          data: {}
+          target:
+            entity_id: input_boolean.ib_sz_cover_up_down_script_executed            
+      else:
+        - service: input_boolean.turn_off
+          data: {}
+          target:
+            entity_id: input_boolean.ib_sz_cover_up_down_script_executed                
   mode: single
   icon: mdi:window-shutter-open

@@ -14,10 +14,19 @@ sz_az_covers_down:
           value_template: >  
             {{ state_attr('sensor.sr_sz_az_cover', 'is_closed') == false }}          
       then:
-      - service: cover.set_cover_position
-        data:
-          position: "{{cover_position | int}}"
-        target:
-          entity_id: cover.ankleidezimmerfenster_curtain      
+        - service: cover.set_cover_position
+          data:
+            position: "{{cover_position | int}}"
+          target:
+            entity_id: cover.ankleidezimmerfenster_curtain      
+        - service: input_boolean.turn_on
+          data: {}
+          target:
+            entity_id: input_boolean.ib_sz_az_cover_up_down_script_executed            
+      else:
+        - service: input_boolean.turn_off
+          data: {}
+          target:
+            entity_id: input_boolean.ib_sz_az_cover_up_down_script_executed          
   mode: single
   icon: mdi:window-shutter
