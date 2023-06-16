@@ -38,15 +38,18 @@
           cover_position: "{{states('input_number.in_ha_covers_close_position') | int}}"        
       target:
         entity_id: script.ku_covers_down
+
+
+
     - service: input_boolean.turn_off
       data: {}
       target:
         entity_id: input_boolean.ib_ku_cover_position_changed        
-    - delay: "00:00:{{ states('input_number.in_ha_covers_span_time_delay') | int }}"        
     - service: input_boolean.turn_off
       data: {}
       target:
         entity_id: input_boolean.ib_ku_covers_closed_by_summer_mode     
+    - delay: "00:00:{{ states('input_number.in_ha_covers_span_time_delay') | int }}"                
     - service: input_boolean.turn_off
       data: {}
       target:
