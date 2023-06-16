@@ -7,6 +7,8 @@
     - cover.schlafzimmerfenster_curtain
     attribute: current_position
   condition:
+    - condition: template
+      value_template: "{{states('input_boolean.sz_dg_cover_used_in_automations') == 'on' }}"  
     - condition: and
       conditions:  
         - condition: state

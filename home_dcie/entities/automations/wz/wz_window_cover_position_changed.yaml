@@ -7,6 +7,8 @@
     - cover.wohnzimmerfenster_curtain
     attribute: current_position
   condition:
+    - condition: template
+      value_template: "{{states('input_boolean.ib_wz_window_cover_used_in_automations') == 'on' }}"  
     - condition: and
       conditions:  
         - condition: state
