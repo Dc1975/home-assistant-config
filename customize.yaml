@@ -323,6 +323,8 @@ input_boolean.ib_dg_cover_used_in_automations:
   friendly_name: In Automationen benutzen
 input_boolean.ib_bz_cover_used_in_automations: 
   friendly_name: In Automationen benutzen
+input_boolean.in_ha_covers_span_time_delay:
+  friendly_name: Maximale Rolladenöffnungsdauer
 # garden
 input_boolean.ib_gr_lawn_sprinkler_used_in_automations:
   friendly_name: In Automationen benutzen

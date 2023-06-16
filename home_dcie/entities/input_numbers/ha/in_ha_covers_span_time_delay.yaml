@@ -3,4 +3,4 @@ in_ha_covers_span_time_delay:
   min: 0
   max: 100
   step: 1
-  initial: 35
+  mode: box
