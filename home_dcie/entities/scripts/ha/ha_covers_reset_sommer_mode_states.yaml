@@ -1,0 +1,12 @@
+ha_covers_reset_sommer_mode_states:
+  alias: ha_covers_reset_sommer_mode_states
+  sequence:
+  - service: homeassistant.turn_off
+    data: {}
+    target:
+      entity_id: group.ha_grp_covers_closed_by_summer_mode
+  - service: homeassistant.turn_off
+    data: {}
+    target:
+      entity_id: group.ha_grp_cover_position_changed
+  mode: single
