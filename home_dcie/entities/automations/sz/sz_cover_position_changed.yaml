@@ -9,6 +9,7 @@
   condition:
     - condition: template
       value_template: "{{states('input_boolean.sz_dg_cover_used_in_automations') == 'on' }}"  
+# do not change "ib_XX_cover_position_changed" if automations are running      
     - condition: and
       conditions:  
         - condition: state
