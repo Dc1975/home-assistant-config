@@ -16,6 +16,7 @@
         value: 0
       target:
         entity_id: input_number.in_ha_executed_automations_of_summer_mode   
+# flag this automation as running        
     - service: input_boolean.turn_on
       data: {}
       target:
@@ -284,8 +285,9 @@
               data: {}
               target:
                 entity_id: input_number.in_ha_executed_automations_of_summer_mode 
- # delay max span time of covers to avoid overwriting input_boolean."ib_XXX_cover_position_changed" of
+# delay max span time of covers to avoid overwriting input_boolean."ib_XXX_cover_position_changed" of
 # XXX_cover_position_changed automations
+# lock until the cover no longer moves 
     - if:
         - condition: template
           value_template: >
