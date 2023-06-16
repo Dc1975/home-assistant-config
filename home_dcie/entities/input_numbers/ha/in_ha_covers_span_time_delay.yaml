@@ -4,3 +4,5 @@ in_ha_covers_span_time_delay:
   max: 100
   step: 1
   mode: box
+  icon: mdi:timer
+  unit_of_measurement: s
