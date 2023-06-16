@@ -39,15 +39,21 @@
           then:    
             - wait_template: "{{is_state('script.wz_covers_up_door', 'off') }}"                
               continue_on_timeout: true              
+# ...if script was executed by conditions
+        - if:              
+            - condition: state
+              entity_id: input_boolean.ib_wz_door_cover_up_down_script_executed
+              state: "on"    
+          then:              
+            - service: input_number.increment
+              data: {}
+              target:
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode                      
 # changed by this automation, not manually          
         - service: input_boolean.turn_off
           data: {}
           target:
             entity_id: input_boolean.ib_wz_door_covers_closed_by_summer_mode                                       
-        - service: input_number.increment
-          data: {}
-          target:
-            entity_id: input_number.in_ha_executed_automations_of_summer_mode            
 # Wohnzimemrfenster
     - if:
         - condition: template
@@ -66,15 +72,21 @@
           then:    
             - wait_template: "{{is_state('script.wz_covers_up_window', 'off') }}"                
               continue_on_timeout: true              
+# ...if script was executed by conditions
+        - if:              
+            - condition: state
+              entity_id: input_boolean.ib_wz_window_cover_up_down_script_executed
+              state: "on"    
+          then: 
+            - service: input_number.increment
+              data: {}
+              target:
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode                          
 # changed by this automation, not manually          
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_wz_window_covers_closed_by_summer_mode                      
-        - service: input_number.increment
-          data: {}
-          target:
-            entity_id: input_number.in_ha_executed_automations_of_summer_mode            
+            entity_id: input_boolean.ib_wz_window_covers_closed_by_summer_mode                                 
 # Dachgeschoss
     - if:
         - condition: template
@@ -93,15 +105,21 @@
           then:    
             - wait_template: "{{is_state('script.dg_covers_up', 'off') }}"                
               continue_on_timeout: true              
+# ...if script was executed by conditions
+        - if:              
+            - condition: state
+              entity_id: input_boolean.ib_dg_cover_up_down_script_executed
+              state: "on"    
+          then:              
+            - service: input_number.increment
+              data: {}
+              target:
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode            
 # changed by this automation, not manually          
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_dg_covers_closed_by_summer_mode          
-        - service: input_number.increment
-          data: {}
-          target:
-            entity_id: input_number.in_ha_executed_automations_of_summer_mode            
+            entity_id: input_boolean.ib_dg_covers_closed_by_summer_mode                    
 # Ankleidezimmer            
     - if:
         - condition: template
@@ -120,15 +138,21 @@
           then:    
             - wait_template: "{{is_state('script.sz_az_covers_up', 'off') }}"                
               continue_on_timeout: true              
+# ...if script was executed by conditions
+        - if:              
+            - condition: state
+              entity_id: input_boolean.ib_sz_az_cover_up_down_script_executed
+              state: "on"    
+          then:               
+            - service: input_number.increment
+              data: {}
+              target:
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode           
 # changed by this automation, not manually          
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_sz_az_covers_closed_by_summer_mode  
-        - service: input_number.increment
-          data: {}
-          target:
-            entity_id: input_number.in_ha_executed_automations_of_summer_mode            
+            entity_id: input_boolean.ib_sz_az_covers_closed_by_summer_mode             
 # Schlafzimmer          
     - if:
         - condition: template
@@ -147,15 +171,21 @@
           then:    
             - wait_template: "{{is_state('script.sz_covers_up', 'off') }}"                
               continue_on_timeout: true              
+# ...if script was executed by conditions
+        - if:              
+            - condition: state
+              entity_id: input_boolean.ib_sz_cover_up_down_script_executed
+              state: "on"    
+          then:               
+            - service: input_number.increment
+              data: {}
+              target:
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode            
 # changed by this automation, not manually          
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_sz_covers_closed_by_summer_mode  
-        - service: input_number.increment
-          data: {}
-          target:
-            entity_id: input_number.in_ha_executed_automations_of_summer_mode            
+            entity_id: input_boolean.ib_sz_covers_closed_by_summer_mode            
 # Gästezimmer            
     - if:
         - condition: template
@@ -173,16 +203,22 @@
               value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
           then:    
             - wait_template: "{{is_state('script.gz_covers_up', 'off') }}"                
-              continue_on_timeout: true              
+              continue_on_timeout: true 
+# ...if script was executed by conditions
+        - if:              
+            - condition: state
+              entity_id: input_boolean.ib_gz_cover_up_down_script_executed
+              state: "on"    
+          then:           
+            - service: input_number.increment
+              data: {}
+              target:
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode                              
 # changed by this automation, not manually
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_gz_covers_closed_by_summer_mode              
-        - service: input_number.increment
-          data: {}
-          target:
-            entity_id: input_number.in_ha_executed_automations_of_summer_mode            
+            entity_id: input_boolean.ib_gz_covers_closed_by_summer_mode                       
 # Küche       
     - if:
         - condition: template
@@ -201,15 +237,21 @@
           then:    
             - wait_template: "{{is_state('script.ku_covers_up', 'off') }}"                
               continue_on_timeout: true              
+# ...if script was executed by conditions
+        - if:              
+            - condition: state
+              entity_id: input_boolean.ib_ku_cover_up_down_script_executed
+              state: "on"    
+          then:              
+            - service: input_number.increment
+              data: {}
+              target:
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode                  
 # changed by this automation, not manually          
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_ku_covers_closed_by_summer_mode                          
-        - service: input_number.increment
-          data: {}
-          target:
-            entity_id: input_number.in_ha_executed_automations_of_summer_mode            
+            entity_id: input_boolean.ib_ku_covers_closed_by_summer_mode                              
 # Badezimmer         
     - if:
         - condition: template
@@ -227,16 +269,22 @@
               value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
           then:    
             - wait_template: "{{is_state('script.bz_covers_up', 'off') }}"                
-              continue_on_timeout: true                   
+              continue_on_timeout: true  
+# ...if script was executed by conditions
+        - if:              
+            - condition: state
+              entity_id: input_boolean.ib_bz_cover_up_down_script_executed
+              state: "on"    
+          then:                                
+            - service: input_number.increment
+              data: {}
+              target:
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode           
 # changed by this automation, not manually
         - service: input_boolean.turn_off
           data: {}
           target:
             entity_id: input_boolean.ib_bz_covers_closed_by_summer_mode
-        - service: input_number.increment
-          data: {}
-          target:
-            entity_id: input_number.in_ha_executed_automations_of_summer_mode 
 # delay max span time of covers to avoid overwriting input_boolean."ib_XXX_cover_position_changed" of
 # XXX_cover_position_changed automations
 # lock until the cover no longer moves 
