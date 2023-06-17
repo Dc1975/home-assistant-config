@@ -14,6 +14,8 @@
     - timer.ti_tr_mitte_motion_lights
     - timer.ti_tr_oben_motion_lights
     - timer.ti_tr_unten_motion_lights
+    - timer.ti_gr_lawn_sprinkler
+    - timer.ti_gr_lawn_sprinkler_observer
   condition: []
   action:
   - variables:
@@ -28,6 +30,8 @@
       - timer.ti_tr_mitte_motion_lights
       - timer.ti_tr_oben_motion_lights
       - timer.ti_tr_unten_motion_lights      
+      - timer.ti_gr_lawn_sprinkler      
+      - timer.ti_gr_lawn_sprinkler_observer      
       prefix:
       - timer.ti_
       modes:
