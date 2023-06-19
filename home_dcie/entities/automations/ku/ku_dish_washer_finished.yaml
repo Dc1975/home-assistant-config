@@ -43,9 +43,4 @@
     data_template:
       entity_id: timer.ti_ku_dish_washer_off_automatic
       duration: "{{states('input_number.in_ku_delay_dish_washer_off_automatic') | int}}:00:00"      
-# dish washer timer      
-  - service: input_boolean.turn_off
-    data: {}
-    target:
-      entity_id: input_boolean.start_stopwatch_dish_washer      
   mode: single

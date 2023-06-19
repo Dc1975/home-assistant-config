@@ -168,7 +168,7 @@
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_sz_az_cover_position_changed             
+            entity_id: input_boolean.ib_sz_az_window_cover_position_changed             
 # Schlafzimmer          
     - if:
         - condition: template
@@ -205,7 +205,7 @@
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_sz_cover_position_changed             
+            entity_id: input_boolean.ib_sz_window_cover_position_changed             
 # Gästezimmer            
     - if:
         - condition: template
@@ -242,7 +242,7 @@
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_wz_window_cover_position_changed             
+            entity_id: input_boolean.gz_wz_window_cover_position_changed             
 # Küche       
     - if:
         - condition: template
@@ -279,7 +279,7 @@
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_ku_cover_position_changed             
+            entity_id: input_boolean.ib_ku_window_cover_position_changed             
 # Badezimmer         
     - if:
         - condition: template
@@ -316,7 +316,7 @@
         - service: input_boolean.turn_off
           data: {}
           target:
-            entity_id: input_boolean.ib_bz_cover_position_changed             
+            entity_id: input_boolean.ib_bz_window_cover_position_changed             
 # delay max span time of covers to avoid overwriting input_boolean."ib_XXX_cover_position_changed" of
 # XXX_cover_position_changed automations
 # lock until the cover no longer moves 
