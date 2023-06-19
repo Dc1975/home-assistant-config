@@ -39,4 +39,9 @@
         {% endif %}          
     target:
       entity_id: input_text.it_ke_washing_machine_last_machine_time
+# dish washing machine timer      
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.start_stopwatch_washing_machine            
   mode: single
