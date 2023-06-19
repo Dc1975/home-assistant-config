@@ -25,4 +25,13 @@
       entity_id: input_text.it_ke_dryer_last_machine_time_helper  
     data:
       value: '{{ now().timestamp() }}'     
+# dryer timer 
+  - service: input_boolean.turn_on 
+    data: {} 
+    target: 
+      entity_id: input_boolean.reset_stopwatch_dryer 
+  - service: input_boolean.turn_on 
+    data: {} 
+    target: 
+      entity_id: input_boolean.start_stopwatch_dryer         
   mode: single
