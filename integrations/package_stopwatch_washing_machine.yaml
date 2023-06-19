@@ -1,0 +1,181 @@
+input_boolean:
+  start_stopwatch_washing_machine:
+    # It triggers stopwatch to start/stop(pause)
+    name: Start/Stop Stopwatch_washing_machine
+#    initial: off
+  reset_stopwatch_washing_machine:
+    # It triggers stopwatch to reset
+    name: Reset_washing_machine
+#    initial: off
+  tictac_stopwatch_washing_machine:
+    # Pendulum of the stopwatch
+    name: TicTac_washing_machine
+#    initial: off
+  lap_stopwatch_washing_machine:
+    # It triggers stopwatch to show lap time
+    name: Lap_washing_machine
+    icon: mdi:camera-outline
+#    initial: off
+
+template:
+  - trigger:
+    # Stopwatch sensor with Start, Stop/Pause, Reset and Lap features. Hundreds of second precission
+    - platform: state
+      entity_id: input_boolean.start_stopwatch_washing_machine
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.start_stopwatch_washing_machine
+      from: "on"
+      to: "off"
+    - platform: state
+      entity_id: input_boolean.reset_stopwatch_washing_machine
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.lap_stopwatch_washing_machine
+      from: "off"
+      to: "on"
+    - platform: state
+      entity_id: input_boolean.tictac_stopwatch_washing_machine
+    sensor:
+      - name: "Stopwatch washing machine"
+        state: >-
+          {% if is_state('input_boolean.reset_stopwatch_washing_machine','on') %}
+              {{ '00:00:00' }}
+          {% elif  is_state('input_boolean.start_stopwatch_washing_machine','off') and is_state('input_boolean.lap_stopwatch_washing_machine','off') %}
+              {% set value = as_timestamp(now()) - state_attr('sensor.stopwatch_washing_machine','initial_time') + state_attr('sensor.stopwatch_washing_machine','elapsed_time') %}
+              {{ value|float|timestamp_custom("%H:%M:%S", False) + '.' + ((value|float*100)%100)|round(0)|string }}
+          {% elif  is_state_attr('sensor.stopwatch_washing_machine','running','on') %}
+              {% set value = as_timestamp(now()) - state_attr('sensor.stopwatch_washing_machine','initial_time') + state_attr('sensor.stopwatch_washing_machine','elapsed_time') %}
+              {{ value|float|timestamp_custom("%H:%M:%S", False) |string }}
+          {% else %}
+              {{ states('sensor.stopwatch_washing_machine') }}
+          {% endif %}
+        icon: mdi:timer
+        attributes:
+          initial_time: >-
+            {% if is_state('input_boolean.start_stopwatch_washing_machine', 'on') and is_state_attr('sensor.stopwatch_washing_machine','running','off') %}
+              {{ as_timestamp(now()) }}
+            {% else %}
+              {{ state_attr('sensor.stopwatch_washing_machine','initial_time') }}
+            {% endif %}
+          elapsed_time: >-
+            {% if is_state('input_boolean.reset_stopwatch_washing_machine','on') %}
+              {{ 0 }}
+            {% elif is_state('input_boolean.start_stopwatch_washing_machine','off') and is_state('input_boolean.lap_stopwatch_washing_machine','off') %}
+              {{ as_timestamp(now()) - state_attr('sensor.stopwatch_washing_machine','initial_time') + state_attr('sensor.stopwatch_washing_machine','elapsed_time') }}
+            {% else %}
+              {{ state_attr('sensor.stopwatch_washing_machine','elapsed_time') }}
+            {% endif %}
+          running: >-
+            {{ states('input_boolean.start_stopwatch_washing_machine') }}
+          laps: >-
+            {% if is_state('input_boolean.reset_stopwatch_washing_machine','on') %}
+              {{[]}}
+            {% elif is_state('input_boolean.lap_stopwatch_washing_machine','on') and is_state_attr('sensor.stopwatch_washing_machine','running','on') %}
+              {% set data = namespace(laps=state_attr('sensor.stopwatch_washing_machine','laps')) %}
+              {% set value = as_timestamp(now()) - state_attr('sensor.stopwatch_washing_machine','initial_time') + state_attr('sensor.stopwatch_washing_machine','elapsed_time') %}
+              {% set data.laps = (data.laps + [value|float|timestamp_custom("%H:%M:%S", False) + '.' + ((value|float*100)%100)|round(0)|string]) %}
+              {{ data.laps }}
+            {% else %}
+              {{ state_attr('sensor.stopwatch_washing_machine','laps')}}
+            {% endif %}  
+#  - trigger:
+    # Numeric conversion of input_boolean.tictac_stopwatch_washing_machine to show as a gauge in Frontend
+#    - platform: state
+#      entity_id: input_boolean.tictac_stopwatch_washing_machine
+#    sensor:
+#      - unique_id: tictac_stopwatch_washing_machine
+#        name: >-
+#          {% if states('input_boolean.tictac_stopwatch_washing_machine') == 'on' %}
+#            Tic
+#          {% else %}
+#            Tac
+#          {% endif %}
+#        state: >-
+#          {% if is_state('input_boolean.tictac_stopwatch_washing_machine','on') %}
+#            {{ 1 }}
+#          {% else %}
+#            {{ 0 }}
+#          {% endif %}
+#        icon: >-
+#          {% if states('input_boolean.tictac_stopwatch_washing_machine') == 'off' %}
+#            mdi:clock-time-nine
+#          {% else %}
+#            mdi:clock-time-three-outline
+#          {% endif %}
+  # Start/Stop(Pause) button
+  - button:
+    - unique_id: 'start_stop_stopwatch_washing_machine'
+      name: >-
+        {% if is_state('input_boolean.start_stopwatch_washing_machine','off') %}
+          {% if is_state('sensor.stopwatch_washing_machine','00:00:00') %}
+            Start_washing_machine
+          {% else %}
+            Resume_washing_machine
+          {% endif %}
+        {% else %}
+          Stop/Pause_washing_machine
+        {% endif %}
+      icon: >-
+        {% if states('input_boolean.start_stopwatch_washing_machine') == 'off' %}
+          mdi:play-circle-outline
+        {% else %}
+          mdi:stop-circle-outline
+        {% endif %}
+      press:
+        service: input_boolean.toggle
+        target:
+          entity_id: input_boolean.start_stopwatch_washing_machine
+
+automation:
+  - id: tic_tac_stopwatch_washing_machine
+    alias: "Tic Tac Stopwatch washing machine"
+    description: "It toggles input_boolean.tictac_stopwatch_washing_machine every second"
+    trigger:
+      - platform: time_pattern
+        seconds: /1
+    condition:
+      - condition: state
+        entity_id: input_boolean.start_stopwatch_washing_machine
+        state: 'on'
+    action:
+      - service: input_boolean.toggle
+        target:
+          entity_id: input_boolean.tictac_stopwatch_washing_machine
+    mode: single
+
+  - id: reset_stopwatch_washing_machine
+    alias: "Reset Stopwatch washing machine"
+    description: "It reset input_booleans when input_boolean.reset_stopwatch_washing_machine is set to on"
+    trigger:
+      - platform: state
+        entity_id: input_boolean.reset_stopwatch_washing_machine
+        from: "off"
+        to: "on"
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.start_stopwatch_washing_machine
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.tictac_stopwatch_washing_machine
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.reset_stopwatch_washing_machine
+    mode: single
+
+  - id: lap_stopwatch_washing_machine
+    alias: "Lap Stopwatch washing machine"
+    description: "It turns off input_boolean.lap_stopwatch_washing_machine when it is turned on"
+    trigger:
+      - platform: state
+        entity_id: input_boolean.lap_stopwatch_washing_machine
+        from: "off"
+        to: "on"
+    action:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.lap_stopwatch_washing_machine
+    mode: single

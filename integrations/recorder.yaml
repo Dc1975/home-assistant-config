@@ -9,3 +9,6 @@ recorder:
       - time_date
     entity_globs:
       - cover.*_curtain
+      - automation.*stopwatch
+      - input_boolean.*stopwatch
+      - sensor.*stopwatch
