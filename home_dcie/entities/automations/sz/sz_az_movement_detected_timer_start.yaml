@@ -31,12 +31,12 @@
                 - wed
                 - tue
                 - mon
-#            - condition: numeric_state
-#              entity_id: sun.sun
-#              attribute: elevation
-#              below: input_number.in_ha_sun_elevation_treshhold 
-            - condition: sun
-              after: sunset
+            - condition: numeric_state
+              entity_id: sun.sun
+              attribute: elevation
+              below: input_number.in_ha_sun_elevation_treshhold 
+#            - condition: sun
+#              after: sunset
         - condition: and
           conditions:
             - condition: state
