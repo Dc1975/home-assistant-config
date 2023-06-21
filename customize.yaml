@@ -328,3 +328,12 @@ input_number.in_ha_covers_span_time_delay:
 # garden
 input_boolean.ib_gr_lawn_sprinkler_used_in_automations:
   friendly_name: In Automationen benutzen
+# stop-wtach
+sensor.stopwatch_lawn_sprinkler:  
+  friendly_name: Aktuell
+sensor.stopwatch_dryer:  
+  friendly_name: Aktuell
+sensor.stopwatch_washing_machine:  
+  friendly_name: Aktuell
+sensor.stopwatch_dish_washer:  
+  friendly_name: Aktuell
