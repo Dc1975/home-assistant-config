@@ -17,37 +17,68 @@
       - condition: template
         value_template: "{{ states('switch.brunnen') == 'unavailable' }}"
       then:
-      - service: script.turn_on
-        target:
-          entity_id: script.ha_handy_notification
-        data:
-          variables:
-            msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
-            msg_message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
-      - service: notify.alexa_media_uberall
-        data:
-          title: "{{states('input_text.it_general_notification_title')}} Garten"
-          message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
+        - service: script.turn_on
+          target:
+            entity_id: script.ha_handy_notification
           data:
-            type: announce
-            method: all              
+            variables:
+              msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
+              msg_message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
+        - service: notify.alexa_media_uberall
+          data:
+            title: "{{states('input_text.it_general_notification_title')}} Garten"
+            message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
+            data:
+              type: announce
+              method: all              
       else:  
-      - service: switch.turn_off
-        data: {}
-        target:
-          entity_id: switch.brunnen
-      - service: script.turn_on
-        target:
-          entity_id: script.ha_handy_notification
-        data:
-          variables:
-            msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
-            msg_message: "Die Rasenbewässerung wurde nach {{states('input_number.in_gr_duration_lawn_sprinkler') | round(0) }} Minuten beendet."
-      - service: notify.alexa_media_uberall
-        data:
-          title: "{{states('input_text.it_general_notification_title')}} Garten"
-          message: "Die Rasenbewässerung wurde nach {{states('input_number.in_gr_duration_lawn_sprinkler') | round(0) }} Minuten beendet."
-          data:
-            type: announce
-            method: all        
+        - service: switch.turn_off
+          data: {}
+          target:
+            entity_id: switch.brunnen
+# wait if switch is really turned on          
+        - delay:
+            hours: 0
+            minutes: 0
+            seconds: 5
+            milliseconds: 0    
+        - if:
+          - condition: template
+            value_template: "{{ states('switch.brunnen') == 'unavailable' or  states('switch.brunnen') == 'on' }}"
+          then:
+            - service: script.turn_on
+              target:
+                entity_id: script.ha_handy_notification
+              data:
+                variables:
+                  msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
+                  msg_message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
+            - service: notify.alexa_media_uberall
+              data:
+                title: "{{states('input_text.it_general_notification_title')}} Garten"
+                message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
+                data:
+                  type: announce
+                  method: all   
+          else:
+            - service: script.turn_on
+              target:
+                entity_id: script.ha_handy_notification
+              data:
+                variables:
+                  msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
+                  msg_message: "Die Rasenbewässerung wurde nach {{states('input_number.in_gr_duration_lawn_sprinkler') | round(0) }} Minuten beendet."
+            - service: notify.alexa_media_uberall
+              data:
+                title: "{{states('input_text.it_general_notification_title')}} Garten"
+                message: "Die Rasenbewässerung wurde nach {{states('input_number.in_gr_duration_lawn_sprinkler') | round(0) }} Minuten beendet."
+                data:
+                  type: announce
+                  method: all
+            # lawn sprinkler timer 
+            # https://community.home-assistant.io/t/stopwatch-with-start-stop-resume-lap-and-reset/443994/49
+            - service: input_boolean.turn_off 
+              data: {} 
+              target: 
+                entity_id: input_boolean.start_stopwatch_lawn_sprinkler                      
   mode: single
