@@ -1,5 +1,5 @@
-in_tr_above_lux_treshhold:
-  name: in_tr_above_lux_treshhold
+in_tr_center_lux_treshhold:
+  name: in_tr_center_lux_treshhold
   icon: mdi:brightness-percent
   min: -1
   max: 100
