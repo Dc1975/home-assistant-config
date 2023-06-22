@@ -36,12 +36,8 @@
           data: {}
           target:
             entity_id: switch.brunnen
-# wait if switch is really turned on          
-        - delay:
-            hours: 0
-            minutes: 0
-            seconds: 5
-            milliseconds: 0    
+        # wait if switch is really turned on          
+        - delay: "00:00:{{ states('input_number.in_ha_switch_delay_response') | int }}"
         - if:
           - condition: template
             value_template: "{{ states('switch.brunnen') == 'unavailable' or  states('switch.brunnen') == 'on' }}"

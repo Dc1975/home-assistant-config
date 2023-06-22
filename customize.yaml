@@ -328,6 +328,10 @@ input_number.in_ha_covers_span_time_delay:
 # garden
 input_boolean.ib_gr_lawn_sprinkler_used_in_automations:
   friendly_name: In Automationen benutzen
+input_boolean.in_ha_switch_delay_response:
+  friendly_name: Verzögerung Schalterüberprüfung
+input_number.in_gr_daily_rain_rate_treshhold:
+  friendly_name: Schwellwert Täglicheregenmenge
 # stop-wtach
 sensor.stopwatch_lawn_sprinkler:  
   friendly_name: Aktuell

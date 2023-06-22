@@ -1,0 +1,8 @@
+in_gr_daily_rain_rate_treshhold:
+  name: in_gr_daily_rain_rate_treshhold
+  icon: mdi:weather-rainy
+  min: 0
+  max: 5
+  step: 0.1
+  mode: box
+  unit_of_measurement: mm
