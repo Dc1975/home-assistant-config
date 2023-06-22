@@ -1,0 +1,32 @@
+{% macro get_motion_detctors_info_for_area(area_id, operator) %}
+{% set result = namespace(sensors=[]) %}
+
+{% if operator == "count"%}  
+  {% for area in areas() %}    
+    {% for entity_of_area in area_entities(area) -%}
+      {% set result.sensors = result.sensors + expand(entity_of_area)
+      | selectattr('attributes.device_class', 'defined')     
+      | selectattr('attributes.device_class', 'eq', 'illuminance')    
+      | map(attribute='name') | list -%}
+    {% endfor -%}    
+  {% endfor -%} 
+{% else %}    
+  {% for area in areas() %}
+    {% if area == area_id %}
+      {%set enties_of_area = area_entities(area) -%}
+      {% for entity_of_area in enties_of_area -%}
+        {% if state_attr(entity_of_area, 'device_class') == 'motion' or 
+            state_attr(entity_of_area, 'device_class') == 'illuminance'-%}
+            {% set result.sensors = result.sensors + [entity_of_area] %}
+        {% endif -%}  
+      {% endfor -%}
+    {% endif -%}  
+  {% endfor -%}
+{% endif%}  
+
+{% if operator == "count"%}   
+  {{result.sensors | count}}
+{% else %} 
+  {{result.sensors | sort | list}}
+{% endif %}
+{% endmacro %}                     
