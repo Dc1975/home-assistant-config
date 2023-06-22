@@ -1,5 +1,5 @@
 in_ha_lux_treshhold:
-  name: "Luxschwelle für Bewegung"
+  name: in_ha_lux_treshhold
   icon: mdi:brightness-percent
   min: 0
   max: 100

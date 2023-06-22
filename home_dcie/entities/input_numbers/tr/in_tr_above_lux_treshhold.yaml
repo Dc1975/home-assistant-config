@@ -1,0 +1,8 @@
+in_tr_above_lux_treshhold:
+  name: in_tr_above_lux_treshhold
+  icon: mdi:brightness-percent
+  min: 0
+  max: 100
+  step: 1
+  unit_of_measurement: lx
+  mode: box

@@ -1,0 +1,19 @@
+{% macro get_turn_on_lights(entity_lux, entity_treshhold) %}
+{% set sensor_lux = "sensor." +  entity_lux %}
+{% set input_number_treshhold = "input_number." +  entity_treshhold %}
+{% if state_attr('sun.sun', 'elevation') < states('input_number.in_ha_sun_elevation_treshhold') | float %}
+  {{true}}
+{% else %} 
+  {% if has_value(sensor_lux) == true %}
+    {% if states(input_number_treshhold) == 'unknown' %}
+      {{ states(sensor_lux) |
+      int <=  states('input_number.in_ha_lux_treshhold') | int }}          
+    {% else %} 
+      {{ states(sensor_lux) |
+      int <=  states(input_number_treshhold) | int }}
+    {% endif %}  
+  {% else %} 
+    {{false}}
+  {% endif %}  
+{% endif %} 
+{% endmacro %} 

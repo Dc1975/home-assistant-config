@@ -17,18 +17,21 @@
       - condition: state
         entity_id: light.tr_grp_lampen_unten
         state: "off"          
-      - condition: or
-        conditions:        
-        - condition: numeric_state
-          entity_id: sun.sun
-          attribute: elevation
-          below: input_number.in_ha_sun_elevation_treshhold    
-        - condition: template
-          value_template: >
-            {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_3') %}
-              {{ states('sensor.lumi_lumi_motion_ac02_illuminance_3') |
-              int <=  states('input_number.in_ha_lux_treshhold') | int }}
-            {% endif %}                          
+#      - condition: or
+#        conditions:        
+#        - condition: numeric_state
+#          entity_id: sun.sun
+#          attribute: elevation
+#          below: input_number.in_ha_sun_elevation_treshhold    
+#        - condition: template
+#          value_template: >
+#            {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_3') %}
+#              {{ states('sensor.lumi_lumi_motion_ac02_illuminance_3') |
+#              int <=  states('input_number.in_ha_lux_treshhold') | int }}
+#            {% endif %}  
+      - condition: template
+        value_template: >
+          {{ state_attr('sensor.sr_ha_turn_on_lights', 'tr_below') }}                                      
   action:
     - service: light.turn_on
       data:

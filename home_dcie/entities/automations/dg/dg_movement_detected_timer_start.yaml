@@ -22,20 +22,23 @@
         entity_id: switch.dachgeschossdeckenlicht
         domain: switch    
       - condition: or
-        conditions:
-        - condition: numeric_state
-          entity_id: sun.sun
-          attribute: elevation
-          below: input_number.in_ha_sun_elevation_treshhold    
+        conditions:    
         - condition: template
           value_template: >
             {{ state_attr('sensor.sr_dg_cover', 'get_position') | int > states('input_number.in_ha_covers_open_threshold') | int }}
+#        - condition: numeric_state
+#          entity_id: sun.sun
+#          attribute: elevation
+#          below: input_number.in_ha_sun_elevation_treshhold            
+#        - condition: template
+#          value_template: >
+#            {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_2') %}
+#              {{ states('sensor.lumi_lumi_motion_ac02_illuminance_2') |
+#              int <=  states('input_number.in_ha_lux_treshhold') | int }}
+#            {% endif %}              
         - condition: template
           value_template: >
-            {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_2') %}
-              {{ states('sensor.lumi_lumi_motion_ac02_illuminance_2') |
-              int <=  states('input_number.in_ha_lux_treshhold') | int }}
-            {% endif %}              
+            {{ state_attr('sensor.sr_ha_turn_on_lights', 'dg') }}            
   action:
     - type: turn_on
       device_id: a7937ef9a91758d83069e25e34b9789e

@@ -21,16 +21,19 @@
         domain: switch      
       - condition: or
         conditions:
-        - condition: numeric_state
-          entity_id: sun.sun
-          attribute: elevation
-          below: input_number.in_ha_sun_elevation_treshhold    
+#        - condition: numeric_state
+#          entity_id: sun.sun
+#          attribute: elevation
+#          below: input_number.in_ha_sun_elevation_treshhold    
+#        - condition: template
+#          value_template: >
+#            {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_6') %}
+#              {{ states('sensor.lumi_lumi_motion_ac02_illuminance_6') |
+#              int <=  states('input_number.in_ha_lux_treshhold') | int }}
+#            {% endif %}
         - condition: template
           value_template: >
-            {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_6') %}
-              {{ states('sensor.lumi_lumi_motion_ac02_illuminance_6') |
-              int <=  states('input_number.in_ha_lux_treshhold') | int }}
-            {% endif %}              
+            {{ state_attr('sensor.sr_ha_turn_on_lights', 'gt') }}                          
   action:
     - type: turn_on
       device_id: bd1f4e41415a2a37bb5d6efcfa0e84ee

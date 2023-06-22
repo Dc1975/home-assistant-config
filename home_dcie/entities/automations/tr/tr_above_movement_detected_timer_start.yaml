@@ -16,14 +16,17 @@
       # use this condition to prevent light turn off if they werere manually turned on            
       - condition: state
         entity_id: light.tr_grp_lampen_oben
-        state: "off"          
-      - condition: numeric_state
-        entity_id: sun.sun
-        attribute: elevation
-        below: input_number.in_ha_sun_elevation_treshhold    
+        state: "off"             
       - condition: state
         entity_id: input_boolean.ib_ha_schlafen_runs
         state: 'off'
+#      - condition: numeric_state
+#        entity_id: sun.sun
+#        attribute: elevation
+#        below: input_number.in_ha_sun_elevation_treshhold         
+      - condition: template
+        value_template: >
+          {{ state_attr('sensor.sr_ha_turn_on_lights', 'tr_above') }}
   action:
     - service: light.turn_on
       data:

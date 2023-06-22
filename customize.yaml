@@ -337,3 +337,8 @@ sensor.stopwatch_washing_machine:
   friendly_name: Aktuell
 sensor.stopwatch_dish_washer:  
   friendly_name: Aktuell
+# lux
+input_number.in_ha_lux_treshhold:
+  friendly_name: Luxschwelle Bewegungen
+input_number.in_tr_above_lux_treshhold:
+  friendly_name: Luxschwelle Bewegung TR oben

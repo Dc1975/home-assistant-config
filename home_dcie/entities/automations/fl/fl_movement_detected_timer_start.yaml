@@ -22,17 +22,22 @@
           state: "off"
         - condition: or
           conditions:
-          - condition: numeric_state
-            entity_id: sun.sun
-            attribute: elevation
-            below: input_number.in_ha_sun_elevation_treshhold              
+#          - condition: numeric_state
+#            entity_id: sun.sun
+#            attribute: elevation
+#            below: input_number.in_ha_sun_elevation_treshhold              
+
           # there is not enough light in the hallway to use this condition
 #          - condition: template
 #            value_template: >
 #              {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_9') %}
 #                {{ states('sensor.lumi_lumi_motion_ac02_illuminance_9') |
 #                int <=  states('input_number.in_ha_lux_treshhold') | int }}
-#              {% endif %}                
+#              {% endif %}           
+
+          - condition: template
+            value_template: >
+              {{ state_attr('sensor.sr_ha_turn_on_lights', 'fl') }} 
   action:
     - service: light.turn_on
       data: {}
