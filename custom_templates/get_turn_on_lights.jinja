@@ -6,11 +6,18 @@
 {% else %} 
   {% if has_value(sensor_lux) == true %}
     {% if states(input_number_treshhold) == 'unknown' %}
+      {# return default value #}
       {{ states(sensor_lux) |
       int <=  states('input_number.in_ha_lux_treshhold') | int }}          
     {% else %} 
-      {{ states(sensor_lux) |
-      int <=  states(input_number_treshhold) | int }}
+      {% if states(input_number_treshhold) |int > -1 %}
+        {{ states(sensor_lux) |
+        int <=  states(input_number_treshhold) | int }}
+      {% else %} 
+        {# return default value #}        
+        {{ states(sensor_lux) |
+        int <=  states('input_number.in_ha_lux_treshhold') | int }}        
+      {% endif %}        
     {% endif %}  
   {% else %} 
     {{false}}
