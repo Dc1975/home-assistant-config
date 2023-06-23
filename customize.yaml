@@ -350,3 +350,13 @@ input_number.in_tr_center_lux_treshhold:
   friendly_name: Luxschwelle Bewegung TR mitte
 input_number.in_tr_below_lux_treshhold:
   friendly_name: Luxschwelle Bewegung TR unten
+input_number.in_fl_lux_treshhold:
+  friendly_name: Luxschwelle Bewegung Flur
+input_number.in_ku_lux_treshhold:
+  friendly_name: Luxschwelle Bewegung Küche
+input_number.in_bz_lux_treshhold:
+  friendly_name: Luxschwelle Bewegung Badezimmer
+input_number.in_dg_lux_treshhold:
+  friendly_name: Luxschwelle Bewegung Dachgeschoss
+input_number.in_gt_lux_treshhold:
+  friendly_name: Luxschwelle Bewegung Gästetoilette
