@@ -3,7 +3,11 @@
   description: ""
   trigger:
     - platform: time
-      at: input_datetime.idt_ha_covers_close_summer_before
+      at: input_datetime.idt_ha_covers_close_summer_before_back
+      id: backside
+    - platform: time
+      at: input_datetime.idt_ha_covers_close_summer_before_front
+      id: frontside      
   condition:
     - condition: template
       value_template: >
@@ -27,6 +31,8 @@
           value_template: >
             {{ states('input_boolean.ib_wz_door_covers_closed_by_summer_mode') == 'on'
               and states('input_boolean.ib_wz_door_cover_used_in_automations') == 'on' }}
+        - condition: trigger
+          id: backside              
       then:    
         - service: script.turn_on
           target:
@@ -64,6 +70,8 @@
           value_template: >
             {{ states('input_boolean.ib_wz_window_covers_closed_by_summer_mode') == 'on'
               and states('input_boolean.ib_wz_window_cover_used_in_automations') == 'on' }}
+        - condition: trigger
+          id: backside              
       then:    
         - service: script.turn_on
           target:
@@ -106,6 +114,8 @@
           target:
             entity_id: script.dg_covers_up
           data: {}
+        - condition: trigger
+          id: frontside
 # wait for script execution to check...              
         - if:
             - condition: template
@@ -138,6 +148,8 @@
           value_template: >
             {{ states('input_boolean.ib_sz_az_covers_closed_by_summer_mode') == 'on'
               and states('input_boolean.ib_sz_az_cover_used_in_automations') == 'on' }}
+        - condition: trigger
+          id: backside              
       then:    
         - service: script.turn_on
           target:
@@ -175,6 +187,8 @@
           value_template: >
             {{ states('input_boolean.ib_sz_covers_closed_by_summer_mode') == 'on'
               and states('input_boolean.ib_sz_cover_used_in_automations') == 'on' }}
+        - condition: trigger
+          id: backside              
       then:    
         - service: script.turn_on
           target:
@@ -212,6 +226,8 @@
           value_template: >
             {{ states('input_boolean.ib_gz_covers_closed_by_summer_mode') == 'on'
               and states('input_boolean.ib_gz_cover_used_in_automations') == 'on' }}
+        - condition: trigger
+          id: frontside              
       then:    
         - service: script.turn_on
           target:
@@ -249,6 +265,8 @@
           value_template: >
             {{ states('input_boolean.ib_ku_covers_closed_by_summer_mode') == 'on'
               and states('input_boolean.ib_ku_cover_used_in_automations') == 'on' }}
+        - condition: trigger
+          id: frontside              
       then:    
         - service: script.turn_on
           target:
@@ -286,6 +304,8 @@
           value_template: >
             {{ states('input_boolean.ib_bz_covers_closed_by_summer_mode') == 'on'
               and states('input_boolean.ib_bz_cover_used_in_automations') == 'on' }}
+        - condition: trigger
+          id: frontside              
       then:    
         - service: script.turn_on
           target:

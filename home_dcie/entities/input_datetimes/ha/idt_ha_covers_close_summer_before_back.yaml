@@ -1,0 +1,5 @@
+idt_ha_covers_close_summer_before_back:
+  name: idt_ha_covers_close_summer_before_back
+  icon: mdi:clock-time-seven
+  has_time: true
+  has_date: false

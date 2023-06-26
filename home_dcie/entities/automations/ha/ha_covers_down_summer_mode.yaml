@@ -10,7 +10,8 @@
       conditions:
         - condition: time
           after: input_datetime.idt_ha_covers_close_summer_after
-          before: input_datetime.idt_ha_covers_close_summer_before
+          before: input_datetime.idt_ha_covers_close_summer_before_back
+          # {{ as_timestamp(today_at(states('input_datetime.idt_ha_covers_close_summer_before_back')) - timedelta(hours = 1), "%H:%M:%S") | timestamp_custom('%H:%M:%S') }}          
         - condition: template
           value_template: >
             {% set state_sensor = states('sensor.gw1100a_v2_2_3_solar_lux') %} {%

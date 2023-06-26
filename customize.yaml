@@ -360,3 +360,11 @@ input_number.in_dg_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Dachgeschoss
 input_number.in_gt_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Gästetoilette
+# input_datetime
+input_datetime.idt_ha_covers_close_summer_before_front:
+  friendly_name: Vorderseite vor 
+input_datetime.idt_ha_covers_close_summer_before_back:
+  friendly_name: Rückseite vor
+# input_text
+input_text.it_ha_covers_close_summer_months:
+  friendly_name: Sommermonate
