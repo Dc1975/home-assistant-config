@@ -332,6 +332,8 @@ input_number.in_ha_switch_delay_response:
   friendly_name: Verzögerung Schalterüberprüfung
 input_number.in_gr_daily_rain_rate_treshhold:
   friendly_name: Schwellwert Täglicheregenmenge
+input_text.it_ha_lawn_sprinkler_summer_months:
+  friendly_name: Sommermonate
 # stop-wtach
 sensor.stopwatch_lawn_sprinkler:  
   friendly_name: Aktuell
@@ -361,10 +363,12 @@ input_number.in_dg_lux_treshhold:
 input_number.in_gt_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Gästetoilette
 # input_datetime
+input_datetime.idt_ha_covers_close_summer_after:
+  friendly_name: Sommermodus von 
 input_datetime.idt_ha_covers_close_summer_before_front:
-  friendly_name: Vorderseite vor 
+  friendly_name: Sommermodus vorne bis
 input_datetime.idt_ha_covers_close_summer_before_back:
-  friendly_name: Rückseite vor
+  friendly_name: Sommermodus hinten bis
 # input_text
 input_text.it_ha_covers_close_summer_months:
   friendly_name: Sommermonate

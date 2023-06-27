@@ -29,7 +29,7 @@
 #          false
 #        {% endif %}                
     - condition: template
-      value_template: "{{now().month | string in states('input_text.it_ha_covers_close_summer_months')}}"
+      value_template: "{{now().month | string in states('input_text.it_ha_lawn_sprinkler_summer_months')}}"
   action:
   - service: script.turn_on
     target:
