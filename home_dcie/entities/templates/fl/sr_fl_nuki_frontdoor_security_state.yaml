@@ -24,3 +24,17 @@ sensor:
       %}
       {{security_states[security]}}
     icon: "{{states('sensor.sr_fl_nuki_frontdoor_security_state_icon')}}"
+
+  - name: sr_fl_nuki_frontdoor_info_security_state
+    unique_id: sr_fl_nuki_frontdoor_info_security_state
+    state: >
+      {% set security_state = states('sensor.nuki_haustur_door_security_state') %}
+      {% if security_state == 'Closed & Unlocked' %}
+        Die Haustür ist geschlossen und entriegelt
+      {% elif security_state == 'Closed & Locked' %}      
+        Die Haustür ist geschlossen und verriegelt
+      {% elif security_state == 'Open'%}      
+        Die Haustür ist geöffnet
+      {% else %}
+        Die Haustür hat den unbekannten Status {{security_state}}
+      {% endif %}  
