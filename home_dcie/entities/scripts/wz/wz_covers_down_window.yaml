@@ -18,7 +18,7 @@ wz_covers_down_window:
           data:
             position: "{{cover_position | int}}"
           target:
-            entity_id: cover.wohnzimmerfenster_curtain         
+            entity_id: cover.wohnzimmerfensterrolladen_tuya         
         - service: input_boolean.turn_on
           data: {}
           target:

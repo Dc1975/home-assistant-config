@@ -4,7 +4,7 @@
   trigger:
   - platform: state
     entity_id:
-    - cover.gastezimmerfenster_curtain
+    - cover.gastezimmerfensterrolladen_tuya
     attribute: current_position
   condition:
     - condition: template

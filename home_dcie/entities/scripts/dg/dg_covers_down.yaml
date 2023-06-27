@@ -18,7 +18,7 @@ dg_covers_down:
           data:
             position: "{{ cover_position | int}}"
           target:
-            entity_id: cover.dachgeschossfenster_curtain        
+            entity_id: cover.dachgeschossfensterrolladen_tuya        
         - service: input_boolean.turn_on
           data: {}
           target:

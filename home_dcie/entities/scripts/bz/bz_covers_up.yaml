@@ -14,7 +14,7 @@ bz_covers_up:
               {% from 'invert_cover_position.jinja' import invert_cover_position %}        
               {{invert_cover_position(states('input_number.in_ha_covers_close_position') | int)}}          
           target:
-            entity_id: cover.badezimmerfenster_curtain       
+            entity_id: cover.badezimmerfensterrolladen_tuya       
         - service: input_boolean.turn_on
           data: {}
           target:

@@ -19,7 +19,7 @@ wz_covers_down_door:
             position: >
               {{ cover_position | int }}
           target:
-            entity_id: cover.wohnzimmertur_curtain
+            entity_id: cover.wohnzimmerturrolladen_tuya
         - service: input_boolean.turn_on
           data: {}
           target:

@@ -18,7 +18,7 @@ bz_covers_down:
           data:
             position: "{{cover_position | int}}"
           target:
-            entity_id: cover.badezimmerfenster_curtain         
+            entity_id: cover.badezimmerfensterrolladen_tuya         
         - service: input_boolean.turn_on
           data: {}
           target:

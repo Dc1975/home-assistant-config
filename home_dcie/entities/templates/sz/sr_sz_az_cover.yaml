@@ -1,21 +1,21 @@
 sensor:
   - name: sr_sz_az_cover
     state: >
-      {% if states('cover.ankleidezimmerfenster_curtain') == 'closed' %}
+      {% if states('cover.ankleidezimmerfensterrolladen_tuya') == 'closed' %}
         open
       {% else %}
         closed
       {% endif %}      
     attributes:
       is_open: > 
-        {% if not state_attr('cover.ankleidezimmerfenster_curtain', 'current_position') is none %}         
-          {{ state_attr('cover.ankleidezimmerfenster_curtain', 'current_position') | int  == 0}}            
+        {% if not state_attr('cover.ankleidezimmerfensterrolladen_tuya', 'current_position') is none %}         
+          {{ state_attr('cover.ankleidezimmerfensterrolladen_tuya', 'current_position') | int  == 0}}            
         {% endif %}
       is_closed: >
-        {% if not state_attr('cover.ankleidezimmerfenster_curtain', 'current_position') is none %}         
-          {{ state_attr('cover.ankleidezimmerfenster_curtain', 'current_position') | int  == 100}}                  
+        {% if not state_attr('cover.ankleidezimmerfensterrolladen_tuya', 'current_position') is none %}         
+          {{ state_attr('cover.ankleidezimmerfensterrolladen_tuya', 'current_position') | int  == 100}}                  
         {% endif %}          
       get_position: >
-        {% if not state_attr('cover.ankleidezimmerfenster_curtain', 'current_position') is none %}         
-          {{ state_attr('cover.ankleidezimmerfenster_curtain', 'current_position')}}                  
+        {% if not state_attr('cover.ankleidezimmerfensterrolladen_tuya', 'current_position') is none %}         
+          {{ state_attr('cover.ankleidezimmerfensterrolladen_tuya', 'current_position')}}                  
         {% endif %}          

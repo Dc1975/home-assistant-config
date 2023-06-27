@@ -1,0 +1,3 @@
+ha_grp_covers_tuya:
+  name: ha_grp_covers_tuya
+  entities: !include_dir_merge_list ../../default/covers_tuya

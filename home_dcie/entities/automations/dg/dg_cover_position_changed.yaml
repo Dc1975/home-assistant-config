@@ -4,7 +4,7 @@
   trigger:
   - platform: state
     entity_id:
-    - cover.dachgeschossfenster_curtain
+    - cover.dachgeschossfensterrolladen_tuya
     attribute: current_position
   condition:
     - condition: template

@@ -4,7 +4,7 @@
   trigger:
   - platform: state
     entity_id:
-    - cover.schlafzimmerfenster_curtain
+    - cover.schlafzimmerfensterrolladen_tuya
     attribute: current_position
   condition:
     - condition: template

@@ -4,7 +4,7 @@
   trigger:
   - platform: state
     entity_id:
-    - cover.ankleidezimmerfenster_curtain
+    - cover.ankleidezimmerfensterrolladen_tuya
     attribute: current_position
   condition:
     - condition: template

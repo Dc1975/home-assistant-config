@@ -18,7 +18,7 @@ gz_covers_down:
           data:
             position: "{{cover_position | int}}"
           target:
-            entity_id: cover.gastezimmerfenster_curtain     
+            entity_id: cover.gastezimmerfensterrolladen_tuya     
         - service: input_boolean.turn_on
           data: {}
           target:
