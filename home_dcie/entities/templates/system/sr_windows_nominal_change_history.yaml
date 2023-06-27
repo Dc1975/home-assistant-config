@@ -1,0 +1,27 @@
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_19
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_3
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_9
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_4
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_5
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_7
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_8
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_2
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_6          
+      not_to:
+        - unavailable
+        - unknown
+      not_from:
+        - unavailable
+        - unknown
+  sensor:
+    name: sr_windows_nominal_change_history
+    state: "OK"
+    attributes:
+      changes: >
+        {% set current = this.attributes.get('changes', {}) %}
+        {% set new = {trigger.entity_id: trigger.to_state.last_changed.isoformat()} %}
+        {{ dict(current, **new) }}

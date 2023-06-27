@@ -1,0 +1,28 @@
+  trigger:
+    - platform: state
+      entity_id:   
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_13
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_18
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_17
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_10
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_20
+        - binary_sensor.nuki_haustur_door_open
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_12
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_14
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_15
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_16        
+
+      not_to:
+        - unavailable
+        - unknown
+      not_from:
+        - unavailable
+        - unknown
+  sensor:
+    name: sr_doors_nominal_change_history
+    state: "OK"
+    attributes:
+      changes: >
+        {% set current = this.attributes.get('changes', {}) %}
+        {% set new = {trigger.entity_id: trigger.to_state.last_changed.isoformat()} %}
+        {{ dict(current, **new) }}
