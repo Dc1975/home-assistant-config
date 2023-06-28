@@ -325,6 +325,24 @@ input_boolean.ib_bz_cover_used_in_automations:
   friendly_name: In Automationen benutzen
 input_number.in_ha_covers_span_time_delay:
   friendly_name: Maximale Rolladenöffnungsdauer
+cover.dachgeschossfensterrolladen_tuya:
+  friendly_name: Dachgeschossfensterrolladen
+cover.schlafzimmerfensterrolladen_tuya:
+  friendly_name: Schlafzimmerfensterrolladen
+cover.ankleidezimmerfensterrolladen_tuya:
+  friendly_name: Ankleidezimmerfensterrolladen    
+cover.gastezimmerfensterrolladen_tuya:
+  friendly_name: Gästezimmerfensterrolladen
+cover.badezimmerfensterrolladen_tuya:
+  friendly_name: Badezimmerfensterrolladen
+cover.kuchenfensterrolladen_tuya:
+  friendly_name: Küchenfensterrolladen  
+cover.wohnzimmerturrolladen_tuya:
+  friendly_name: Wohnzimmertürrolladen
+cover.wohnzimmerfensterrolladen_tuya:
+  friendly_name: Wohnzimmerfensterrolladen
+cover.leinwand_tuya:
+  friendly_name: Leinwand  
 # garden
 input_boolean.ib_gr_lawn_sprinkler_used_in_automations:
   friendly_name: In Automationen benutzen
