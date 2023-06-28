@@ -3,7 +3,7 @@ sensor:
   - name: sr_ha_switches_on
     unique_id: sr_ha_switches_on
     state: >
-      {{expand('group.ha_grp_schalter') | count}}
+      {{expand('switch.ha_grp_schalter') | count}}
     attributes:
       switches_on: >
         {% set toExclucde = namespace(entities=['light.first_led_hardware_instance', 'light.first_led_hardware_instance_2']) %}
