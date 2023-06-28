@@ -17,17 +17,16 @@
       value_template: "{{ states('sensor.gw1100a_v2_2_3_daily_rain_rate') | float <= states('input_number.in_gr_daily_rain_rate_treshhold') | float }}"
 #    - condition: template
 #      value_template: "{{ states('sensor.sr_gr_average_statistic_temperature') | float >= states('input_number.in_gr_lawn_sprinkler_temperature_treshhold') | float }}"
-#    - condition: template
-#      value_template: >
-#        {% set state_sensor = states('sensor.gw1100a_v2_2_3_solar_lux') %} {%
-#        set state_threshold =
-#        states('input_number.in_ha_covers_lux_treshhold') %} {% if
-#        is_number(state_sensor) and is_number(state_threshold) and
-#        (state_sensor | float >= state_threshold | float) %}
-#          true
-#        {% else %}
-#          false
-#        {% endif %}                
+    - condition: template
+      value_template: >
+        {% set state_sensor = states('sensor.gw1100a_v2_2_3_solar_lux') %}
+        {% set state_threshold = states('input_number.in_gr_lawn_sprinkler_lux_treshhold') %}
+        {% if is_number(state_sensor) and is_number(state_threshold) and
+          (state_sensor | float >= state_threshold | float) %}
+          true
+        {% else %}
+          false
+        {% endif %}                
     - condition: template
       value_template: "{{now().month | string in states('input_text.it_ha_lawn_sprinkler_summer_months')}}"
   action:

@@ -334,6 +334,8 @@ input_number.in_gr_daily_rain_rate_treshhold:
   friendly_name: Schwellwert Täglicheregenmenge
 input_text.it_ha_lawn_sprinkler_summer_months:
   friendly_name: Sommermonate
+input_number.in_gr_lawn_sprinkler_lux_treshhold:
+  friendly_name: Luxschwelle Bewässerung
 # stop-wtach
 sensor.stopwatch_lawn_sprinkler:  
   friendly_name: Aktuell
