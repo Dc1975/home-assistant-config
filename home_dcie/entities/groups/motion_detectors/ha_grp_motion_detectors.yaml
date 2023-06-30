@@ -1,0 +1,14 @@
+ha_grp_motion_detectors:
+  name: ha_grp_motion_detectors
+  entities: 
+    - binary_sensor.lumi_lumi_motion_ac02_motion
+    - binary_sensor.lumi_lumi_motion_ac02_motion_2
+    - binary_sensor.lumi_lumi_motion_ac02_motion_3
+    - binary_sensor.lumi_lumi_motion_ac02_motion_4
+    - binary_sensor.lumi_lumi_motion_ac02_motion_5
+    - binary_sensor.lumi_lumi_motion_ac02_motion_6
+    - binary_sensor.lumi_lumi_motion_ac02_motion_7
+    - binary_sensor.lumi_lumi_motion_ac02_motion_8
+    - binary_sensor.lumi_lumi_motion_ac02_motion_9
+    - binary_sensor.lumi_lumi_motion_ac02_motion_11
+  all: true    

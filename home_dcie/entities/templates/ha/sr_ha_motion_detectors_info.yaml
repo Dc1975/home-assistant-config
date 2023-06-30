@@ -27,3 +27,13 @@ sensor:
       motion_detectors_info_tr: >
         {% from 'get_motion_detctors_info_for_area.jinja' import get_motion_detctors_info_for_area %}        
         {{get_motion_detctors_info_for_area('treppenhaus','')}}         
+      motion_detectors_info_all: >  
+        {% set list = namespace(sensors=[]) %}
+        {% set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_ku')%}
+        {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_gt')%}
+        {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_bz')%}
+        {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_sz')%}
+        {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_fl')%}
+        {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_dg')%}
+        {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_tr')%} 
+        {{list.sensors}}
