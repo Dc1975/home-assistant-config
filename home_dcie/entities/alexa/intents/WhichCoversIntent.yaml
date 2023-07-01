@@ -3,5 +3,5 @@
 speech:
   type: plain
   text: >
-    {{state_attr('sensor.sr_ha_covers_tuya_open', 'covers_open')}}  
-#    {{state_attr('sensor.sr_ha_covers_open', 'covers_open')}}
+    {{state_attr('sensor.sr_ha_covers_open', 'covers_open')}}
+#    {{state_attr('sensor.sr_ha_covers_tuya_open', 'covers_open')}}  
