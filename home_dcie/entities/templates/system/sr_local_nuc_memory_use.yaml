@@ -1,7 +1,0 @@
-sensor:
-  - unique_id: sr_local_nuc_memory_use
-    name: sr_local_nuc_memory_use    
-    unit_of_measurement: "GB"
-    device_class: data_size
-    state_class: measurement
-    state: "{{ (states('sensor.memory_use') |float / 1024) | round (2) }}"     

@@ -1,0 +1,9 @@
+sensor:
+  - name: sr_calc_average_extern_backup_file_size
+    unique_id: sr_calc_average_extern_backup_file_size
+    unit_of_measurement: MB
+    state: >
+      {% if has_value('sensor.homeassistant_samba_backup') and state_attr('sensor.homeassistant_samba_backup', 'number_of_files') != none %}
+        {{ (float(states('sensor.homeassistant_samba_backup')) / float(state_attr('sensor.homeassistant_samba_backup', 'number_of_files'))) | round(2)}}
+      {%endif%}
+      

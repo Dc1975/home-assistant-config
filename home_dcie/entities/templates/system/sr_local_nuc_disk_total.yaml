@@ -1,7 +1,0 @@
-sensor:
-  - unique_id: sr_local_nuc_disk_total
-    name: sr_local_nuc_disk_total    
-    unit_of_measurement: "GB"
-    device_class: data_size
-    #state_class: measurement
-    state: "{{ ( states('sensor.disk_use')|float + states('sensor.disk_free')|float )| round (1) }}"

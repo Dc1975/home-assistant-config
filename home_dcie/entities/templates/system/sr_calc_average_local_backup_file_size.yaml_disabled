@@ -1,8 +1,0 @@
-sensor:
-  - name: sr_calc_average_local_backup_file_size
-    unique_id: sr_calc_average_local_backup_file_size
-    unit_of_measurement: MB
-    state: >
-      {% if has_value('sensor.backup') and state_attr('sensor.backup', 'number_of_files') != none %}
-        {{ (float(states('sensor.backup')) / float(state_attr('sensor.backup', 'number_of_files'))) | round(2)}}
-      {%endif%}

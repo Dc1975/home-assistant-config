@@ -1,0 +1,23 @@
+sensor:
+  - unique_id: sr_local_nuc_uptime
+    name: sr_local_nuc_uptime
+    state: >-      
+      {%- set up_time = as_timestamp(now())-as_timestamp(states('sensor.uptime')) %}
+        {%- macro phrase(name, divisor, mod=None) %}
+          {%- set value = ((up_time // divisor) % (mod if mod else divisor)) | int %}                  
+          {%- set end = '' %}
+          {%- if value > 1 %} {%- if name == 'Tag' %} {%- set end = 'en' -%} {%- else %} {%- set end = 'n' %} {%- endif %} {%- else %} {%- set end = '' %} {%- endif %}            
+          {{- '{} {}{}'.format(value, name, end) if value | int > 0 else '' }}                                   
+        {%- endmacro %}
+        
+        {%- set values = [ 
+                  phrase('Woche', 60*60*24*7), 
+                  phrase('Tag', 60*60*24, 7), 
+                  phrase('Stunde', 60*60, 24),
+                  phrase('Minute', 60)
+              ] | select('!=','') | list %}
+        {% if values == [] %}
+          0
+        {% else %}
+          {{ values | first }}
+        {% endif %}        

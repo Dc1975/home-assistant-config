@@ -1,0 +1,57 @@
+# removed: | selectattr('state', '==', 'on')
+sensor:
+  - name: sr_ha_batteries_info
+    unique_id: sr_ha_batteries_info
+    icon: mdi:battery
+    state: >
+      {% from 'get_batteries_info_name.jinja' import get_batteries_info_name %}        
+      {{get_batteries_info_name('count')}}      
+    attributes:
+      batteries_info_plain: >        
+        {% from 'get_batteries_info_name.jinja' import get_batteries_info_name %}        
+        {{get_batteries_info_name('list')}}  
+      batteries_info_extended: >
+        {% from 'get_batteries_info_custom.jinja' import get_batteries_info_custom %}        
+        {{get_batteries_info_custom('name')}}  
+      batteries_info_entities: >
+        {% from 'get_batteries_info_custom.jinja' import get_batteries_info_custom %}        
+        {{get_batteries_info_custom('entity_id')}}  
+      batteries_info_badezimmer: >
+        {% from 'get_batteries_info_for_area.jinja' import get_batteries_info_for_area %}        
+        {{get_batteries_info_for_area('badezimmer')}}      
+      batteries_info_dachgeschoss: >
+        {% from 'get_batteries_info_for_area.jinja' import get_batteries_info_for_area %}        
+        {{get_batteries_info_for_area('dachgeschoss')}}      
+      batteries_info_schlafzimmer: >
+        {% from 'get_batteries_info_for_area.jinja' import get_batteries_info_for_area %}        
+        {{get_batteries_info_for_area('schlafzimmer')}}      
+      batteries_info_gastetoilette: >
+        {% from 'get_batteries_info_for_area.jinja' import get_batteries_info_for_area %}        
+        {{get_batteries_info_for_area('gastetoilette')}}         
+      batteries_info_gastezimmer: >
+        {% from 'get_batteries_info_for_area.jinja' import get_batteries_info_for_area %}        
+        {{get_batteries_info_for_area('gastezimmer')}}         
+      batteries_info_wohnzimmer: >
+        {% from 'get_batteries_info_for_area.jinja' import get_batteries_info_for_area %}        
+        {{get_batteries_info_for_area('wohnzimmer')}}         
+      batteries_info_vorgarten: >
+        {% from 'get_batteries_info_for_area.jinja' import get_batteries_info_for_area %}        
+        {{get_batteries_info_for_area('vorgarten')}}         
+      batteries_info_flur: >
+        {% from 'get_batteries_info_for_area.jinja' import get_batteries_info_for_area %}        
+        {{get_batteries_info_for_area('flur')}}         
+      batteries_info_mobil: >
+        {% from 'get_batteries_info_for_area.jinja' import get_batteries_info_for_area %}        
+        {{get_batteries_info_for_area('mobil')}}         
+      batteries_info_kuche: >
+        {% from 'get_batteries_info_for_area.jinja' import get_batteries_info_for_area %}        
+        {{get_batteries_info_for_area('kuche')}}         
+      batteries_info_keller: >
+        {% from 'get_batteries_info_for_area.jinja' import get_batteries_info_for_area %}        
+        {{get_batteries_info_for_area('keller')}}         
+      batteries_info_treppenhaus: >
+        {% from 'get_batteries_info_for_area.jinja' import get_batteries_info_for_area %}        
+        {{get_batteries_info_for_area('treppenhaus')}}         
+      batteries_info_garage: >
+        {% from 'get_batteries_info_for_area.jinja' import get_batteries_info_for_area %}        
+        {{get_batteries_info_for_area('garage')}}        
