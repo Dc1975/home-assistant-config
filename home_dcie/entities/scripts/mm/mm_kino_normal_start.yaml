@@ -18,12 +18,12 @@ mm_kino_normal_start:
               - condition: template
                 value_template: >-                  
                   {{ state_attr('sensor.sr_wz_cover_door',
-                  'get_position') | int <=
+                  'get_position') | int >
                   states('input_number.in_ha_covers_open_threshold') | int }}
               - condition: template
                 value_template: >-                  
                   {{ state_attr('sensor.sr_wz_cover_window',
-                  'get_position') | int <=
+                  'get_position') | int >
                   states('input_number.in_ha_covers_open_threshold') | int
                   }}              
     then:     
