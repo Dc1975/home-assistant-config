@@ -3,13 +3,14 @@ sensor:
     unique_id: sr_ha_motion_detectors_info
     icon: mdi:motion-sensor
     availability: >
-      {{ not state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_ku') is none
-        and not state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_gt') is none
-        and not state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_bz') is none
-        and not state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_sz') is none
-        and not state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_fl') is none
-        and not state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_dg') is none
-        and not state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_tr') is none
+      {% from 'get_motion_detctors_info_for_area.jinja' import get_motion_detctors_info_for_area %}        
+      {{ not get_motion_detctors_info_for_area('kuche','') is none
+        and not get_motion_detctors_info_for_area('gastetoilette','') is none
+        and not get_motion_detctors_info_for_area('badezimmer','') is none
+        and not get_motion_detctors_info_for_area('flur','') is none
+        and not get_motion_detctors_info_for_area('schlafzimmer','') is none
+        and not get_motion_detctors_info_for_area('dachgeschoss','') is none
+        and not get_motion_detctors_info_for_area('treppenhaus','') is none        
       }}
     state: >
       {% from 'get_motion_detctors_info_for_area.jinja' import get_motion_detctors_info_for_area %}        
