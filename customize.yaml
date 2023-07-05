@@ -344,18 +344,28 @@ cover.wohnzimmerfensterrolladen_tuya:
 cover.leinwand_tuya:
   friendly_name: Leinwand  
 # garden
-input_boolean.ib_gr_lawn_sprinkler_used_in_automations:
-  friendly_name: In Automationen benutzen
+input_boolean.ib_gr_lawn_sprinkler_used_in_automations_morning:
+  friendly_name: In Automationen benutzen morgens
+input_boolean.ib_gr_lawn_sprinkler_used_in_automations_evening:
+  friendly_name: In Automationen benutzen abends
 input_number.in_ha_switch_delay_response:
   friendly_name: Verzögerung Schalterüberprüfung
 input_number.in_gr_daily_rain_rate_treshhold:
   friendly_name: Schwellwert Täglicheregenmenge
 input_text.it_ha_lawn_sprinkler_summer_months:
   friendly_name: Sommermonate
-input_number.in_gr_lawn_sprinkler_lux_treshhold:
-  friendly_name: Luxschwelle Bewässerung
-binary_sensor.bs_lawn_sprinkler:
-  friendly_name: Ausführungsstatus
+input_number.in_gr_lawn_sprinkler_lux_treshhold_morning:
+  friendly_name: Luxschwelle morgens
+input_number.in_gr_lawn_sprinkler_lux_treshhold_evening:
+  friendly_name: Luxschwelle abends 
+binary_sensor.bs_gr_lawn_sprinkler_morning:
+  friendly_name: Ausführungsstatus morgens
+binary_sensor.bs_gr_lawn_sprinkler_evening:
+  friendly_name: Ausführungsstatus abends
+input_datetime.idt_gr_lawn_sprinkler_morning:
+  friendly_name: Ausführungszeit morgens
+input_datetime.idt_gr_lawn_sprinkler_evening:
+  friendly_name: Ausführungszeit abends  
 # stop-wtach
 sensor.stopwatch_lawn_sprinkler:  
   friendly_name: Aktuell

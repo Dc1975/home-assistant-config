@@ -3,13 +3,28 @@
   description: ''
   trigger:
   - platform: time
-    at: input_datetime.idt_gr_lawn_sprinkler_1
+    at: input_datetime.idt_gr_lawn_sprinkler_morning
+    id: morning
   - platform: time
-    at: input_datetime.idt_gr_lawn_sprinkler_2    
+    at: input_datetime.idt_gr_lawn_sprinkler_evening  
+    id: evening
   condition:
-  - condition: state
-    entity_id: binary_sensor.bs_lawn_sprinkler
-    state: "on"      
+    - condition: or
+      conditions:
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: morning
+            - condition: state
+              entity_id: binary_sensor.bs_gr_lawn_sprinkler_morning
+              state: "on"  
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: evening
+            - condition: state
+              entity_id: binary_sensor.bs_gr_lawn_sprinkler_evening
+              state: "on"               
 #  - condition: and
 #    conditions:
 # actual rain rate    

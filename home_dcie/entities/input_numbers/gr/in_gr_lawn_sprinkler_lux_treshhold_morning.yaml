@@ -1,5 +1,5 @@
-in_gr_lawn_sprinkler_lux_treshhold:
-  name: in_gr_lawn_sprinkler_lux_treshhold
+in_gr_lawn_sprinkler_lux_treshhold_morning:
+  name: in_gr_lawn_sprinkler_lux_treshhold_morning
   icon: mdi:brightness-percent
   min: 0
   max: 80000

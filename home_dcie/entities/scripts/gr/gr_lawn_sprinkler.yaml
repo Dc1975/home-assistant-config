@@ -1,8 +1,14 @@
 gr_lawn_sprinkler:
   alias: GR Rasenbewässerung
   sequence:
-    - condition: template
-      value_template: "{{states('input_boolean.ib_gr_lawn_sprinkler_used_in_automations') == 'on' }}"   
+    - condition: or
+      conditions:  
+        - condition: state
+          entity_id: input_boolean.ib_gr_lawn_sprinkler_used_in_automations_morning
+          state: "on"
+        - condition: state
+          entity_id: input_boolean.ib_gr_lawn_sprinkler_used_in_automations_evening
+          state: "on"        
     - if:
       - condition: template
         value_template: "{{ states('switch.brunnen') == 'unavailable' }}"

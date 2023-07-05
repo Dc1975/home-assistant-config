@@ -1,0 +1,5 @@
+idt_gr_lawn_sprinkler_evening:
+  name: idt_gr_lawn_sprinkler_evening
+  icon: mdi:sprinkler-variant
+  has_time: true
+  has_date: false
