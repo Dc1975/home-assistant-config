@@ -39,11 +39,22 @@ sensor:
         {{get_motion_detctors_info_for_area('treppenhaus','')}}         
       motion_detectors_info_all: >  
         {% set list = namespace(sensors=[]) %}
-        {% set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_ku')%}
-        {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_gt')%}
-        {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_bz')%}
-        {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_sz')%}
-        {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_fl')%}
-        {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_dg')%}
-        {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_tr')%} 
-        {{list.sensors}}
+        {% if (state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_ku') != None and
+          state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_gt') != None  and
+          state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_bz') != None and  
+          state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_sz') != None and  
+          state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_fl') != None and  
+          state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_dg') != None and  
+          state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_tr') != None)
+        %}          
+          {% set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_ku')%}
+          {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_gt')%}
+          {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_bz')%}
+          {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_sz')%}
+          {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_fl')%}
+          {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_dg')%}
+          {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_tr')%} 
+          {{list.sensors}}
+        {% else %}           
+          unkown
+        {% endif %}                    

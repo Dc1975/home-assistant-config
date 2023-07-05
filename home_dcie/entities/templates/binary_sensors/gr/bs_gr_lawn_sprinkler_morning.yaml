@@ -1,9 +1,10 @@
 binary_sensor:
   - name: bs_gr_lawn_sprinkler_morning
     availability: >
-      {{ not states('sensor.gw1100a_v2_2_3_solar_lux') is none and
-        not states('input_number.in_gr_lawn_sprinkler_lux_treshhold_morning') is none and
-        not states('sensor.gw1100a_v2_2_3_daily_rain_rate') is none
+      {{ not states('sensor.gw1100a_v2_2_3_solar_lux') is none and states('sensor.gw1100a_v2_2_3_solar_lux') | is_number and
+        not states('input_number.in_gr_lawn_sprinkler_lux_treshhold_morning') is none and states('input_number.in_gr_lawn_sprinkler_lux_treshhold_morning') | is_number and
+        not states('sensor.gw1100a_v2_2_3_daily_rain_rate') is none and states('sensor.gw1100a_v2_2_3_daily_rain_rate') | is_number and
+        not states('sensor.gw1100a_v2_2_3_rain_rate') is none and states('sensor.gw1100a_v2_2_3_rain_rate') | is_number
       }}  
     state: >
       {% set state_sensor = states('sensor.gw1100a_v2_2_3_solar_lux') %}
