@@ -84,7 +84,7 @@ sensor:
     device_class: temperature        
     state_class: measurement
     unit_of_measurement: "°C"    
-    icon: "{{states('sensor.remote_rpi_icon')}}"
+    icon: mdi:thermometer
 
   #- name: Festplattenkapazität in GB
   - name: remote_rpi_fs_total_gb
