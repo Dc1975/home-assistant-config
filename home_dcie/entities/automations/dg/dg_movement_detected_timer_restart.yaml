@@ -4,8 +4,8 @@
   trigger:
     - type: motion
       platform: device
-      device_id: 8fbc48e736b872034e64649a5b2bb8eb
-      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_2
+      device_id: 6b0c97c6496e8f96eecc8406c95643b5
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_10
       domain: binary_sensor
   condition:
     - condition: and
