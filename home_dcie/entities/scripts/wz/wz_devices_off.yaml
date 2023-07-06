@@ -38,6 +38,10 @@ wz_devices_off:
     - service: homeassistant.turn_off
       data: {}
       target:
-        entity_id: switch.wz_grp_schalter        
+        entity_id: switch.wz_grp_schalter
+    - service: homeassistant.turn_on
+      data: {}
+      target:
+        entity_id: script.mm_sykq_off          
   mode: single
   icon: mdi:toggle-switch-variant-off

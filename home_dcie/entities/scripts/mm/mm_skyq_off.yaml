@@ -1,0 +1,48 @@
+mm_sykq_off:
+  alias: MM Sky ausschalten
+  # Schaltet nur den SkyQ Receiver aus
+  sequence:
+    - if:
+      - condition: or
+        conditions:    
+          - condition: state
+            entity_id: media_player.sky_q
+            state: "playing"
+          - condition: state
+            entity_id: media_player.sky_q
+            state: "on"            
+      then:        
+        - service: media_player.turn_off
+          data: {}
+          target:
+            entity_id: media_player.sky_q      
+        - service: timer.start
+          data_template:
+            entity_id: timer.ti_mm_skyq_off_timeout            
+            duration: "00:00:{{states('input_number.in_mm_skyq_off_delay') | int}}"	
+        - repeat:
+            until:
+              - condition: or
+                conditions:
+                  - condition: state
+                    entity_id: media_player.sky_q
+                    state: "off"
+                  - condition: template
+                    value_template: >
+                      {% if states('timer.ti_mm_skyq_off_timeout') == 'idle' %}
+                        true
+                      {% else %}  
+                        false
+                      {% endif %}                      
+            sequence:
+              - delay:
+                  hours: 0
+                  minutes: 0
+                  seconds: 0
+                  milliseconds: 500            
+              - service: media_player.turn_off
+                data: {}
+                target:
+                  entity_id: media_player.sky_q
+  mode: single
+  icon: mdi:toggle-switch-variant-off

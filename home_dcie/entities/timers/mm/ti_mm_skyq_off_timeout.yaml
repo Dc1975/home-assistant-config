@@ -1,0 +1,4 @@
+ti_mm_skyq_off_timeout:
+  duration: "00:00:40"
+  restore: true
+  name: Timer SkyQ
