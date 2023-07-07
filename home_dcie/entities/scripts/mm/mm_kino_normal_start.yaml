@@ -54,4 +54,11 @@ mm_kino_normal_start:
     entity_id: select.harmonyelitehubby_activities
     type: select_option
     option: BEA-DVR
+  - delay: "00:00:{{ states('input_number.in_mm_onkyo_delay_response') | int }}"
+  - service: script.turn_on
+    data: 
+      variables:
+        volume: 38
+    target:
+      entity_id: script.mm_onkyo_set_volume       
   mode: single
