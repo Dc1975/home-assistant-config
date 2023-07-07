@@ -1,0 +1,17 @@
+mm_onkyo_set_volume :
+  alias: MM Onkyo Lautstärke setzem
+  fields:    
+    volume:
+      # All sub-options are only used for creating a representation of this script in the UI.
+      description: Volume to set"
+      example: "24"
+      name: volume   
+  sequence:
+  - service: media_player.volume_set
+    data:
+# at this time the volume factor is 0.0125 <=> 1
+      volume_level: "{{ (volume * states('input_number.in_mm_okyo_volume_factor') | float) | round(4)}}"      
+    target:
+      entity_id: media_player.onkyo_2
+  icon: mdi:remote-tv
+  mode: single

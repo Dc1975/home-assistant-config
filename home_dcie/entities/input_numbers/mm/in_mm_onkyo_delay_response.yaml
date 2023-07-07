@@ -1,0 +1,8 @@
+in_mm_onkyo_delay_response:
+  name: in_mm_onkyo_delay_response
+  min: 0
+  max: 30
+  step: 1
+  mode: box
+  icon: mdi:timer-alert
+  unit_of_measurement: s

@@ -404,3 +404,8 @@ input_datetime.idt_ha_covers_close_summer_before_back:
 # input_text
 input_text.it_ha_covers_close_summer_months:
   friendly_name: Sommermonate
+# input_number
+input_number.in_mm_okyo_volume_factor:
+  friendly_name: Onkyo Lautstärkefaktor
+input_number.in_mm_onkyo_delay_response:  
+  friendly_name: Onkyo Verzögerung Aktionen

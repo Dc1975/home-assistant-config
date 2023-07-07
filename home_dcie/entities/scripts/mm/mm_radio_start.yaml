@@ -13,6 +13,13 @@ mm_radio_start:
     domain: select
     entity_id: select.harmonyelitehubby_activities
     type: select_option
-    option: Radio
+    option: Radio  
+  - delay: "00:00:{{ states('input_number.in_mm_onkyo_delay_response') | int }}"
+  - service: script.turn_on
+    data: 
+      variables:
+        volume: 30
+    target:
+      entity_id: script.mm_onkyo_set_volume  
   icon: mdi:remote-tv    
   mode: single

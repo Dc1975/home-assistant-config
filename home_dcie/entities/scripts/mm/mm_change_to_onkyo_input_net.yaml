@@ -11,5 +11,12 @@ mm_change_to_onkyo_input_net:
       - InputNet
       delay_secs: 0.5
       device: 52440711
+  - delay: "00:00:{{ states('input_number.in_mm_onkyo_delay_response') | int }}"
+  - service: script.turn_on
+    data: 
+      variables:
+        volume: 24
+    target:
+      entity_id: script.mm_onkyo_set_volume       
   mode: single
   icon: mdi:remote-tv
