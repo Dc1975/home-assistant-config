@@ -410,8 +410,16 @@ input_number.in_mm_okyo_volume_factor:
 input_number.in_mm_onkyo_delay_response:  
   friendly_name: Onkyo Verzögerung Aktionen
 input_number.in_ha_delay_default_scripts:
-  friendly_name: Standart Verzögerung Skripte
+  friendly_name: Verzögerung Skripte
 input_number.in_ha_delay_default_automations:
-  friendly_name: Standart Verzögerung Automationen  
+  friendly_name: Verzögerung Automationen  
 input_number.in_ha_delay_default_sleep:
-  friendly_name: Standart Verzögerung  
+  friendly_name: Standard Verzögerung  
+input_number.in_mm_okyo_volume_cbl:
+  friendly_name: Lautstärke CBL
+input_number.in_mm_okyo_volume_game:
+  friendly_name: Lautstärke Game  
+input_number.in_mm_okyo_volume_tuner:
+  friendly_name: Lautstärke Radio
+input_number.in_mm_okyo_volume_net:
+  friendly_name: Lautstärke IRadio 

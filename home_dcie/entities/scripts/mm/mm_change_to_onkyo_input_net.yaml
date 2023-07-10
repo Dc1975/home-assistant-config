@@ -15,7 +15,7 @@ mm_change_to_onkyo_input_net:
   - service: script.turn_on
     data: 
       variables:
-        volume: 24
+        volume: "{{states('input_number.in_mm_okyo_volume_net') | int}}"
     target:
       entity_id: script.mm_onkyo_set_volume       
   mode: single

@@ -1,0 +1,8 @@
+in_mm_okyo_volume_cbl:
+  name: in_mm_okyo_volume_cbl
+  min: 0
+  max: 100
+  step: 1 
+  icon: mdi:volume-medium
+  mode: box
+
