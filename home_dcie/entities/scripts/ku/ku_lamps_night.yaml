@@ -6,7 +6,7 @@ ku_lamps_night:
     device_id: 3fac30d786557e08e60dd17cdb131eee
     entity_id: switch.kuchenlicht
     domain: switch
-  - delay: 5      
+  - delay: "00:00:{{ states('input_number.in_ha_delay_default_scripts') | int }}"
   # the switch will be automatically turned of by the timer
   - service: scene.turn_on
     target:

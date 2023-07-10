@@ -40,11 +40,7 @@ mm_kino_normal_start:
     device_id: f4551e68dd9d8b2519ce000d0b490f5b
     entity_id: switch.beamer
     domain: switch
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: 5
-      milliseconds: 0
+  - delay: "00:00:{{ states('input_number.in_ha_delay_default_scripts') | int }}"
   - type: turn_on
     device_id: 1aa4cb31590d29e7150e342946e029b1
     entity_id: remote.harmonyelitehubby

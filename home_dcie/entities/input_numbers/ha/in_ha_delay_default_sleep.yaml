@@ -1,0 +1,8 @@
+in_ha_delay_default_sleep:
+  name: in_ha_delay_default_sleep
+  min: 0
+  max: 60000
+  step: 1
+  unit_of_measurement: ms
+  icon: mdi:timer-alert
+  mode: box

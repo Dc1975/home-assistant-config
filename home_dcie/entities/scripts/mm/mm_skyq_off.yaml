@@ -11,6 +11,9 @@ mm_sykq_off:
           - condition: state
             entity_id: media_player.sky_q
             state: "on"            
+          - condition: state
+            entity_id: media_player.sky_q
+            state: "unavailable"            
       then:        
         - service: media_player.turn_off
           data: {}
@@ -35,11 +38,11 @@ mm_sykq_off:
                         false
                       {% endif %}                      
             sequence:
-              - delay:
-                  hours: 0
-                  minutes: 0
-                  seconds: 0
-                  milliseconds: 500            
+              - delay: "00:00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"
+#                  hours: 0
+#                  minutes: 0
+#                  seconds: 0
+#                  milliseconds: 500            
               - service: media_player.turn_off
                 data: {}
                 target:

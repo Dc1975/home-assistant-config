@@ -6,8 +6,14 @@ wz_devices_off:
       target:
         entity_id: script.mm_multimedia_off        
     - if:
+        - condition: template
+          value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
+      then:    
+        - wait_template: "{{ is_state('script.mm_multimedia_off', 'off') }}"                      
+          continue_on_timeout: true          
+    - if:
         - condition: state
-          entity_id: binary_sensor.bs_beamer_ping
+          entity_id: binary_sensor.bs_wz_beamer_ping
           state: "on"
       then:
         - service: timer.start
@@ -20,7 +26,7 @@ wz_devices_off:
               - condition: or
                 conditions:
                   - condition: state
-                    entity_id: binary_sensor.bs_beamer_ping
+                    entity_id: binary_sensor.bs_wz_beamer_ping
                     state: "off"
                   - condition: template
                     value_template: >
@@ -30,15 +36,16 @@ wz_devices_off:
                         false
                       {% endif %}
             sequence:
-              - delay:
-                  hours: 0
-                  minutes: 0
-                  seconds: 0
-                  milliseconds: 500
+              - delay: "00:00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"
+#                  hours: 0
+#                  minutes: 0
+#                  seconds: 0
+#                  milliseconds: 500
     - service: homeassistant.turn_off
       data: {}
       target:
         entity_id: switch.wz_grp_schalter
+    - delay: "00:00:{{ states('input_number.in_ha_delay_default_scripts') | int }}"
     - service: homeassistant.turn_on
       data: {}
       target:

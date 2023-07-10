@@ -409,3 +409,9 @@ input_number.in_mm_okyo_volume_factor:
   friendly_name: Onkyo Lautstärkefaktor
 input_number.in_mm_onkyo_delay_response:  
   friendly_name: Onkyo Verzögerung Aktionen
+input_number.in_ha_delay_default_scripts:
+  friendly_name: Standart Verzögerung Skripte
+input_number.in_ha_delay_default_automations:
+  friendly_name: Standart Verzögerung Automationen  
+input_number.in_ha_delay_default_sleep:
+  friendly_name: Standart Verzögerung  

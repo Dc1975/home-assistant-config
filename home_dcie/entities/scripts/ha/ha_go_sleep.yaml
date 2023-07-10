@@ -79,11 +79,7 @@ ha_go_sleep:
         variables:
           msg_title: HomeAssistant - Erinnerung
           msg_message: Wie ist der Akkustand von Harmony?
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 5
-        milliseconds: 0          
+    - delay: "00:00:{{ states('input_number.in_ha_delay_default_scripts') | int }}"    
     - service: script.turn_on
       target:
         entity_id: script.ha_alexa_wz_notification
@@ -91,11 +87,7 @@ ha_go_sleep:
         variables:
           msg_title: HomeAssistant - Status Haustür
           msg_message: "{{states('sensor.sr_fl_nuki_frontdoor_info_security_state')}}"
-    - delay:
-        hours: 0
-        minutes: 0
-        seconds: 5
-        milliseconds: 0        
+    - delay: "00:00:{{ states('input_number.in_ha_delay_default_scripts') | int }}"                
     - service: script.turn_on
       target:
         entity_id: script.ha_alexa_wz_notification

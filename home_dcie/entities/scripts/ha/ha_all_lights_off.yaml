@@ -135,11 +135,7 @@ ha_all_lights_off:
     then:    
       - wait_template: "  {{ is_state('script.sz_light_off', 'off') }}"
         continue_on_timeout: true    
-  - delay:
-      hours: 0
-      minutes: 0
-      seconds: '{{ delay_FL_lamps | int }}'
-      milliseconds: 0
+  - delay: "00:00:{{ delay_FL_lamps | int }}"
   - service: script.turn_on
     data: {}
     target:

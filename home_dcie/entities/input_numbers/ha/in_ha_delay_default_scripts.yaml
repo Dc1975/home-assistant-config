@@ -1,0 +1,8 @@
+in_ha_delay_default_scripts:
+  name: in_ha_delay_default_scripts
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: s
+  icon: mdi:timer-alert
+  mode: box
