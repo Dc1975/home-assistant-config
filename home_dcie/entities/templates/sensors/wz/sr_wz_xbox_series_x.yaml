@@ -1,0 +1,8 @@
+sensor:
+  - name: sr_wz_xbox_series_x
+    state: >
+      {% if states('switch.konsole') == 'on' %}
+        {{states('binary_sensor.bs_wz_xbox_series_x_ping')}}
+      {% else %}
+        off
+      {% endif %}

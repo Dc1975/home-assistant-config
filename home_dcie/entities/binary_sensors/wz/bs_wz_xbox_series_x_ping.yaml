@@ -1,0 +1,5 @@
+platform: ping
+host: 192.168.0.38
+name: "bs_wz_xbox_series_x_ping"
+count: 2
+scan_interval: 10

@@ -25,12 +25,14 @@
       data: {}
       target:
         entity_id: input_boolean.ib_ha_covers_up_down_summer_mode_runs
-# Wohnzimemrtür
+# Wohnzimemrtür (special condition for gaming)
     - if:
         - condition: template
           value_template: >
             {{ states('input_boolean.ib_wz_door_covers_closed_by_summer_mode') == 'on'
-              and states('input_boolean.ib_wz_door_cover_used_in_automations') == 'on' }}
+              and states('input_boolean.ib_wz_door_cover_used_in_automations') == 'on' 
+              and states('sensor.sr_wz_xbox_series_x') == 'off'
+            }}
         - condition: trigger
           id: backside              
       then:    
@@ -64,12 +66,14 @@
           data: {}
           target:
             entity_id: input_boolean.ib_wz_door_cover_position_changed              
-# Wohnzimemrfenster
+# Wohnzimemrfenster (special condition for gaming)
     - if:
         - condition: template
           value_template: >
             {{ states('input_boolean.ib_wz_window_covers_closed_by_summer_mode') == 'on'
-              and states('input_boolean.ib_wz_window_cover_used_in_automations') == 'on' }}
+              and states('input_boolean.ib_wz_window_cover_used_in_automations') == 'on'
+              and states('sensor.sr_wz_xbox_series_x') == 'off'  
+             }}
         - condition: trigger
           id: backside              
       then:    
