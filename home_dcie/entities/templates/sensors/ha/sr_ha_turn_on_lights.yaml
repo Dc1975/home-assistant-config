@@ -44,4 +44,4 @@ sensor:
         {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_11', 'in_sz_az_lux_treshhold')}}        
       dg: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
-        {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_2', 'in_dg_lux_treshhold')}} 
+        {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_10', 'in_dg_lux_treshhold')}} 
