@@ -394,6 +394,8 @@ input_number.in_dg_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Dachgeschoss
 input_number.in_gt_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Gästetoilette
+input_number.in_sz_az_lux_treshhold:
+  friendly_name: Luxschwelle Bewegung Ankleidezimmer
 # input_datetime
 input_datetime.idt_ha_covers_close_summer_after:
   friendly_name: Sommermodus von 
