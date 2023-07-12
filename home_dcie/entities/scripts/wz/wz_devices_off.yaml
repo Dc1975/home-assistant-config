@@ -36,11 +36,7 @@ wz_devices_off:
                         false
                       {% endif %}
             sequence:
-              - delay: "00:00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"
-#                  hours: 0
-#                  minutes: 0
-#                  seconds: 0
-#                  milliseconds: 500
+              - delay: "00:00:00.{{states('input_number.in_ha_delay_default_sleep') | int}}"
     - service: homeassistant.turn_off
       data: {}
       target:
