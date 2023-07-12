@@ -1,0 +1,21 @@
+- id: '1689149263919'
+  alias: HA Temperaturinfo steigt
+  description: ''
+  trigger:  
+    - platform: numeric_state
+      entity_id: sensor.gw1100a_v2_2_3_outdoor_temperature            
+      above: input_number.in_ha_temperature_notification_treshhold
+  condition:
+    - condition: template
+      value_template: >
+        {{now().month | string in
+        states('input_text.it_ha_covers_close_summer_months')}}    
+  action:
+  - service: notify.alexa_media_uberall
+    data:
+      title: Temperaturinfo
+      message: Die Temperatur steigt über {{states('input_number.in_ha_temperature_notification_treshhold') }} Grad
+      data:
+        type: announce
+        method: all
+  mode: single

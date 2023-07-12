@@ -1,0 +1,8 @@
+in_ha_temperature_notification_treshhold:
+  name: in_ha_temperature_notification_treshhold
+  min: 0
+  max: 50
+  step: 0.1
+  unit_of_measurement: °C
+  icon: mdi:thermometer-alert
+  mode: box
