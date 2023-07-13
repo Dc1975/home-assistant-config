@@ -9,7 +9,10 @@
     - condition: template
       value_template: >
         {{now().month | string in
-        states('input_text.it_ha_covers_close_summer_months')}}    
+        states('input_text.it_ha_covers_close_summer_months')}}
+    - condition: state
+      entity_id: person.dcie
+      state: home            
   action:
   - service: notify.alexa_media_uberall
     data:
