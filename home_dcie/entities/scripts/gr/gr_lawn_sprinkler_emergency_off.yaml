@@ -1,0 +1,22 @@
+gr_lawn_sprinkler_emergency_off:
+  alias: GR Rasenbewässerung Notfallabschaltung
+  sequence:
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.garten
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_notification
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
+        msg_message: "Die Rasenbewässerung wird mit dem Schalter {{ state_attr('switch.garten', 'friendly_name') }} beendet."
+  - service: notify.alexa_media_uberall
+    data:
+      title: "{{states('input_text.it_general_notification_title')}} Garten"
+      message: "Die Rasenbewässerung wird mit dem Schalter {{ state_attr('switch.garten', 'friendly_name') }} beendet."
+      data:
+        type: announce
+        method: all    
+  mode: single

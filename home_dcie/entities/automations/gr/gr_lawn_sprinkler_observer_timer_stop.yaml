@@ -31,6 +31,10 @@
             data:
               type: announce
               method: all              
+        - service: script.turn_on
+          data: {}
+          target:
+            entity_id: script.gr_lawn_sprinkler_emergency_off
       else:  
         - service: switch.turn_off
           data: {}
@@ -55,7 +59,11 @@
                 message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
                 data:
                   type: announce
-                  method: all   
+                  method: all
+            - service: script.turn_on
+              data: {}
+              target:
+                entity_id: script.gr_lawn_sprinkler_emergency_off                     
           else:
             - service: script.turn_on
               target:
