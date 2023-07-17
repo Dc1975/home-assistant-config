@@ -2,12 +2,12 @@
   alias: HA Rolladen ab Sommerbetrieb
   description: ""
   trigger:  
-#    - platform: state
-#      entity_id:
-#        - sensor.gw1100a_v2_2_3_outdoor_temperature        
-    - platform: numeric_state
-      entity_id: sensor.gw1100a_v2_2_3_outdoor_temperature            
-      above: input_number.in_ha_covers_temperature_treshhold
+    - platform: state
+      entity_id:
+        - sensor.gw1100a_v2_2_3_outdoor_temperature        
+#    - platform: numeric_state
+#      entity_id: sensor.gw1100a_v2_2_3_outdoor_temperature            
+#      above: input_number.in_ha_covers_temperature_treshhold
   condition:
     - condition: and
       conditions:
@@ -26,18 +26,18 @@
             {% else %}
               false
             {% endif %}                
-#        - condition: template
-#          value_template: >
-#            {% set state_sensor =
-#            states('sensor.gw1100a_v2_2_3_outdoor_temperature') %} {% set
-#            state_threshold =
-#            states('input_number.in_ha_covers_temperature_treshhold') %} {% if
-#            is_number(state_sensor) and is_number(state_threshold) and
-#            (state_sensor | float >= state_threshold | float) %}
-#              true
-#            {% else %}
-#              false
-#            {% endif %}    
+        - condition: template
+          value_template: >
+            {% set state_sensor =
+            states('sensor.gw1100a_v2_2_3_outdoor_temperature') %} {% set
+            state_threshold =
+            states('input_number.in_ha_covers_temperature_treshhold') %} {% if
+            is_number(state_sensor) and is_number(state_threshold) and
+            (state_sensor | float >= state_threshold | float) %}
+              true
+            {% else %}
+              false
+            {% endif %}    
         - condition: template
           value_template: >
             {{now().month | string in
