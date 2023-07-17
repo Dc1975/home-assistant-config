@@ -38,10 +38,17 @@ mm_sykq_off:
                         false
                       {% endif %}                      
             sequence:
-              - delay: "00:00:00.{{states('input_number.in_ha_delay_default_sleep') | int}}"
+              # delay in ms
+              #- delay: "00:00:00.{{states('input_number.in_ha_delay_default_sleep') | int}}"
+              # delay in ss
+              - delay: "00:00:01"
               - service: media_player.turn_off
                 data: {}
                 target:
                   entity_id: media_player.sky_q
+              # delay in ms
+              #- delay: "00:00:00.{{states('input_number.in_ha_delay_default_sleep') | int}}"                  
+              # delay in s
+              - delay: "00:00:01"
   mode: single
   icon: mdi:toggle-switch-variant-off
