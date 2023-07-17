@@ -1,0 +1,6 @@
+#Wann war die Post da
+#Wann gab es Post
+speech:
+  type: plain
+  text: >
+    Die letzte Post gab es am {{states('input_text.it_post_received')}}
