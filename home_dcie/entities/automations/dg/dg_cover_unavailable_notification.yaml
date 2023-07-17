@@ -1,0 +1,34 @@
+- id: '1689608253378'
+  alias: DG Rolladenwarnung
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - cover.dachgeschossfensterrolladen_tuya
+    to: unavailable
+  - platform: state
+    entity_id:
+    - cover.dachgeschossfensterrolladen_tuya
+    to: unknown
+  condition: []
+  action: 
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_notification
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
+        msg_message: "Der {{state_attr('cover.dachgeschossfensterrolladen_tuya', 'friendly_name')}} ist nicht verfügbar."
+  - if:
+      - condition: state
+        entity_id: person.dcie
+        state: home
+    then:        
+      - service: notify.alexa_media_uberall
+        data:      
+          title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
+          message: "Der {{state_attr('cover.dachgeschossfensterrolladen_tuya', 'friendly_name')}} ist nicht verfügbar."
+          data:
+            type: announce
+            method: all
+  mode: single
