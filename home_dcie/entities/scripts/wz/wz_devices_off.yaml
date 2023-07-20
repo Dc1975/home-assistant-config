@@ -36,7 +36,10 @@ wz_devices_off:
                         false
                       {% endif %}
             sequence:
-              - delay: "00:00:00.{{states('input_number.in_ha_delay_default_sleep') | int}}"
+              # delay in s            
+              - delay: "00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"
+              # delay in ms              
+              # - delay: "00:00:00.{{states('input_number.in_ha_delay_default_sleep') | int}}"
     - service: homeassistant.turn_off
       data: {}
       target:
@@ -45,6 +48,6 @@ wz_devices_off:
     - service: homeassistant.turn_on
       data: {}
       target:
-        entity_id: script.mm_sykq_off          
+        entity_id: script.mm_sykq_off
   mode: single
   icon: mdi:toggle-switch-variant-off
