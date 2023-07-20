@@ -16,7 +16,7 @@
   - service: notify.alexa_media_uberall
     data:
       title: Temperaturinfo
-      message: Die Temperatur sinkt unter {{states('input_number.in_ha_temperature_notification_treshhold') }} Grad 
+      message: Die Temperatur sinkt unter {{states('input_number.in_ha_temperature_notification_treshhold') | int }} Grad 
       data:
         type: announce
         method: all
