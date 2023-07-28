@@ -13,16 +13,21 @@ mm_sykq_off:
             state: "on"            
           - condition: state
             entity_id: media_player.sky_q
-            state: "unavailable"            
+            state: "unavailable"
+          - condition: state            
+            entity_id: media_player.sky_q            
+            state: "idle"            
       then:        
         - service: media_player.turn_off
           data: {}
           target:
-            entity_id: media_player.sky_q      
+            entity_id: media_player.sky_q
+        # delay in s
+        - delay: "00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"            
         - service: timer.start
           data_template:
             entity_id: timer.ti_mm_skyq_off_timeout            
-            duration: "00:00:{{states('input_number.in_mm_skyq_off_delay') | int}}"	
+            duration: "00:00:{{states('input_number.in_mm_skyq_off_delay') | int}}"	            
         - repeat:
             until:
               - condition: or
