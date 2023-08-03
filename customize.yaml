@@ -343,6 +343,8 @@ cover.wohnzimmerfensterrolladen_tuya:
   friendly_name: Wohnzimmerfensterrolladen
 cover.leinwand_tuya:
   friendly_name: Leinwand  
+group.ha_grp_cover_position_changed:
+  friendly_name: Manuell betätigt  
 # garden
 input_boolean.ib_gr_lawn_sprinkler_used_in_automations_morning:
   friendly_name: In Automationen benutzen morgens
@@ -411,8 +413,8 @@ input_text.it_ha_temperature_notification_months:
 # input_number
 input_number.in_mm_okyo_volume_factor:
   friendly_name: Onkyo Lautstärkefaktor
-input_number.in_mm_onkyo_delay_response:  
-  friendly_name: Onkyo Verzögerung Aktionen
+input_number.in_mm_onkyo_response_timeout:  
+  friendly_name: Onkyo Wartezeit Aktionen
 input_number.in_ha_delay_default_scripts:
   friendly_name: Verzögerung Skripte
 input_number.in_ha_delay_default_automations:
