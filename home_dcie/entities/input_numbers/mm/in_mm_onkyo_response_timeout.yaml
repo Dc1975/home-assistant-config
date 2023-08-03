@@ -1,7 +1,7 @@
-in_mm_onkyo_delay_response:
-  name: in_mm_onkyo_delay_response
+in_mm_onkyo_response_timeout:
+  name: in_mm_onkyo_response_timeout
   min: 0
-  max: 30
+  max: 60
   step: 1
   mode: box
   icon: mdi:timer-alert

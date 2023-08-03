@@ -1,0 +1,4 @@
+ti_mm_onkyo_response_timeout:
+  duration: "00:00:60"
+  restore: true  
+  name: ti_mm_onkyo_response_timeout

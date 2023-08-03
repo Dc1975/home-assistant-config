@@ -7,11 +7,50 @@ mm_onkyo_set_volume :
       example: "24"
       name: volume   
   sequence:
-  - service: media_player.volume_set
-    data:
-      # at this time the volume factor is 0.0125 <=> 1
-      volume_level: "{{ (volume * states('input_number.in_mm_okyo_volume_factor') | float) | round(4)}}"      
-    target:
-      entity_id: media_player.onkyo_2
+    - service: media_player.volume_set
+      data:
+        # at this time the volume factor is 0.0125 <=> 1
+        volume_level: "{{ (volume * states('input_number.in_mm_okyo_volume_factor') | float) | round(4)}}"      
+      target:
+        entity_id: media_player.onkyo_2
+    # delay in s
+    - delay: "00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"            
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_mm_onkyo_response_timeout            
+        duration: "00:00:{{states('input_number.in_mm_onkyo_response_timeout') | int}}"	
+    - repeat:
+        until:
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: media_player.onkyo_2
+                state: "playing"
+#              - condition: state
+#                entity_id: media_player.onkyo_2
+#                state: "on"            
+              - condition: state
+                entity_id: media_player.onkyo_2
+                state: "available"
+              - condition: template
+                value_template: >
+                  {% if states('timer.ti_mm_onkyo_response_timeout') == 'idle' %}
+                    true
+                  {% else %}  
+                    false
+                  {% endif %}                      
+        sequence:
+          # delay in s
+          - delay: "00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"
+          # delay in ms
+          #- delay: "00:00:00.{{states('input_number.in_ha_delay_default_sleep') | int}}"
+          - service: media_player.volume_set
+            data:
+              # at this time the volume factor is 0.0125 <=> 1
+              volume_level: "{{ (volume * states('input_number.in_mm_okyo_volume_factor') | float) | round(4)}}"      
+            target:
+              entity_id: media_player.onkyo_2
+          # delay in s
+          - delay: "00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"
   icon: mdi:remote-tv
   mode: single

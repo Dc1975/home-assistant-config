@@ -52,7 +52,7 @@ mm_kino_normal_start:
     type: select_option
     option: BEA-DVR
     # wait for onkyo respond    
-  - delay: "00:00:{{ states('input_number.in_mm_onkyo_delay_response') | int }}"
+  - delay: "00:00:{{ states('input_number.in_mm_onkyo_response_timeout') | int }}"
   - service: script.turn_on
     data: 
       variables:
