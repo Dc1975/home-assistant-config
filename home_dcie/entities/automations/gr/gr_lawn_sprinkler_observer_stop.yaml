@@ -13,4 +13,9 @@
     data: {}
     target:
       entity_id: timer.ti_gr_lawn_sprinkler_observer
+# if the the switch turned off, stop timers for observer and sprinkler to get the correct announcment
+  - service: timer.cancel
+    data: {}
+    target:
+      entity_id: timer.ti_gr_lawn_sprinkler      
   mode: single

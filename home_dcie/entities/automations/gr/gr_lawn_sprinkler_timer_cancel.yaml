@@ -1,0 +1,38 @@
+- id: '1691141894818'
+  alias: GR Gartenbewässerung Timer abbruch
+  description: ''
+  trigger:
+#    - platform: state
+#      entity_id:
+#      - timer.ti_bz_motion_lights
+#      to: idle
+# see Bug https://github.com/home-assistant/home-assistant.io/pull/26352
+    - platform: event
+      event_type: timer.cancelled
+      event_data:
+        entity_id: timer.ti_gr_lawn_sprinkler
+  condition: []
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_handy_notification
+      data:
+        variables:
+          msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
+          msg_message: "Die Rasenbewässerung wurde abgebrochen."
+          #msg_message: "Die Rasenbewässerung wurde nach {{states('input_number.in_gr_duration_lawn_sprinkler') | round(0) }} Minuten abgebrochen."
+    - service: notify.alexa_media_uberall
+      data:
+        title: "{{states('input_text.it_general_notification_title')}} Garten"
+        message: "Die Rasenbewässerung wurde abgebrochen."        
+        #message: "Die Rasenbewässerung wurde nach {{states('input_number.in_gr_duration_lawn_sprinkler') | round(0) }} Minuten abgebrochen."
+        data:
+          type: announce
+          method: all
+    # lawn sprinkler timer 
+    # https://community.home-assistant.io/t/stopwatch-with-start-stop-resume-lap-and-reset/443994/49
+    - service: input_boolean.turn_off 
+      data: {} 
+      target: 
+        entity_id: input_boolean.start_stopwatch_lawn_sprinkler                      
+  mode: single
