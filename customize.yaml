@@ -343,6 +343,73 @@ cover.wohnzimmerfensterrolladen_tuya:
   friendly_name: Wohnzimmerfensterrolladen
 cover.leinwand_tuya:
   friendly_name: Leinwand  
+group.ha_grp_cover_position_changed:
+  friendly_name: Manuell betätigt  
+
+input_datetime.idt_wz_door_cover_up_workday:
+  friendly_name: WZ Türrolladen auf Wertktags
+input_datetime.idt_wz_window_cover_up_workday:
+  friendly_name: WZ Fensterrolladen auf Wertktags
+input_datetime.idt_wz_door_cover_up_weekend:
+  friendly_name: WZ Türrolladen auf Wochenende
+input_datetime.idt_wz_window_cover_up_weekend:
+  friendly_name: WZ Fensterrolladen auf Wochenende
+input_datetime.idt_wz_door_cover_down_workday:
+  friendly_name: WZ Türrolladen zu Wertktags
+input_datetime.idt_wz_window_cover_down_workday:  
+  friendly_name: WZ Fensterrolladen zu Wertktags
+input_datetime.idt_wz_door_cover_down_weekend:
+  friendly_name: WZ Türrolladen zu Wochenende
+input_datetime.idt_wz_window_cover_down_weekend:
+  friendly_name: WZ Fensterrolladen zu Wochenende
+input_datetime.idt_ku_cover_up_workday:  
+  friendly_name: KU Fensterrolladen auf Wertktags
+input_datetime.idt_ku_cover_up_weekend:
+  friendly_name: KU Fensterrolladen auf Wochenende
+input_datetime.idt_ku_cover_down_workday:
+  friendly_name: KU Fensterrolladen zu Wertktags
+input_datetime.idt_ku_cover_down_weekend:  
+  friendly_name: KU Fensterrolladen zu Wochenende
+input_datetime.idt_bz_cover_up_workday:  
+  friendly_name: BZ Fensterrolladen auf Wertktags
+input_datetime.idt_bz_cover_up_weekend:  
+  friendly_name: BZ Fensterrolladen auf Wochenende  
+input_datetime.idt_bz_cover_down_workday:  
+  friendly_name: BZ Fensterrolladen zu Wertktags
+input_datetime.idt_bz_cover_down_weekend:  
+  friendly_name: BZ Fensterrolladen zu Wochenende  
+input_datetime.idt_sz_cover_up_workday:  
+  friendly_name: SZ Fensterrolladen auf Wertktags  
+input_datetime.idt_sz_cover_up_weekend:  
+  friendly_name: SZ Fensterrolladen auf Wochenende  
+input_datetime.idt_sz_cover_down_workday:  
+  friendly_name: SZ Fensterrolladen zu Wertktags  
+input_datetime.idt_sz_cover_down_weekend:  
+  friendly_name: SZ Fensterrolladen zu Wochenende  
+input_datetime.idt_sz_az_cover_up_workday:  
+  friendly_name: AZ Fensterrolladen auf Wertktags  
+input_datetime.idt_sz_az_cover_up_weekend:  
+  friendly_name: AZ Fensterrolladen auf Wochenende  
+input_datetime.idt_sz_az_cover_down_workday:  
+  friendly_name: AZ Fensterrolladen zu Wertktags  
+input_datetime.idt_sz_az_cover_down_weekend:  
+  friendly_name: AZ Fensterrolladen zu Wochenende  
+input_datetime.idt_gz_cover_up_workday:
+  friendly_name: GZ Fensterrolladen auf Wertktags  
+input_datetime.idt_gz_cover_up_weekend:
+  friendly_name: GZ Fensterrolladen auf Wochenende  
+input_datetime.idt_gz_cover_down_workday:
+  friendly_name: GZ Fensterrolladen zu Wertktags  
+input_datetime.idt_gz_cover_down_weekend:
+  friendly_name: GZ Fensterrolladen zu Wochenende    
+input_datetime.idt_dg_cover_up_workday:
+  friendly_name: DG Fensterrolladen auf Wertktags  
+input_datetime.idt_dg_cover_up_weekend:
+  friendly_name: DG Fensterrolladen auf Wochenende  
+input_datetime.idt_dg_cover_down_workday:
+  friendly_name: DG Fensterrolladen zu Wertktags  
+input_datetime.idt_dg_cover_down_weekend:
+  friendly_name: DG Fensterrolladen zu Wochenende    
 # garden
 input_boolean.ib_gr_lawn_sprinkler_used_in_automations_morning:
   friendly_name: In Automationen benutzen morgens
@@ -411,8 +478,8 @@ input_text.it_ha_temperature_notification_months:
 # input_number
 input_number.in_mm_okyo_volume_factor:
   friendly_name: Onkyo Lautstärkefaktor
-input_number.in_mm_onkyo_delay_response:  
-  friendly_name: Onkyo Verzögerung Aktionen
+input_number.in_mm_onkyo_response_timeout:
+  friendly_name: Onkyo Kommandoausszeit
 input_number.in_ha_delay_default_scripts:
   friendly_name: Verzögerung Skripte
 input_number.in_ha_delay_default_automations:
