@@ -2,20 +2,30 @@
   alias: GR Rasenbewässerung Überwachung stop
   description: ''
   trigger:
-  - platform: device
-    type: turned_off
-    device_id: d2baac79c45912a95219ff03b16a46cc
-    entity_id: switch.brunnen
-    domain: switch
-  condition: []
+    # use this to avoid triggering when state changes from "unavailable" to "off"
+    - platform: state
+      entity_id:
+        - switch.brunnen
+      from: "on"
+      to: "off"  
+#    - platform: device
+#      type: turned_off
+#      device_id: d2baac79c45912a95219ff03b16a46cc
+#      entity_id: switch.brunnen
+#      domain: switch
+  condition:
+# the following condition is not valid and possible!
+#    - condition: state
+#      entity_id: switch.brunnen
+#      state: "on"
   action:
-  - service: timer.cancel
-    data: {}
-    target:
-      entity_id: timer.ti_gr_lawn_sprinkler_observer
-# if the the switch turned off, stop timers for observer and sprinkler to get the correct announcment
-  - service: timer.cancel
-    data: {}
-    target:
-      entity_id: timer.ti_gr_lawn_sprinkler      
+    - service: timer.cancel
+      data: {}
+      target:
+        entity_id: timer.ti_gr_lawn_sprinkler_observer
+  # if the the switch turned off, stop timers for observer and sprinkler to get the correct announcment
+    - service: timer.cancel
+      data: {}
+      target:
+        entity_id: timer.ti_gr_lawn_sprinkler      
   mode: single

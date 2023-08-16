@@ -31,4 +31,11 @@
           data:
             type: announce
             method: all
+  # delay in s
+  - delay: "00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"                        
+  # the position of the cover changes if it went offline and online again
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.ib_wz_door_cover_position_changed            
   mode: single

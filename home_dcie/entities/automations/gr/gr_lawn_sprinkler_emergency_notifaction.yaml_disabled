@@ -1,0 +1,14 @@
+- id: '1689240734410'
+  alias: GR Rasenbewässerung Notfallbenachrichtigung
+  description: ''
+  trigger:
+    - platform: state
+      entity_id:
+      - switch.brunnen
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: "00:{{(state_attr('input_number.in_gr_duration_lawn_sprinkler', 'max') | int) + 2}}:00"
+  condition: []
+  action: []        
+  mode: single

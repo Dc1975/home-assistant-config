@@ -1,15 +1,17 @@
-- id: '1689608289678'
-  alias: SZ AZ Rolladenwarnung
+- id: '1691565626319'
+  alias: SZ AZ Rolladenentwarnung
   description: ''
   trigger:
   - platform: state
     entity_id:
     - cover.ankleidezimmerfensterrolladen_tuya
-    to: unavailable
+    from: unavailable
+    to: available
   - platform: state
     entity_id:
     - cover.ankleidezimmerfensterrolladen_tuya
-    to: unknown
+    from: unknown
+    to: available    
   condition: []
   action: 
   - service: script.turn_on
@@ -17,8 +19,8 @@
       entity_id: script.ha_handy_notification
     data:
       variables:
-        msg_title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
-        msg_message: "Der {{state_attr('cover.ankleidezimmerfensterrolladen_tuya', 'friendly_name')}} ist nicht verfügbar."
+        msg_title: "{{states('input_text.it_general_notification_title')}}Rolladen-Entwarnung"
+        msg_message: "Der {{state_attr('cover.ankleidezimmerfensterrolladen_tuya', 'friendly_name')}} ist wieder verfügbar."
   - if:
       - condition: state
         entity_id: person.dcie
@@ -26,16 +28,12 @@
     then:        
       - service: notify.alexa_media_uberall
         data:      
-          title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
-          message: "Der {{state_attr('cover.ankleidezimmerfensterrolladen_tuya', 'friendly_name')}} ist nicht verfügbar."
+          title: "{{states('input_text.it_general_notification_title')}}Rolladen-Entwarnung"
+          message: "Der {{state_attr('cover.ankleidezimmerfensterrolladen_tuya', 'friendly_name')}} ist wieder verfügbar."
           data:
             type: announce
             method: all
-  # delay in s
-  - delay: "00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"
-  # the position of the cover changes if it went offline and online again    
   - service: input_boolean.turn_off
-    data: {}
     target:
       entity_id: input_boolean.ib_sz_az_cover_position_changed            
   mode: single
