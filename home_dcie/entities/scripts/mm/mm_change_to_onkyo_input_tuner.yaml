@@ -11,7 +11,7 @@ mm_change_to_onkyo_input_tuner:
       - InputTuner
       delay_secs: 0.5
       device: 52440711
-  - delay: "00:00:{{ states('input_number.in_mm_onkyo_response_timeout') | int }}"
+#  - delay: "00:00:{{ states('input_number.in_mm_onkyo_response_timeout') | int }}"
   - service: script.turn_on
     data: 
       variables:

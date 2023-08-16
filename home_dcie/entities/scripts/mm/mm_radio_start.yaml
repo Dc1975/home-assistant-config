@@ -14,7 +14,7 @@ mm_radio_start:
     entity_id: select.harmonyelitehubby_activities
     type: select_option
     option: Radio  
-  - delay: "00:00:{{ states('input_number.in_mm_onkyo_response_timeout') | int }}"
+#  - delay: "00:00:{{ states('input_number.in_mm_onkyo_response_timeout') | int }}"
   - service: script.turn_on
     data: 
       variables:
