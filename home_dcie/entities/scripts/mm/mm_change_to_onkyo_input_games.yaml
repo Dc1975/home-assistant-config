@@ -15,7 +15,7 @@ mm_change_to_onkyo_input_games:
   - service: script.turn_on
     data: 
       variables:
-        volume: "{{states('input_number.in_mm_okyo_volume_game') | int}}"
+        volume: "{{states('input_number.in_mm_onkyo_volume_game') | int}}"
     target:
       entity_id: script.mm_onkyo_set_volume          
   mode: single

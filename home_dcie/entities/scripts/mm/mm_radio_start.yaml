@@ -18,7 +18,7 @@ mm_radio_start:
   - service: script.turn_on
     data: 
       variables:
-        volume: "{{states('input_number.in_mm_okyo_volume_tuner') | int}}"
+        volume: "{{states('input_number.in_mm_onkyo_volume_tuner') | int}}"
     target:
       entity_id: script.mm_onkyo_set_volume  
   icon: mdi:remote-tv    

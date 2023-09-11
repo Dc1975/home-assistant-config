@@ -1,5 +1,5 @@
-in_mm_okyo_volume_tuner:
-  name: in_mm_okyo_volume_tuner
+in_mm_onkyo_volume_net:
+  name: in_mm_onkyo_volume_net
   min: 0
   max: 100
   step: 1 

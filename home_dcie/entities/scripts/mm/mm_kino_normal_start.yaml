@@ -56,7 +56,7 @@ mm_kino_normal_start:
   - service: script.turn_on
     data: 
       variables:
-        volume: "{{states('input_number.in_mm_okyo_volume_cbl') | int}}"
+        volume: "{{states('input_number.in_mm_onkyo_volume_cbl') | int}}"
     target:
       entity_id: script.mm_onkyo_set_volume       
   mode: single

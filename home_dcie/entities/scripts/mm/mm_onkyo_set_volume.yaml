@@ -10,7 +10,7 @@ mm_onkyo_set_volume :
     - service: media_player.volume_set
       data:
         # at this time the volume factor is 0.0125 <=> 1
-        volume_level: "{{ (volume * states('input_number.in_mm_okyo_volume_factor') | float) | round(4)}}"      
+        volume_level: "{{ (volume * states('input_number.in_mm_onkyo_volume_factor') | float) | round(4)}}"      
       target:
         entity_id: media_player.onkyo_2
     # delay in s
@@ -47,7 +47,7 @@ mm_onkyo_set_volume :
           - service: media_player.volume_set
             data:
               # at this time the volume factor is 0.0125 <=> 1
-              volume_level: "{{ (volume * states('input_number.in_mm_okyo_volume_factor') | float) | round(4)}}"      
+              volume_level: "{{ (volume * states('input_number.in_mm_onkyo_volume_factor') | float) | round(4)}}"      
             target:
               entity_id: media_player.onkyo_2
           # delay in s

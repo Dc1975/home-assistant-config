@@ -1,5 +1,5 @@
-in_mm_okyo_volume_game:
-  name: in_mm_okyo_volume_game
+in_mm_onkyo_volume_cbl:
+  name: in_mm_onkyo_volume_cbl
   min: 0
   max: 100
   step: 1 
