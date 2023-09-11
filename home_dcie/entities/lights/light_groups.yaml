@@ -1,4 +1,9 @@
 - platform: group
+  name: gr_grp_lampen
+  entities: !include_dir_merge_list ../default/lights/gr
+  unique_id: gr_grp_lampen
+
+- platform: group
   name: ha_grp_lampen
   entities: !include_dir_merge_list ../default/lights
   unique_id: ha_grp_lampen
@@ -65,7 +70,7 @@
 
 - platform: group
   name: tr_grp_lampen_oben_unten
-  entities: 
+  entities:
     - light.tr_grp_lampen_unten
     - light.tr_grp_lampen_oben
   unique_id: tr_grp_lampen_oben_unten

@@ -1,0 +1,34 @@
+- id: "1694158020598"
+  alias: GR Terrassenbeleuchtung aus
+  description: ""
+  trigger:
+    - platform: time
+      at: input_datetime.idt_gr_terrace_lighting_off_workday
+      id: workday_off
+    - platform: time
+      at: input_datetime.idt_gr_terrace_lighting_off_weekend
+      id: weekend_off
+  condition:
+    # no other condition needed, turn always off
+    - condition: or
+      conditions:
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: workday_off
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "on"
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: weekend_off
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "off"
+  action:
+    - service: light.turn_off
+      data: {}
+      target:
+        entity_id: light.terassenlampen
+  mode: single

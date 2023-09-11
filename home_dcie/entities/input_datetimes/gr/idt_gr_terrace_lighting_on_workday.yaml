@@ -1,0 +1,6 @@
+idt_gr_terrace_lighting_on_workday:
+  name: idt_gr_terrace_lighting_on_workday
+  #initial: ""
+  icon: mdi:clock-time-seven
+  has_time: true
+  has_date: false

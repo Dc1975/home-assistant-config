@@ -1,0 +1,6 @@
+idt_gr_terrace_lighting_off_weekend:
+  name: idt_gr_terrace_lighting_off_weekend
+  #initial: ""
+  icon: mdi:clock-time-seven
+  has_time: true
+  has_date: false

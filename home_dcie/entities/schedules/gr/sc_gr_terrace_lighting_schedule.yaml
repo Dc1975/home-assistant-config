@@ -1,0 +1,24 @@
+sc_gr_terrace_lighting_schedule:
+  name: sc_gr_terrace_lighting_schedule
+  icon: mdi:calendar-clock
+  monday:
+    - from: "21:15:00"
+      to: "22:30:00"
+  tuesday:
+    - from: "21:15:00"
+      to: "22:30:00"
+  wednesday:
+    - from: "21:15:00"
+      to: "22:30:00"
+  thursday:
+    - from: "21:15:00"
+      to: "22:30:00"
+  friday:
+    - from: "21:15:00"
+      to: "22:30:00"
+  saturday:
+    - from: "21:15:00"
+      to: "23:30:00"
+  sunday:
+    - from: "21:15:00"
+      to: "23:30:00"
