@@ -1,0 +1,8 @@
+in_ha_delay_covers_reconnect:
+  name: in_ha_delay_covers_reconnect
+  min: 0
+  max: 60
+  step: 1
+  unit_of_measurement: s
+  icon: mdi:timer-alert
+  mode: box
