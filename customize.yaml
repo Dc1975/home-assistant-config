@@ -93,70 +93,70 @@ sensor.local_rpi_ux_release:
   friendly_name: OS Release
 sensor.local_rpi_ux_version:
   friendly_name: OS Version
-# Energy plugs  
-sensor.um_dg_steckdose_unifi_server_daily:  
-  friendly_name: Unifi Server täglich  
-sensor.um_dg_steckdose_unifi_server_weekly:  
-  friendly_name: Unifi Server wöchentlich  
-sensor.um_dg_steckdose_unifi_server_monthly:  
-  friendly_name: Unifi Server monatlich  
-sensor.um_dg_steckdose_unifi_server_yearly:  
-  friendly_name: Unifi Server jährlich        
-sensor.um_dg_steckdose_homeassistant_server_daily:  
-  friendly_name: HomeAssistant Server täglich  
-sensor.um_dg_steckdose_homeassistant_server_weekly:  
-  friendly_name: HomeAssistant Server wöchentlich  
-sensor.um_dg_steckdose_homeassistant_server_monthly:  
-  friendly_name: HomeAssistant Server monatlich  
-sensor.um_dg_steckdose_homeassistant_server_yearly:  
-  friendly_name: HomeAssistant Server jährlich          
-sensor.um_ku_steckdose_kuhlschrank_daily:  
-  friendly_name: Küchenkühlschrank täglich  
-sensor.um_ku_steckdose_kuhlschrank_weekly:  
-  friendly_name: Küchenkühlschrank wöchentlich  
-sensor.um_ku_steckdose_kuhlschrank_monthly:  
-  friendly_name: Küchenkühlschrank monatlich  
-sensor.um_ku_steckdose_kuhlschrank_yearly:  
-  friendly_name: Küchenkühlschrank jährlich            
-sensor.um_ku_steckdose_spulmaschine_daily:  
-  friendly_name: Spülmaschine täglich  
-sensor.um_ku_steckdose_spulmaschine_weekly:  
-  friendly_name: Spülmaschine wöchentlich  
-sensor.um_ku_steckdose_spulmaschine_monthly:  
-  friendly_name: Spülmaschine monatlich  
-sensor.um_ku_steckdose_spulmaschine_yearly:  
-  friendly_name: Spülmaschine jährlich    
-sensor.um_ke_steckdose_kuhlschrank_daily:  
-  friendly_name: Kellerkühlschrank täglich  
-sensor.um_ke_steckdose_kuhlschrank_weekly:  
-  friendly_name: Kellerkühlschrank wöchentlich  
-sensor.um_ke_steckdose_kuhlschrank_monthly:  
-  friendly_name: Kellerkühlschrank monatlich  
-sensor.um_ke_steckdose_kuhlschrank_yearly:  
-  friendly_name: Kellerkühlschrank jährlich    
-sensor.um_ke_steckdose_waschmaschine_daily:  
-  friendly_name: Waschmaschine täglich  
-sensor.um_ke_steckdose_waschmaschine_weekly:  
-  friendly_name: Waschmaschine wöchentlich  
-sensor.um_ke_steckdose_waschmaschine_monthly:  
-  friendly_name: Waschmaschine monatlich  
-sensor.um_ke_steckdose_waschmaschine_yearly:  
-  friendly_name: Waschmaschine jährlich   
-sensor.um_ke_steckdose_trockner_daily:  
-  friendly_name: Trockner täglich  
-sensor.um_ke_steckdose_trockner_weekly:  
-  friendly_name: Trockner wöchentlich  
-sensor.um_ke_steckdose_trockner_monthly:  
-  friendly_name: Trockner monatlich  
-sensor.um_ke_steckdose_trockner_yearly:  
-  friendly_name: Trockner jährlich     
+# Energy plugs
+sensor.um_dg_steckdose_unifi_server_daily:
+  friendly_name: Unifi Server täglich
+sensor.um_dg_steckdose_unifi_server_weekly:
+  friendly_name: Unifi Server wöchentlich
+sensor.um_dg_steckdose_unifi_server_monthly:
+  friendly_name: Unifi Server monatlich
+sensor.um_dg_steckdose_unifi_server_yearly:
+  friendly_name: Unifi Server jährlich
+sensor.um_dg_steckdose_homeassistant_server_daily:
+  friendly_name: HomeAssistant Server täglich
+sensor.um_dg_steckdose_homeassistant_server_weekly:
+  friendly_name: HomeAssistant Server wöchentlich
+sensor.um_dg_steckdose_homeassistant_server_monthly:
+  friendly_name: HomeAssistant Server monatlich
+sensor.um_dg_steckdose_homeassistant_server_yearly:
+  friendly_name: HomeAssistant Server jährlich
+sensor.um_ku_steckdose_kuhlschrank_daily:
+  friendly_name: Küchenkühlschrank täglich
+sensor.um_ku_steckdose_kuhlschrank_weekly:
+  friendly_name: Küchenkühlschrank wöchentlich
+sensor.um_ku_steckdose_kuhlschrank_monthly:
+  friendly_name: Küchenkühlschrank monatlich
+sensor.um_ku_steckdose_kuhlschrank_yearly:
+  friendly_name: Küchenkühlschrank jährlich
+sensor.um_ku_steckdose_spulmaschine_daily:
+  friendly_name: Spülmaschine täglich
+sensor.um_ku_steckdose_spulmaschine_weekly:
+  friendly_name: Spülmaschine wöchentlich
+sensor.um_ku_steckdose_spulmaschine_monthly:
+  friendly_name: Spülmaschine monatlich
+sensor.um_ku_steckdose_spulmaschine_yearly:
+  friendly_name: Spülmaschine jährlich
+sensor.um_ke_steckdose_kuhlschrank_daily:
+  friendly_name: Kellerkühlschrank täglich
+sensor.um_ke_steckdose_kuhlschrank_weekly:
+  friendly_name: Kellerkühlschrank wöchentlich
+sensor.um_ke_steckdose_kuhlschrank_monthly:
+  friendly_name: Kellerkühlschrank monatlich
+sensor.um_ke_steckdose_kuhlschrank_yearly:
+  friendly_name: Kellerkühlschrank jährlich
+sensor.um_ke_steckdose_waschmaschine_daily:
+  friendly_name: Waschmaschine täglich
+sensor.um_ke_steckdose_waschmaschine_weekly:
+  friendly_name: Waschmaschine wöchentlich
+sensor.um_ke_steckdose_waschmaschine_monthly:
+  friendly_name: Waschmaschine monatlich
+sensor.um_ke_steckdose_waschmaschine_yearly:
+  friendly_name: Waschmaschine jährlich
+sensor.um_ke_steckdose_trockner_daily:
+  friendly_name: Trockner täglich
+sensor.um_ke_steckdose_trockner_weekly:
+  friendly_name: Trockner wöchentlich
+sensor.um_ke_steckdose_trockner_monthly:
+  friendly_name: Trockner monatlich
+sensor.um_ke_steckdose_trockner_yearly:
+  friendly_name: Trockner jährlich
 # EcoWitt
 sensor.gw1100a_v2_2_3_outdoor_temperature:
   friendly_name: Außentemperatur
-sensor.gw1100a_v2_2_3_feels_like_temperature:  
+sensor.gw1100a_v2_2_3_feels_like_temperature:
   friendly_name: Gefühlte Außentemperatur
 sensor.gw1100a_v2_2_3_indoor_temperature:
-    friendly_name: Innentemperatur
+  friendly_name: Innentemperatur
 sensor.gw1100a_v2_2_3_humidity:
   friendly_name: Außenluftfeuchte
 sensor.gw1100a_v2_2_3_indoor_humidity:
@@ -168,9 +168,9 @@ sensor.gw1100a_v2_2_3_wind_gust:
 sensor.gw1100a_v2_2_3_max_daily_gust:
   friendly_name: Tägliche Windböe
 sensor.gw1100a_v2_2_3_wind_direction:
-  friendly_name: Windrichtung  
+  friendly_name: Windrichtung
 sensor.gw1100a_v2_2_3_windchill:
-  friendly_name: Windkühle  
+  friendly_name: Windkühle
 sensor.gw1100a_v2_2_3_solar_lux:
   friendly_name: Außenlux
 sensor.gw1100a_v2_2_3_uv_index:
@@ -178,12 +178,12 @@ sensor.gw1100a_v2_2_3_uv_index:
 sensor.gw1100a_v2_2_3_absolute_pressure:
   friendly_name: Absoluter Luftdruck
 sensor.gw1100a_v2_2_3_relative_pressure:
-  friendly_name: Relativer Luftdruck  
-sensor.gw1100a_v2_2_3_solar_radiation:  
+  friendly_name: Relativer Luftdruck
+sensor.gw1100a_v2_2_3_solar_radiation:
   friendly_name: Energieleistung
 sensor.gw1100a_v2_2_3_dewpoint:
   friendly_name: Außentaupunkt
-sensor.gw1100a_v2_2_3_indoor_dewpoint:  
+sensor.gw1100a_v2_2_3_indoor_dewpoint:
   friendly_name: Innentaupunkt
 # https://www.wetterstationsforum.info/viewtopic.php?t=241
 #Yearly - Jahresregenmenge seit dem 01.01. 00:00 Uhr
@@ -202,7 +202,7 @@ sensor.gw1100a_v2_2_3_indoor_dewpoint:
 #Weekly Rain is defined as the calendar week total, and resets on Sunday morning at midnight (Sunday thru Saturday).
 #Monthly Rain is defined as the calendar month total, and resets on the first day of the Month.
 #Yearly Rain is defined as the calendar year total, and resets on the first day of the Year. The WS-1000 series weather stations allow you to change the month rain is reset to 0.00 (referred to as Rainfall Season).
-#Total Rain is defined as the running total since station was powered up.   
+#Total Rain is defined as the running total since station was powered up.
 sensor.gw1100a_v2_2_3_rain_rate:
   friendly_name: Aktueller Niederschlag
 sensor.gw1100a_v2_2_3_hourly_rain_rate:
@@ -222,7 +222,7 @@ sensor.gw1100a_v2_2_3_event_rain_rate:
 
 # add historical statistic to sensors
 sensor.sr_local_nuc_cpu_temperature:
-  state_class: measurement  
+  state_class: measurement
 # system sensors
 sensor.sr_count_entities:
   friendly_name: Anzahl der Entitäten
@@ -231,15 +231,15 @@ sensor.sr_count_switch:
 sensor.sr_count_alerts:
   friendly_name: Anzahl der Alarme
 sensor.sr_count_automations:
-  friendly_name: Anzahl der Automationen  
+  friendly_name: Anzahl der Automationen
 sensor.sr_count_binary_sensors:
   friendly_name: Anzahl der Binärsensoren
 sensor.sr_count_cameras:
-  friendly_name: Anzahl der online Kameras  
+  friendly_name: Anzahl der online Kameras
 sensor.sr_count_climates:
-  friendly_name: Anzahl der Klimageräte    
+  friendly_name: Anzahl der Klimageräte
 sensor.sr_count_counters:
-  friendly_name: Anzahl der Zähler      
+  friendly_name: Anzahl der Zähler
 sensor.sr_count_devices:
   friendly_name: Anzahl der Geräte-Tracker
 sensor.sr_count_groups:
@@ -247,39 +247,39 @@ sensor.sr_count_groups:
 sensor.sr_count_image_processing:
   friendly_name: Anzahl der Bildverarbeitungen
 sensor.sr_count_boolean:
-  friendly_name: Anzahl der Boolschen Eingabefelder  
+  friendly_name: Anzahl der Boolschen Eingabefelder
 sensor.sr_count_datetime:
-  friendly_name: Anzahl der Datums/Zeit Eingabefelder    
+  friendly_name: Anzahl der Datums/Zeit Eingabefelder
 sensor.sr_count_number:
   friendly_name: Anzahl der Nummerischen Eingabefelder
 sensor.sr_count_select:
   friendly_name: Anzahl der Auswahl Eingabefelder
 sensor.sr_count_text:
-  friendly_name: Anzahl der Text Eingabefelder 
+  friendly_name: Anzahl der Text Eingabefelder
 sensor.sr_count_lights:
-  friendly_name: Anzahl der Lampen     
+  friendly_name: Anzahl der Lampen
 sensor.sr_count_locks:
-  friendly_name: Anzahl der Schlösser   
+  friendly_name: Anzahl der Schlösser
 sensor.sr_count_media_player:
-  friendly_name: Anzahl der Medienabspieler   
+  friendly_name: Anzahl der Medienabspieler
 sensor.sr_count_person:
-  friendly_name: Anzahl der Personen  
+  friendly_name: Anzahl der Personen
 sensor.sr_count_plants:
-  friendly_name: Anzahl der Pflanzen   
+  friendly_name: Anzahl der Pflanzen
 sensor.sr_count_rest:
-  friendly_name: Anzahl der Rest-Aufrufe 
+  friendly_name: Anzahl der Rest-Aufrufe
 sensor.sr_count_script:
   friendly_name: Anzahl der Skripte
 sensor.sr_count_sensors:
   friendly_name: Anzahl der Sensoren
 sensor.sr_count_timer:
-  friendly_name: Anzahl der Timer  
+  friendly_name: Anzahl der Timer
 sensor.sr_count_utility_meter:
-  friendly_name: Anzahl der Verbrauchszähler 
+  friendly_name: Anzahl der Verbrauchszähler
 sensor.sr_count_vacuum:
-  friendly_name: Anzahl der Staubsauger    
+  friendly_name: Anzahl der Staubsauger
 sensor.sr_count_weather:
-  friendly_name: Anzahl der Wetterstationen    
+  friendly_name: Anzahl der Wetterstationen
 sensor.sr_count_code_lines:
   friendly_name: Anzahl der Codezeilen (YAML)
 # some stuff
@@ -321,7 +321,7 @@ input_boolean.ib_gz_cover_used_in_automations:
   friendly_name: In Automationen benutzen
 input_boolean.ib_dg_cover_used_in_automations:
   friendly_name: In Automationen benutzen
-input_boolean.ib_bz_cover_used_in_automations: 
+input_boolean.ib_bz_cover_used_in_automations:
   friendly_name: In Automationen benutzen
 input_number.in_ha_covers_span_time_delay:
   friendly_name: Maximale Rolladenöffnungsdauer
@@ -330,86 +330,86 @@ cover.dachgeschossfensterrolladen_tuya:
 cover.schlafzimmerfensterrolladen_tuya:
   friendly_name: Schlafzimmerfensterrolladen
 cover.ankleidezimmerfensterrolladen_tuya:
-  friendly_name: Ankleidezimmerfensterrolladen    
+  friendly_name: Ankleidezimmerfensterrolladen
 cover.gastezimmerfensterrolladen_tuya:
   friendly_name: Gästezimmerfensterrolladen
 cover.badezimmerfensterrolladen_tuya:
   friendly_name: Badezimmerfensterrolladen
 cover.kuchenfensterrolladen_tuya:
-  friendly_name: Küchenfensterrolladen  
+  friendly_name: Küchenfensterrolladen
 cover.wohnzimmerturrolladen_tuya:
   friendly_name: Wohnzimmertürrolladen
 cover.wohnzimmerfensterrolladen_tuya:
   friendly_name: Wohnzimmerfensterrolladen
 cover.leinwand_tuya:
-  friendly_name: Leinwand  
+  friendly_name: Leinwand
 group.ha_grp_cover_position_changed:
-  friendly_name: Manuell betätigt  
+  friendly_name: Manuell betätigt
 
 input_datetime.idt_wz_door_cover_up_workday:
-  friendly_name: WZ Türrolladen auf Wertktags
+  friendly_name: WZ Türrolladen auf WT
 input_datetime.idt_wz_window_cover_up_workday:
-  friendly_name: WZ Fensterrolladen auf Wertktags
+  friendly_name: WZ Fensterrolladen auf WT
 input_datetime.idt_wz_door_cover_up_weekend:
-  friendly_name: WZ Türrolladen auf Wochenende
+  friendly_name: WZ Türrolladen auf WE
 input_datetime.idt_wz_window_cover_up_weekend:
-  friendly_name: WZ Fensterrolladen auf Wochenende
+  friendly_name: WZ Fensterrolladen auf WE
 input_datetime.idt_wz_door_cover_down_workday:
-  friendly_name: WZ Türrolladen zu Wertktags
-input_datetime.idt_wz_window_cover_down_workday:  
-  friendly_name: WZ Fensterrolladen zu Wertktags
+  friendly_name: WZ Türrolladen zu WT
+input_datetime.idt_wz_window_cover_down_workday:
+  friendly_name: WZ Fensterrolladen zu WT
 input_datetime.idt_wz_door_cover_down_weekend:
-  friendly_name: WZ Türrolladen zu Wochenende
+  friendly_name: WZ Türrolladen zu WE
 input_datetime.idt_wz_window_cover_down_weekend:
-  friendly_name: WZ Fensterrolladen zu Wochenende
-input_datetime.idt_ku_cover_up_workday:  
-  friendly_name: KU Fensterrolladen auf Wertktags
+  friendly_name: WZ Fensterrolladen zu WE
+input_datetime.idt_ku_cover_up_workday:
+  friendly_name: KU Fensterrolladen auf WT
 input_datetime.idt_ku_cover_up_weekend:
-  friendly_name: KU Fensterrolladen auf Wochenende
+  friendly_name: KU Fensterrolladen auf WE
 input_datetime.idt_ku_cover_down_workday:
-  friendly_name: KU Fensterrolladen zu Wertktags
-input_datetime.idt_ku_cover_down_weekend:  
-  friendly_name: KU Fensterrolladen zu Wochenende
-input_datetime.idt_bz_cover_up_workday:  
-  friendly_name: BZ Fensterrolladen auf Wertktags
-input_datetime.idt_bz_cover_up_weekend:  
-  friendly_name: BZ Fensterrolladen auf Wochenende  
-input_datetime.idt_bz_cover_down_workday:  
-  friendly_name: BZ Fensterrolladen zu Wertktags
-input_datetime.idt_bz_cover_down_weekend:  
-  friendly_name: BZ Fensterrolladen zu Wochenende  
-input_datetime.idt_sz_cover_up_workday:  
-  friendly_name: SZ Fensterrolladen auf Wertktags  
-input_datetime.idt_sz_cover_up_weekend:  
-  friendly_name: SZ Fensterrolladen auf Wochenende  
-input_datetime.idt_sz_cover_down_workday:  
-  friendly_name: SZ Fensterrolladen zu Wertktags  
-input_datetime.idt_sz_cover_down_weekend:  
-  friendly_name: SZ Fensterrolladen zu Wochenende  
-input_datetime.idt_sz_az_cover_up_workday:  
-  friendly_name: AZ Fensterrolladen auf Wertktags  
-input_datetime.idt_sz_az_cover_up_weekend:  
-  friendly_name: AZ Fensterrolladen auf Wochenende  
-input_datetime.idt_sz_az_cover_down_workday:  
-  friendly_name: AZ Fensterrolladen zu Wertktags  
-input_datetime.idt_sz_az_cover_down_weekend:  
-  friendly_name: AZ Fensterrolladen zu Wochenende  
+  friendly_name: KU Fensterrolladen zu WT
+input_datetime.idt_ku_cover_down_weekend:
+  friendly_name: KU Fensterrolladen zu WE
+input_datetime.idt_bz_cover_up_workday:
+  friendly_name: BZ Fensterrolladen auf WT
+input_datetime.idt_bz_cover_up_weekend:
+  friendly_name: BZ Fensterrolladen auf WE
+input_datetime.idt_bz_cover_down_workday:
+  friendly_name: BZ Fensterrolladen zu WT
+input_datetime.idt_bz_cover_down_weekend:
+  friendly_name: BZ Fensterrolladen zu WE
+input_datetime.idt_sz_cover_up_workday:
+  friendly_name: SZ Fensterrolladen auf WT
+input_datetime.idt_sz_cover_up_weekend:
+  friendly_name: SZ Fensterrolladen auf WE
+input_datetime.idt_sz_cover_down_workday:
+  friendly_name: SZ Fensterrolladen zu WT
+input_datetime.idt_sz_cover_down_weekend:
+  friendly_name: SZ Fensterrolladen zu WE
+input_datetime.idt_sz_az_cover_up_workday:
+  friendly_name: AZ Fensterrolladen auf WT
+input_datetime.idt_sz_az_cover_up_weekend:
+  friendly_name: AZ Fensterrolladen auf WE
+input_datetime.idt_sz_az_cover_down_workday:
+  friendly_name: AZ Fensterrolladen zu WT
+input_datetime.idt_sz_az_cover_down_weekend:
+  friendly_name: AZ Fensterrolladen zu WE
 input_datetime.idt_gz_cover_up_workday:
-  friendly_name: GZ Fensterrolladen auf Wertktags  
+  friendly_name: GZ Fensterrolladen auf WT
 input_datetime.idt_gz_cover_up_weekend:
-  friendly_name: GZ Fensterrolladen auf Wochenende  
+  friendly_name: GZ Fensterrolladen auf WE
 input_datetime.idt_gz_cover_down_workday:
-  friendly_name: GZ Fensterrolladen zu Wertktags  
+  friendly_name: GZ Fensterrolladen zu WT
 input_datetime.idt_gz_cover_down_weekend:
-  friendly_name: GZ Fensterrolladen zu Wochenende    
+  friendly_name: GZ Fensterrolladen zu WE
 input_datetime.idt_dg_cover_up_workday:
-  friendly_name: DG Fensterrolladen auf Wertktags  
+  friendly_name: DG Fensterrolladen auf WT
 input_datetime.idt_dg_cover_up_weekend:
-  friendly_name: DG Fensterrolladen auf Wochenende  
+  friendly_name: DG Fensterrolladen auf WE
 input_datetime.idt_dg_cover_down_workday:
-  friendly_name: DG Fensterrolladen zu Wertktags  
+  friendly_name: DG Fensterrolladen zu WT
 input_datetime.idt_dg_cover_down_weekend:
-  friendly_name: DG Fensterrolladen zu Wochenende    
+  friendly_name: DG Fensterrolladen zu WE
 # garden
 input_boolean.ib_gr_lawn_sprinkler_used_in_automations_morning:
   friendly_name: In Automationen benutzen morgens
@@ -424,7 +424,7 @@ input_text.it_ha_lawn_sprinkler_summer_months:
 input_number.in_gr_lawn_sprinkler_lux_treshhold_morning:
   friendly_name: Luxschwelle morgens
 input_number.in_gr_lawn_sprinkler_lux_treshhold_evening:
-  friendly_name: Luxschwelle abends 
+  friendly_name: Luxschwelle abends
 binary_sensor.bs_gr_lawn_sprinkler_morning:
   friendly_name: Ausführungsstatus morgens
 binary_sensor.bs_gr_lawn_sprinkler_evening:
@@ -432,15 +432,29 @@ binary_sensor.bs_gr_lawn_sprinkler_evening:
 input_datetime.idt_gr_lawn_sprinkler_morning:
   friendly_name: Ausführungszeit morgens
 input_datetime.idt_gr_lawn_sprinkler_evening:
-  friendly_name: Ausführungszeit abends  
+  friendly_name: Ausführungszeit abends
+schedule.sc_gr_terrace_lighting_schedule:
+  friendly_name: Terrassenbeleuchtung
+input_boolean.ib_gr_terrace_lighting_used_in_automations:
+  friendly_name: In Automationen benutzen
+input_text.it_gr_terrace_lighting_months:
+  friendly_name: Monate
+input_datetime.idt_gr_terrace_lighting_on_workday:
+  friendly_name: GR Bbeleuchtung an WT
+input_datetime.idt_gr_terrace_lighting_on_weekend:
+  friendly_name: GR Beleuchtung an WE
+input_datetime.idt_gr_terrace_lighting_off_workday:
+  friendly_name: GR Beleuchtung aus WT
+input_datetime.idt_gr_terrace_lighting_off_weekend:
+  friendly_name: GR Beleuchtung aus WE
 # stop-wtach
-sensor.stopwatch_lawn_sprinkler:  
+sensor.stopwatch_lawn_sprinkler:
   friendly_name: Aktuell
-sensor.stopwatch_dryer:  
+sensor.stopwatch_dryer:
   friendly_name: Aktuell
-sensor.stopwatch_washing_machine:  
+sensor.stopwatch_washing_machine:
   friendly_name: Aktuell
-sensor.stopwatch_dish_washer:  
+sensor.stopwatch_dish_washer:
   friendly_name: Aktuell
 # lux
 input_number.in_ha_lux_treshhold:
@@ -465,7 +479,7 @@ input_number.in_sz_az_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Ankleidezimmer
 # input_datetime
 input_datetime.idt_ha_covers_close_summer_after:
-  friendly_name: Sommermodus von 
+  friendly_name: Sommermodus von
 input_datetime.idt_ha_covers_close_summer_before_front:
   friendly_name: Sommermodus vorne bis
 input_datetime.idt_ha_covers_close_summer_before_back:
@@ -476,23 +490,26 @@ input_text.it_ha_covers_close_summer_months:
 input_text.it_ha_temperature_notification_months:
   friendly_name: Betriebsmonate
 # input_number
-input_number.in_mm_okyo_volume_factor:
+input_number.in_mm_onkyo_volume_factor:
   friendly_name: Onkyo Lautstärkefaktor
 input_number.in_mm_onkyo_response_timeout:
   friendly_name: Onkyo Kommandoausszeit
 input_number.in_ha_delay_default_scripts:
   friendly_name: Verzögerung Skripte
 input_number.in_ha_delay_default_automations:
-  friendly_name: Verzögerung Automationen  
+  friendly_name: Verzögerung Automationen
 input_number.in_ha_delay_default_sleep:
-  friendly_name: Standard Verzögerung  
-input_number.in_mm_okyo_volume_cbl:
+  friendly_name: Standard Verzögerung
+input_number.in_mm_onkyo_volume_cbl:
   friendly_name: Lautstärke CBL
-input_number.in_mm_okyo_volume_game:
-  friendly_name: Lautstärke Game  
-input_number.in_mm_okyo_volume_tuner:
+input_number.in_mm_onkyo_volume_game:
+  friendly_name: Lautstärke Game
+input_number.in_mm_onkyo_volume_tuner:
   friendly_name: Lautstärke Radio
-input_number.in_mm_okyo_volume_net:
+input_number.in_mm_onkyo_volume_net:
   friendly_name: Lautstärke IRadio
 input_number.in_ha_temperature_notification_treshhold:
   friendly_name: Temperaturschwelle Benachrichtigung
+input_number.in_ha_delay_covers_reconnect:
+  friendly_name: Verzögerung Rolladen WLan
+# schedule
