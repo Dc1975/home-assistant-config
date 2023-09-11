@@ -1,16 +1,24 @@
-- id: '1685093993789'
+- id: "1685093993789"
   alias: GR Rasenbewässerung Überwachung start
-  description: ''
+  description: ""
   trigger:
-  - platform: device
-    type: turned_on
-    device_id: d2baac79c45912a95219ff03b16a46cc
-    entity_id: switch.brunnen
-    domain: switch
+    - platform: device
+      type: turned_on
+      device_id: d2baac79c45912a95219ff03b16a46cc
+      entity_id: switch.brunnen
+      domain: switch
   condition: []
   action:
     - service: timer.start
       data_template:
         entity_id: timer.ti_gr_lawn_sprinkler_observer
-        duration: "00:{{(state_attr('input_number.in_gr_duration_lawn_sprinkler', 'max') | int) + 1}}:00"  
+        duration: "00:{{(state_attr('input_number.in_gr_duration_lawn_sprinkler', 'max') | int) + 1}}:00"
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.reset_stopwatch_lawn_sprinkler
+    - service: input_boolean.turn_on
+      data: {}
+      target:
+        entity_id: input_boolean.start_stopwatch_lawn_sprinkler
   mode: single

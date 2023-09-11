@@ -32,7 +32,7 @@
             type: announce
             method: all
   # delay in s
-  - delay: "00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"
+  - delay: "00:00:{{states('input_number.in_ha_delay_covers_reconnect') | int}}"
   # the position of the cover changes if it went offline and online again    
   - service: input_boolean.turn_off
     target:
