@@ -12,8 +12,9 @@ binary_sensor:
       {{ (states('sensor.gw1100a_v2_2_3_rain_rate') | float == 0)
         and (states('sensor.gw1100a_v2_2_3_daily_rain_rate') | float <= states('input_number.in_gr_daily_rain_rate_treshhold') | float)
         and (is_number(state_sensor) and is_number(state_threshold) and (state_sensor | float >= state_threshold | float))
-        and states('sensor.sr_gr_average_statistic_temperature') | float >= states('input_number.in_gr_lawn_sprinkler_lux_treshhold_evening') | float       
         and (now().month | string in states('input_text.it_ha_lawn_sprinkler_summer_months'))
       }}
+
+#        and states('sensor.sr_gr_average_statistic_temperature') | float >= states('input_number.in_gr_lawn_sprinkler_lux_treshhold_evening') | float       
 #    - condition: template
 #      value_template: "{{ states('sensor.sr_gr_average_statistic_temperature') | float >= states('input_number.in_gr_lawn_sprinkler_temperature_treshhold') | float }}"      
