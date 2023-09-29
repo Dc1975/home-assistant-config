@@ -1,0 +1,24 @@
+- id: '1695408783206'
+  alias: GA Garagenlicht manuell ein
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.garagenlicht
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_18
+      state: 'off'
+    - condition: state
+      entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_17
+      state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.ib_ga_garaga_light_on_manually
+  mode: single

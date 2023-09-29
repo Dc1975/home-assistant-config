@@ -1,0 +1,24 @@
+- id: '1695316093101'
+  alias: GA Garagentueren schliessen
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_18
+    from: 'on'
+    to: 'off'
+  - platform: state
+    entity_id:
+    - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_17
+    from: 'on'
+    to: 'off'
+  condition: 
+  - condition: state
+    entity_id: input_boolean.ib_ga_garaga_light_on_manually
+    state: "off"  
+  action:
+  - type: turn_off
+    device_id: 1535736a016672edc9f0c2d89030d7ff
+    entity_id: 3552f796f3bfa05144c6098e7b2d17ca
+    domain: switch    
+  mode: single
