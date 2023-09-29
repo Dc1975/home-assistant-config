@@ -1,0 +1,15 @@
+#Wie ist der Satus des Trockners
+speech:
+  type: plain
+  text: >
+    {% set result = 'Der Trockner' %}
+    {% set dryer_state = states('input_select.is_ke_state_dryer') %}
+    {% if dryer_state.startswith('a') %}
+      {% set result = result + ' ist ' + dryer_state  %}
+    {% elif dryer_state.startswith('l') %}  
+      {%set value = states('sensor.stopwatch_dryer')%}
+      {%set result = result + ' ' + dryer_state + ' seit ' + value.split(':')[0].replace('0', '') + ' Stunde und ' + value.split(':')[1] + ' Minuten'%}      
+    {% elif dryer_state.startswith('f') %}  
+      {% set result = result + ' ist ' + dryer_state  %}  
+    {% endif %}
+    {{result}}
