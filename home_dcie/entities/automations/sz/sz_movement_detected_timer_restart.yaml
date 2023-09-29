@@ -15,5 +15,5 @@
     - service: timer.start
       data_template:
         entity_id: timer.ti_sz_motion_lights
-        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_light_stripes_off') | int}}"			    
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_light_stripes_off') | int}}"
   mode: single

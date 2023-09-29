@@ -18,7 +18,7 @@
             {% if (state_attr('timer.ti_tr_mitte_motion_lights', 'finishes_at')) %}
               {{ 
                 ((as_timestamp(state_attr('timer.ti_tr_mitte_motion_lights','finishes_at'),0) - as_timestamp(now())) | int) <= 
-                (states('input_number.in_ha_delay_in_motion_lights_off_secondary') | int)
+                (states('input_number.in_ha_treshold_in_motion_lights_off_secondray') | int)
               }}                 
             {% endif %} 
   action:

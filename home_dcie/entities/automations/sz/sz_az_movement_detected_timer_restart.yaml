@@ -18,12 +18,12 @@
             {% if (state_attr('timer.ti_sz_az_motion_lights', 'finishes_at')) %}
               {{ 
                 ((as_timestamp(state_attr('timer.ti_sz_az_motion_lights','finishes_at'),0) - as_timestamp(now())) | int) <= 
-                (states('input_number.in_ha_delay_in_motion_lights_off_secondary') | int)
+                (states('input_number.in_ha_treshold_in_motion_lights_off_secondray') | int)
               }}   
             {% endif %}  
   action:
     - service: timer.start
       data_template:
         entity_id: timer.ti_sz_az_motion_lights
-        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_secondary') | int}}"			    
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_secondary') | int}}"
   mode: single
