@@ -491,6 +491,16 @@ input_text.it_ha_covers_close_summer_months:
   friendly_name: Sommermonate
 input_text.it_ha_temperature_notification_months:
   friendly_name: Betriebsmonate
+input_text.it_ha_light_switches_on_alert_notification_title:
+  friendly_name: "Benachrichtigung Lichteralarm - Titel:"
+input_text.it_ha_light_switches_on_alert_notification_message:
+  friendly_name: "Benachrichtigung Lichteralarm - Text:"
+input_text.it_ha_light_switches_on_filter:
+    friendly_name: Filter Lichteralarm
+input_text.it_ha_lamps_on_filter:
+  friendly_name: Filter Lampenalarm
+input_text.it_ha_switches_on_filter:
+  friendly_name: Filter Gerätealarm
 # input_number
 input_number.in_mm_onkyo_volume_factor:
   friendly_name: Onkyo Lautstärkefaktor
@@ -516,4 +526,17 @@ input_number.in_ha_delay_covers_reconnect:
   friendly_name: Verzögerung Rolladen WLan
 input_number.in_ha_treshold_in_motion_lights_off_secondray:
   friendly_name: Schwellwert neustart Bewegunslichter  
+input_number.in_ha_light_switches_on_alarm_period:
+  friendly_name: Wartezeit Lichteralarm
+input_number.in_ha_lamps_on_alarm_period:
+  friendly_name: Wartezeit Lampenalarm
+input_number.in_ha_switches_on_alarm_period:
+  friendly_name: Wartezeit Gerätealarm
+input_number.in_ha_light_switches_on_alarm_last_count:
+  friendly_name: Eingeschaltete Lichter
+input_number.in_ha_lamps_on_alarm_last_count:
+  friendly_name: Eingeschaltete Lampen
+input_number.in_ha_switches_on_alarm_last_count:
+  friendly_name: Eingeschaltete Geräte
+
 # schedule
