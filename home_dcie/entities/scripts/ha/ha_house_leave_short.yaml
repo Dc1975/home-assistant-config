@@ -1,17 +1,37 @@
 ha_house_leave_short:
-  alias: HA Haus verlassen (kurz)
-  sequence:
+  alias: HA Haus verlassen (kurz)  
+  variables:
+    alexa_device: media_player.echo_wohnzimmer   
+    type: tts
+  sequence:    
   - service: script.turn_on
     data: {}
     target:
       entity_id: script.ha_all_devices_off
-  - service: notify.alexa_media_echo_wohnzimmer
+
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_alexa_notification
     data:
-      title: HomeAssistant - Offene Fenster
-      message: "{{state_attr('sensor.sr_ha_windows_open', 'windows_open')}}"      
-      data:
-        type: announce
-        method: all
+      variables:
+        msg_title: "HomeAssistant - Offene Fenster"
+        msg_message: "{{state_attr('sensor.sr_ha_windows_open', 'windows_open')}}"
+        device: "{{ alexa_device }}"
+        type: "{{ type }}"
+  - if:
+      - condition: template
+        value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
+    then:    
+      - wait_template: "{{is_state('script.ha_alexa_notification', 'off') }}"      
+        continue_on_timeout: true  
+
+  - service: script.turn_on
+    data: 
+      variables:
+        device: "{{ alexa_device }}"
+    target:
+      entity_id: script.ga_should_garage_gate_opened    
+
   - service: script.turn_on
     target:
       entity_id: script.ha_all_lights_off  

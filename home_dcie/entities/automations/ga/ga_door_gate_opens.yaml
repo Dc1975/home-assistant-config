@@ -5,28 +5,60 @@
   - platform: state
     entity_id:
     - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_18
-    from: 'off'
+    id: open_gate
     to: 'on'
   - platform: state
     entity_id:
     - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_17
-    from: 'off'
     to: 'on'
+    id: open_door
   condition:
-  - condition: and
-    conditions:
+  - condition: state
+    entity_id: switch.garagenlicht
+    state: "off"  
+  - condition: state
+    entity_id: input_boolean.ib_ga_garaga_light_on_manually
+    state: 'off'
+  action:
+  - if:
+    # Wenn Garagentür geöffnet wird
+    - condition: trigger
+      id:
+      - open_door
+    then:
+    - if:
+      # Wenn Garagentor geschlossen ist
+      - condition: state
+        entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_18
+        state: 'off'
+      then:
+      # dann Licht einschalten
+      - type: turn_on
+        device_id: 1535736a016672edc9f0c2d89030d7ff
+        entity_id: 3552f796f3bfa05144c6098e7b2d17ca
+        domain: switch
+      else:
+      # sonst wenn Garagentor geöffnet ist, dann Sonnenstand prüfen
+      - condition: or
+        conditions:
+        - condition: sun
+          after: sunset
+        - condition: sun
+          before: sunrise
+      - type: turn_on
+        device_id: 1535736a016672edc9f0c2d89030d7ff
+        entity_id: 3552f796f3bfa05144c6098e7b2d17ca
+        domain: switch
+    else:
+    # sonst wenn Garagentor wird geöffnet, dann Sonnenstand prüfen 
     - condition: or
       conditions:
       - condition: sun
         after: sunset
       - condition: sun
         before: sunrise
-    - condition: state
-      entity_id: input_boolean.ib_ga_garaga_light_on_manually
-      state: "off"
-  action:
-  - type: turn_on
-    device_id: 1535736a016672edc9f0c2d89030d7ff
-    entity_id: 3552f796f3bfa05144c6098e7b2d17ca
-    domain: switch
-  mode: single  
+    - type: turn_on
+      device_id: 1535736a016672edc9f0c2d89030d7ff
+      entity_id: 3552f796f3bfa05144c6098e7b2d17ca
+      domain: switch
+  mode: single

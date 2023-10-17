@@ -1,0 +1,27 @@
+activate_alexa_actionable_notification:
+  alias: activate_alexa_actionable_notification
+  description: Activates an actionable notification on a specific echo device
+  fields:
+    text:
+      description: The text you would like alexa to speak.
+      example: 'Soll die Garageneinfahrt geöffnet werden?'
+    event_id:
+      description: Correlation ID for event responses
+      example: 'actionable_notification_garage'
+    alexa_device:
+      description: Alexa device you want to trigger
+      example: 'media_player.echo_wohnzimmer'
+    suppress_confirmation:
+      description: Set true if you want to suppress 'okay' confirmation
+      example: 'true' 
+  sequence:
+    - service: input_text.set_value
+      data_template:
+        entity_id: input_text.alexa_actionable_notification
+        value: '{"text": "{{ text }}", "event": "{{ event_id }}", "suppress_confirmation": "{{ suppress_confirmation }}"}'
+    - service: media_player.play_media
+      data_template:
+        entity_id: "{{ alexa_device }}"
+        media_content_type: skill
+        media_content_id: amzn1.ask.skill.345304f1-34a8-4efb-907b-0ac84bcaa2da
+  mode: single

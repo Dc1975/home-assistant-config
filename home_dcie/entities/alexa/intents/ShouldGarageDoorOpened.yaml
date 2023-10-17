@@ -1,0 +1,17 @@
+#Soll das Garagentor geöffnet werden
+amzn1.ask.skill.3fb40c42-da0c-4dab-897d-d205a0c0b19b:
+speech:  
+  text: Soll das Garagentor geöffnet werden?
+reprompt:
+  text: Garagentor öffnen ?  
+AMAZON.YesIntent:
+  speech:
+    text: Wird geöffnet!
+  action:
+    service: switch.turn_on
+    target:
+      entity_id:
+        - switch.dachgeschossdeckenlicht
+AMAZON.NoIntent:
+  speech:
+    text: Wird nicht geöffnet

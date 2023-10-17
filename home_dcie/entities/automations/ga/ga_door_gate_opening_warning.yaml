@@ -1,0 +1,46 @@
+- id: '1696600642147'
+  alias: GA Alarm Garagentor
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_18
+    to: 'on'
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: person.dcie
+      state: not_home
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: person.dcie
+        state: home
+      - condition: time
+        after: '23:00:00'
+        before: 08:00:00
+        weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+        - sat
+        - sun
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_notification
+    data:
+      variables:
+        msg_title: Achtung, das Garagentor wurde geöffnet!
+        msg_message: Achtung, das Garagentor wurde geöffnet!
+  - service: notify.alexa_media_uberall
+    data:
+      title: Achtung, das Garagentor wurde geöffnet!
+      message: Achtung, das Garagentor wurde geöffnet!
+      data:
+        type: announce
+        method: all
+  mode: single

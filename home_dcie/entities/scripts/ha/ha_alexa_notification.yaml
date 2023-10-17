@@ -1,0 +1,30 @@
+ha_alexa_notification:
+  alias: HA Alexa Dachgeschoss Benachrichtigung
+  fields:
+    msg_title:
+      description: The title of the message
+      example: 'Title of message'
+      name: msg_title
+    msg_message:
+      description: The message body
+      example: 'Here is the message'
+      name: msg_message
+    device:
+      description: The alexa media
+      example: "'media_player.echo_dachgeschoss' or 'media_player.echo_wohnzimmer,media_player.echo_dachgeschoss'"
+      name: device    
+    type:
+      description: The type 
+      example: 'tts or announce'
+      name: type          
+  sequence:
+  # don't use type: announce, cause we can't set it automatically to false
+  - service: notify.alexa_media
+    data:
+      target:  '{{ device }}'
+      message: '{{ msg_message }}'
+      title: '{{ msg_title }}'
+      data: 
+        type: '{{ type }}'
+  mode: single
+  icon: mdi:cellphone-text

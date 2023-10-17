@@ -1,0 +1,19 @@
+ga_should_garage_gate_opened:
+  alias: GA Soll Garageneinfahrt geöffnet werden
+  fields:
+    device:
+      description: Alexa device you want to trigger
+      example: 'media_player.echo_wohnzimmer'  
+  sequence:
+    - service: script.turn_on
+      data:
+        variables:
+          text: Soll die Garageneinfahrt geöffnet werden?
+          event_id: actionable_notification_garage
+          alexa_device: '{{ device }}'
+          suppress_confirmation: True
+      target:
+        entity_id:
+          - script.activate_alexa_actionable_notification
+  mode: single
+  icon: mdi:garage-open

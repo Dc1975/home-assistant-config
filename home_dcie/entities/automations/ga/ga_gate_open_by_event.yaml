@@ -1,0 +1,54 @@
+- id: '1697019293756'
+  alias: GA Garageneinfahrt öffnen
+  description: ''
+  trigger:
+  - platform: event
+    event_type: alexa_actionable_notification
+    event_data:
+      event_id: actionable_notification_garage
+      event_response_type: ResponseYes
+  variables:
+    response_type: '{{ trigger.event.data.event_response_type }}'
+    response: '{{ trigger.event.data.event_response }}'
+    device: media_player.echo_wohnzimmer
+    type: tts
+  condition: []
+  action:
+  - choose:
+    - conditions: '{{ response_type == "ResponseYes" }}'
+      sequence:
+      - service: cover.open_cover
+        data: {}
+        target:
+          entity_id: cover.garageneinfahrt      
+
+#      - service: switch.toggle
+#        data: {}
+#        target:
+#          entity_id: switch.dachgeschosswandlicht
+
+#      - service: notify.alexa_media
+#        data:
+#          message: Garageneinfahrt wird geöffnet
+#          target:  '{{ device }}'
+      - service: script.turn_on
+        target:
+          entity_id: script.ha_alexa_notification
+        data:
+          variables:
+            msg_title: "HomeAssistant - Haus verlassen"
+            msg_message: "Garageneinfahrt wird geöffnet"
+            device: '{{ device }}'
+            type: '{{ type }}'
+
+    default:
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_alexa_notification
+      data:
+        variables:
+          msg_title: "HomeAssistant - Event"
+          msg_message: "Oops, das sollte nicht passieren. Scripte überprüfen!"
+          device: '{{ device }}'
+          type: '{{ type }}'
+  mode: single

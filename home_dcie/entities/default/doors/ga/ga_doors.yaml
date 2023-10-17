@@ -2,3 +2,5 @@
 - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_17
 # Garagentor
 - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_18
+# Garageneinfahrt (Chamberlain)
+- cover.garageneinfahrt
