@@ -15,9 +15,9 @@
   - if:
     - condition: template
       value_template: >-
-        {% set lastCount = states('input_number.in_ha_light_switches_on_alarm_last_count') | int (0) %}
-        {{ state_attr('sensor.sr_ha_light_switches_on','light_switclight_switches_on_by_time_sincehes_on_since') > 0 and
-           state_attr('sensor.sr_ha_light_switches_on','light_switches_on_by_time_since') | int (0) >= (lastCount | int) 
+        {% set lastCount = states('input_number.in_ha_light_switches_on_alarm_last_count') | int(0) %}
+        {{ state_attr('sensor.sr_ha_light_switches_on','light_switches_on_by_time_since') > 0 and
+           state_attr('sensor.sr_ha_light_switches_on','light_switches_on_by_time_since') | int(0) >= (lastCount | int) 
         }}
     then:
       - service: script.turn_on
@@ -37,7 +37,7 @@
 # use the helper to avoid execution if the lights will be switched off
   - service: input_number.set_value
     data:
-      value: "{{state_attr('sensor.sr_ha_light_switches_on','light_switches_on_by_time_since') | int (0)}}"
+      value: "{{state_attr('sensor.sr_ha_light_switches_on','light_switches_on_by_time_since') | int(0)}}"
     target:
       entity_id: input_number.in_ha_light_switches_on_alarm_last_count            
   mode: single
