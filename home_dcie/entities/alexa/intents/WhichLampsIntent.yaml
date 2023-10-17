@@ -2,5 +2,5 @@
 speech:
   type: plain
   text: >
-    {{state_attr('sensor.sr_ha_lamps_on', 'lamps_on')}}
+    {{state_attr('sensor.sr_ha_lamps_on', 'light_lamps_on_beautify')}}
 

@@ -5,39 +5,15 @@ sensor:
     state: >
       {{expand('light.ha_grp_lampen') | count}}
     attributes:
-      lamps_on: >
-        {% set toExclucde = namespace(entities=['light.first_led_hardware_instance', 'light.first_led_hardware_instance_2']) %}
-        {%-  for state in expand(states.light)
-          if state.state == "on" and
-          not state.entity_id in toExclucde.entities
-          and state.entity_id in expand('light.ha_grp_lampen') | map(attribute='entity_id') | list 
-        -%}
-        {%- if loop.first %}
-          Die Lampe {% elif loop.last %} und die Lampe {% else %}, die Lampe {% endif -%}    
-          {{ state.name -}} {% if loop.last %} ist eingeschaltet. {% endif -%}      
-        {% else %}
-          Es sind keine Lampen eingeschaltet.
-        {% endfor %}        
-
-#        {% set switches =  expand(states.light) | selectattr('state', 'eq', 'on') |
-#        selectattr('entity_id', 'in', expand('light.ha_grp_lampen')) |
-#        expand('light.ha_grp_lampen') | selectattr('state', 'eq', 'on') | list %}        
-#        {%- set filter = ['light.first_led_hardware_instance', 'light.first_led_hardware_instance_2'] -%}
-#        {%- set switches =  switches | rejectattr('entity_id', 'in', filter) | map(attribute='name') | list -%}                
-#        {% if (switches | length) == 0 %}
-#          Es sind keine Lampen eingeschaltet.
-#        {% elif (switches | length) == 1 %}
-#          Die Lampe {{switches[0]}} ist eingeschlatet. 
-#        {%- else  -%}
-#          Die Lampen {{""}}
-#          {%- for i in range(switches|length) -%}
-#            {%- if i == (switches|length)-1 -%}
-#              {{" "}}und {{switches[i]}} sind eingeschlatet.
-#            {%- else -%}
-#              {{switches[i]}} 
-#              {%- if (i + 2) in range(switches|length) -%}
-#                {{", "}}
-#              {%- endif %}  
-#            {%- endif -%}    
-#          {% endfor %}
-#        {% endif %}          
+      lamps_on_beautify: >
+        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
+        {{get_LightsOrLampsOrSwichtes_on('list', false, true, 'lamps')}}
+      lamps_on_by_time_beautify: >
+        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
+        {{get_LightsOrLampsOrSwichtes_on('list', true, true, 'lamps')}}        
+      lamps_on_by_time_raw: >
+        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
+        {{get_LightsOrLampsOrSwichtes_on('list', true, false, 'lamps')}}   
+      lamps_on_by_time_since: >
+        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
+        {{get_LightsOrLampsOrSwichtes_on('count', true, false, 'lamps')}}            

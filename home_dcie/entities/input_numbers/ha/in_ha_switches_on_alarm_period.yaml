@@ -1,0 +1,8 @@
+in_ha_switches_on_alarm_period:
+  name: in_ha_switches_on_alarm_period
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: min
+  icon: mdi:timer-alert
+  mode: box

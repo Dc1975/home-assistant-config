@@ -4,41 +4,16 @@ sensor:
     unique_id: sr_ha_switches_on
     state: >
       {{expand('switch.ha_grp_schalter') | count}}
-    attributes:
-      switches_on: >
-        {% set toExclucde = namespace(entities=['light.first_led_hardware_instance', 'light.first_led_hardware_instance_2']) %}
-        {%-  for state in expand(states.switch)
-          if state.state == "on"
-          and not state.entity_id in toExclucde.entities
-          and state.entity_id in expand('switch.ha_grp_schalter')
-          | map(attribute='entity_id') | list
-        -%}
-        {%- if loop.first -%}
-          Der Schalter {% elif loop.last %} und der Schalter {% else %}, der Schalter {% endif -%}    
-          {{ state.name -}} {% if loop.last %} ist eingeschlatet.{% endif -%}      
-        {% else %}
-          Es sind keine Schalter eingeschaltet.        
-        {% endfor %}         
-
-#        {% set switches =  expand(states.switch) | selectattr('state', 'eq', 'on') |
-#        selectattr('entity_id', 'in', expand('switch.ha_grp_schalter')) |
-#        expand('switch.ha_grp_schalter') | selectattr('state', 'eq', 'on') | list %}  
-#        {% set filter = ['light.first_led_hardware_instance', 'light.first_led_hardware_instance_2'] %}
-#        {% set switches =  switches | rejectattr('entity_id', 'in', filter) | map(attribute='name') | list %}        
-#        {% if (switches | length) == 0 %}
-#          Es sind keine Schalter eingeschaltet.
-#        {% elif (switches | length) == 1 %}
-#          Der Schalter {{switches[0]}} ist eingeschlatet. 
-#        {%- else  -%}
-#          Die Schalter {{""}}
-#          {%- for i in range(switches|length) -%}
-#            {%- if i == (switches|length)-1 -%}
-#              {{" "}}und {{switches[i]}} sind eingeschlatet.
-#            {%- else -%}
-#              {{switches[i]}} 
-#              {%- if (i + 2) in range(switches|length) -%}
-#                {{", "}}
-#              {%- endif %}  
-#            {%- endif -%}    
-#          {% endfor %}
-#        {% endif %}              
+    attributes:      
+      switches_on_beautify: >
+        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
+        {{get_LightsOrLampsOrSwichtes_on('list', false, true, 'switches')}}
+      switches_on_by_time_beautify: >
+        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
+        {{get_LightsOrLampsOrSwichtes_on('list', true, true, 'switches')}}        
+      switches_on_by_time_raw: >
+        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
+        {{get_LightsOrLampsOrSwichtes_on('list', true, false, 'switches')}}   
+      switches_on_by_time_since: >
+        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
+        {{get_LightsOrLampsOrSwichtes_on('count', true, false, 'switches')}}          

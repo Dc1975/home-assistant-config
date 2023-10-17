@@ -1,0 +1,46 @@
+{% macro get_LightsOrLampsOrSwichtes_on(operator, timeBased, beautify) %}
+{% set toExclucde = namespace(entities=['switch.garage','switch.garten','switch.terasse','light.first_led_hardware_instance', 'light.first_led_hardware_instance_2']) %}
+{% set result = namespace(switches=[]) %}
+
+{% if timeBased == true %}
+  {% set minutes = timedelta(minutes=states('input_number.in_ha_light_switches_on_alarm_period') | int) %}
+  {% set alarmText = "seit " + states('input_number.in_ha_light_switches_on_alarm_period') | int(0) | string + " Minuten"  %}
+{% else %} 
+  {% set minutes = timedelta(minutes=0 | int) %}
+  {% set alarmText = "" %}
+{% endif %} 
+
+{% if beautify == true %} 
+  {%-  for state in expand(states.switch)
+      if state.state == "on"
+      and ( (now() - minutes) >= state.last_changed)
+      and not state.entity_id in toExclucde.entities
+      and state.entity_id in expand('switch.ha_grp_lichtschalter')            
+      | map(attribute='entity_id') | list
+  -%}         
+  {%- if loop.first -%}        
+    Der Lichtschalter {% elif loop.last %} und der Lichtschalter  {% else %}, der Lichtschalter  {% endif -%}
+  {{ state.name -}} {% if loop.last %} ist {{alarmText}} eingeschaltet. {% endif -%}      
+  {% else %}            
+    Es sind keine Lichtschalter eingeschaltet.
+  {% endfor %}
+{% else %}
+  {%-  for state in expand(states.switch)
+      if state.state == "on"
+      and ( (now() - minutes) >= state.last_changed)
+      and not state.entity_id in toExclucde.entities
+      and state.entity_id in expand('switch.ha_grp_lichtschalter')            
+      | map(attribute='entity_id') | list
+  -%}         
+  {% set result.switches = result.switches + [state.name] %}
+  {% endfor %} 
+
+  {% if operator == "list"%}
+    {{result.switches}}  
+  {% else %} 
+    {{result.switches | count}} 
+  {% endif %}    
+
+{% endif %}
+
+{% endmacro %} 

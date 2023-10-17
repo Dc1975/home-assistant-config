@@ -2,16 +2,4 @@
 speech:
   type: plain
   text: >
-    {% set toExclucde = namespace(entities=['light.first_led_hardware_instance', 'light.first_led_hardware_instance_2']) %}
-    {%-  for state in expand(states.switch)
-      if state.state == "on"
-      and not state.entity_id in toExclucde.entities
-      and state.entity_id in expand('group.ha_grp_lightswitches_lights')
-      | map(attribute='entity_id') | list 
-    -%}
-    {%- if loop.first -%}
-      Der Lichtschalter {% elif loop.last %} und der Lichtschalter {% else %}, der Lichtschalter {% endif -%}
-    {{ state.name -}} {% if loop.last %} ist eingeschaltet. {% endif -%}      
-    {% else %}
-      Es sind keine Lichtschalter eingeschaltet.
-    {% endfor %}      
+    {{state_attr('sensor.sr_ha_light_switches_on', 'light_switches_on_beautify')}}

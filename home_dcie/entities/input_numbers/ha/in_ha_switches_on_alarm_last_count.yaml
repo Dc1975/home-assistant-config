@@ -1,0 +1,8 @@
+in_ha_switches_on_alarm_last_count:
+  name: in_ha_switches_on_alarm_last_count
+  min: 0
+  max: 500
+  step: 1
+  mode: box
+  initial: 0
+  icon: mdi:counter
