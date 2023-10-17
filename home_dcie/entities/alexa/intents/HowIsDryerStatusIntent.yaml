@@ -8,7 +8,12 @@ speech:
       {% set result = result + ' ist ' + dryer_state  %}
     {% elif dryer_state.startswith('l') %}  
       {%set value = states('sensor.stopwatch_dryer')%}
-      {%set result = result + ' ' + dryer_state + ' seit ' + value.split(':')[0].replace('0', '') + ' Stunde und ' + value.split(':')[1] + ' Minuten'%}      
+      {% set hour =  value.split(':')[0].replace('0', '') %}
+      {% if hour == '' %}
+      {%set result = result + ' ' + dryer_state + ' seit ' + value.split(':')[1] + ' Minuten'%}      
+      {% else %}
+        {%set result = result + ' ' + dryer_state + ' seit ' + value.split(':')[0].replace('0', '') + ' Stunde und ' + value.split(':')[1].replace('0', '') + ' Minuten'%}      
+      {% endif %}      
     {% elif dryer_state.startswith('f') %}  
       {% set result = result + ' ist ' + dryer_state  %}  
     {% endif %}

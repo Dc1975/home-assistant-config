@@ -8,7 +8,12 @@ speech:
       {% set result = result + ' ist ' + dish_washer_state  %}
     {% elif dish_washer_state.startswith('l') %}  
       {%set value = states('sensor.stopwatch_dish_washer')%}
-      {%set result = result + ' ' + dish_washer_state + ' seit ' + value.split(':')[0].replace('0', '') + ' Stunde und ' + value.split(':')[1] + ' Minuten'%}
+      {% set hour =  value.split(':')[0].replace('0', '') %}
+      {% if hour == '' %}
+      {%set result = result + ' ' + dish_washer_state + ' seit ' + value.split(':')[1] + ' Minuten'%}      
+      {% else %}
+        {%set result = result + ' ' + dish_washer_state + ' seit ' + value.split(':')[0].replace('0', '') + ' Stunde und ' + value.split(':')[1].replace('0', '') + ' Minuten'%}      
+      {% endif %}
     {% elif dish_washer_state.startswith('f') %}  
       {% set result = result + ' ist ' + dish_washer_state  %}  
     {% endif %}
