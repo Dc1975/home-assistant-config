@@ -1,0 +1,296 @@
+    skyq_pausewohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'pause in the Wohnzimmer'
+      turn_on:
+        - service: media_player.media_pause
+          data:
+            entity_id: media_player.sky_q
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_playwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'play in the Wohnzimmer'
+      turn_on:
+        - service: media_player.media_play
+          data:
+            entity_id: media_player.sky_q
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_ffwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'fastforward in the Wohnzimmer'
+      turn_on:
+        - service: media_player.media_next_track
+          data:
+            entity_id: media_player.sky_q
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_rwwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'rewind in the Wohnzimmer'
+      turn_on:
+        - service: media_player.media_previous_track
+          data:
+            entity_id: media_player.sky_q
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_historychannelhdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'HISTORY Channel HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'HISTORY Channel HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_discoveryhdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'Discovery HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'Discovery HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_daserstehdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'Das Erste HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'Das Erste HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_zdfhdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'ZDF HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'ZDF HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_rtlhdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'RTL HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'RTL HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_sat1hdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'SAT.1 HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'SAT.1 HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_prosiebenhdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'ProSieben HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'ProSieben HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_voxhdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'VOX HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'VOX HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_rtlzweihdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'RTLZWEI HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'RTLZWEI HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_kabeleinshdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'kabel eins HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'kabel eins HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_sixxhdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'SIXX HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'SIXX HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_pro7maxxhdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'Pro7 MAXX HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'Pro7 MAXX HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_nitrohdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'NITRO HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'NITRO HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_zdf_neohdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'zdf_neo HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'zdf_neo HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_onehdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'ONE HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'ONE HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_3sathdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: '3sat HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: '3sat HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_dmaxhdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'DMAX HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'DMAX HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_kabeleinsdokuhdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'Kabel Eins Doku HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'Kabel Eins Doku HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_eurosport1hdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'Eurosport 1 HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'Eurosport 1 HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_sport1hdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'SPORT1 HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'SPORT1 HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_superrtlhdwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'SUPER RTL HD in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'SUPER RTL HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
