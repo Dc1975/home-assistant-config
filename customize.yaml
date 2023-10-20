@@ -491,16 +491,16 @@ input_text.it_ha_covers_close_summer_months:
   friendly_name: Sommermonate
 input_text.it_ha_temperature_notification_months:
   friendly_name: Betriebsmonate
-input_text.it_ha_light_switches_on_alert_notification_title:
-  friendly_name: "Benachrichtigung Lichteralarm - Titel:"
-input_text.it_ha_light_switches_on_alert_notification_message:
-  friendly_name: "Benachrichtigung Lichteralarm - Text:"
+input_text.it_ha_devices_on_alert_notification_title:
+  friendly_name: "Benachrichtigung Geräte - Titel:"
+input_text.it_ha_devices_on_alert_notification_message:
+  friendly_name: "Benachrichtigung Geräte - Text:"
 input_text.it_ha_light_switches_on_filter:
-    friendly_name: Filter Lichteralarm
+    friendly_name: Filter Lichtschalter
 input_text.it_ha_lamps_on_filter:
-  friendly_name: Filter Lampenalarm
+  friendly_name: Filter Lampenschalter
 input_text.it_ha_switches_on_filter:
-  friendly_name: Filter Gerätealarm
+  friendly_name: Filter Geräteschalter
 # input_number
 input_number.in_mm_onkyo_volume_factor:
   friendly_name: Onkyo Lautstärkefaktor

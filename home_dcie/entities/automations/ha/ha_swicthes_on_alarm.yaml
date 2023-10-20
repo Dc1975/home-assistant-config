@@ -1,0 +1,43 @@
+- id: '1697558655648'
+  alias: HA eingeschaltete Geräte
+  description: ""
+  trigger:
+  - platform: state
+    entity_id:
+      - sensor.sr_ha_switches_on
+    attribute: switches_on_by_time_since
+  condition:
+#  - condition: template
+#    value_template: >-
+#      {{state_attr('sensor.sr_ha_light_switches_on','light_switches_on_by_time_since') >
+#      0}}
+  action: 
+  - if:
+    - condition: template
+      value_template: >-
+        {% set lastCount = states('input_number.in_ha_switches_on_alarm_last_count') | int(0) %}
+        {{ state_attr('sensor.sr_ha_switches_on','switches_on_by_time_since') > 0 and
+           state_attr('sensor.sr_ha_switches_on','switches_on_by_time_since') | int(0) >= (lastCount | int) 
+        }}
+    then:
+      - service: script.turn_on
+        target:
+          entity_id: script.ha_handy_notification
+        data:
+          variables:
+            msg_title: "{{states('input_text.it_ha_devices_on_alert_notification_title')}}"
+            msg_message: "{{states('input_text.it_ha_devices_on_alert_notification_message')}} {{state_attr('sensor.sr_ha_switches_on','switches_on_by_time_beautify')}}"
+      - service: notify.alexa_media_uberall
+        data:
+          title: "{{states('input_text.it_ha_devices_on_alert_notification_title')}}"
+          message: "{{states('input_text.it_ha_devices_on_alert_notification_message')}} {{state_attr('sensor.sr_ha_switches_on','switches_on_by_time_beautify')}}"
+          data:
+            type: announce
+            method: all
+# use the helper to avoid execution if the lights will be switched off
+  - service: input_number.set_value
+    data:
+      value: "{{state_attr('sensor.sr_ha_switches_on','switches_on_by_time_since') | int(0)}}"
+    target:
+      entity_id: input_number.in_ha_switches_on_alarm_last_count            
+  mode: single

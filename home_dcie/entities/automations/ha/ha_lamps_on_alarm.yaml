@@ -25,12 +25,12 @@
           entity_id: script.ha_handy_notification
         data:
           variables:
-            msg_title: "{{states('input_text.it_ha_light_switches_on_alert_notification_title')}}"
-            msg_message: "{{states('input_text.it_ha_light_switches_on_alert_notification_message')}} {{state_attr('sensor.sr_ha_lamps_on','lamps_on_by_time_beautify')}}"
+            msg_title: "{{states('input_text.it_ha_devices_on_alert_notification_title')}}"
+            msg_message: "{{states('input_text.it_ha_devices_on_alert_notification_message')}} {{state_attr('sensor.sr_ha_lamps_on','lamps_on_by_time_beautify')}}"
       - service: notify.alexa_media_uberall
         data:
-          title: "{{states('input_text.it_ha_light_switches_on_alert_notification_title')}}"
-          message: "{{states('input_text.it_ha_light_switches_on_alert_notification_message')}} {{state_attr('sensor.sr_ha_lamps_on','lamps_on_by_time_beautify')}}"
+          title: "{{states('input_text.it_ha_devices_on_alert_notification_title')}}"
+          message: "{{states('input_text.it_ha_devices_on_alert_notification_message')}} {{state_attr('sensor.sr_ha_lamps_on','lamps_on_by_time_beautify')}}"
           data:
             type: announce
             method: all

@@ -5,20 +5,30 @@
   {% set entitys_text_on = "Die Lichtschalter" %}
   {% set entity_name = "switch.ha_grp_lichtschalter" %}
   {% set filter = states('input_text.it_ha_light_switches_on_filter') %}  
+  {% set type = "switch." %}
 {% elif entity == "lamps" %} 
   {% set entitys_text_off = "Es sind keine Lampen eingeschaltet." %}
   {% set entity_text_on = "Die Lampe" %}
   {% set entitys_text_on = "Die Lampen" %}
   {% set entity_name = "light.ha_grp_lampen" %}
   {% set filter = states('input_text.it_ha_lapms_on_filter') %}  
+  {% set type = "light." %}
 {% elif entity == "switches" %} 
   {% set entitys_text_off = "Es sind keine Schalter eingeschaltet." %}
   {% set entity_text_on = "Der Schalter" %}
   {% set entitys_text_on = "Die Schalter" %}
   {% set entity_name = "switch.ha_grp_schalter" %}
   {% set filter = states('input_text.it_ha_switches_on_filter') %}  
+  {% set type = "switch." %}
 {% else %} 
 {% endif %} 
+
+{% set result = namespace(entity_ids=[]) %}
+{% set entity_list = filter.split(',') %}
+{% for entity_id in entity_list %}
+  {% set result.entity_ids = result.entity_ids  + [type + entity_id] %}
+{% endfor %} 
+{% set filter = result.entity_ids %}
 
 {% if timeBased == true %}
   {% if entity == "lights" %}
