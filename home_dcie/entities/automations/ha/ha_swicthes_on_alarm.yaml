@@ -7,17 +7,12 @@
       - sensor.sr_ha_switches_on
     attribute: switches_on_by_time_since
   condition:
-#  - condition: template
-#    value_template: >-
-#      {{state_attr('sensor.sr_ha_light_switches_on','light_switches_on_by_time_since') >
-#      0}}
   action: 
   - if:
     - condition: template
-      value_template: >-
-        {% set lastCount = states('input_number.in_ha_switches_on_alarm_last_count') | int(0) %}
+      value_template: >-   
         {{ (state_attr('sensor.sr_ha_switches_on','switches_on_by_time_since') | int(0) > 0 and
-           state_attr('sensor.sr_ha_switches_on','switches_on_by_time_since') | int(0) >= (lastCount | int))
+           state_attr('sensor.sr_ha_switches_on','switches_on_by_time_since') | int(0) >= (states('input_number.in_ha_switches_on_alarm_last_count') | int(0)))
         }}
     then:
       - service: script.turn_on
