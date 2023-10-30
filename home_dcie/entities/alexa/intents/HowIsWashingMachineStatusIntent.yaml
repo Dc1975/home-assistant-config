@@ -2,19 +2,4 @@
 speech:
   type: plain
   text: >
-    {% set result = 'Die Waschmaschine' %}
-    {% set washing_machine_state = states('input_select.is_ke_state_washing_machine') %}
-    {% if washing_machine_state.startswith('a') %}
-      {% set result = result + ' ist ' + washing_machine_state  %}
-    {% elif washing_machine_state.startswith('l') %}        
-      {%set value = states('sensor.stopwatch_washing_machine')%}
-      {% set hour =  value.split(':')[0].replace('0', '') %}
-      {% if hour == '' %}
-      {%set result = result + ' ' + washing_machine_state + ' seit ' + value.split(':')[1] + ' Minuten'%}      
-      {% else %}
-        {%set result = result + ' ' + washing_machine_state + ' seit ' + value.split(':')[0].replace('0', '') + ' Stunde und ' + value.split(':')[1].replace('0', '') + ' Minuten'%}      
-      {% endif %}
-    {% elif washing_machine_state.startswith('f') %}  
-      {% set result = result + ' ist ' + washing_machine_state  %}  
-    {% endif %}
-    {{result}}
+    {{state_attr('sensor.sr_ha_dryer_washningmachine_dishwasher_state', 'state_washingmachine')}}

@@ -1,0 +1,47 @@
+{% macro get_dryer_washningmachine_dishwasher_state(device) %}
+{% if device == "dryer" %}
+  {% set result = 'Der Trockner' %} 
+  {% set device_state = states('input_select.is_ke_state_dryer') %}
+  {% set entity_name = "sensor.stopwatch_dryer" %}  
+{% elif device == "washingmachine" %} 
+  {% set result = 'Die Waschmaschine' %}
+  {% set device_state = states('input_select.is_ke_state_washing_machine') %}
+  {% set entity_name = "sensor.stopwatch_washing_machine" %}  
+{% elif device == "dishwasher" %} 
+  {% set result = 'Der Geschirrspüler' %}
+  {% set device_state = states('input_select.is_ku_state_dish_washer') %}
+  {% set entity_name = "sensor.stopwatch_washing_machine" %}  
+{% else %} 
+  {% set result = 'unknown' %}
+  {% set device_state = 'unknown' %}
+  {% set entity_name = 'unknown' %}  
+{% endif %} 
+    
+    {% if device_state.startswith('a') %}
+      {% set result = result + ' ist ' + device_state  %}
+    {% elif device_state.startswith('l') %}  
+      {%set value = states(entity_name)%}
+
+      {% set hour =  value.split(':')[0].replace('0', '') %}
+      {% set hour_text = " Stunden " %}
+      {% if hour == "1" %}
+        {% set hour_text = " Stunde " %}
+      {% endif %}     
+      
+      {% set min =  value.split(':')[1].replace('0', '') %}       
+      {% set min_text = " Minuten" %}
+      {% if min[0] == "1" %}
+        {% set min_text = " Minute" %}
+      {% endif %}         
+            
+      {% if hour == "" %}                                      
+          {%set result = result + ' ' + device_state + ' seit ' +  min + min_text%}                
+      {% else %}
+          {%set result = result + ' ' + device_state + ' seit ' + hour + hour_text + min + min_text%}                              
+      {% endif %} 
+
+    {% elif device_state.startswith('f') %}  
+      {% set result = result + ' ist ' + device_state  %}  
+    {% endif %}
+    {{result}}
+{% endmacro %} 

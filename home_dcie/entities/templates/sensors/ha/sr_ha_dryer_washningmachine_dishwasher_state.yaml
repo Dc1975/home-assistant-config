@@ -1,0 +1,15 @@
+sensor:
+  - name: sr_ha_dryer_washningmachine_dishwasher_state
+    unique_id: sr_ha_dryer_washningmachine_dishwasher_state
+    state: >
+      {{"state_dryer, state_washingmachine, state_dishwasher"}}
+    attributes:      
+      state_dryer: >
+        {% from 'get_dryer_washningmachine_dishwasher_state.jinja' import get_dryer_washningmachine_dishwasher_state %}        
+        {{get_dryer_washningmachine_dishwasher_state('dryer')}}
+      state_washingmachine: >
+        {% from 'get_dryer_washningmachine_dishwasher_state.jinja' import get_dryer_washningmachine_dishwasher_state %}        
+        {{get_dryer_washningmachine_dishwasher_state('washingmachine')}}        
+      state_dishwasher: >
+        {% from 'get_dryer_washningmachine_dishwasher_state.jinja' import get_dryer_washningmachine_dishwasher_state %}        
+        {{get_dryer_washningmachine_dishwasher_state('dishwasher')}}   

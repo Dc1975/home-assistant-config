@@ -1,20 +1,5 @@
-#Wie ist der Satus der Spülmaschine
+#Wie ist der Satus des Geschirrspülers
 speech:
   type: plain
   text: >
-    {% set result = 'Der Geschirrspüler' %}
-    {% set dish_washer_state = states('input_select.is_ku_state_dish_washer') %}
-    {% if dish_washer_state.startswith('a') %}
-      {% set result = result + ' ist ' + dish_washer_state  %}
-    {% elif dish_washer_state.startswith('l') %}  
-      {%set value = states('sensor.stopwatch_dish_washer')%}
-      {% set hour =  value.split(':')[0].replace('0', '') %}
-      {% if hour == '' %}
-      {%set result = result + ' ' + dish_washer_state + ' seit ' + value.split(':')[1] + ' Minuten'%}      
-      {% else %}
-        {%set result = result + ' ' + dish_washer_state + ' seit ' + value.split(':')[0].replace('0', '') + ' Stunde und ' + value.split(':')[1].replace('0', '') + ' Minuten'%}      
-      {% endif %}
-    {% elif dish_washer_state.startswith('f') %}  
-      {% set result = result + ' ist ' + dish_washer_state  %}  
-    {% endif %}
-    {{result}}
+    {{state_attr('sensor.sr_ha_dryer_washningmachine_dishwasher_state', 'state_dishwasher')}}
