@@ -1,4 +1,4 @@
 ti_sz_motion_lights:
   duration: "00:00:00"
   restore: true
-  name: Timer Schlafzimmer
+  name: ti_sz_motion_lights
