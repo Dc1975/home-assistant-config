@@ -5,7 +5,7 @@
   - type: vibration
     platform: device
     device_id: 48dad30588f2048b0d525a20473a915d
-    entity_id: binary_sensor.lumi_lumi_vibration_aq1_vibration
+    entity_id: binary_sensor.briefkastensensor_vibration
     domain: binary_sensor
   condition: []
   action:

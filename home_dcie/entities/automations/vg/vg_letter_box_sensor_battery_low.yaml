@@ -4,7 +4,7 @@
   trigger:
   - platform: template
     value_template: >
-      {% set state_sensor = states('sensor.lumi_lumi_vibration_aq1_battery') %}
+      {% set state_sensor = states('sensor.briefkastensensor_batterie') %}
       {% set state_threshold = states('input_number.in_ha_batteries_threshold') %}
       {% if is_number(state_sensor) and is_number(state_threshold) and state_sensor | int <= state_threshold | int  %}
         true
@@ -38,5 +38,5 @@
         msg_title: "{{states('input_text.it_battery_level_notification_title')}} {{states('input_number.in_ha_batteries_threshold') | int}}%"
         msg_message: > 
           {{states('input_text.it_battery_level_notification_message')}} Briefkastenersensor, 
-          {{states('sensor.lumi_lumi_vibration_aq1_battery') | int}}%
+          {{states('sensor.briefkastensensor_batterie') | int}}%
   mode: parallel
