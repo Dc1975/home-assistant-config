@@ -150,6 +150,30 @@ sensor.um_ke_steckdose_trockner_monthly:
   friendly_name: Trockner monatlich
 sensor.um_ke_steckdose_trockner_yearly:
   friendly_name: Trockner jährlich
+sensor.um_sz_steckdose_bett_links_daily:
+  friendly_name: Steckdose Bett links täglich
+sensor.um_sz_steckdose_bett_links_weekly:
+  friendly_name: Steckdose Bett links wöchentlich
+sensor.um_sz_steckdose_bett_links_monthly:
+  friendly_name: Steckdose Bett links monatlich  
+sensor.um_sz_steckdose_bett_links_yearly:
+  friendly_name: Steckdose Bett links jährlich  
+sensor.um_sz_steckdose_bett_rechts_daily:
+  friendly_name: Steckdose Bett rechts täglich  
+sensor.um_sz_steckdose_bett_rechts_weekly:
+  friendly_name: Steckdose Bett rechts wöchentlich  
+sensor.um_sz_steckdose_bett_rechts_monthly:
+  friendly_name: Steckdose Bett rechts monatlich  
+sensor.um_sz_steckdose_bett_rechts_yearly:
+  friendly_name: Steckdose Bett rechts jährlich  
+sensor.um_sz_steckdose_ki_daily:
+  friendly_name: Schlafzimmer KI täglich  
+sensor.um_sz_steckdose_ki_weekly:
+  friendly_name: Schlafzimmer KI wöchentlich  
+sensor.um_sz_steckdose_ki_monthly:
+  friendly_name: Schlafzimmer KI monatlich
+sensor.um_sz_steckdose_ki_yearly:
+  friendly_name: Schlafzimmer KI jährlich  
 # EcoWitt
 sensor.gw1100a_v2_2_3_outdoor_temperature:
   friendly_name: Außentemperatur
@@ -219,7 +243,6 @@ sensor.gw1100a_v2_2_3_total_rain:
   friendly_name: Gessamter Niederschlag
 sensor.gw1100a_v2_2_3_event_rain_rate:
   friendly_name: Event Niederschlag
-
 # add historical statistic to sensors
 sensor.sr_local_nuc_cpu_temperature:
   state_class: measurement
@@ -290,6 +313,8 @@ input_boolean.ib_dg_switch_motion_detector:
   friendly_name: Dachgeschoss Bewegungsmelder
 input_boolean.ib_bz_switch_motion_detector:
   friendly_name: Badezimmer Bewegungsmelder
+input_boolean.ib_bz_switch_motion_detector_shower:
+  friendly_name: Badezimmerdusche Bewegungsmelder
 input_boolean.ib_ku_switch_motion_detector:
   friendly_name: Küche Bewegungsmelder
 input_boolean.ib_sz_switch_motion_detector:
@@ -347,7 +372,7 @@ group.ha_grp_cover_position_changed:
   friendly_name: Manuell betätigt
 binary_sensor.bs_ha_covers_down_summer_mode:
   friendly_name: Ausführungsstatus
-
+# input_datetime
 input_datetime.idt_wz_door_cover_up_workday:
   friendly_name: WZ Türrolladen auf WT
 input_datetime.idt_wz_window_cover_up_workday:
@@ -473,12 +498,16 @@ input_number.in_ku_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Küche
 input_number.in_bz_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Badezimmer
+input_number.in_bz_lux_shower_treshhold:  
+  friendly_name: Luxschwelle Bewegung Badezimmerdusche
 input_number.in_dg_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Dachgeschoss
 input_number.in_gt_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Gästetoilette
 input_number.in_sz_az_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Ankleidezimmer
+input_number.in_sz_lux_treshhold:
+  friendly_name: Luxschwelle Bewegung Schlafzimmer  
 # input_datetime
 input_datetime.idt_ha_covers_close_summer_after:
   friendly_name: Sommermodus von
@@ -496,7 +525,7 @@ input_text.it_ha_devices_on_alert_notification_title:
 input_text.it_ha_devices_on_alert_notification_message:
   friendly_name: "Benachrichtigung Geräte - Text:"
 input_text.it_ha_light_switches_on_filter:
-    friendly_name: Filter Lichtschalter
+  friendly_name: Filter Lichtschalter
 input_text.it_ha_lamps_on_filter:
   friendly_name: Filter Lampenschalter
 input_text.it_ha_switches_on_filter:
@@ -525,7 +554,7 @@ input_number.in_ha_temperature_notification_treshhold:
 input_number.in_ha_delay_covers_reconnect:
   friendly_name: Verzögerung Rolladen WLan
 input_number.in_ha_treshold_in_motion_lights_off_secondray:
-  friendly_name: Schwellwert neustart Bewegunslichter  
+  friendly_name: Schwellwert neustart Bewegunslichter
 input_number.in_ha_light_switches_on_alarm_period:
   friendly_name: Wartezeit Lichteralarm
 input_number.in_ha_lamps_on_alarm_period:
@@ -538,5 +567,54 @@ input_number.in_ha_lamps_on_alarm_last_count:
   friendly_name: Eingeschaltete Lampen
 input_number.in_ha_switches_on_alarm_last_count:
   friendly_name: Eingeschaltete Geräte
-
-# schedule
+input_number.in_bz_schower_humidity_delay:
+  friendly_name: Duschlichtdauer
+# timer
+timer.ti_sz_room_motion_lights:
+  friendly_name: Timer Schlafzimmer
+timer.ti_sz_motion_lights:
+  friendly_name: Timer Schlafzimmerbettlicht
+timer.ti_sz_az_motion_lights:
+  friendly_name: Timer Ankleidezimmer
+timer.ti_bz_motion_lights_shower:
+  friendly_name: Timer Badezimmerdusche  
+  # KI's
+input_boolean.ib_dg_ki_used_in_automations:
+  friendly_name: In Automationen benutzen
+input_datetime.idt_dg_ki_on_workday:
+  friendly_name: DG KI an WT
+input_datetime.idt_dg_ki_on_weekend:
+  friendly_name: DG KI an WE
+input_datetime.idt_dg_ki_off_workday:
+  friendly_name: DG KI aus WT
+input_datetime.idt_dg_ki_off_weekend:
+  friendly_name: DG KI aus WE
+input_boolean.ib_sz_ki_used_in_automations:
+  friendly_name: In Automationen benutzen
+input_datetime.idt_sz_ki_on_workday:
+  friendly_name: SZ KI an WT
+input_datetime.idt_sz_ki_on_weekend:
+  friendly_name: SZ KI an WE
+input_datetime.idt_sz_ki_off_workday:
+  friendly_name: SZ KI aus WT
+input_datetime.idt_sz_ki_off_weekend:
+  friendly_name: SZ KI aus WE   
+# plugs
+switch.schlafzimmersteckdose_ki:
+  friendly_name: Schlafzimmer KI
+# keller
+#binary_sensor.Kellerfensterfeuchtigkeitssensor_vorne_feuchtigkeit:
+#  friendly_name: Feuchtigkeitsstatus
+#sensor.kellerfensterfeuchtigkeitssensor_vorne_batterie:  
+#  friendly_name: Batteriestand  
+#binary_sensor.Kellerfensterfeuchtigkeitssensor_hinten_feuchtigkeit:
+#  friendly_name: Feuchtigkeitsstatus
+#sensor.kellerfensterfeuchtigkeitssensor_hinten_batterie:  
+#  friendly_name: Batteriestand  
+# bathroom
+#binary_sensor.bs_bz_shower_humidity:
+#  friendly_name: Feuchtigkeitsstatus
+#sensor.badezimmerduschtemperatursensor_luftfeuchtigkeit:
+#  friendly_name: Luftfeuchtigkeit
+#sensor.badezimmerduschtemperatursensor_batterie:  
+#  friendly_name: Batteriestand
