@@ -1,0 +1,25 @@
+- id: '1700673477788'
+  alias: KE Kellerfensterfeuchtigkeitsalarm hinten
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.kellerfensterfeuchtigkeitssensor_hinten_feuchtigkeit
+    to: 'on'
+  condition: []
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_notification
+    data:
+      variables:
+        msg_title: "Achtung"
+        msg_message: "Wasser im Lichtschacht hinten"
+  - service: notify.alexa_media_uberall
+    data:
+      title: "Achtung"
+      message: "Wasser im Lichtschacht hinten"
+      data:
+        type: announce
+        method: all
+  mode: single
