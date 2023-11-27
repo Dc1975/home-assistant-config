@@ -1,32 +1,32 @@
-- id: '1680513876353'
-  alias: BZ Bewegung erkannt Timer stop
+- id: '1680809840853'
+  alias: BZ Bewegung Dusche erkannt Timer stop
   description: ''
   trigger:
 #    - platform: state
 #      entity_id:
-#      - timer.ti_bz_motion_lights
+#      - timer.ti_ku_motion_lights
 #      to: idle
 # see Bug https://github.com/home-assistant/home-assistant.io/pull/26352
     - platform: event
       event_type: timer.finished
       event_data:
-        entity_id: timer.ti_bz_motion_lights
+        entity_id: timer.ti_bz_motion_lights_shower
   condition: []
-  action:  
+  action:
   - if:
-    - condition: state
-      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_9
-      state: "on"
+      - condition: state
+        entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_5
+        state: "on"
     then:
       - service: timer.start
         data_template:
-          entity_id: timer.ti_bz_motion_lights
+          entity_id: timer.ti_bz_motion_lights_shower
           duration: >-
             00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_secondary')
             | int}}
     else:
-      - type: turn_off
-        device_id: c6bb0b6f3377311ff4ed30d81a5b59ec
-        entity_id: switch.badezimmerschrank
-        domain: switch
+      - service: switch.turn_off
+        data: {}
+        target:
+          entity_id: switch.badezimmerdeckenlicht        
   mode: single

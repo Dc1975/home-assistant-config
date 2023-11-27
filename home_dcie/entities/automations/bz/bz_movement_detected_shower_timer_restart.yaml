@@ -1,0 +1,28 @@
+- id: '1680809832903'
+  alias: BZ Bewegung Dusche erkannt Timer restart
+  description: ''
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.lumi_lumi_motion_ac02_motion_5
+      to: "on"      
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: timer.ti_bz_motion_lights_shower
+          state: active
+        - condition: template
+          value_template: >
+            {% if (state_attr('timer.ti_bz_motion_lights_shower', 'finishes_at')) %}
+              {{ 
+                ((as_timestamp(state_attr('timer.ti_bz_motion_lights_shower','finishes_at'),0) - as_timestamp(now())) | int) <= 
+                (states('input_number.in_ha_treshold_in_motion_lights_off_secondray') | int)
+              }}
+            {% endif %}  
+  action:
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_bz_motion_lights_shower
+        duration: 00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_secondary') | int}}
+  mode: single

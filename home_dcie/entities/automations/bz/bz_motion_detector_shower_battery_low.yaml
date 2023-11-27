@@ -1,5 +1,5 @@
 - id: '1680811428034'
-  alias: KU Bewegungsmelderbatterie niedrig
+  alias: BZ Bewegungsmelderbatterie Dusche niedrig
   description: ''
   trigger:
   - platform: template
@@ -37,6 +37,6 @@
       variables:
         msg_title: "{{states('input_text.it_battery_level_notification_title')}} {{states('input_number.in_ha_batteries_threshold') | int}}%"
         msg_message: > 
-          {{states('input_text.it_battery_level_notification_message')}} Küchenlichtsensor, 
+          {{states('input_text.it_battery_level_notification_message')}} Badezimmerduschlichtsensor, 
           {{states('sensor.lumi_lumi_motion_ac02_battery_5') | int}}%
   mode: parallel

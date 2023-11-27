@@ -1,0 +1,55 @@
+- id: '1680809820169'
+  alias: BZ Bewegung Dusche erkannt Timer start
+  description: ''
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.lumi_lumi_motion_ac02_motion_5
+      to: "on"
+  condition:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: input_boolean.ib_bz_switch_motion_detector_shower
+        state: "on"      
+      # use this condition to prevent light turn off if they werere manually turned on
+      - condition: state
+        entity_id: switch.badezimmerdeckenlicht
+        state: "off"           
+      - condition: or
+        conditions:
+          - condition: template
+            value_template: >
+              {{ state_attr('sensor.sr_bz_cover', 'get_position') | int > states('input_number.in_ha_covers_open_threshold') | int }}          
+#        - condition: numeric_state
+#          entity_id: sun.sun
+#          attribute: elevation
+#          below: input_number.in_ha_sun_elevation_treshhold    
+#        - condition: template
+#          value_template: >
+#            {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_5') %}
+#              {{ states('sensor.lumi_lumi_motion_ac02_illuminance_5') |
+#              int <=  states('input_number.in_ha_lux_treshhold') | int }}
+#            {% endif %}
+          - condition: template
+            value_template: >
+              {{ state_attr('sensor.sr_ha_turn_on_lights', 'bz') }}                
+  action:
+    - service: switch.turn_on
+      data: {}
+      target:
+        entity_id: switch.badezimmerdeckenlicht
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_bz_motion_lights_shower
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"
+    # switch off wardrobe light while showering
+    - service: switch.turn_off
+      data: {}
+      target:
+        entity_id: switch.badezimmerschrank    
+    - service: timer.finish
+      data: {}
+      target:
+        entity_id: timer.ti_bz_motion_lights        
+  mode: single
