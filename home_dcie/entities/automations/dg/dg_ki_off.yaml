@@ -1,18 +1,19 @@
-- id: "1675170093548"
-  alias: DG KI ein
-  description: ""
+
+- id: '1680865927489'
+  alias: DG KI aus
+  description: ''
   trigger:
     - platform: time
-      at: input_datetime.idt_dg_ki_on_weekend
+      at: input_datetime.idt_dg_ki_off_weekend
       id: weekend
     - platform: time
-      at: input_datetime.idt_dg_ki_on_workday
+      at: input_datetime.idt_dg_ki_off_workday
       id: workday
   condition:
     - condition: template
       value_template: "{{states('input_boolean.ib_dg_ki_used_in_automations') == 'on' }}"
     - condition: device
-      type: is_off
+      type: is_on
       device_id: 66b9b925ffa5c9c28f1fac98d0dfbc29
       entity_id: 89e8a6f4678c48331ad734c180a9aead
       domain: switch
@@ -33,7 +34,7 @@
               entity_id: binary_sensor.workday_sensor
               state: "off"
   action:
-    - type: turn_on
+    - type: turn_off
       device_id: 66b9b925ffa5c9c28f1fac98d0dfbc29
       entity_id: switch.dachgeschoss_ki
       domain: switch

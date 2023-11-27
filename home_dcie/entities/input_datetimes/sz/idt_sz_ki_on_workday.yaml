@@ -1,0 +1,6 @@
+idt_sz_ki_on_workday:
+  name: idt_sz_ki_on_workday
+  #initial: ""
+  icon: mdi:laptop
+  has_time: true
+  has_date: false
