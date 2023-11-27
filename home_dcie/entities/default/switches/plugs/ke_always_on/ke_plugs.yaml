@@ -1,5 +1,5 @@
 # this switches has to be alwayson and may not be turned off through an automation!
 - switch.kellersteckdose_kuhlschrank
-# this both plugs must not be always on and may be turned off throgh an automation wich is specially for only for this
+# this both plugs must not be always on and may be turned off through an automation wich is specially for only for this
 - switch.kellersteckdose_waschmaschine
 - switch.kellersteckdose_trockner
