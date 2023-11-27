@@ -3,17 +3,9 @@ sensor:
   - name: sr_ha_lamps_on
     unique_id: sr_ha_lamps_on
     state: >
-      {{expand('light.ha_grp_lampen') | count}}
+      {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
+      {{get_LightsOrLampsOrSwichtes_on('count',false, 'lamps')}}
     attributes:
-      lamps_on_beautify: >
+      lamps_on: >
         {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
-        {{get_LightsOrLampsOrSwichtes_on('list', false, true, 'lamps')}}
-      lamps_on_by_time_beautify: >
-        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
-        {{get_LightsOrLampsOrSwichtes_on('list', true, true, 'lamps')}}        
-      lamps_on_by_time_raw: >
-        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
-        {{get_LightsOrLampsOrSwichtes_on('list', true, false, 'lamps')}}   
-      lamps_on_by_time_since: >
-        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
-        {{get_LightsOrLampsOrSwichtes_on('count', true, false, 'lamps')}}            
+        {{get_LightsOrLampsOrSwichtes_on('',false, 'lamps')}}

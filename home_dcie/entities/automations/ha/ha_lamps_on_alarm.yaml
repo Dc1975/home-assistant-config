@@ -4,15 +4,16 @@
   trigger:
   - platform: state
     entity_id:
-      - sensor.sr_ha_lamps_on
-    attribute: lamps_on_by_time_since
+      - sensor.sr_ha_lamps_on_count
   condition:
   action: 
   - if:
     - condition: template
       value_template: >-
-        {{ (state_attr('sensor.sr_ha_lamps_on','lamps_on_by_time_since') | int(0) > 0 and
-           state_attr('sensor.sr_ha_lamps_on','lamps_on_by_time_since') | int(0) >= (states('input_number.in_ha_lamps_on_alarm_last_count') | int(0)))
+        {% set count = states('sensor.sr_ha_lamps_on_count') | int(0) %}
+        {{           
+          ( count > 0 and
+           count >= (states('input_number.in_ha_lamps_on_alarm_last_count') | int(0)))
         }}
     then:
       - service: script.turn_on
@@ -21,18 +22,102 @@
         data:
           variables:
             msg_title: "{{states('input_text.it_ha_devices_on_alert_notification_title')}}"
-            msg_message: "{{states('input_text.it_ha_devices_on_alert_notification_message')}} {{state_attr('sensor.sr_ha_lamps_on','lamps_on_by_time_beautify')}}"
+            msg_message: >
+              {% set prefix = states('input_text.it_ha_devices_on_alert_notification_message') %}
+              {% set entitys_text_off = "Es sind keine Lampen eingeschaltet." %}
+              {% set entity_text_on = "Die Lampe" %}
+              {% set entitys_text_on = "Die Lampen" %}
+              {% set alarmText = "seit " + states('input_number.in_ha_lamps_on_alarm_period') | int(0) | string + " Minuten " %}
+
+              {% set filter = states('input_text.it_ha_lapms_on_filter') %}
+              {% set minutes = timedelta(minutes=states('input_number.in_ha_lamps_on_alarm_period') | int) %}
+              {% set entity_name = "light.ha_grp_lampen" %}
+              {% set type = "light." %}
+
+              {% set result = namespace(entity_ids=[]) %}
+              {% set entity_list = filter.split(',') %} {% for entity_id in entity_list %}
+                  {% set result.entity_ids = result.entity_ids  + [type + entity_id] %}
+              {% endfor %}
+              {% set filter = result.entity_ids %}
+
+              {% set switches =  expand(states.switch) | selectattr('state', 'eq', 'on') |
+                  selectattr('entity_id', 'in', expand(entity_name))|
+                  expand(entity_name) | selectattr('state', 'eq', 'on') |
+                  selectattr('last_changed', '<', (now() - minutes)) | list%}
+              {% set switches =  switches | rejectattr('entity_id', 'in', filter) | map(attribute='name') | list %}
+
+              {% set output = namespace(out= "") %}
+              {% if (switches | length) == 0 %}
+                  {% set output.out = output.out + entitys_text_off %}
+              {% elif (switches | length) == 1 %}
+                  {% set output.out = output.out + entity_text_on + " " + switches[0] + " ist " + alarmText + "eingeschaltet." %}
+              {%- else  -%}
+                  {% set output.out = output.out + entitys_text_on + " " %}
+                  {%- for i in range(switches|length) -%}
+                      {%- if i == (switches|length)-1 -%}
+                          {% set output.out = output.out + " und " + switches[i] + " sind " + alarmText + "eingeschaltet." %}
+                      {%- else -%}
+                          {% set output.out = output.out + switches[i] %}
+                          {%- if (i + 2) in range(switches|length) -%}
+                              {% set output.out = output.out + ", " %}
+                          {%- endif %}
+                      {%- endif -%}
+                  {% endfor %}
+              {% endif %} 
+              {{prefix + output.out}}
       - service: notify.alexa_media_uberall
         data:
           title: "{{states('input_text.it_ha_devices_on_alert_notification_title')}}"
-          message: "{{states('input_text.it_ha_devices_on_alert_notification_message')}} {{state_attr('sensor.sr_ha_lamps_on','lamps_on_by_time_beautify')}}"
+          message: >
+            "{{states('input_text.it_ha_devices_on_alert_notification_message')}}"
+            {% set entitys_text_off = "Es sind keine Lampen eingeschaltet." %}
+            {% set entity_text_on = "Die Lampe" %}
+            {% set entitys_text_on = "Die Lampen" %}
+            {% set alarmText = "seit " + states('input_number.in_ha_lamps_on_alarm_period') | int(0) | string + " Minuten " %}
+
+            {% set filter = states('input_text.it_ha_lapms_on_filter') %}
+            {% set minutes = timedelta(minutes=states('input_number.in_ha_lamps_on_alarm_period') | int) %}
+            {% set entity_name = "light.ha_grp_lampen" %}
+            {% set type = "light." %}
+
+            {% set result = namespace(entity_ids=[]) %}
+            {% set entity_list = filter.split(',') %} {% for entity_id in entity_list %}
+                {% set result.entity_ids = result.entity_ids  + [type + entity_id] %}
+            {% endfor %}
+            {% set filter = result.entity_ids %}
+
+            {% set switches =  expand(states.switch) | selectattr('state', 'eq', 'on') |
+                selectattr('entity_id', 'in', expand(entity_name))|
+                expand(entity_name) | selectattr('state', 'eq', 'on') |
+                selectattr('last_changed', '<', (now() - minutes)) | list%}
+            {% set switches =  switches | rejectattr('entity_id', 'in', filter) | map(attribute='name') | list %}
+
+            {% set output = namespace(out= "") %}
+            {% if (switches | length) == 0 %}
+                {% set output.out = output.out + entitys_text_off %}
+            {% elif (switches | length) == 1 %}
+                {% set output.out = output.out + entity_text_on + " " + switches[0] + " ist " + alarmText + "eingeschaltet." %}
+            {%- else  -%}
+                {% set output.out = output.out + entitys_text_on + " " %}
+                {%- for i in range(switches|length) -%}
+                    {%- if i == (switches|length)-1 -%}
+                        {% set output.out = output.out + " und " + switches[i] + " sind " + alarmText + "eingeschaltet." %}
+                    {%- else -%}
+                        {% set output.out = output.out + switches[i] %}
+                        {%- if (i + 2) in range(switches|length) -%}
+                            {% set output.out = output.out + ", " %}
+                        {%- endif %}
+                    {%- endif -%}
+                {% endfor %}
+            {% endif %} 
+            {{output.out}}            
           data:
             type: announce
             method: all
 # use the helper to avoid execution if the lights will be switched off
   - service: input_number.set_value
     data:
-      value: "{{state_attr('sensor.sr_ha_lamps_on','lamps_on_by_time_since') | int(0)}}"
+      value: "{{states('sensor.sr_ha_lamps_on_count') | int(0)}}"
     target:
       entity_id: input_number.in_ha_lamps_on_alarm_last_count            
   mode: single

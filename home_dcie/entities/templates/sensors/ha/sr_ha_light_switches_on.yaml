@@ -1,19 +1,11 @@
-#Welche Lichtschalter sind seit x Minuten eingeschaltet
+#Welche Lichtschalter sind eingeschaltet
 sensor:
   - name: sr_ha_light_switches_on
     unique_id: sr_ha_light_switches_on
     state: >
-      {{expand('switch.ha_grp_lichtschalter') | count}}
+      {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
+      {{get_LightsOrLampsOrSwichtes_on('count',false, 'lights')}}
     attributes:
-      light_switches_on_beautify: >
+      light_switches_on: >
         {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
-        {{get_LightsOrLampsOrSwichtes_on('list', false, true, 'lights')}}
-      light_switches_on_by_time_beautify: >
-        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
-        {{get_LightsOrLampsOrSwichtes_on('list', true, true, 'lights')}}        
-      light_switches_on_by_time_raw: >
-        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
-        {{get_LightsOrLampsOrSwichtes_on('list', true, false, 'lights')}}   
-      light_switches_on_by_time_since: >
-        {% from 'get_LightsOrLampsOrSwichtes_on.jinja' import get_LightsOrLampsOrSwichtes_on %}        
-        {{get_LightsOrLampsOrSwichtes_on('count', true, false, 'lights')}}   
+        {{get_LightsOrLampsOrSwichtes_on('',false, 'lights')}}

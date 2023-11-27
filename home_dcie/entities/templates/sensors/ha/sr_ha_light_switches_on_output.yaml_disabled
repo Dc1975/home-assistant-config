@@ -1,0 +1,46 @@
+#Welche Lampen sind eingeschaltet
+sensor:
+  - name: sr_ha_light_switches_on_output
+    unique_id: sr_ha_light_switches_on_output
+    state: >
+      {% set entitys_text_off = "Es sind keine Lichtschalter eingeschaltet." %}
+      {% set entity_text_on = "Der Lichtschalter" %}
+      {% set entitys_text_on = "Die Lichtschalter" %}
+      {% set alarmText = "seit " + states('input_number.in_ha_light_switches_on_alarm_period') | int(0) | string + " Minuten " %}
+
+      {% set filter = states('input_text.it_ha_light_switches_on_filter') %}
+      {% set minutes = timedelta(minutes=states('input_number.in_ha_light_switches_on_alarm_period') | int) %}
+      {% set entity_name = "switch.ha_grp_lichtschalter" %}
+      {% set type = "switch." %}
+
+      {% set result = namespace(entity_ids=[]) %}
+      {% set entity_list = filter.split(',') %} {% for entity_id in entity_list %}
+          {% set result.entity_ids = result.entity_ids  + [type + entity_id] %}
+      {% endfor %}
+      {% set filter = result.entity_ids %}
+
+      {% set switches =  expand(states.switch) | selectattr('state', 'eq', 'on') |
+          selectattr('entity_id', 'in', expand(entity_name))|
+          expand(entity_name) | selectattr('state', 'eq', 'on') |
+          selectattr('last_changed', '<', (now() - minutes)) | list%}
+      {% set switches =  switches | rejectattr('entity_id', 'in', filter) | map(attribute='name') | list %}
+
+      {% set output = namespace(out= "") %}
+      {% if (switches | length) == 0 %}
+          {% set output.out = output.out + entitys_text_off %}
+      {% elif (switches | length) == 1 %}
+          {% set output.out = output.out + entity_text_on + " " + switches[0] + " ist " + alarmText + "eingeschaltet." %}
+      {%- else  -%}
+          {% set output.out = output.out + entitys_text_on + " " %}
+          {%- for i in range(switches|length) -%}
+              {%- if i == (switches|length)-1 -%}
+                  {% set output.out = output.out + " und " + switches[i] + " sind " + alarmText + "eingeschaltet." %}
+              {%- else -%}
+                  {% set output.out = output.out + switches[i] %}
+                  {%- if (i + 2) in range(switches|length) -%}
+                      {% set output.out = output.out + ", " %}
+                  {%- endif %}
+              {%- endif -%}
+          {% endfor %}
+      {% endif %} 
+      {{output.out}}

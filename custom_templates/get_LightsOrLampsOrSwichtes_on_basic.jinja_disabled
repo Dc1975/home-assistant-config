@@ -1,22 +1,13 @@
-{% macro get_LightsOrLampsOrSwichtes_on(operator, timeBased, entity) %}
+{% macro get_LightsOrLampsOrSwichtes_on_basic(operator, timeBased, entity) %}
 {% if entity == "lights" %}
-  {% set entitys_text_off = "Es sind keine Lichtschalter eingeschaltet." %}
-  {% set entity_text_on = "Der Lichtschalter" %}
-  {% set entitys_text_on = "Die Lichtschalter" %}
   {% set entity_name = "switch.ha_grp_lichtschalter" %}
   {% set filter = states('input_text.it_ha_light_switches_on_filter') %}  
   {% set type = "switch." %}
 {% elif entity == "lamps" %} 
-  {% set entitys_text_off = "Es sind keine Lampen eingeschaltet." %}
-  {% set entity_text_on = "Die Lampe" %}
-  {% set entitys_text_on = "Die Lampen" %}
   {% set entity_name = "light.ha_grp_lampen" %}
   {% set filter = states('input_text.it_ha_lapms_on_filter') %}  
   {% set type = "light." %}
 {% elif entity == "switches" %} 
-  {% set entitys_text_off = "Es sind keine Schalter eingeschaltet." %}
-  {% set entity_text_on = "Der Schalter" %}
-  {% set entitys_text_on = "Die Schalter" %}
   {% set entity_name = "switch.ha_grp_schalter" %}
   {% set filter = states('input_text.it_ha_switches_on_filter') %}  
   {% set type = "switch." %}
@@ -47,37 +38,18 @@
   {% set alarmText = "" %}
 {% endif %} 
 
-{% set switches =  expand(states.switch) | selectattr('state', 'eq', 'on') |
+{% set switches = namespace(out = "") %}
+{% set switches.out =  expand(states.switch) | selectattr('state', 'eq', 'on') |
   selectattr('entity_id', 'in', expand(entity_name)) |
   expand(entity_name) | selectattr('state', 'eq', 'on') | 
   selectattr('last_changed', '<', (now() - minutes)) | list
 %}  
-{% set switches =  switches | rejectattr('entity_id', 'in', filter) | map(attribute='name') | list %}
-{% set output = namespace(out = "") %}
+{% set switches.out =  switches.out | rejectattr('entity_id', 'in', filter) | map(attribute='name') | list %}
 
-{% if (switches | length) == 0 %}
-   {% set output.out = output.out + entitys_text_off %}
-{% elif (switches | length) == 1 %}
-  {% set output.out = output.out + entity_text_on + " " + switches[0] + " ist " + alarmText + "eingeschaltet." %}     
-{%- else  -%}
-  {% set output.out = output.out + entitys_text_on + " " %}
-  {%- for i in range(switches|length) -%}
-    {%- if i == (switches|length)-1 -%}
-      {% set output.out = output.out + " und " + switches[i] + " sind " + alarmText + "eingeschaltet." %}
-    {%- else -%}
-      {% set output.out = output.out + switches[i] %}
-      {%- if (i + 2) in range(switches|length) -%}
-        {% set output.out = output.out + ", " %}
-      {%- endif %}  
-    {%- endif -%}    
-  {% endfor %}
-{% endif %}
+{% if operator == "list"%}
+  {{switches.out}}  
+{% else %} 
+  {{switches.out | count}} 
+{% endif %}  
 
-{% if (operator | length) == 0 %}
-  {{output.out}}
-{% elif (operator == 'count') %}
-  {{switches | count}}
-{% elif (operator == 'list') %}
-  {{switches}}
-{% endif %}
 {% endmacro %} 
