@@ -6,8 +6,8 @@ mm_beamer_off:
       target:
         entity_id: remote.harmonyelitehubby
       data:
-        num_repeats: 3
-        hold_secs: 0.5
+        num_repeats: 4
+        hold_secs: 1
         command:
           - PowerOff
         delay_secs: 2
