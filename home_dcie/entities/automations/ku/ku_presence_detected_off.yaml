@@ -1,0 +1,18 @@
+- id: '1700571418652'
+  alias: KU Anwesenheit aus
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.everything_presence_one_mmwave
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: switch.kuchenlicht
+    state: 'on'
+  action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.kuchenlicht
+  mode: single
