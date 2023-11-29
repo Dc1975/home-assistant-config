@@ -1,0 +1,7 @@
+in_ku_lux_offset:
+  name: in_ku_lux_offset
+  icon: mdi:brightness-percent
+  min: -1
+  max: 100
+  step: 1
+  mode: box

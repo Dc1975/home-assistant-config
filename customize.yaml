@@ -508,6 +508,8 @@ input_number.in_sz_az_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Ankleidezimmer
 input_number.in_sz_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Schlafzimmer  
+input_number.in_ku_lux_offset:
+  friendly_name: Luxoffset Bewegung Küche
 # input_datetime
 input_datetime.idt_ha_covers_close_summer_after:
   friendly_name: Sommermodus von
