@@ -1,0 +1,6 @@
+idt_dg_printer_plug_off:
+  name: idt_dg_printer_plug_off
+  #initial: ""
+  icon: mdi:power-plug-off
+  has_time: true
+  has_date: true

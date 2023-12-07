@@ -1,0 +1,3 @@
+# this switches has to be always on and may not be turned off through an automation!
+- switch.schlafzimmersteckdose_bett_links
+- switch.schlafzimmersteckdose_bett_rechts
