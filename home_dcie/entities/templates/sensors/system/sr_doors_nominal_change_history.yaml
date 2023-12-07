@@ -10,8 +10,8 @@
         - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_12
         - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_14
         - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_15
-        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_16           
-
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_16     
+        - binary_sensor.kellerraumtursensor_offnet
       not_to:
         - unavailable
         - unknown
