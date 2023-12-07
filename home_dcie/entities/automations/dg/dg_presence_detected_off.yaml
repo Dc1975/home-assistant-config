@@ -1,0 +1,22 @@
+- id: '1701797689752'
+  alias: DG Anwesenheit aus
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.presence_sensor_fp2_d6a5_presence_sensor_2
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: switch.dachgeschossdeckenlicht
+    state: 'on'
+  # signals that the seat is not occupied
+  - condition: state
+    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_11
+    state: "on"
+  action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.dachgeschossdeckenlicht
+  mode: single

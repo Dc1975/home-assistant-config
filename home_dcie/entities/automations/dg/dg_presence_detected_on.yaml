@@ -1,0 +1,26 @@
+- id: '1701797680525'
+  alias: DG Anwesenheit an
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.presence_sensor_fp2_d6a5_presence_sensor_2
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: switch.dachgeschossdeckenlicht
+    state: 'off'
+  - condition: or
+    conditions:
+    - condition: template
+      value_template: >
+        {{ state_attr('sensor.sr_dg_cover', 'get_position') | int > states('input_number.in_ha_covers_open_threshold') | int }}
+    - condition: template
+      value_template: >
+        {{ state_attr('sensor.sr_ha_turn_on_lights', 'dg') }}
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.dachgeschossdeckenlicht
+  mode: single  

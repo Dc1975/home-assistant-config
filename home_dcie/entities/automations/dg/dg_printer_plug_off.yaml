@@ -1,0 +1,16 @@
+- id: '1701135463825'
+  alias: DG Druckersteckdose aus
+  description: ""
+  trigger:
+    - platform: time
+      at: input_datetime.idt_dg_printer_plug_off
+  condition:
+    - condition: state
+      entity_id: input_boolean.ib_dg_printer_plug_used_in_automations
+      state: "on"
+  action:
+    - service: switch.turn_off
+      data: {}
+      target:
+        entity_id: switch.dachgeschosssteckdose
+  mode: single
