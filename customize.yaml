@@ -174,6 +174,23 @@ sensor.um_sz_steckdose_ki_monthly:
   friendly_name: Schlafzimmer KI monatlich
 sensor.um_sz_steckdose_ki_yearly:
   friendly_name: Schlafzimmer KI jährlich  
+sensor.um_dg_steckdose_3d_drucker_daily:
+  friendly_name: 3d Drucker täglich
+sensor.um_dg_steckdose_3d_drucker_weekly:
+  friendly_name: 3d Drucker wöchentlich
+sensor.um_dg_steckdose_3d_drucker_monthly:
+  friendly_name: 3d Drucker monatlich
+sensor.um_dg_steckdose_3d_drucker_yearly:
+  friendly_name: 3d Drucker jährlich
+sensor.um_dg_steckdose_laptop_daily:
+  friendly_name: Laptop täglich
+sensor.um_dg_steckdose_laptop_weekly:
+  friendly_name: Laptop wöchentlich
+sensor.um_dg_steckdose_laptop_monthly:
+  friendly_name: Laptop monatlich
+sensor.um_dg_steckdose_laptop_yearly:
+  friendly_name: Laptop jährlich
+
 # EcoWitt
 sensor.gw1100a_v2_2_3_outdoor_temperature:
   friendly_name: Außentemperatur
@@ -571,6 +588,8 @@ input_number.in_ha_switches_on_alarm_last_count:
   friendly_name: Eingeschaltete Geräte
 input_number.in_bz_schower_humidity_delay:
   friendly_name: Duschlichtdauer
+input_number.in_mm_skyq_advertising_delay:
+  friendly_name: Sky Werbezeit
 # timer
 timer.ti_sz_room_motion_lights:
   friendly_name: Timer Schlafzimmer
@@ -604,6 +623,13 @@ input_datetime.idt_sz_ki_off_weekend:
 # plugs
 switch.schlafzimmersteckdose_ki:
   friendly_name: Schlafzimmer KI
+input_datetime.idt_dg_printer_plug_off:
+  friendly_name: Ausschaltzeitpunkt
+input_boolean.ib_dg_printer_plug_used_in_automations:
+  friendly_name: In Automationen benutzen
+# input_boolean
+
+
 # keller
 #binary_sensor.Kellerfensterfeuchtigkeitssensor_vorne_feuchtigkeit:
 #  friendly_name: Feuchtigkeitsstatus

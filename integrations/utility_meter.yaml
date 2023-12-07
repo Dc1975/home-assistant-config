@@ -143,19 +143,35 @@ utility_meter:
     source: sensor.kellersteckdose_trockner_energy_total
     cycle: yearly
     name: um_ke_steckdose_trockner_yearly
-  um_dg_steckdose_daily:
-    source: sensor.dachgeschosssteckdose_energy_total
+  um_dg_steckdose_3d_drucker_daily:
+    source: sensor.dachgeschosssteckdose_3d_drucker_energy_total
     cycle: daily
-    name: um_dg_steckdose_daily
-  um_dg_steckdose_weekly:
-    source: sensor.dachgeschosssteckdose_energy_total
+    name: um_dg_steckdose_3d_drucker_daily
+  um_dg_steckdose_3d_drucker_weekly:
+    source: sensor.dachgeschosssteckdose_3d_drucker_energy_total
     cycle: weekly
-    name: um_dg_steckdose_weekly
-  um_dg_steckdose_monthly:
-    source: sensor.dachgeschosssteckdose_energy_total
+    name: um_dg_steckdose_3d_drucker_weekly
+  um_dg_steckdose_3d_drucker_monthly:
+    source: sensor.dachgeschosssteckdose_3d_drucker_energy_total
     cycle: monthly
-    name: um_dg_steckdose_monthly
-  um_dg_steckdose_yearly:
-    source: sensor.dachgeschosssteckdose_energy_total
+    name: um_dg_steckdose_3d_drucker_monthly
+  um_dg_steckdose_3d_drucker_yearly:
+    source: sensor.dachgeschosssteckdose_3d_drucker_energy_total
     cycle: yearly
-    name: um_dg_steckdose_yearly
+    name: um_dg_steckdose_3d_drucker_yearly
+  um_dg_steckdose_laptop_daily:
+    source: sensor.dachgeschosssteckdose_laptop_energy_total
+    cycle: daily
+    name: um_dg_steckdose_laptop_daily
+  um_dg_steckdose_laptop_weekly:
+    source: sensor.dachgeschosssteckdose_laptop_energy_total
+    cycle: weekly
+    name: um_dg_steckdose_laptop_weekly
+  um_dg_steckdose_laptop_monthly:
+    source: sensor.dachgeschosssteckdose_laptop_energy_total
+    cycle: monthly
+    name: um_dg_steckdose_laptop_monthly
+  um_dg_steckdose_laptop_yearly:
+    source: sensor.dachgeschosssteckdose_laptop_energy_total
+    cycle: yearly
+    name: um_dg_steckdose_laptop_yearly
