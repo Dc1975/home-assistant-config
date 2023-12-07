@@ -1,4 +1,0 @@
-device_tracker:
-  - platform: ping
-    hosts:
-      s23_von_dirk_ping: !secret s23_ip
