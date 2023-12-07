@@ -2,6 +2,10 @@ mm_sykq_off:
   alias: MM Sky ausschalten
   # Schaltet nur den SkyQ Receiver aus
   sequence:
+      # if sky was gone to stand by during gaming or so one and Harmony will be switched off, sky will turn on again and we have to wait for that to switch off again    
+    - wait_template: "{{ is_state('script.mm_multimedia_off', 'on') }}"                      
+      timeout: "00:0:30"
+      continue_on_timeout: true     
     - if:
       - condition: or
         conditions:    

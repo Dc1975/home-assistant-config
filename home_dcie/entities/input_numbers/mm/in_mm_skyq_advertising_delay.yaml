@@ -1,0 +1,9 @@
+in_mm_skyq_advertising_delay:
+  name: in_mm_skyq_advertising_delay
+  min: 0
+  max: 240
+  step: 1
+  unit_of_measurement: "s"
+  icon: mdi:timer
+  mode: box
+

@@ -1,0 +1,36 @@
+mm_sky_skip_advertising:
+  alias: MM Sky Werbung ueberspringen
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.harmonyelitehubby
+    data:
+      hold_secs: 0.2
+      command:
+      - FastForward
+      num_repeats: 2
+      device: '53386103'
+      delay_secs: 0.2
+  - service: remote.send_command
+    target:
+      entity_id: remote.harmonyelitehubby
+    data:
+      hold_secs: 0.2
+      command:
+      - FastForward
+      num_repeats: 2
+      device: '53386103'
+      delay_secs: 0.2
+  - delay: "{{ states('input_number.in_mm_skyq_advertising_delay') | int }}"
+  - service: remote.send_command
+    target:
+      entity_id: remote.harmonyelitehubby
+    data:
+      hold_secs: 0.2
+      command:
+      - Play
+      num_repeats: 2
+      device: '53386103'
+      delay_secs: 0.2
+  mode: single
+  icon: mdi:remote-tv
