@@ -14,16 +14,16 @@
       entity_id: script.ha_handy_notification
     data:
       variables:
-        msg_title: "{{states('input_text.it_fridge_temperatur_alert_notification_title')}}"
+        msg_title: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_title')}}"
         msg_message: >
           {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
-          {{states('input_text.it_fridge_temperatur_alert_notification_message')}} Kellerkühlschrank ist {{locale.get(states('switch.kellersteckdose_kuhlschrank'))}}
+          {{states('input_text.it_ha_fridge_temperatur_alert_notification_message')}} Kellerkühlschrank ist {{locale.get(states('switch.kellersteckdose_kuhlschrank'))}}
   - service: notify.alexa_media_uberall
     data:
-      title: "{{states('input_text.it_fridge_temperatur_alert_notification_title')}}"
+      title: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_title')}}"
       message: >
         {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
-        {{states('input_text.it_fridge_temperatur_alert_notification_message')}} Kellerkühlschrank ist {{locale.get(states('switch.kellersteckdose_kuhlschrank'))}}
+        {{states('input_text.it_ha_fridge_temperatur_alert_notification_message')}} Kellerkühlschrank ist {{locale.get(states('switch.kellersteckdose_kuhlschrank'))}}
       data:
         type: announce
         method: all

@@ -20,12 +20,12 @@
       entity_id: script.ha_handy_notification
     data:
       variables:
-        msg_title: "{{states('input_text.it_fridge_temperatur_alert_notification_title')}}"
-        msg_message: "{{states('input_text.it_fridge_temperatur_alert_notification_message')}} Kellerkühlschrank ist bei {{states('sensor.lumi_lumi_weather_temperature_11') | float}} °C"
+        msg_title: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_title')}}"
+        msg_message: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_message')}} Kellerkühlschrank ist bei {{states('sensor.lumi_lumi_weather_temperature_11') | float}} °C"
   - service: notify.alexa_media_uberall
     data:
-      title: "{{states('input_text.it_fridge_temperatur_alert_notification_title')}}"
-      message: "{{states('input_text.it_fridge_temperatur_alert_notification_message')}} Kellerkühlschrank ist bei {{states('sensor.lumi_lumi_weather_temperature_11') | float}} Grad"
+      title: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_title')}}"
+      message: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_message')}} Kellerkühlschrank ist bei {{states('sensor.lumi_lumi_weather_temperature_11') | float}} Grad"
       data:
         type: announce
         method: all
