@@ -1,0 +1,11 @@
+sensor:
+  - name: sr_ku_everything_presence_one_illuminance_modified
+    unique_id: sr_ku_everything_presence_one_illuminance_modified
+    icon: mdi:brightness-5
+    unit_of_measurement: "lx"
+    state: >
+      {{(states('sensor.everything_presence_one_illuminance') | float * 2 ** 2.6 + 0.02715248724 | log + 3.60629) | round(2)}}
+   
+
+
+
