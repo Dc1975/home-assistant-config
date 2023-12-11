@@ -1,6 +1,6 @@
 recorder:
   db_url: !secret mariadb_url
-  purge_keep_days: 30
+  purge_keep_days: 31
   commit_interval: 20
   exclude:
     domains:

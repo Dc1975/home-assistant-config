@@ -549,6 +549,15 @@ input_text.it_ha_lamps_on_filter:
   friendly_name: Filter Lampenschalter
 input_text.it_ha_switches_on_filter:
   friendly_name: Filter Geräteschalter
+input_text.it_sz_bed_plugs_off_alert_notification_title:
+  friendly_name: "Benachrichtigung Bettsteckdosen - Titel:"
+input_text.it_sz_bed_plugs_off_alert_alert_notification_message:
+  friendly_name: "Benachrichtigung Bettsteckdosen - Text:"
+input_text.it_ha_fridge_temperatur_alert_notification_message:
+  friendly_name: "Benachrichtigung Kühlschrank - Text:"
+input_text.it_ha_fridge_temperatur_alert_notification_title:
+  friendly_name: "Benachrichtigung Kühlschrank - Titel:"
+
 # input_number
 input_number.in_mm_onkyo_volume_factor:
   friendly_name: Onkyo Lautstärkefaktor
