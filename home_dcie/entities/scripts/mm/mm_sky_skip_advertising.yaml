@@ -29,7 +29,7 @@ mm_sky_skip_advertising:
       hold_secs: 0.2
       command:
       - Play
-      num_repeats: 2
+      num_repeats: 1
       device: '53386103'
       delay_secs: 0.2
   mode: single
