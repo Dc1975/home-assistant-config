@@ -1,0 +1,29 @@
+- id: '1702224870038'
+  alias: SZ Bettsteckdose links Alarm
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - switch.schlafzimmersteckdose_bett_links
+    to: "off"
+  condition: []
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_notification
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_sz_bed_plugs_off_alert_notification_title')}}"
+        msg_message: >
+          {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
+          {{states('input_text.it_sz_bed_plugs_off_alert_alert_notification_message')}} Bettsteckdose links ist {{locale.get(states('switch.schlafzimmersteckdose_bett_links'))}}        
+  - service: notify.alexa_media_uberall
+    data:
+      title: "{{states('input_text.it_sz_bed_plugs_off_alert_notification_title')}}"
+      message: >
+        {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
+        {{states('input_text.it_sz_bed_plugs_off_alert_alert_notification_message')}} Bettsteckdose links ist {{locale.get(states('switch.schlafzimmersteckdose_bett_links'))}}
+      data:
+        type: announce
+        method: all
+  mode: single

@@ -1,0 +1,29 @@
+- id: '1702225549118'
+  alias: SZ Bettsteckdose rechts Alarm
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - switch.schlafzimmersteckdose_bett_rechts
+    to: "off"
+  condition: []
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_notification
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_sz_bed_plugs_off_alert_notification_title')}}"
+        msg_message: >
+          {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
+          {{states('input_text.it_sz_bed_plugs_off_alert_alert_notification_message')}} Bettsteckdose rechts ist {{locale.get(states('switch.schlafzimmersteckdose_bett_rechts'))}}        
+  - service: notify.alexa_media_uberall
+    data:
+      title: "{{states('input_text.it_sz_bed_plugs_off_alert_notification_title')}}"
+      message: >
+        {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
+        {{states('input_text.it_sz_bed_plugs_off_alert_alert_notification_message')}} Bettsteckdose rechts ist {{locale.get(states('switch.schlafzimmersteckdose_bett_rechts'))}}
+      data:
+        type: announce
+        method: all
+  mode: single
