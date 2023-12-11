@@ -1,21 +1,15 @@
 sensor:
-  - name: sr_wz_cover_window
+  - name: sr_wz_cover_window  
     state: >
-      {% if states('cover.wohnzimmerfensterrolladen_tuya') == 'closed' %}
-        open
-      {% else %}
-        closed
-      {% endif %}      
+      {% from 'get_covers_states.jinja' import get_covers_states %}
+      {{get_covers_states('wohnzimmerfensterrolladen_tuya', 'state')}}                 
     attributes:
-      is_open: >    
-        {% if not state_attr('cover.wohnzimmerfensterrolladen_tuya', 'current_position') is none %}      
-          {{ state_attr('cover.wohnzimmerfensterrolladen_tuya', 'current_position') | int  == 0}}            
-        {% endif %}
+      is_open: >
+        {% from 'get_covers_states.jinja' import get_covers_states %}    
+        {{get_covers_states('wohnzimmerfensterrolladen_tuya', 'is_open')}}
       is_closed: >
-        {% if not state_attr('cover.wohnzimmerfensterrolladen_tuya', 'current_position') is none %}      
-          {{ state_attr('cover.wohnzimmerfensterrolladen_tuya', 'current_position') | int  == 100}}                  
-        {% endif %}
+        {% from 'get_covers_states.jinja' import get_covers_states %}    
+        {{get_covers_states('wohnzimmerfensterrolladen_tuya', 'is_closed')}}
       get_position: >
-        {% if not state_attr('cover.wohnzimmerfensterrolladen_tuya', 'current_position') is none %}      
-          {{ state_attr('cover.wohnzimmerfensterrolladen_tuya', 'current_position')}}                  
-        {% endif %}
+        {% from 'get_covers_states.jinja' import get_covers_states %}    
+        {{get_covers_states('wohnzimmerfensterrolladen_tuya', 'get_position')}}

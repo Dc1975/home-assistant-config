@@ -1,0 +1,32 @@
+{% macro get_covers_states(entity_cover, state) %}
+{% set cover = "cover." +  entity_cover %}
+
+{% if state == "state" %} 
+  {% if states(cover) == 'closed' %}
+    {{"closed"}}
+  {% else %}
+    {{"open"}}
+  {% endif %}      
+{% elif  state == "is_open" %}
+  {% if not state_attr(cover, 'current_position') is none %}      
+    {{ state_attr(cover, 'current_position') | int  == 0}}            
+  {% else %}    
+    {{"unknown"}}
+  {% endif %}
+{% elif  state == "is_closed" %}
+  {% if not state_attr(cover, 'current_position') is none %}      
+    {{ state_attr(cover, 'current_position') | int  == 100}}            
+  {% else %}    
+    {{"unknown"}}    
+  {% endif %}
+{% elif  state == "get_position" %}
+  {% if not state_attr(cover, 'current_position') is none %}            
+    {{ state_attr(cover, 'current_position') | int }}                  
+  {% else %}    
+    {{"unknown"}}    
+  {% endif %} 
+{% else %}    
+  {{"unknown"}}    
+{% endif %}  
+
+{% endmacro %} 

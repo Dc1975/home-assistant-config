@@ -1,21 +1,15 @@
 sensor:
   - name: sr_ku_cover
     state: >
-      {% if states('cover.kuchenfensterrolladen_tuya') == 'closed' %}
-        open
-      {% else %}
-        closed
-      {% endif %}      
+      {% from 'get_covers_states.jinja' import get_covers_states %}
+      {{get_covers_states('kuchenfensterrolladen_tuya', 'state')}}                 
     attributes:
-      is_open: >    
-        {% if not state_attr('cover.kuchenfensterrolladen_tuya', 'current_position') is none %}      
-          {{ state_attr('cover.kuchenfensterrolladen_tuya', 'current_position') | int  == 0}}            
-        {% endif %}
+      is_open: >
+        {% from 'get_covers_states.jinja' import get_covers_states %}    
+        {{get_covers_states('kuchenfensterrolladen_tuya', 'is_open')}}
       is_closed: >
-        {% if not state_attr('cover.kuchenfensterrolladen_tuya', 'current_position') is none %}      
-          {{ state_attr('cover.kuchenfensterrolladen_tuya', 'current_position') | int  == 100}}                  
-        {% endif %}        
+        {% from 'get_covers_states.jinja' import get_covers_states %}    
+        {{get_covers_states('kuchenfensterrolladen_tuya', 'is_closed')}}
       get_position: >
-        {% if not state_attr('cover.kuchenfensterrolladen_tuya', 'current_position') is none %}      
-          {{ state_attr('cover.kuchenfensterrolladen_tuya', 'current_position')}}                  
-        {% endif %}
+        {% from 'get_covers_states.jinja' import get_covers_states %}    
+        {{get_covers_states('kuchenfensterrolladen_tuya', 'get_position')}}
