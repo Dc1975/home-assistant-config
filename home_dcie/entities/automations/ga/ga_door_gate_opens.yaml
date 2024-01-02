@@ -33,10 +33,9 @@
         state: 'off'
       then:
       # dann Licht einschalten
-      - type: turn_on
-        device_id: 1535736a016672edc9f0c2d89030d7ff
-        entity_id: 3552f796f3bfa05144c6098e7b2d17ca
-        domain: switch
+      - service: switch.turn_on
+        target:
+          entity_id: switch.garagenlicht        
       else:
       # sonst wenn Garagentor geöffnet ist, dann Sonnenstand prüfen
       - condition: or
@@ -45,10 +44,9 @@
           after: sunset
         - condition: sun
           before: sunrise
-      - type: turn_on
-        device_id: 1535736a016672edc9f0c2d89030d7ff
-        entity_id: 3552f796f3bfa05144c6098e7b2d17ca
-        domain: switch
+      - service: switch.turn_on
+        target:
+          entity_id: switch.garagenlicht        
     else:
     # sonst wenn Garagentor wird geöffnet, dann Sonnenstand prüfen 
     - condition: or
@@ -57,8 +55,7 @@
         after: sunset
       - condition: sun
         before: sunrise
-    - type: turn_on
-      device_id: 1535736a016672edc9f0c2d89030d7ff
-      entity_id: 3552f796f3bfa05144c6098e7b2d17ca
-      domain: switch
+    - service: switch.turn_on
+      target:
+        entity_id: switch.garagenlicht        
   mode: single

@@ -8,6 +8,13 @@
     - platform: time
       at: input_datetime.idt_sz_az_cover_up_weekend
       id: window_weekend
+    - platform: template
+      value_template: >-
+        {% if as_timestamp(now())|timestamp_custom("%H:%M") ==
+        (today_at(states('input_datetime.idt_sz_az_cover_up_workday')) +
+        timedelta(hours=states('input_number.in_sz_az_vacaction_mode_offset') |
+        int)).strftime('%H:%M')%}true{%else%}false{%endif%}
+      id: window_workday_vacation        
   condition:
     - condition: template
       value_template: "{{states('input_boolean.ib_sz_az_cover_used_in_automations') == 'on' }}"  
@@ -20,6 +27,19 @@
             - condition: state
               entity_id: binary_sensor.workday_sensor
               state: "on"
+            - condition: state
+              entity_id: input_boolean.ib_sz_az_cover_used_in_vacation_mode
+              state: "off"
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: window_workday_vacation
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "on"
+            - condition: state
+              entity_id: input_boolean.ib_sz_az_cover_used_in_vacation_mode
+              state: "on"                                
         - condition: and
           conditions:
             - condition: trigger

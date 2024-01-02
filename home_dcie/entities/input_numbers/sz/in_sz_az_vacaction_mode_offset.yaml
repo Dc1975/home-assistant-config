@@ -1,0 +1,8 @@
+in_sz_az_vacaction_mode_offset:
+  name: in_sz_az_vacaction_mode_offset
+  icon: mdi:counter
+  min: 0
+  max: 12
+  step: 1
+  mode: box
+  unit_of_measurement: h
