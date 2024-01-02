@@ -12,5 +12,5 @@
     - service: switch.turn_off
       data: {}
       target:
-        entity_id: switch.dachgeschosssteckdose
+        entity_id: switch.dachgeschosssteckdose_3d_drucker
   mode: single
