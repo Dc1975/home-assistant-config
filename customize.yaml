@@ -599,6 +599,10 @@ input_number.in_bz_schower_humidity_delay:
   friendly_name: Duschlichtdauer
 input_number.in_mm_skyq_advertising_delay:
   friendly_name: Sky Werbezeit
+input_number.in_sz_vacaction_mode_offset:
+  friendly_name: Verschiebung um
+input_number.in_sz_az_vacaction_mode_offset:
+  friendly_name: Verschiebung um
 # timer
 timer.ti_sz_room_motion_lights:
   friendly_name: Timer Schlafzimmer
@@ -637,7 +641,10 @@ input_datetime.idt_dg_printer_plug_off:
 input_boolean.ib_dg_printer_plug_used_in_automations:
   friendly_name: In Automationen benutzen
 # input_boolean
-
+input_boolean.ib_sz_cover_used_in_vacation_mode:
+  friendly_name: Urlaubsmodus (Schlafzimmer)
+input_boolean.ib_sz_az_cover_used_in_vacation_mode:
+  friendly_name: Urlaubsmodus (Ankleidezimmer)
 
 # keller
 #binary_sensor.Kellerfensterfeuchtigkeitssensor_vorne_feuchtigkeit:
