@@ -1,0 +1,59 @@
+test:
+  alias: HA test
+  variables:
+    alexa_device: media_player.echo_wohnzimmer
+  sequence:
+#  - service: script.turn_on
+#    data: {}
+#    target:
+#      entity_id: script.ha_all_devices_off
+
+#  - service: notify.alexa_media_echo_dachgeschoss
+#    data:
+#      title: HomeAssistant - Offene Fenster
+#      message: "{{state_attr('sensor.sr_ha_windows_open', 'windows_open')}}"      
+#      data:
+#        type: announce
+#        method: all
+
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_alexa_notification
+    data:
+      variables:
+        msg_title: "Mein Titel"
+        msg_message: "{{state_attr('sensor.sr_ha_windows_open', 'windows_open')}}"
+        device: "{{ alexa_device }}"
+  - if:
+      - condition: template
+        value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
+    then:    
+      - wait_template: "{{is_state('script.ha_alexa_notification', 'off') }}"      
+        continue_on_timeout: true  
+
+  - service: script.turn_on
+    data: 
+      variables:
+        device: "{{ alexa_device }}"
+    target:
+      entity_id: script.ga_should_garage_gate_opened      
+
+#  - service: script.turn_on
+#    target:
+#      entity_id: script.ha_all_lights_off  
+#    data:
+#      variables:
+#        delay_FL_lamps: "{{states('input_number.in_fl_delay_lights_off') | int}}"
+#        wait_for_script: "{{states('input_boolean.ib_wait_for_script')}}"         
+#  - if:
+#      - condition: template
+#        value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
+#    then:    
+#      - wait_template: "{{is_state('script.ha_all_lights_off', 'off') }}"      
+#        continue_on_timeout: true  
+
+# for testing        
+#      - service: notify.alexa_media_echo_wohnzimmer
+#        data:
+#          message: warten        
+  mode: single
