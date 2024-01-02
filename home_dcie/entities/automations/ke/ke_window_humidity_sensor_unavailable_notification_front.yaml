@@ -1,0 +1,34 @@
+- id: '1703347742502'
+  alias: KE Kellerfensterfeuchtigkeitssensorwarnung vorne
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.kellerfensterfeuchtigkeitssensor_vorne_feuchtigkeit
+    to: unavailable
+  - platform: state
+    entity_id:
+      - binary_sensor.kellerfensterfeuchtigkeitssensor_vorne_feuchtigkeit
+    to: unknown
+  condition: []
+  action: 
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_notification
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_general_notification_title')}}Kellerfenster-Warnung"
+        msg_message: "Der {{state_attr('binary_sensor.kellerfensterfeuchtigkeitssensor_vorne_feuchtigkeit', 'friendly_name')}} ist nicht verfügbar."
+  - if:
+      - condition: state
+        entity_id: person.dcie
+        state: home
+    then:        
+      - service: notify.alexa_media_uberall
+        data:      
+          title: "{{states('input_text.it_general_notification_title')}}Kellerfenster-Warnung"
+          message: "Der {{state_attr('binary_sensor.kellerfensterfeuchtigkeitssensor_vorne_feuchtigkeit', 'friendly_name')}} ist nicht verfügbar."
+          data:
+            type: announce
+            method: all
+  mode: single
