@@ -1,3 +1,4 @@
 it_ha_switches_on_filter:
   name: it_ha_switches_on_filter
   icon: mdi:filter
+  max: 255

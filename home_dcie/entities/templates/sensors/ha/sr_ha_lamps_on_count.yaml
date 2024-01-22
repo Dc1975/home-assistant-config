@@ -3,7 +3,7 @@ sensor:
   - name: sr_ha_lamps_on_count
     unique_id: sr_ha_lamps_on_count
     state: >
-      {% set filter = states('input_text.it_ha_lapms_on_filter') %}
+      {% set filter = states('input_text.it_ha_lamps_on_filter') %}
       {% set minutes = timedelta(minutes=states('input_number.in_ha_lamps_on_alarm_period') | int) %}
       {% set entity_name = "light.ha_grp_lampen" %}
       {% set type = "light." %}
