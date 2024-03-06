@@ -1,0 +1,7 @@
+proximity:
+  home:
+    devices:
+      - device_tracker.sm_s916b
+      - device_tracker.galaxy_s23
+    tolerance: 50
+    unit_of_measurement: m
