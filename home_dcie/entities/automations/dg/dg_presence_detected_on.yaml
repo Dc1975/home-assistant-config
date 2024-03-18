@@ -8,6 +8,9 @@
     to: 'on'
   condition:
   - condition: state
+    entity_id: input_boolean.ib_dg_switch_motion_detector
+    state: "on"    
+  - condition: state
     entity_id: switch.dachgeschossdeckenlicht
     state: 'off'
   - condition: or
