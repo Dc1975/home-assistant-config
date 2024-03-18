@@ -43,6 +43,7 @@ sensor:
       sz_az: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
         {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_11', 'in_sz_az_lux_treshhold', 0)}}        
+      # Dachgeschoss
       dg: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
         {{get_turn_on_lights('presence_sensor_fp2_d6a5_light_sensor_light_level', 'in_dg_lux_treshhold', 0)}}                 
