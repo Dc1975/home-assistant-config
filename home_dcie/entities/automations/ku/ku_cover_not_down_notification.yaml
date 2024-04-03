@@ -1,0 +1,35 @@
+- id: '1712138215453'
+  alias: KU Rollade nicht geschlossen Warnung
+  description: ''
+  trigger:
+  - platform: template
+    value_template: >
+      {{as_timestamp(today_at(states('input_datetime.idt_ku_cover_down_workday'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)}}
+  - platform: template
+    value_template: >
+      {{as_timestamp(today_at(states('input_datetime.idt_ku_cover_down_weekend'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)}}      
+  condition:
+    - condition: template
+      value_template: >
+        {{ state_attr('sensor.sr_ku_cover', 'is_open') == true }}
+  action: 
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_notification
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
+        msg_message: "Der {{state_attr('cover.kuchenfensterrolladen_tuya', 'friendly_name')}} wurde nicht geschlossen."
+  - if:
+      - condition: state
+        entity_id: person.dcie
+        state: home
+    then:        
+      - service: notify.alexa_media_uberall
+        data:      
+          title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
+          message: "Der {{state_attr('cover.kuchenfensterrolladen_tuya', 'friendly_name')}} wurde nicht geschlossen."
+          data:
+            type: announce
+            method: all          
+  mode: single

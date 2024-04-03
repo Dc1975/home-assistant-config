@@ -1,0 +1,8 @@
+in_ha_covers_check_after_minutes:
+  name: in_ha_covers_check_after_minutes
+  min: 0
+  max: 100
+  step: 1
+  mode: box
+  icon: mdi:timer
+  unit_of_measurement: min
