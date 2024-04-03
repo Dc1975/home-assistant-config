@@ -2,15 +2,15 @@ input_boolean:
   start_stopwatch_dish_washer:
     # It triggers stopwatch to start/stop(pause)
     name: Start/Stop Stopwatch_dish_washer
-#    initial: off
+  #    initial: off
   reset_stopwatch_dish_washer:
     # It triggers stopwatch to reset
     name: Reset_dish_washer
-#    initial: off
+  #    initial: off
   tictac_stopwatch_dish_washer:
     # Pendulum of the stopwatch
     name: TicTac_dish_washer
-#    initial: off
+  #    initial: off
   lap_stopwatch_dish_washer:
     # It triggers stopwatch to show lap time
     name: Lap_dish_washer
@@ -19,25 +19,25 @@ input_boolean:
 
 template:
   - trigger:
-    # Stopwatch sensor with Start, Stop/Pause, Reset and Lap features. Hundreds of second precission
-    - platform: state
-      entity_id: input_boolean.start_stopwatch_dish_washer
-      from: "off"
-      to: "on"
-    - platform: state
-      entity_id: input_boolean.start_stopwatch_dish_washer
-      from: "on"
-      to: "off"
-    - platform: state
-      entity_id: input_boolean.reset_stopwatch_dish_washer
-      from: "off"
-      to: "on"
-    - platform: state
-      entity_id: input_boolean.lap_stopwatch_dish_washer
-      from: "off"
-      to: "on"
-    - platform: state
-      entity_id: input_boolean.tictac_stopwatch_dish_washer
+      # Stopwatch sensor with Start, Stop/Pause, Reset and Lap features. Hundreds of second precission
+      - platform: state
+        entity_id: input_boolean.start_stopwatch_dish_washer
+        from: "off"
+        to: "on"
+      - platform: state
+        entity_id: input_boolean.start_stopwatch_dish_washer
+        from: "on"
+        to: "off"
+      - platform: state
+        entity_id: input_boolean.reset_stopwatch_dish_washer
+        from: "off"
+        to: "on"
+      - platform: state
+        entity_id: input_boolean.lap_stopwatch_dish_washer
+        from: "off"
+        to: "on"
+      - platform: state
+        entity_id: input_boolean.tictac_stopwatch_dish_washer
     sensor:
       - name: "Stopwatch dish washer"
         state: >-
@@ -80,54 +80,54 @@ template:
               {{ data.laps }}
             {% else %}
               {{ state_attr('sensor.stopwatch_dish_washer','laps')}}
-            {% endif %}  
-#  - trigger:
-    # Numeric conversion of input_boolean.tictac_stopwatch_dish_washer to show as a gauge in Frontend
-#    - platform: state
-#      entity_id: input_boolean.tictac_stopwatch_dish_washer
-#    sensor:
-#      - unique_id: tictac_stopwatch_dish_washer
-#        name: >-
-#          {% if states('input_boolean.tictac_stopwatch_dish_washer') == 'on' %}
-#            Tic
-#          {% else %}
-#            Tac
-#          {% endif %}
-#        state: >-
-#          {% if is_state('input_boolean.tictac_stopwatch_dish_washer','on') %}
-#            {{ 1 }}
-#          {% else %}
-#            {{ 0 }}
-#          {% endif %}
-#        icon: >-
-#          {% if states('input_boolean.tictac_stopwatch_dish_washer') == 'off' %}
-#            mdi:clock-time-nine
-#          {% else %}
-#            mdi:clock-time-three-outline
-#          {% endif %}
+            {% endif %}
+  - trigger:
+      # Numeric conversion of input_boolean.tictac_stopwatch_dish_washer to show as a gauge in Frontend
+      - platform: state
+        entity_id: input_boolean.tictac_stopwatch_dish_washer
+    sensor:
+      - unique_id: tictac_stopwatch_dish_washer
+        name: >-
+          {% if states('input_boolean.tictac_stopwatch_dish_washer') == 'on' %}
+            Tic
+          {% else %}
+            Tac
+          {% endif %}
+        state: >-
+          {% if is_state('input_boolean.tictac_stopwatch_dish_washer','on') %}
+            {{ 1 }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
+        icon: >-
+          {% if states('input_boolean.tictac_stopwatch_dish_washer') == 'off' %}
+            mdi:clock-time-nine
+          {% else %}
+            mdi:clock-time-three-outline
+          {% endif %}
   # Start/Stop(Pause) button
   - button:
-    - unique_id: 'start_stop_stopwatch_dish_washer'
-      name: >-
-        {% if is_state('input_boolean.start_stopwatch_dish_washer','off') %}
-          {% if is_state('sensor.stopwatch_dish_washer','00:00:00') %}
-            Start_dish_washer
+      - unique_id: "start_stop_stopwatch_dish_washer"
+        name: >-
+          {% if is_state('input_boolean.start_stopwatch_dish_washer','off') %}
+            {% if is_state('sensor.stopwatch_dish_washer','00:00:00') %}
+              Start_dish_washer
+            {% else %}
+              Resume_dish_washer
+            {% endif %}
           {% else %}
-            Resume_dish_washer
+            Stop/Pause_dish_washer
           {% endif %}
-        {% else %}
-          Stop/Pause_dish_washer
-        {% endif %}
-      icon: >-
-        {% if states('input_boolean.start_stopwatch_dish_washer') == 'off' %}
-          mdi:play-circle-outline
-        {% else %}
-          mdi:stop-circle-outline
-        {% endif %}
-      press:
-        service: input_boolean.toggle
-        target:
-          entity_id: input_boolean.start_stopwatch_dish_washer
+        icon: >-
+          {% if states('input_boolean.start_stopwatch_dish_washer') == 'off' %}
+            mdi:play-circle-outline
+          {% else %}
+            mdi:stop-circle-outline
+          {% endif %}
+        press:
+          service: input_boolean.toggle
+          target:
+            entity_id: input_boolean.start_stopwatch_dish_washer
 
 automation:
   - id: tic_tac_stopwatch_dish_washer
@@ -139,7 +139,7 @@ automation:
     condition:
       - condition: state
         entity_id: input_boolean.start_stopwatch_dish_washer
-        state: 'on'
+        state: "on"
     action:
       - service: input_boolean.toggle
         target:

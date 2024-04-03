@@ -81,30 +81,30 @@ template:
             {% else %}
               {{ state_attr('sensor.stopwatch_washing_machine','laps')}}
             {% endif %}  
-#  - trigger:
+  - trigger:
     # Numeric conversion of input_boolean.tictac_stopwatch_washing_machine to show as a gauge in Frontend
-#    - platform: state
-#      entity_id: input_boolean.tictac_stopwatch_washing_machine
-#    sensor:
-#      - unique_id: tictac_stopwatch_washing_machine
-#        name: >-
-#          {% if states('input_boolean.tictac_stopwatch_washing_machine') == 'on' %}
-#            Tic
-#          {% else %}
-#            Tac
-#          {% endif %}
-#        state: >-
-#          {% if is_state('input_boolean.tictac_stopwatch_washing_machine','on') %}
-#            {{ 1 }}
-#          {% else %}
-#            {{ 0 }}
-#          {% endif %}
-#        icon: >-
-#          {% if states('input_boolean.tictac_stopwatch_washing_machine') == 'off' %}
-#            mdi:clock-time-nine
-#          {% else %}
-#            mdi:clock-time-three-outline
-#          {% endif %}
+    - platform: state
+      entity_id: input_boolean.tictac_stopwatch_washing_machine
+    sensor:
+      - unique_id: tictac_stopwatch_washing_machine
+        name: >-
+          {% if states('input_boolean.tictac_stopwatch_washing_machine') == 'on' %}
+            Tic
+          {% else %}
+            Tac
+          {% endif %}
+        state: >-
+          {% if is_state('input_boolean.tictac_stopwatch_washing_machine','on') %}
+            {{ 1 }}
+          {% else %}
+            {{ 0 }}
+          {% endif %}
+        icon: >-
+          {% if states('input_boolean.tictac_stopwatch_washing_machine') == 'off' %}
+            mdi:clock-time-nine
+          {% else %}
+            mdi:clock-time-three-outline
+          {% endif %}
   # Start/Stop(Pause) button
   - button:
     - unique_id: 'start_stop_stopwatch_washing_machine'
