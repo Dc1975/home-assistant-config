@@ -1,0 +1,103 @@
+- id: '1712136518766'
+  alias: BZ Rollade nicht geschlossen Warnung
+  description: ''
+  trigger:
+  - platform: template
+    value_template: >
+      {{as_timestamp(today_at(states('input_datetime.idt_bz_cover_down_workday'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)}}
+    id: down_wo
+  - platform: template
+    value_template: >
+      {{as_timestamp(today_at(states('input_datetime.idt_bz_cover_down_weekend'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)}}      
+    id: down_we
+  - platform: template
+    value_template: >
+      {{as_timestamp(today_at(states('input_datetime.idt_bz_cover_up_workday'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)}}
+    id: up_wo
+  - platform: template
+    value_template: >
+      {{as_timestamp(today_at(states('input_datetime.idt_bz_cover_up_weekend'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)}}      
+    id: up_we    
+  condition:
+  - condition: or
+    conditions:
+      - condition: and
+        conditions:
+          - condition: template
+            value_template: >
+              {{ state_attr('sensor.sr_bz_cover', 'is_open') == true }}
+          - condition: trigger      
+            id: 
+              - "down_wo"
+              - "down_we"
+      - condition: and
+        conditions:
+        - condition: template
+          value_template: >
+            {{ state_attr('sensor.sr_bz_cover', 'is_closed') == true }}
+        - condition: trigger
+          id:
+            - "up_wo"      
+            - "up_we"
+  action: 
+# down handling  
+  - if:
+      - condition: trigger
+        id: 
+          - "down_wo"
+          - "down_we"    
+    then:          
+      - service: script.turn_on
+        target:
+          entity_id: script.ha_handy_notification
+        data:
+          variables:
+            msg_title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
+            msg_message: "Der {{state_attr('cover.badezimmerfensterrolladen_tuya', 'friendly_name')}} wurde nicht geschlossen."    
+  - if:
+      - condition: state
+        entity_id: person.dcie
+        state: home
+      - condition: trigger
+        id: 
+          - down_wo
+          - down_we         
+    then:        
+      - service: notify.alexa_media_uberall
+        data:      
+          title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
+          message: "Der {{state_attr('cover.badezimmerfensterrolladen_tuya', 'friendly_name')}} wurde nicht geschlossen."
+          data:
+            type: announce
+            method: all                     
+# up handling
+  - if:
+      - condition: trigger
+        id: 
+          - "up_wo"
+          - "up_we"    
+    then:             
+      - service: script.turn_on
+        target:
+          entity_id: script.ha_handy_notification
+        data:
+          variables:
+            msg_title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
+            msg_message: "Der {{state_attr('cover.badezimmerfensterrolladen_tuya', 'friendly_name')}} wurde nicht geöffnet."
+  - if:
+      - condition: state
+        entity_id: person.dcie
+        state: home
+      - condition: trigger        
+        id: 
+          - up_wo
+          - up_we         
+    then:        
+      - service: notify.alexa_media_uberall
+        data:      
+          title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
+          message: "Der {{state_attr('cover.badezimmerfensterrolladen_tuya', 'friendly_name')}} wurde nicht geöffnet."
+          data:
+            type: announce
+            method: all             
+  mode: single
