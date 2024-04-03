@@ -1,42 +1,43 @@
-- id: "1694084158759"
+- id: '1694084158759'
   alias: Terrassenbeleuchtung
-  description: ""
+  description: ''
   trigger:
-    - platform: state
-      entity_id:
-        - schedule.sc_gr_terrace_lighting_schedule
-      to: "on"
-      id: "on"
-    - platform: state
-      entity_id:
-        - schedule.sc_gr_terrace_lighting_schedule
-      to: "off"
-      id: "off"
+  - platform: state
+    entity_id:
+    - schedule.sc_gr_terrace_lighting_schedule
+    to: 'on'
+    id: 'on'
+  - platform: state
+    entity_id:
+    - schedule.sc_gr_terrace_lighting_schedule
+    to: 'off'
+    id: 'off'
   condition:
-    - condition: state
-      entity_id: input_boolean.ib_gr_terrace_lighting_used_in_automations
-      state: "on"
-    - condition: template
-      value_template: "{{now().month | string in states('input_text.it_gr_terrace_lighting_months')}}"
-    - condition: sun
-      after: sunset
+  - condition: state
+    entity_id: input_boolean.ib_gr_terrace_lighting_used_in_automations
+    state: 'on'
+  - condition: template
+    value_template: '{{now().month | string in states(''input_text.it_gr_terrace_lighting_months'')}}'
+  - condition: sun
+    after: sunset
   action:
-    - if:
-        - condition: trigger
-          id:
-            - "on"
-      then:
-        - service: light.turn_on
-          data: {}
-          target:
-            entity_id: light.terassenlampen
-    - if:
-        - condition: trigger
-          id:
-            - "off"
-      then:
-        - service: light.turn_off
-          data: {}
-          target:
-            entity_id: light.terassenlampen
+  - if:
+    - condition: trigger
+      id:
+      - 'on'
+    then:
+    - service: light.turn_on
+      data: {}
+      target:
+        entity_id: light.terassenlampen
+  - if:
+    - condition: trigger
+      id:
+      - 'off'
+    then:
+    - service: light.turn_off
+      data: {}
+      target:
+        entity_id: light.terassenlampen
   mode: single
+
