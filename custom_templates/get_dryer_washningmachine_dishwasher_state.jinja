@@ -22,6 +22,10 @@
     {% elif device_state.startswith('l') %}  
       {%set value = states(entity_name)%}
 
+      {% if value ==  "unavailable" %}
+        {% set value = "00:00:00" %} 
+      {% endif %}  
+
       {% set hour =  value.split(':')[0].replace('0', '') %}
       {% set hour_text = " Stunden " %}
       {% if hour == "1" %}
