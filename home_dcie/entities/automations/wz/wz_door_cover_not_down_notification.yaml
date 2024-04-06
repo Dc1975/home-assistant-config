@@ -11,7 +11,7 @@
   condition:
     - condition: template
       value_template: >
-        {{ state_attr('sensor.sr_wz_door_cover', 'is_open') == true }}
+        {{ state_attr('sensor.sr_wz_cover_door', 'is_open') == true }}
   action: 
   - service: script.turn_on
     target:
@@ -31,5 +31,17 @@
           message: "Der {{state_attr('cover.wohnzimmerturrolladen_tuya', 'friendly_name')}} wurde nicht geschlossen."
           data:
             type: announce
-            method: all          
+            method: all
+# retry to open the cover again             
+  - service: script.turn_on
+    target:
+      entity_id: script.wz_covers_down_door_execute
+    data: {}  
+# wait for script execution to check...              
+  - if:
+      - condition: template
+        value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
+    then:    
+      - wait_template: "{{is_state('script.wz_covers_down_door_execute', 'off') }}"                
+        continue_on_timeout: true              
   mode: single

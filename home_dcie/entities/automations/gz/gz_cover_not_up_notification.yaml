@@ -4,15 +4,27 @@
   trigger:
   - platform: template
     value_template: >
-      {{as_timestamp(today_at(states('input_datetime.idt_gz_cover_down_workday'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)}}
+      {{as_timestamp(today_at(states('input_datetime.idt_gz_cover_up_workday'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)}}
   - platform: template
     value_template: >
-      {{as_timestamp(today_at(states('input_datetime.idt_gz_cover_down_weekend'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)}}      
+      {{as_timestamp(today_at(states('input_datetime.idt_gz_cover_up_weekend'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)}}      
   condition:
     - condition: template
       value_template: >
         {{ state_attr('sensor.sr_gz_cover', 'is_closed') == true }}
   action: 
+# retry to open the cover again             
+  - service: script.turn_on
+    target:
+      entity_id: script.gz_covers_up_execute
+    data: {}  
+# wait for script execution to check...              
+  - if:
+      - condition: template
+        value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
+    then:    
+      - wait_template: "{{is_state('script.gz_covers_up_execute', 'off') }}"                
+        continue_on_timeout: true     
   - service: script.turn_on
     target:
       entity_id: script.ha_handy_notification

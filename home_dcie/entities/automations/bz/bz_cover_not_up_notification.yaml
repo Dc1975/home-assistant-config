@@ -12,7 +12,19 @@
     - condition: template
       value_template: >
         {{ state_attr('sensor.sr_bz_cover', 'is_closed') == true }}
-  action: 
+  action:
+# retry to open the cover again             
+  - service: script.turn_on
+    target:
+      entity_id: script.bz_covers_up_execute
+    data: {}  
+# wait for script execution to check...              
+  - if:
+      - condition: template
+        value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
+    then:    
+      - wait_template: "{{is_state('script.bz_covers_up_execute', 'off') }}"                
+        continue_on_timeout: true    
   - service: script.turn_on
     target:
       entity_id: script.ha_handy_notification

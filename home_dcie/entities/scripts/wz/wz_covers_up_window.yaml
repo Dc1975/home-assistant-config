@@ -25,4 +25,4 @@ wz_covers_up_window:
           target:
             entity_id: input_boolean.ib_wz_window_cover_up_down_script_executed            
   mode: single
-  icon: mdi:window-shutter
+  icon: mdi:window-shutter-open
