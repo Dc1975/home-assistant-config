@@ -14,11 +14,14 @@
         entity_id: input_boolean.ib_gt_switch_motion_detector
         state: "on"      
       # use this condition to prevent light turn off if they werere manually turned on
-      - condition: device
-        type: is_off
-        device_id: bd1f4e41415a2a37bb5d6efcfa0e84ee
+#      - condition: device
+#        type: is_off
+#        device_id: bd1f4e41415a2a37bb5d6efcfa0e84ee
+#        entity_id: switch.gastetoilettenlicht
+#        domain: switch      
+      - condition: state
         entity_id: switch.gastetoilettenlicht
-        domain: switch      
+        state: "off"
       - condition: or
         conditions:
 #        - condition: numeric_state
@@ -35,10 +38,14 @@
           value_template: >
             {{ state_attr('sensor.sr_ha_turn_on_lights', 'gt') }}                          
   action:
-    - type: turn_on
-      device_id: bd1f4e41415a2a37bb5d6efcfa0e84ee
-      entity_id: switch.gastetoilettenlicht
-      domain: switch
+#    - type: turn_on
+#      device_id: bd1f4e41415a2a37bb5d6efcfa0e84ee
+#      entity_id: switch.gastetoilettenlicht
+#      domain: switch
+    - service: switch.turn_on
+      target:
+        entity_id: switch.gastetoilettenlicht
+      data: {}
     - service: timer.start
       data_template:
         entity_id: timer.ti_gt_motion_lights
