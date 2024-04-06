@@ -582,7 +582,7 @@ input_number.in_ha_temperature_notification_treshhold:
 input_number.in_ha_delay_covers_reconnect:
   friendly_name: Verzögerung Rolladen WLan
 input_number.in_ha_covers_check_after_minutes:
-  friendly_name: Wartezeit Rolladen geschlossen Prüfung
+  friendly_name: Wartezeit Rolladen Statusprüfung
 input_number.in_ha_treshold_in_motion_lights_off_secondray:
   friendly_name: Schwellwert neustart Bewegunslichter
 input_number.in_ha_light_switches_on_alarm_period:
