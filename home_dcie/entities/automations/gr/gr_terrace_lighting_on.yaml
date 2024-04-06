@@ -15,8 +15,8 @@
     - condition: template
       value_template: >
         {{now().month | string in states('input_text.it_gr_terrace_lighting_months')}}
-    - condition: sun
-      after: sunset
+#    - condition: sun
+#      after: sunset
     - condition: or
       conditions:
         - condition: and
