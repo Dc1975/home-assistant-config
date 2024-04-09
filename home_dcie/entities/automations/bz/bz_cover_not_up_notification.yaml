@@ -4,27 +4,33 @@
   trigger:
   - platform: template
     value_template: >
-      {{as_timestamp(today_at(states('input_datetime.idt_bz_cover_down_workday'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)}}
+      {{(now() | as_local).strftime('%H:%M:%S') == (as_timestamp(today_at(states('input_datetime.idt_bz_cover_down_workday'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)).strftime('%H:%M:%S')}}
+      id: down_wo
   - platform: template
     value_template: >
-      {{as_timestamp(today_at(states('input_datetime.idt_bz_cover_down_weekend'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)}}      
+      {{(now() | as_local).strftime('%H:%M:%S') == (as_timestamp(today_at(states('input_datetime.idt_bz_cover_down_weekend'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)).strftime('%H:%M:%S')}}      
+      id: down_we
   condition:
     - condition: template
       value_template: >
         {{ state_attr('sensor.sr_bz_cover', 'is_closed') == true }}
+    - condition: or
+      conditions:
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: down_wo
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "on"
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: down_we
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "off"        
   action:
-# retry to open the cover again             
-  - service: script.turn_on
-    target:
-      entity_id: script.bz_covers_up_execute
-    data: {}  
-# wait for script execution to check...              
-  - if:
-      - condition: template
-        value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
-    then:    
-      - wait_template: "{{is_state('script.bz_covers_up_execute', 'off') }}"                
-        continue_on_timeout: true    
   - service: script.turn_on
     target:
       entity_id: script.ha_handy_notification
@@ -44,4 +50,16 @@
           data:
             type: announce
             method: all          
+# retry to open the cover again             
+  - service: script.turn_on
+    target:
+      entity_id: script.bz_covers_up_execute
+    data: {}  
+# wait for script execution to check...              
+  - if:
+      - condition: template
+        value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
+    then:    
+      - wait_template: "{{is_state('script.bz_covers_up_execute', 'off') }}"                
+        continue_on_timeout: true                
   mode: single
