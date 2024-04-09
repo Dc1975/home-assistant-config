@@ -1,5 +1,5 @@
 http:
-  ip_ban_enabled: true
+  ip_ban_enabled: false
   login_attempts_threshold: 5
   server_port: !secret home_assistant_port
   use_x_forwarded_for: true
