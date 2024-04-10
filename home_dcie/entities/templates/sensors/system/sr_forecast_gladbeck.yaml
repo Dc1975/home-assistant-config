@@ -27,53 +27,38 @@ sensor:
     state: >
       {{ state_attr('weather.forecast_homeofdcie', 'wind_speed') }}
 
+# Aktuelles Wetter
   - name: sr_forecast_gladbeck_condition
     unique_id: sr_forecast_gladbeck_condition
     state: >
       {% set result = states('weather.forecast_homeofdcie') %}
-      {% set weather = {
-        'clear-night': "klare Nacht",
-        'cloudy': "wolkig",
-        'exceptional': "außergewöhnlich",
-        'fog': "neblig",
-        'hail': "hagel",
-        'lightning': "gewittrig",
-        'lightning-rainy': "gewittrig regnerisch",
-        'partlycloudy': "teilweise wolkig",
-        'pouring': "stark regen",
-        'rainy': "regnerisch",
-        'snowy': "schneebedeckt",
-        'snowy-rainy': "verschneit-regnerisch",
-        'sunny': "sonnig",
-        'windy': "windig",
-        'windy-variant': "abwechselnd windig"}
-      %}
-      {{weather[result]}}
-
-  - name: sr_forecast_gladbeck_forecast
-    unique_id: sr_forecast_gladbeck_forecast
-    # see https://developers.home-assistant.io/docs/core/entity/weather/
-    state: >
-      {%set days = 5%}
-      {% if not state_attr('weather.forecast_homeofdcie', 'forecast') is none %}      
-        {%set days = state_attr('weather.forecast_homeofdcie', 'forecast')[:days]
-        | map(attribute='condition') | list %}
-        {% set weather = {
-          'clear-night': "klare Nacht",
-          'cloudy': "wolkig",
-          'exceptional': "außergewöhnlich",
-          'fog': "neblig",
-          'hail': "hagel",
-          'lightning': "gewittrig",
-          'lightning-rainy': "gewittrig regnerisch",
-          'partlycloudy': "teilweise wolkig",
-          'pouring': "stark regen",
-          'rainy': "regnerisch",
-          'snowy': "schneebedeckt",
-          'snowy-rainy': "verschneit-regnerisch",
-          'sunny': "sonnig",
-          'windy': "windig",
-          'windy-variant': "abwechselnd windig"}
-        %}
-      {% endif %}        
-      {{weather[days[0]]}}
+      {% from 'get_translation_weather_condition.jinja' import get_translation_weather_condition %}
+      {{get_translation_weather_condition(result)}}
+      
+#  - name: sr_forecast_gladbeck_forecast
+#    unique_id: sr_forecast_gladbeck_forecast
+#    # see https://developers.home-assistant.io/docs/core/entity/weather/
+#    state: >
+#      {%set days = 5%}
+#      {% if not state_attr('weather.forecast_homeofdcie', 'forecast') is none %}      
+#        {%set days = state_attr('weather.forecast_homeofdcie', 'forecast')[:days]
+#        | map(attribute='condition') | list %}
+#        {% set weather = {
+#          'clear-night': "klare Nacht",
+#          'cloudy': "wolkig",
+#          'exceptional': "außergewöhnlich",
+#          'fog': "neblig",
+#          'hail': "hagel",
+#          'lightning': "gewittrig",
+#          'lightning-rainy': "gewittrig regnerisch",
+#          'partlycloudy': "teilweise wolkig",
+#          'pouring': "stark regen",
+#          'rainy': "regnerisch",
+#          'snowy': "schneebedeckt",
+#          'snowy-rainy': "verschneit-regnerisch",
+#          'sunny': "sonnig",
+#          'windy': "windig",
+#          'windy-variant': "abwechselnd windig"}
+#        %}
+#      {% endif %}        
+#      {{weather[days[0]]}}

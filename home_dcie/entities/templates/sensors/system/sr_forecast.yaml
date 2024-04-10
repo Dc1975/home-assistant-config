@@ -1,0 +1,20 @@
+    trigger:
+      - platform: time_pattern
+        hours: "/1"
+    action:
+      - service: weather.get_forecasts
+        data:
+          type: daily
+        target:
+          entity_id: weather.homeofdcie
+        response_variable: daily_forecast
+    sensor:      
+      - name: sr_forecast_next_day
+        unique_id: sr_forecast_next_day  
+        state: "{{(now()) + timedelta(days=1)}}"
+        icon: mdi:hours-24
+        attributes:
+          condition: >
+            {% set result = daily_forecast['weather.homeofdcie'].forecast[1].condition %}
+            {% from 'get_translation_weather_condition.jinja' import get_translation_weather_condition %}        
+            {{get_translation_weather_condition(result)}}

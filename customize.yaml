@@ -557,7 +557,6 @@ input_text.it_ha_fridge_temperatur_alert_notification_message:
   friendly_name: "Benachrichtigung Kühlschrank - Text:"
 input_text.it_ha_fridge_temperatur_alert_notification_title:
   friendly_name: "Benachrichtigung Kühlschrank - Titel:"
-
 # input_number
 input_number.in_mm_onkyo_volume_factor:
   friendly_name: Onkyo Lautstärkefaktor
@@ -664,3 +663,7 @@ input_boolean.ib_sz_az_cover_used_in_vacation_mode:
 #  friendly_name: Luftfeuchtigkeit
 #sensor.badezimmerduschtemperatursensor_batterie:  
 #  friendly_name: Batteriestand
+
+# forecast
+sensor.sr_forecast_next_day:
+  friendly_name:  Wetter-Vorhersage des nächsten Tages

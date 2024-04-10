@@ -1,0 +1,20 @@
+{% macro get_translation_weather_condition(condition) %}
+{% set weather = {
+  'clear-night': "klare Nacht",
+  'cloudy': "wolkig",
+  'exceptional': "außergewöhnlich",
+  'fog': "neblig",
+  'hail': "hagel",
+  'lightning': "gewittrig",
+  'lightning-rainy': "gewittrig regnerisch",
+  'partlycloudy': "teilweise wolkig",
+  'pouring': "stark regen",
+  'rainy': "regnerisch",
+  'snowy': "schneebedeckt",
+  'snowy-rainy': "verschneit-regnerisch",
+  'sunny': "sonnig",
+  'windy': "windig",
+  'windy-variant': "abwechselnd windig"}
+%}
+{{weather[condition]}}
+{% endmacro %} 
