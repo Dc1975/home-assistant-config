@@ -10,39 +10,44 @@ sensor:
         and not get_motion_detctors_info_for_area('flur','') is none
         and not get_motion_detctors_info_for_area('schlafzimmer','') is none
         and not get_motion_detctors_info_for_area('dachgeschoss','') is none
-        and not get_motion_detctors_info_for_area('treppenhaus','') is none        
+        and not get_motion_detctors_info_for_area('treppenhaus','') is none
+        and not get_motion_detctors_info_for_area('ankleidezimmer','') is none        
       }}
     state: >
       {% from 'get_motion_detctors_info_for_area.jinja' import get_motion_detctors_info_for_area %}        
-      {{get_motion_detctors_info_for_area('','count')}}      
+      {{get_motion_detctors_info_for_area('','count')}}
     attributes:
       motion_detectors_info_ku: >
         {% from 'get_motion_detctors_info_for_area.jinja' import get_motion_detctors_info_for_area %}        
-        {{get_motion_detctors_info_for_area('kuche','')}}         
+        {{get_motion_detctors_info_for_area('kuche','')}}
       motion_detectors_info_gt: >
         {% from 'get_motion_detctors_info_for_area.jinja' import get_motion_detctors_info_for_area %}        
-        {{get_motion_detctors_info_for_area('gastetoilette','')}}         
+        {{get_motion_detctors_info_for_area('gastetoilette','')}}
       motion_detectors_info_bz: >
         {% from 'get_motion_detctors_info_for_area.jinja' import get_motion_detctors_info_for_area %}        
-        {{get_motion_detctors_info_for_area('badezimmer','')}}      
+        {{get_motion_detctors_info_for_area('badezimmer','')}}
       motion_detectors_info_sz: >
         {% from 'get_motion_detctors_info_for_area.jinja' import get_motion_detctors_info_for_area %}        
-        {{get_motion_detctors_info_for_area('schlafzimmer','')}}      
+        {{get_motion_detctors_info_for_area('schlafzimmer','')}}
+      motion_detectors_info_az: >
+        {% from 'get_motion_detctors_info_for_area.jinja' import get_motion_detctors_info_for_area %}        
+        {{get_motion_detctors_info_for_area('ankleidezimmer','')}}
       motion_detectors_info_fl: >
         {% from 'get_motion_detctors_info_for_area.jinja' import get_motion_detctors_info_for_area %}        
-        {{get_motion_detctors_info_for_area('flur','')}}         
+        {{get_motion_detctors_info_for_area('flur','')}}
       motion_detectors_info_dg: >
         {% from 'get_motion_detctors_info_for_area.jinja' import get_motion_detctors_info_for_area %}        
-        {{get_motion_detctors_info_for_area('dachgeschoss','')}}      
+        {{get_motion_detctors_info_for_area('dachgeschoss','')}}
       motion_detectors_info_tr: >
         {% from 'get_motion_detctors_info_for_area.jinja' import get_motion_detctors_info_for_area %}        
-        {{get_motion_detctors_info_for_area('treppenhaus','')}}         
-      motion_detectors_info_all: >  
+        {{get_motion_detctors_info_for_area('treppenhaus','')}}
+      motion_detectors_info_all: >
         {% set list = namespace(sensors=[]) %}
         {% if (state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_ku') != None and
           state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_gt') != None  and
           state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_bz') != None and  
-          state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_sz') != None and  
+          state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_sz') != None and
+          state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_az') != None and
           state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_fl') != None and  
           state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_dg') != None and  
           state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_tr') != None)
@@ -53,8 +58,9 @@ sensor:
           {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_sz')%}
           {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_fl')%}
           {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_dg')%}
-          {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_tr')%} 
+          {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_tr')%}
+          {%set list.sensors = list.sensors + state_attr('sensor.sr_ha_motion_detectors_info', 'motion_detectors_info_az')%} 
           {{list.sensors}}
         {% else %}           
           unkown
-        {% endif %}                    
+        {% endif %}

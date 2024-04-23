@@ -1,0 +1,6 @@
+idt_fl_front_door_lock_lock_time:
+  name: idt_fl_front_door_lock_lock_time
+  #initial: ""
+  icon: mdi:lock
+  has_time: true
+  has_date: false

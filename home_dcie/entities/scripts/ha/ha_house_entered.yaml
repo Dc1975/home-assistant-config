@@ -5,8 +5,8 @@ ha_house_entered:
         - condition: numeric_state
           entity_id: sun.sun
           attribute: elevation
-          below: input_number.in_ha_sun_elevation_treshhold  
-      then:                
+          below: input_number.in_ha_sun_elevation_treshhold
+      then:
         - service: homeassistant.turn_on
           data: {}
           target:
@@ -14,7 +14,7 @@ ha_house_entered:
         - service: timer.start
           data_template:
             entity_id: timer.ti_fl_motion_grp_lights
-            duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"			                
+            duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"
         - type: turn_on
           device_id: 5a9bafa612daa6401258700617b0c4d7
           entity_id: switch.kaminlicht

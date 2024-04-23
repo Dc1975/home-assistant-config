@@ -1,6 +1,6 @@
 ha_all_lights_off:
   alias: HA Alle Lichter aus
-  fields:    
+  fields:
     delay_FL_lamps:
       # All sub-options are only used for creating a representation of this script in the UI.
       description: "Delay time to switch off the lamps in seconds"
@@ -9,142 +9,152 @@ ha_all_lights_off:
     wait_for_script:
       description: Calling script waits for the called script, but not be aborted if the called script aborts due to errors.
       example: "on"
-      name: wait_for_script      
+      name: wait_for_script
   sequence:
-  - service: script.turn_on
-    data: {}
-    target:
-      entity_id: script.dg_light_off    
-  - if:
-      - condition: template
-        value_template: "{{wait_for_script == 'on'}}"
-    then:    
-      - wait_template: "  {{ is_state('script.dg_light_off', 'off') }}"
-        continue_on_timeout: true
-# for testing        
-#      - service: notify.alexa_media_echo_wohnzimmer
-#        data:
-#          message: warten
-  - service: script.turn_on
-    data: {}
-    target:
-      entity_id: script.of_lamps_off
-  - if:
-      - condition: template
-        value_template: "{{wait_for_script == 'on'}}"
-    then:    
-      - wait_template: "  {{ is_state('script.of_lamps_off', 'off') }}"
-        continue_on_timeout: true          
-  - service: script.turn_on
-    data: {}
-    target:
-      entity_id: script.bz_light_off
-  - if:
-      - condition: template
-        value_template: "{{wait_for_script == 'on'}}"
-    then:    
-      - wait_template: "  {{ is_state('script.bz_light_off', 'off') }}"
-        continue_on_timeout: true  
-  - service: script.turn_on
-    data: {}
-    target:
-      entity_id: script.gz_light_off
-  - if:
-      - condition: template
-        value_template: "{{wait_for_script == 'on'}}"
-    then:    
-      - wait_template: "  {{ is_state('script.gz_light_off', 'off') }}"
-        continue_on_timeout: true        
-  - service: script.turn_on
-    data: {}
-    target:
-      entity_id: script.gt_light_off
-  - if:
-      - condition: template
-        value_template: "{{wait_for_script == 'on'}}"
-    then:    
-      - wait_template: "  {{ is_state('script.gt_light_off', 'off') }}"
-        continue_on_timeout: true        
-  - service: script.turn_on
-    data: {}
-    target:
-      entity_id: script.ke_light_off
-  - if:
-      - condition: template
-        value_template: "{{wait_for_script == 'on'}}"
-    then:    
-      - wait_template: "  {{ is_state('script.ke_light_off', 'off') }}"
-        continue_on_timeout: true        
-  - service: script.turn_on
-    data: {}
-    target:
-      entity_id: script.ez_light_off
-  - if:
-      - condition: template
-        value_template: "{{wait_for_script == 'on'}}"
-    then:    
-      - wait_template: "  {{ is_state('script.ez_light_off', 'off') }}"
-        continue_on_timeout: true         
-  - service: script.turn_on
-    data: {}
-    target:
-      entity_id: script.tk_light_off
-  - if:
-      - condition: template
-        value_template: "{{wait_for_script == 'on'}}"
-    then:    
-      - wait_template: "  {{ is_state('script.tk_light_off', 'off') }}"
-        continue_on_timeout: true        
-  - service: script.turn_on
-    data: {}
-    target:
-      entity_id: script.ku_light_off
-  - if:
-      - condition: template
-        value_template: "{{wait_for_script == 'on'}}"
-    then:    
-      - wait_template: "  {{ is_state('script.ku_light_off', 'off') }}"
-        continue_on_timeout: true        
-  - service: script.turn_on
-    data: {}
-    target:
-      entity_id: script.wz_light_off
-  - if:
-      - condition: template
-        value_template: "{{wait_for_script == 'on'}}"
-    then:    
-      - wait_template: "  {{ is_state('script.wz_light_off', 'off') }}"
-        continue_on_timeout: true          
-  - service: script.turn_on
-    data: {}
-    target:
-      entity_id: script.tr_lamps_off
-  - if:
-      - condition: template
-        value_template: "{{wait_for_script == 'on'}}"
-    then:    
-      - wait_template: "  {{ is_state('script.tr_lamps_off', 'off') }}"
-        continue_on_timeout: true          
-  - service: script.turn_on
-    target:
-      entity_id: script.sz_light_off
-    data: {}
-  - if:
-      - condition: template
-        value_template: "{{wait_for_script == 'on'}}"
-    then:    
-      - wait_template: "  {{ is_state('script.sz_light_off', 'off') }}"
-        continue_on_timeout: true    
-  - delay: "00:00:{{ delay_FL_lamps | int }}"
-  - service: script.turn_on
-    data: {}
-    target:
-      entity_id: script.fl_lamps_off
-  - if:
-      - condition: template
-        value_template: "{{wait_for_script == 'on'}}"
-    then:    
-      - wait_template: "  {{ is_state('script.fl_lamps_off', 'off') }}"
-        continue_on_timeout: true          
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.dg_light_off
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.dg_light_off', 'off') }}"
+          continue_on_timeout: true
+    # for testing
+    #      - service: notify.alexa_media_echo_wohnzimmer
+    #        data:
+    #          message: warten
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.of_lamps_off
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.of_lamps_off', 'off') }}"
+          continue_on_timeout: true
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.bz_light_off
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.bz_light_off', 'off') }}"
+          continue_on_timeout: true
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.gz_light_off
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.gz_light_off', 'off') }}"
+          continue_on_timeout: true
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.gt_light_off
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.gt_light_off', 'off') }}"
+          continue_on_timeout: true
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.ke_light_off
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.ke_light_off', 'off') }}"
+          continue_on_timeout: true
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.ez_light_off
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.ez_light_off', 'off') }}"
+          continue_on_timeout: true
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.tk_light_off
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.tk_light_off', 'off') }}"
+          continue_on_timeout: true
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.ku_light_off
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.ku_light_off', 'off') }}"
+          continue_on_timeout: true
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.wz_light_off
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.wz_light_off', 'off') }}"
+          continue_on_timeout: true
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.tr_lamps_off
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.tr_lamps_off', 'off') }}"
+          continue_on_timeout: true
+    - service: script.turn_on
+      target:
+        entity_id: script.sz_light_off
+      data: {}
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.sz_light_off', 'off') }}"
+          continue_on_timeout: true
+    - service: script.turn_on
+      target:
+        entity_id: script.az_light_off
+      data: {}
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.az_light_off', 'off') }}"
+          continue_on_timeout: true
+    - delay: "00:00:{{ delay_FL_lamps | int }}"
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id: script.fl_lamps_off
+    - if:
+        - condition: template
+          value_template: "{{wait_for_script == 'on'}}"
+      then:
+        - wait_template: "  {{ is_state('script.fl_lamps_off', 'off') }}"
+          continue_on_timeout: true
   mode: single
   icon: mdi:lightbulb-group-off

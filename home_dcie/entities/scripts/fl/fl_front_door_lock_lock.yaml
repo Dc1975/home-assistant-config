@@ -1,0 +1,10 @@
+fl_front_door_lock_lock:
+  alias: FL Haustürschloss verriegeln
+  sequence:
+    - service: lock.lock
+      metadata: {}
+      data: {}
+      target:
+        entity_id: lock.nuki_haustur_lock
+  mode: single
+  icon: mdi:lock

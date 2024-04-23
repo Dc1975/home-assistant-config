@@ -1,6 +1,0 @@
-idt_sz_az_cover_down_weekend:
-  name: "Ankleidezimmerrolladen runter Wochenende"
-  #initial: ""
-  icon: mdi:window-shutter
-  has_time: true
-  has_date: false

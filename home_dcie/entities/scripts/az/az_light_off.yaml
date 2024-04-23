@@ -1,0 +1,9 @@
+az_light_off:
+  alias: AZ Licht aus
+  sequence:
+    - type: turn_off
+      device_id: f0dd0d79f81f2be59baaa2d11656fe4c
+      entity_id: switch.ankleidezimmerlicht
+      domain: switch
+  mode: single
+  icon: mdi:toggle-switch-variant-off

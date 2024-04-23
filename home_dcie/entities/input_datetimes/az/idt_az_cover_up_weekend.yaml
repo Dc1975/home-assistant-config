@@ -1,0 +1,6 @@
+idt_az_cover_up_weekend:
+  name: "Ankleidezimmerrolladen hoch Wochenende"
+  #initial: ""
+  icon: mdi:window-shutter-open
+  has_time: true
+  has_date: false

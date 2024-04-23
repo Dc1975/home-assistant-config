@@ -7,7 +7,7 @@
   name: bz_grp_lichtschalter
   entities: !include_dir_merge_list ../default/switches/lights/bz
   unique_id: bz_grp_lichtschalter
-  
+
 - platform: group
   name: dg_grp_lichtschalter
   entities: !include_dir_merge_list ../default/switches/lights/dg
@@ -22,7 +22,7 @@
   name: gz_grp_lichtschalter
   entities: !include_dir_merge_list ../default/switches/lights/gz
   unique_id: gz_grp_lichtschalter
-  
+
 - platform: group
   name: ku_grp_lichtschalter
   entities: !include_dir_merge_list ../default/switches/lights/ku
@@ -32,6 +32,11 @@
   name: sz_grp_lichtschalter
   entities: !include_dir_merge_list ../default/switches/lights/sz
   unique_id: sz_grp_lichtschalter
+
+- platform: group
+  name: az_grp_lichtschalter
+  entities: !include_dir_merge_list ../default/switches/lights/az
+  unique_id: az_grp_lichtschalter
 
 - platform: group
   name: wz_grp_lichtschalter

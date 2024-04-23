@@ -5,6 +5,17 @@ ha_go_sleep:
       data: {}
       target:
         entity_id: input_boolean.ib_ha_schlafen_runs
+    - service: script.turn_on
+      data: {}
+      target:
+        entity_id:
+          - script.fl_front_door_lock_lock
+    - if:
+        - condition: template
+          value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
+      then:
+        - wait_template: "{{is_state('script.fl_front_door_lock_lock', 'off') }}"
+          continue_on_timeout: true
     - device_id: d9ed990d7a946b541ddf7e82de436181
       domain: cover
       entity_id: cover.leinwand
@@ -19,27 +30,27 @@ ha_go_sleep:
       data: {}
       target:
         entity_id:
-          - script.ha_all_devices_off          
+          - script.ha_all_devices_off
     - if:
         - condition: template
           value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
-      then:    
-        - wait_template: "{{is_state('script.ha_all_devices_off', 'off') }}"                
-          continue_on_timeout: true                       
+      then:
+        - wait_template: "{{is_state('script.ha_all_devices_off', 'off') }}"
+          continue_on_timeout: true
     - service: script.turn_on
       target:
         entity_id:
           - script.ha_all_lights_off
       data:
         variables:
-          delay_FL_lamps: 0          
-          wait_for_script: "{{states('input_boolean.ib_wait_for_script')}}" 
+          delay_FL_lamps: 0
+          wait_for_script: "{{states('input_boolean.ib_wait_for_script')}}"
     - if:
         - condition: template
           value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
-      then:    
-        - wait_template: "{{is_state('script.ha_all_lights_off', 'off') }}"      
-          continue_on_timeout: true             
+      then:
+        - wait_template: "{{is_state('script.ha_all_lights_off', 'off') }}"
+          continue_on_timeout: true
     - service: light.turn_on
       data:
         brightness: 5
@@ -58,20 +69,20 @@ ha_go_sleep:
           - script.ku_lamps_night
 
     # for using a scene, first turn on the switch
-#    - type: turn_on
-#      device_id: 3fac30d786557e08e60dd17cdb131eee
-#      entity_id: switch.kuchenlicht
-#      domain: switch
-#    - service: scene.turn_on
-#      target:
-#        entity_id: scene.kuche_lampen_nacht
-#      metadata: {}      
-#    - service: timer.start
-#      data_template:
-#        entity_id: timer.ti_ku_motion_lights
-#        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"
+    #    - type: turn_on
+    #      device_id: 3fac30d786557e08e60dd17cdb131eee
+    #      entity_id: switch.kuchenlicht
+    #      domain: switch
+    #    - service: scene.turn_on
+    #      target:
+    #        entity_id: scene.kuche_lampen_nacht
+    #      metadata: {}
+    #    - service: timer.start
+    #      data_template:
+    #        entity_id: timer.ti_ku_motion_lights
+    #        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"
     # the switch will be automatically turned of by the timer
-    
+
     - service: script.turn_on
       target:
         entity_id: script.ha_alexa_wz_notification
@@ -79,7 +90,7 @@ ha_go_sleep:
         variables:
           msg_title: HomeAssistant - Erinnerung
           msg_message: Wie ist der Akkustand von Harmony?
-    - delay: "00:00:{{ states('input_number.in_ha_delay_default_scripts') | int }}"    
+    - delay: "00:00:{{ states('input_number.in_ha_delay_default_scripts') | int }}"
     - service: script.turn_on
       target:
         entity_id: script.ha_alexa_wz_notification
@@ -87,13 +98,13 @@ ha_go_sleep:
         variables:
           msg_title: HomeAssistant - Status Haustür
           msg_message: "{{states('sensor.sr_fl_nuki_frontdoor_info_security_state')}}"
-    - delay: "00:00:{{ states('input_number.in_ha_delay_default_scripts') | int }}"                
+    - delay: "00:00:{{ states('input_number.in_ha_delay_default_scripts') | int }}"
     - service: script.turn_on
       target:
         entity_id: script.ha_alexa_wz_notification
       data:
         variables:
           msg_title: HomeAssistant - Offene Fenster
-          msg_message: "{{state_attr('sensor.sr_ha_windows_open', 'windows_open')}}"          
+          msg_message: "{{state_attr('sensor.sr_ha_windows_open', 'windows_open')}}"
   mode: single
   icon: mdi:lightbulb-group-off

@@ -1,11 +1,11 @@
 ha_grp_switches_motion_detectors:
   name: ha_grp_switches_motion_detectors
-  entities: 
+  entities:
     - input_boolean.ib_dg_switch_motion_detector
     - input_boolean.ib_bz_switch_motion_detector
     - input_boolean.ib_ku_switch_motion_detector
     - input_boolean.ib_sz_switch_motion_detector
-    - input_boolean.ib_sz_az_switch_motion_detector
+    - input_boolean.ib_az_switch_motion_detector
     - input_boolean.ib_gt_switch_motion_detector
     - input_boolean.ib_fl_switch_motion_detector
     - input_boolean.ib_tr_above_switch_motion_detector

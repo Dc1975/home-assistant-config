@@ -1,0 +1,118 @@
+- id: "1679779279929"
+  alias: AZ Bewegung erkannt Timer start
+  description: ""
+  trigger:
+    - type: motion
+      platform: device
+      device_id: 3117bf6e656720d90e8b658531ab8136
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_11
+      domain: binary_sensor
+  condition:
+    - condition: or
+      conditions:
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: input_boolean.ib_az_switch_motion_detector
+              state: "on"
+            # use this condition to prevent light turn off if they werere manually turned on
+            - condition: device
+              type: is_off
+              device_id: f0dd0d79f81f2be59baaa2d11656fe4c
+              entity_id: switch.ankleidezimmerlicht
+              domain: switch
+            # condition 1 nach Sonnenuntergang und vor 23:30 an allen Tagen
+            - condition: sun
+              after: sunset
+            - condition: time
+              before: input_datetime.idt_az_cover_down_workday
+              weekday:
+                - sun
+                - sat
+                - fri
+                - thu
+                - wed
+                - tue
+                - mon
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: input_boolean.ib_az_switch_motion_detector
+              state: "on"
+            # use this condition to prevent light turn off if they werere manually turned on
+            - condition: device
+              type: is_off
+              device_id: f0dd0d79f81f2be59baaa2d11656fe4c
+              entity_id: switch.ankleidezimmerlicht
+              domain: switch
+            # condition 2 Lichtverhältniss und (nach 8:45 an Werktagen oder nach 11:00 an Wochenenden) und vor 23:30 an allen Tagen
+            - condition: template
+              value_template: >
+                {{ state_attr('sensor.sr_ha_turn_on_lights', 'sz_az') }}
+            - condition: or
+              conditions:
+                - condition: time
+                  weekday:
+                    - mon
+                    - tue
+                    - wed
+                    - thu
+                    - fri
+                  after: input_datetime.idt_az_cover_up_workday
+                - condition: time
+                  weekday:
+                    - sun
+                    - sat
+                  after: input_datetime.idt_az_cover_up_weekend
+            - condition: time
+              weekday:
+                - sun
+                - sat
+                - fri
+                - thu
+                - wed
+                - tue
+                - mon
+              before: input_datetime.idt_az_cover_down_workday
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: input_boolean.ib_az_switch_motion_detector
+              state: "on"
+            # use this condition to prevent light turn off if they werere manually turned on
+            - condition: device
+              type: is_off
+              device_id: f0dd0d79f81f2be59baaa2d11656fe4c
+              entity_id: switch.ankleidezimmerlicht
+              domain: switch
+            # condition 3 Rolladenstand und nach Sonnenaufgang und (nach 8:45 an Werktagen oder nach 11:00 an Wochenenden)
+            - condition: template
+              value_template: >
+                {{ state_attr('sensor.sr_az_cover', 'get_position') | int > states('input_number.in_ha_covers_open_threshold') | int }}
+            - condition: sun
+              after: sunrise
+            - condition: or
+              conditions:
+                - condition: time
+                  weekday:
+                    - mon
+                    - tue
+                    - wed
+                    - thu
+                    - fri
+                  after: input_datetime.idt_az_cover_up_workday
+                - condition: time
+                  weekday:
+                    - sun
+                    - sat
+                  after: input_datetime.idt_az_cover_up_weekend
+  action:
+    - type: turn_on
+      device_id: f0dd0d79f81f2be59baaa2d11656fe4c
+      entity_id: switch.ankleidezimmerlicht
+      domain: switch
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_az_motion_lights
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"
+  mode: single

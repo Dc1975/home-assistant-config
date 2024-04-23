@@ -1,12 +1,12 @@
 ha_grp_cover_position_changed:
   name: ha_grp_cover_position_changed
-  entities: 
+  entities:
     - input_boolean.ib_bz_cover_position_changed
     - input_boolean.ib_gz_cover_position_changed
     - input_boolean.ib_ku_cover_position_changed
     - input_boolean.ib_dg_cover_position_changed
     - input_boolean.ib_wz_door_cover_position_changed
-    - input_boolean.ib_wz_window_cover_position_changed 
+    - input_boolean.ib_wz_window_cover_position_changed
     - input_boolean.ib_sz_cover_position_changed
-    - input_boolean.ib_sz_az_cover_position_changed
-  all: true    
+    - input_boolean.ib_az_cover_position_changed
+  all: true

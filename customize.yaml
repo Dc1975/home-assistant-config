@@ -155,25 +155,25 @@ sensor.um_sz_steckdose_bett_links_daily:
 sensor.um_sz_steckdose_bett_links_weekly:
   friendly_name: Steckdose Bett links wöchentlich
 sensor.um_sz_steckdose_bett_links_monthly:
-  friendly_name: Steckdose Bett links monatlich  
+  friendly_name: Steckdose Bett links monatlich
 sensor.um_sz_steckdose_bett_links_yearly:
-  friendly_name: Steckdose Bett links jährlich  
+  friendly_name: Steckdose Bett links jährlich
 sensor.um_sz_steckdose_bett_rechts_daily:
-  friendly_name: Steckdose Bett rechts täglich  
+  friendly_name: Steckdose Bett rechts täglich
 sensor.um_sz_steckdose_bett_rechts_weekly:
-  friendly_name: Steckdose Bett rechts wöchentlich  
+  friendly_name: Steckdose Bett rechts wöchentlich
 sensor.um_sz_steckdose_bett_rechts_monthly:
-  friendly_name: Steckdose Bett rechts monatlich  
+  friendly_name: Steckdose Bett rechts monatlich
 sensor.um_sz_steckdose_bett_rechts_yearly:
-  friendly_name: Steckdose Bett rechts jährlich  
+  friendly_name: Steckdose Bett rechts jährlich
 sensor.um_sz_steckdose_ki_daily:
-  friendly_name: Schlafzimmer KI täglich  
+  friendly_name: Schlafzimmer KI täglich
 sensor.um_sz_steckdose_ki_weekly:
-  friendly_name: Schlafzimmer KI wöchentlich  
+  friendly_name: Schlafzimmer KI wöchentlich
 sensor.um_sz_steckdose_ki_monthly:
   friendly_name: Schlafzimmer KI monatlich
 sensor.um_sz_steckdose_ki_yearly:
-  friendly_name: Schlafzimmer KI jährlich  
+  friendly_name: Schlafzimmer KI jährlich
 sensor.um_dg_steckdose_3d_drucker_daily:
   friendly_name: 3d Drucker täglich
 sensor.um_dg_steckdose_3d_drucker_weekly:
@@ -336,7 +336,7 @@ input_boolean.ib_ku_switch_motion_detector:
   friendly_name: Küche Bewegungsmelder
 input_boolean.ib_sz_switch_motion_detector:
   friendly_name: Schlafzimmer Bewegungsmelder
-input_boolean.ib_sz_az_switch_motion_detector:
+input_boolean.ib_az_switch_motion_detector:
   friendly_name: Ankleidezimmer Bewegungsmelder
 input_boolean.ib_gt_switch_motion_detector:
   friendly_name: Gästetoilette Bewegungsmelder
@@ -353,7 +353,7 @@ input_boolean.ib_wz_door_cover_used_in_automations:
   friendly_name: In Automationen benutzen (Tür)
 input_boolean.ib_wz_window_cover_used_in_automations:
   friendly_name: In Automationen benutzen (Fenster)
-input_boolean.ib_sz_az_cover_used_in_automations:
+input_boolean.ib_az_cover_used_in_automations:
   friendly_name: In Automationen benutzen (Ankleidezimmer)
 input_boolean.ib_sz_cover_used_in_automations:
   friendly_name: In Automationen benutzen (Schlafzimmer)
@@ -430,13 +430,13 @@ input_datetime.idt_sz_cover_down_workday:
   friendly_name: SZ Fensterrolladen zu WT
 input_datetime.idt_sz_cover_down_weekend:
   friendly_name: SZ Fensterrolladen zu WE
-input_datetime.idt_sz_az_cover_up_workday:
+input_datetime.idt_az_cover_up_workday:
   friendly_name: AZ Fensterrolladen auf WT
-input_datetime.idt_sz_az_cover_up_weekend:
+input_datetime.idt_az_cover_up_weekend:
   friendly_name: AZ Fensterrolladen auf WE
-input_datetime.idt_sz_az_cover_down_workday:
+input_datetime.idt_az_cover_down_workday:
   friendly_name: AZ Fensterrolladen zu WT
-input_datetime.idt_sz_az_cover_down_weekend:
+input_datetime.idt_az_cover_down_weekend:
   friendly_name: AZ Fensterrolladen zu WE
 input_datetime.idt_gz_cover_up_workday:
   friendly_name: GZ Fensterrolladen auf WT
@@ -515,16 +515,16 @@ input_number.in_ku_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Küche
 input_number.in_bz_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Badezimmer
-input_number.in_bz_lux_shower_treshhold:  
+input_number.in_bz_lux_shower_treshhold:
   friendly_name: Luxschwelle Bewegung Badezimmerdusche
 input_number.in_dg_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Dachgeschoss
 input_number.in_gt_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Gästetoilette
-input_number.in_sz_az_lux_treshhold:
+input_number.in_az_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Ankleidezimmer
 input_number.in_sz_lux_treshhold:
-  friendly_name: Luxschwelle Bewegung Schlafzimmer  
+  friendly_name: Luxschwelle Bewegung Schlafzimmer
 input_number.in_ku_lux_offset:
   friendly_name: Luxoffset Bewegung Küche
 # input_datetime
@@ -602,17 +602,17 @@ input_number.in_mm_skyq_advertising_delay:
   friendly_name: Sky Werbezeit
 input_number.in_sz_vacaction_mode_offset:
   friendly_name: Verschiebung um
-input_number.in_sz_az_vacaction_mode_offset:
+input_number.in_az_vacaction_mode_offset:
   friendly_name: Verschiebung um
 # timer
 timer.ti_sz_room_motion_lights:
   friendly_name: Timer Schlafzimmer
 timer.ti_sz_motion_lights:
   friendly_name: Timer Schlafzimmerbettlicht
-timer.ti_sz_az_motion_lights:
+timer.ti_az_motion_lights:
   friendly_name: Timer Ankleidezimmer
 timer.ti_bz_motion_lights_shower:
-  friendly_name: Timer Badezimmerdusche  
+  friendly_name: Timer Badezimmerdusche
   # KI's
 input_boolean.ib_dg_ki_used_in_automations:
   friendly_name: In Automationen benutzen
@@ -633,7 +633,7 @@ input_datetime.idt_sz_ki_on_weekend:
 input_datetime.idt_sz_ki_off_workday:
   friendly_name: SZ KI aus WT
 input_datetime.idt_sz_ki_off_weekend:
-  friendly_name: SZ KI aus WE   
+  friendly_name: SZ KI aus WE
 # plugs
 switch.schlafzimmersteckdose_ki:
   friendly_name: Schlafzimmer KI
@@ -644,26 +644,26 @@ input_boolean.ib_dg_printer_plug_used_in_automations:
 # input_boolean
 input_boolean.ib_sz_cover_used_in_vacation_mode:
   friendly_name: Urlaubsmodus (Schlafzimmer)
-input_boolean.ib_sz_az_cover_used_in_vacation_mode:
+input_boolean.ib_az_cover_used_in_vacation_mode:
   friendly_name: Urlaubsmodus (Ankleidezimmer)
 
 # keller
 #binary_sensor.Kellerfensterfeuchtigkeitssensor_vorne_feuchtigkeit:
 #  friendly_name: Feuchtigkeitsstatus
-#sensor.kellerfensterfeuchtigkeitssensor_vorne_batterie:  
-#  friendly_name: Batteriestand  
+#sensor.kellerfensterfeuchtigkeitssensor_vorne_batterie:
+#  friendly_name: Batteriestand
 #binary_sensor.Kellerfensterfeuchtigkeitssensor_hinten_feuchtigkeit:
 #  friendly_name: Feuchtigkeitsstatus
-#sensor.kellerfensterfeuchtigkeitssensor_hinten_batterie:  
-#  friendly_name: Batteriestand  
+#sensor.kellerfensterfeuchtigkeitssensor_hinten_batterie:
+#  friendly_name: Batteriestand
 # bathroom
 #binary_sensor.bs_bz_shower_humidity:
 #  friendly_name: Feuchtigkeitsstatus
 #sensor.badezimmerduschtemperatursensor_luftfeuchtigkeit:
 #  friendly_name: Luftfeuchtigkeit
-#sensor.badezimmerduschtemperatursensor_batterie:  
+#sensor.badezimmerduschtemperatursensor_batterie:
 #  friendly_name: Batteriestand
 
 # forecast
 sensor.sr_forecast_next_day:
-  friendly_name:  Wetter-Vorhersage des nächsten Tages
+  friendly_name: Wetter-Vorhersage des nächsten Tages

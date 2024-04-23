@@ -1,2 +1,4 @@
 - binary_sensor.kellerfenstersensor_hinten_offnet
 - binary_sensor.kellerfenstersensor_vorne_offnet
+- binary_sensor.kellerfensterfeuchtigkeitssensor_hinten_feuchtigkeit
+- binary_sensor.kellerfensterfeuchtigkeitssensor_vorne_feuchtigkeit

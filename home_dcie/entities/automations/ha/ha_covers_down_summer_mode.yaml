@@ -1,20 +1,20 @@
-- id: '1683712408062'
+- id: "1683712408062"
   alias: HA Rolladen ab Sommerbetrieb
   description: ""
-  trigger:  
+  trigger:
     - platform: state
       entity_id:
-        - sensor.gw1100a_v2_2_3_outdoor_temperature        
-#    - platform: numeric_state
-#      entity_id: sensor.gw1100a_v2_2_3_outdoor_temperature            
-#      above: input_number.in_ha_covers_temperature_treshhold
+        - sensor.gw1100a_v2_2_3_outdoor_temperature
+  #    - platform: numeric_state
+  #      entity_id: sensor.gw1100a_v2_2_3_outdoor_temperature
+  #      above: input_number.in_ha_covers_temperature_treshhold
   condition:
     - condition: and
       conditions:
         - condition: time
           after: input_datetime.idt_ha_covers_close_summer_after
           before: input_datetime.idt_ha_covers_close_summer_before_back
-          # {{ as_timestamp(today_at(states('input_datetime.idt_ha_covers_close_summer_before_back')) - timedelta(hours = 1), "%H:%M:%S") | timestamp_custom('%H:%M:%S') }}          
+          # {{ as_timestamp(today_at(states('input_datetime.idt_ha_covers_close_summer_before_back')) - timedelta(hours = 1), "%H:%M:%S") | timestamp_custom('%H:%M:%S') }}
         - condition: template
           value_template: >
             {% set state_sensor = states('sensor.gw1100a_v2_2_3_solar_lux') %} {%
@@ -25,7 +25,7 @@
               true
             {% else %}
               false
-            {% endif %}                
+            {% endif %}
         - condition: template
           value_template: >
             {% set state_sensor =
@@ -37,24 +37,24 @@
               true
             {% else %}
               false
-            {% endif %}    
+            {% endif %}
         - condition: template
           value_template: >
             {{now().month | string in
-            states('input_text.it_ha_covers_close_summer_months')}}            
+            states('input_text.it_ha_covers_close_summer_months')}}
   action:
-# counter of executed scripts in this automation  
+    # counter of executed scripts in this automation
     - service: input_number.set_value
       data:
         value: 0
       target:
-        entity_id: input_number.in_ha_executed_automations_of_summer_mode  
-# flag this automation as running        
+        entity_id: input_number.in_ha_executed_automations_of_summer_mode
+    # flag this automation as running
     - service: input_boolean.turn_on
       data: {}
       target:
         entity_id: input_boolean.ib_ha_covers_up_down_summer_mode_runs
-# Wohnzimmertür
+    # Wohnzimmertür
     - if:
         - condition: template
           value_template: >
@@ -64,30 +64,30 @@
               and states('input_boolean.ib_wz_door_cover_position_changed') == 'off'
               and states('input_boolean.ib_wz_door_cover_used_in_automations') == 'on'
               and states('input_boolean.ib_wz_door_cover_up_down_automation_runs') == 'off'                                               
-              and states('input_boolean.ib_wz_door_covers_closed_by_summer_mode') == 'off' }}                          
-      then:    
+              and states('input_boolean.ib_wz_door_covers_closed_by_summer_mode') == 'off' }}
+      then:
         - service: script.turn_on
           data:
             variables:
-            # TODO create an offset input_number
+              # TODO create an offset input_number
               #cover_position: "{{ (states('input_number.in_ha_covers_close_position_summer') | int)  - 25}}"
-              cover_position: "{{ (states('input_number.in_ha_covers_close_position_summer') | int)  - 0}}"            
+              cover_position: "{{ (states('input_number.in_ha_covers_close_position_summer') | int)  - 0}}"
           target:
             entity_id: script.wz_covers_down_door
-# wait for script execution to check...              
+        # wait for script execution to check...
         - if:
             - condition: template
               value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
-          then:    
-            - wait_template: "{{is_state('script.wz_covers_down_door', 'off') }}"                
-              continue_on_timeout: true              
-# ...if script was executed by conditions
-        - if:              
+          then:
+            - wait_template: "{{is_state('script.wz_covers_down_door', 'off') }}"
+              continue_on_timeout: true
+        # ...if script was executed by conditions
+        - if:
             - condition: state
               entity_id: input_boolean.ib_wz_door_cover_up_down_script_executed
-              state: "on"    
-          then:            
-# changed by this automation, not manually            
+              state: "on"
+          then:
+            # changed by this automation, not manually
             - service: input_boolean.turn_on
               data: {}
               target:
@@ -95,13 +95,13 @@
             - service: input_boolean.turn_off
               data: {}
               target:
-                entity_id: input_boolean.ib_wz_door_cover_position_changed  
-# increment counter to check for delaying
+                entity_id: input_boolean.ib_wz_door_cover_position_changed
+            # increment counter to check for delaying
             - service: input_number.increment
               data: {}
               target:
-                entity_id: input_number.in_ha_executed_automations_of_summer_mode                      
-# Wohnzimmerfenster
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode
+    # Wohnzimmerfenster
     - if:
         - condition: template
           value_template: >
@@ -111,42 +111,42 @@
               and states('input_boolean.ib_wz_window_cover_position_changed') == 'off'
               and states('input_boolean.ib_wz_window_cover_used_in_automations') == 'on'            
               and states('input_boolean.ib_wz_window_cover_up_down_automation_runs') == 'off'
-              and states('input_boolean.ib_wz_window_covers_closed_by_summer_mode') == 'off' }}                          
-      then:    
+              and states('input_boolean.ib_wz_window_covers_closed_by_summer_mode') == 'off' }}
+      then:
         - service: script.turn_on
           data:
             variables:
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
           target:
             entity_id: script.wz_covers_down_window
-# wait for script execution to check...              
+        # wait for script execution to check...
         - if:
             - condition: template
               value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
-          then:    
-            - wait_template: "{{is_state('script.wz_covers_down_window', 'off') }}"                
-              continue_on_timeout: true              
-# ...if script was executed by conditions
-        - if:              
+          then:
+            - wait_template: "{{is_state('script.wz_covers_down_window', 'off') }}"
+              continue_on_timeout: true
+        # ...if script was executed by conditions
+        - if:
             - condition: state
               entity_id: input_boolean.ib_wz_window_cover_up_down_script_executed
-              state: "on"    
-          then:            
-# changed by this automation, not manually            
+              state: "on"
+          then:
+            # changed by this automation, not manually
             - service: input_boolean.turn_on
               data: {}
               target:
-                entity_id: input_boolean.ib_wz_window_covers_closed_by_summer_mode                              
+                entity_id: input_boolean.ib_wz_window_covers_closed_by_summer_mode
             - service: input_boolean.turn_off
               data: {}
               target:
                 entity_id: input_boolean.ib_wz_window_cover_position_changed
-# increment counter to check for delaying                                          
+            # increment counter to check for delaying
             - service: input_number.increment
               data: {}
               target:
-                entity_id: input_number.in_ha_executed_automations_of_summer_mode                  
-# Dachgeschoss
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode
+    # Dachgeschoss
     - if:
         - condition: template
           value_template: >
@@ -156,87 +156,87 @@
               and states('input_boolean.ib_dg_cover_position_changed') == 'off'
               and states('input_boolean.ib_dg_cover_used_in_automations') == 'on'       
               and states('input_boolean.ib_dg_cover_up_down_automation_runs') == 'off'                                 
-              and states('input_boolean.ib_dg_covers_closed_by_summer_mode') == 'off' }}                          
-      then:    
+              and states('input_boolean.ib_dg_covers_closed_by_summer_mode') == 'off' }}
+      then:
         - service: script.turn_on
           target:
             entity_id: script.dg_covers_down
           data:
             variables:
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
-# wait for script execution to check...              
+        # wait for script execution to check...
         - if:
             - condition: template
               value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
-          then:    
-            - wait_template: "{{is_state('script.dg_covers_down', 'off') }}"                
-              continue_on_timeout: true              
-# ...if script was executed by conditions
-        - if:              
+          then:
+            - wait_template: "{{is_state('script.dg_covers_down', 'off') }}"
+              continue_on_timeout: true
+        # ...if script was executed by conditions
+        - if:
             - condition: state
               entity_id: input_boolean.ib_dg_cover_up_down_script_executed
-              state: "on"    
-          then:              
-# changed by this automation, not manually              
+              state: "on"
+          then:
+            # changed by this automation, not manually
             - service: input_boolean.turn_on
               data: {}
               target:
-                entity_id: input_boolean.ib_dg_covers_closed_by_summer_mode          
+                entity_id: input_boolean.ib_dg_covers_closed_by_summer_mode
             - service: input_boolean.turn_off
               data: {}
               target:
-                entity_id: input_boolean.ib_dg_cover_position_changed  
-# increment counter to check for delaying                                    
+                entity_id: input_boolean.ib_dg_cover_position_changed
+            # increment counter to check for delaying
             - service: input_number.increment
               data: {}
               target:
-                entity_id: input_number.in_ha_executed_automations_of_summer_mode            
-# Ankleidezimmer     
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode
+    # Ankleidezimmer
     - if:
         - condition: template
           value_template: >
             {% set positionToSet = (states('input_number.in_ha_covers_close_position_summer') | int) %}            
-            {{ states('input_boolean.ib_sz_az_covers_use_summer_mode') == 'on'
-              and (state_attr('sensor.sr_sz_az_cover', 'get_position') | int) < positionToSet
-              and states('input_boolean.ib_sz_az_cover_position_changed') == 'off'
-              and states('input_boolean.ib_sz_az_cover_used_in_automations') == 'on'                       
-              and states('input_boolean.ib_sz_az_cover_up_down_automation_runs') == 'off'                                               
-              and states('input_boolean.ib_sz_az_covers_closed_by_summer_mode') == 'off' }}
-      then:    
+            {{ states('input_boolean.ib_az_covers_use_summer_mode') == 'on'
+              and (state_attr('sensor.sr_az_cover', 'get_position') | int) < positionToSet
+              and states('input_boolean.ib_az_cover_position_changed') == 'off'
+              and states('input_boolean.ib_az_cover_used_in_automations') == 'on'                       
+              and states('input_boolean.ib_az_cover_up_down_automation_runs') == 'off'                                               
+              and states('input_boolean.ib_az_covers_closed_by_summer_mode') == 'off' }}
+      then:
         - service: script.turn_on
           target:
-            entity_id: script.sz_az_covers_down
+            entity_id: script.az_covers_down
           data:
             variables:
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
-# wait for script execution to check...              
+        # wait for script execution to check...
         - if:
             - condition: template
               value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
-          then:    
-            - wait_template: "{{is_state('script.sz_az_covers_down', 'off') }}"                
-              continue_on_timeout: true              
-# ...if script was executed by conditions
-        - if:              
-          - condition: state
-            entity_id: input_boolean.ib_sz_az_cover_up_down_script_executed
-            state: "on"    
-          then:                 
-# changed by this automation, not manually              
+          then:
+            - wait_template: "{{is_state('script.az_covers_down', 'off') }}"
+              continue_on_timeout: true
+        # ...if script was executed by conditions
+        - if:
+            - condition: state
+              entity_id: input_boolean.ib_az_cover_up_down_script_executed
+              state: "on"
+          then:
+            # changed by this automation, not manually
             - service: input_boolean.turn_on
               data: {}
               target:
-                entity_id: input_boolean.ib_sz_az_covers_closed_by_summer_mode  
+                entity_id: input_boolean.ib_az_covers_closed_by_summer_mode
             - service: input_boolean.turn_off
               data: {}
               target:
-                entity_id: input_boolean.ib_sz_az_cover_position_changed
-# increment counter to check for delaying                                  
+                entity_id: input_boolean.ib_az_cover_position_changed
+            # increment counter to check for delaying
             - service: input_number.increment
               data: {}
               target:
-                entity_id: input_number.in_ha_executed_automations_of_summer_mode            
-# Schlafzimmer         
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode
+    # Schlafzimmer
     - if:
         - condition: template
           value_template: >
@@ -247,41 +247,41 @@
               and states('input_boolean.ib_sz_cover_used_in_automations') == 'on'                 
               and states('input_boolean.ib_sz_cover_up_down_automation_runs') == 'off'                                               
               and states('input_boolean.ib_sz_covers_closed_by_summer_mode') == 'off' }}
-      then:    
+      then:
         - service: script.turn_on
           target:
             entity_id: script.sz_covers_down
           data:
             variables:
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
-# wait for script execution to check...              
+        # wait for script execution to check...
         - if:
             - condition: template
               value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
-          then:    
-            - wait_template: "{{is_state('script.sz_covers_down', 'off') }}"                
-              continue_on_timeout: true              
-# ...if script was executed by conditions
-        - if:              
-          - condition: state
-            entity_id: input_boolean.ib_sz_cover_up_down_script_executed
-            state: "on"    
-          then:                 
-# changed by this automation, not manually              
+          then:
+            - wait_template: "{{is_state('script.sz_covers_down', 'off') }}"
+              continue_on_timeout: true
+        # ...if script was executed by conditions
+        - if:
+            - condition: state
+              entity_id: input_boolean.ib_sz_cover_up_down_script_executed
+              state: "on"
+          then:
+            # changed by this automation, not manually
             - service: input_boolean.turn_on
               data: {}
               target:
-                entity_id: input_boolean.ib_sz_covers_closed_by_summer_mode   
+                entity_id: input_boolean.ib_sz_covers_closed_by_summer_mode
             - service: input_boolean.turn_off
               data: {}
               target:
-                entity_id: input_boolean.ib_sz_cover_position_changed 
-# increment counter to check for delaying                                 
+                entity_id: input_boolean.ib_sz_cover_position_changed
+            # increment counter to check for delaying
             - service: input_number.increment
               data: {}
               target:
-                entity_id: input_number.in_ha_executed_automations_of_summer_mode                
-# Gästezimmer          
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode
+    # Gästezimmer
     - if:
         - condition: template
           value_template: >
@@ -291,42 +291,42 @@
               and states('input_boolean.ib_gz_cover_position_changed') == 'off'
               and states('input_boolean.ib_gz_cover_used_in_automations') == 'on'
               and states('input_boolean.ib_gz_cover_up_down_automation_runs') == 'off'                                                    
-              and states('input_boolean.ib_gz_covers_closed_by_summer_mode') == 'off' }}                                      
-      then:    
+              and states('input_boolean.ib_gz_covers_closed_by_summer_mode') == 'off' }}
+      then:
         - service: script.turn_on
           data:
             variables:
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
           target:
             entity_id: script.gz_covers_down
-# wait for script execution to check...              
+        # wait for script execution to check...
         - if:
             - condition: template
               value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
-          then:    
-            - wait_template: "{{is_state('script.gz_covers_down', 'off') }}"                
-              continue_on_timeout: true              
-# ...if script was executed by conditions
-        - if:              
+          then:
+            - wait_template: "{{is_state('script.gz_covers_down', 'off') }}"
+              continue_on_timeout: true
+        # ...if script was executed by conditions
+        - if:
             - condition: state
               entity_id: input_boolean.ib_gz_cover_up_down_script_executed
-              state: "on"    
-          then:              
-# changed by this automation, not manually                          
+              state: "on"
+          then:
+            # changed by this automation, not manually
             - service: input_boolean.turn_on
               data: {}
               target:
-                entity_id: input_boolean.ib_gz_covers_closed_by_summer_mode       
+                entity_id: input_boolean.ib_gz_covers_closed_by_summer_mode
             - service: input_boolean.turn_off
               data: {}
               target:
-                entity_id: input_boolean.ib_gz_cover_position_changed 
-# increment counter to check for delaying                                  
+                entity_id: input_boolean.ib_gz_cover_position_changed
+            # increment counter to check for delaying
             - service: input_number.increment
               data: {}
               target:
-                entity_id: input_number.in_ha_executed_automations_of_summer_mode                         
-# Küche       
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode
+    # Küche
     - if:
         - condition: template
           value_template: >
@@ -336,42 +336,42 @@
               and states('input_boolean.ib_ku_cover_position_changed') == 'off'
               and states('input_boolean.ib_ku_cover_used_in_automations') == 'on'
               and states('input_boolean.ib_ku_cover_up_down_automation_runs') == 'off'                                                                  
-              and states('input_boolean.ib_ku_covers_closed_by_summer_mode') == 'off' }}                                      
-      then:    
+              and states('input_boolean.ib_ku_covers_closed_by_summer_mode') == 'off' }}
+      then:
         - service: script.turn_on
           data:
             variables:
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
           target:
             entity_id: script.ku_covers_down
-# wait for script execution to check...              
+        # wait for script execution to check...
         - if:
             - condition: template
               value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
-          then:    
-            - wait_template: "{{is_state('script.ku_covers_down', 'off') }}"                
-              continue_on_timeout: true              
-# ...if script was executed by conditions
-        - if:              
+          then:
+            - wait_template: "{{is_state('script.ku_covers_down', 'off') }}"
+              continue_on_timeout: true
+        # ...if script was executed by conditions
+        - if:
             - condition: state
               entity_id: input_boolean.ib_ku_cover_up_down_script_executed
-              state: "on"    
-          then:                
-# changed by this automation, not manually                        
+              state: "on"
+          then:
+            # changed by this automation, not manually
             - service: input_boolean.turn_on
               data: {}
               target:
-                entity_id: input_boolean.ib_ku_covers_closed_by_summer_mode 
+                entity_id: input_boolean.ib_ku_covers_closed_by_summer_mode
             - service: input_boolean.turn_off
               data: {}
               target:
                 entity_id: input_boolean.ib_ku_cover_position_changed
-# increment counter to check for delaying                                  
+            # increment counter to check for delaying
             - service: input_number.increment
               data: {}
               target:
-                entity_id: input_number.in_ha_executed_automations_of_summer_mode            
-# Badezimmer
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode
+    # Badezimmer
     - if:
         - condition: template
           value_template: >
@@ -381,53 +381,53 @@
               and states('input_boolean.ib_bz_cover_position_changed') == 'off'
               and states('input_boolean.ib_bz_cover_used_in_automations') == 'on'
               and states('input_boolean.ib_bz_cover_up_down_automation_runs') == 'off'                                        
-              and states('input_boolean.ib_bz_covers_closed_by_summer_mode') == 'off' }}                          
-      then:    
+              and states('input_boolean.ib_bz_covers_closed_by_summer_mode') == 'off' }}
+      then:
         - service: script.turn_on
           data:
             variables:
               cover_position: "{{states('input_number.in_ha_covers_close_position_summer') | int}}"
           target:
             entity_id: script.bz_covers_down
-# wait for script execution to check...              
+        # wait for script execution to check...
         - if:
             - condition: template
               value_template: "{{states('input_boolean.ib_wait_for_script') == 'on'}}"
-          then:    
-            - wait_template: "{{is_state('script.bz_covers_down', 'off') }}"                
-              continue_on_timeout: true              
-# ...if script was executed by conditions
-        - if:              
+          then:
+            - wait_template: "{{is_state('script.bz_covers_down', 'off') }}"
+              continue_on_timeout: true
+        # ...if script was executed by conditions
+        - if:
             - condition: state
               entity_id: input_boolean.ib_bz_cover_up_down_script_executed
-              state: "on"    
-          then:            
-# changed by this automation, not manually            
+              state: "on"
+          then:
+            # changed by this automation, not manually
             - service: input_boolean.turn_on
               data: {}
               target:
-                entity_id: input_boolean.ib_bz_covers_closed_by_summer_mode                      
+                entity_id: input_boolean.ib_bz_covers_closed_by_summer_mode
             - service: input_boolean.turn_off
               data: {}
               target:
-                entity_id: input_boolean.ib_bz_cover_position_changed 
-# increment counter to check for delaying
+                entity_id: input_boolean.ib_bz_cover_position_changed
+            # increment counter to check for delaying
             - service: input_number.increment
               data: {}
               target:
-                entity_id: input_number.in_ha_executed_automations_of_summer_mode                                 
-# delay max span time of covers to avoid overwriting input_boolean."ib_XXX_cover_position_changed" of
-# XXX_cover_position_changed automations
-# lock until the cover no longer moves 
+                entity_id: input_number.in_ha_executed_automations_of_summer_mode
+    # delay max span time of covers to avoid overwriting input_boolean."ib_XXX_cover_position_changed" of
+    # XXX_cover_position_changed automations
+    # lock until the cover no longer moves
     - if:
         - condition: template
           value_template: >
             {{ states('input_number.in_ha_executed_automations_of_summer_mode') |
             int > 0 }}
-      then:         
+      then:
         - delay: "00:00:{{ states('input_number.in_ha_covers_span_time_delay') | int }}"
     - service: input_boolean.turn_off
       data: {}
       target:
-        entity_id: input_boolean.ib_ha_covers_up_down_summer_mode_runs          
+        entity_id: input_boolean.ib_ha_covers_up_down_summer_mode_runs
   mode: single

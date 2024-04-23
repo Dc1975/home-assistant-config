@@ -5,13 +5,13 @@ sensor:
         true
       {% else %}  
         false
-      {% endif %}    
+      {% endif %}
     attributes:
       # Küche
       ku: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
-        {{get_turn_on_lights('sr_ku_everything_presence_one_illuminance_modified', 'in_ku_lux_treshhold', 0)}}                      
-#        {{get_turn_on_lights('everything_presence_one_illuminance', 'in_ku_lux_treshhold', states('input_number.in_ku_lux_offset') | float)}}              
+        {{get_turn_on_lights('sr_ku_everything_presence_one_illuminance_modified', 'in_ku_lux_treshhold', 0)}}
+      #        {{get_turn_on_lights('everything_presence_one_illuminance', 'in_ku_lux_treshhold', states('input_number.in_ku_lux_offset') | float)}}
       # Gästetoilette
       gt: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
@@ -23,18 +23,18 @@ sensor:
       # Treppenhaus oben
       tr_above: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
-        {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_4', 'in_tr_above_lux_treshhold', 0)}}  
+        {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_4', 'in_tr_above_lux_treshhold', 0)}}
       tr_center: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
         {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_8', 'in_tr_center_lux_treshhold', 0)}}
       # Treppenhaus unten
       tr_below: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
-        {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_3', 'in_tr_below_lux_treshhold', 0)}}      
+        {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_3', 'in_tr_below_lux_treshhold', 0)}}
       # Badezimmer
       bz: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
-        {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_9', 'in_bz_lux_treshhold', 0)}}      
+        {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_9', 'in_bz_lux_treshhold', 0)}}
       # Schlafzimmer
       sz: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
@@ -42,9 +42,10 @@ sensor:
       # Ankleidezimmer
       sz_az: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
-        {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_11', 'in_sz_az_lux_treshhold', 0)}}        
+        {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_11', 'in_az_lux_treshhold', 0)}}
       # Dachgeschoss
       dg: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
-        {{get_turn_on_lights('presence_sensor_fp2_d6a5_light_sensor_light_level', 'in_dg_lux_treshhold', 0)}}                 
-#        {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_10', 'in_dg_lux_treshhold', 0)}} 
+        {{get_turn_on_lights('presence_sensor_fp2_d6a5_light_sensor_light_level', 'in_dg_lux_treshhold', 0)}}
+
+#        {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_10', 'in_dg_lux_treshhold', 0)}}

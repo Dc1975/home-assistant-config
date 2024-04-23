@@ -1,0 +1,14 @@
+- id: '1713191555265'
+  alias: FL Haustür verriegeln
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.idt_fl_front_door_lock_lock_time
+  condition: []
+  action:
+  - service: script.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: script.fl_front_door_lock_lock
+  mode: single

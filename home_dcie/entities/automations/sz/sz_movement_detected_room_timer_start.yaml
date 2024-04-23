@@ -1,4 +1,4 @@
-- id: '1699388319220'
+- id: "1699388319220"
   alias: SZ Raum Bewegung erkannt Timer start
   description: ""
   trigger:
@@ -12,18 +12,18 @@
       conditions:
         - condition: state
           entity_id: input_boolean.ib_sz_switch_motion_detector
-          state: "on"      
+          state: "on"
         # use this condition to prevent light turn off if they werere manually turned on
         - condition: device
           type: is_off
           device_id: 7286e6ff524d9298293da6ccca931525
           entity_id: switch.schlafzimmerlicht
-          domain: switch              
+          domain: switch
         # condition 1 nach Sonnenuntergang und vor 23:30 an allen Tagen
         - condition: sun
-          after: sunset               
+          after: sunset
         - condition: time
-          before: input_datetime.idt_sz_az_cover_down_workday
+          before: input_datetime.idt_az_cover_down_workday
           weekday:
             - sun
             - sat
@@ -31,7 +31,7 @@
             - thu
             - wed
             - tue
-            - mon               
+            - mon
   action:
     - type: turn_on
       device_id: 7286e6ff524d9298293da6ccca931525
@@ -40,5 +40,5 @@
     - service: timer.start
       data_template:
         entity_id: timer.ti_sz_room_motion_lights
-        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"			    
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"
   mode: single
