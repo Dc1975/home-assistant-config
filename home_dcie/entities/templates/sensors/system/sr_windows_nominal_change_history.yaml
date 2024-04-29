@@ -11,8 +11,8 @@ trigger:
       - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening
       - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_2
       - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_6
-      - binary_sensor.kellerfenstersensor_vorne_offnet
-      - binary_sensor.kellerfenstersensor_hinten_offnet
+      - binary_sensor.kellerfensterfeuchtigkeitssensor_vorne_feuchtigkeit
+      - binary_sensor.kellerfensterfeuchtigkeitssensor_hinten_feuchtigkeit
     not_to:
       - unavailable
       - unknown
