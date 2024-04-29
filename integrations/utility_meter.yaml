@@ -1,177 +1,221 @@
 utility_meter:
   um_dg_steckdose_unifi_server_daily:
+    unique_id: um_dg_steckdose_unifi_server_daily
     source: sensor.dachgeschosssteckdose_server_unifi_energy_total
     cycle: daily
     name: um_dg_steckdose_unifi_server_daily
   um_dg_steckdose_unifi_server_weekly:
+    unique_id: um_dg_steckdose_unifi_server_weekly
     source: sensor.dachgeschosssteckdose_server_unifi_energy_total
     cycle: weekly
     name: um_dg_steckdose_unifi_server_weekly
   um_dg_steckdose_unifi_server_monthly:
+    unique_id: um_dg_steckdose_unifi_server_monthly
     source: sensor.dachgeschosssteckdose_server_unifi_energy_total
     cycle: monthly
     name: um_dg_steckdose_unifi_server_monthly
   um_dg_steckdose_unifi_server_yearly:
+    unique_id: um_dg_steckdose_unifi_server_yearly
     source: sensor.dachgeschosssteckdose_server_unifi_energy_total
     cycle: yearly
     name: um_dg_steckdose_unifi_server_yearly
   um_dg_steckdose_homeassistant_server_daily:
+    unique_id: um_dg_steckdose_homeassistant_server_daily
     source: sensor.dachgeschosssteckdose_server_homeassistant_energy_total
     cycle: daily
     name: um_dg_steckdose_homeassistant_server_daily
   um_dg_steckdose_homeassistant_server_weekly:
+    unique_id: um_dg_steckdose_homeassistant_server_weekly
     source: sensor.dachgeschosssteckdose_server_homeassistant_energy_total
     cycle: weekly
     name: um_dg_steckdose_homeassistant_server_weekly
   um_dg_steckdose_homeassistant_server_monthly:
+    unique_id: um_dg_steckdose_homeassistant_server_monthly
     source: sensor.dachgeschosssteckdose_server_homeassistant_energy_total
     cycle: monthly
     name: um_dg_steckdose_homeassistant_server_monthly
   um_dg_steckdose_homeassistant_server_yearly:
+    unique_id: um_dg_steckdose_homeassistant_server_yearly
     source: sensor.dachgeschosssteckdose_server_homeassistant_energy_total
     cycle: yearly
     name: um_dg_steckdose_homeassistant_server_yearly
   um_ku_steckdose_kuhlschrank_daily:
+    unique_id: um_ku_steckdose_kuhlschrank_daily     
     source: sensor.kuchensteckdose_kuhlschrank_energy_total
     cycle: daily
     name: um_ku_steckdose_kuhlschrank_daily
   um_ku_steckdose_kuhlschrank_weekly:
+    unique_id: um_ku_steckdose_kuhlschrank_weekly
     source: sensor.kuchensteckdose_kuhlschrank_energy_total
     cycle: weekly
     name: um_ku_steckdose_kuhlschrank_weekly
   um_ku_steckdose_kuhlschrank_monthly:
+    unique_id: um_ku_steckdose_kuhlschrank_monthly
     source: sensor.kuchensteckdose_kuhlschrank_energy_total
     cycle: monthly
     name: um_ku_steckdose_kuhlschrank_monthly
   um_ku_steckdose_kuhlschrank_yearly:
+    unique_id: um_ku_steckdose_kuhlschrank_yearly
     source: sensor.kuchensteckdose_kuhlschrank_energy_total
     cycle: yearly
     name: um_ku_steckdose_kuhlschrank_yearly
   um_ku_steckdose_spulmaschine_daily:
+    unique_id: um_ku_steckdose_spulmaschine_daily
     source: sensor.kuchensteckdose_spulmaschine_energy_total
     cycle: daily
     name: um_ku_steckdose_spulmaschine_daily
   um_ku_steckdose_spulmaschine_weekly:
+    unique_id: um_ku_steckdose_spulmaschine_weekly     
     source: sensor.kuchensteckdose_spulmaschine_energy_total
     cycle: weekly
     name: um_ku_steckdose_spulmaschine_weekly
   um_ku_steckdose_spulmaschine_monthly:
+    unique_id: um_ku_steckdose_spulmaschine_monthly
     source: sensor.kuchensteckdose_spulmaschine_energy_total
     cycle: monthly
     name: um_ku_steckdose_spulmaschine_monthly
   um_ku_steckdose_spulmaschine_yearly:
+    unique_id: um_ku_steckdose_spulmaschine_yearly
     source: sensor.kuchensteckdose_spulmaschine_energy_total
     cycle: yearly
     name: um_ku_steckdose_spulmaschine_yearly
   um_sz_steckdose_bett_links_daily:
+    unique_id: um_sz_steckdose_bett_links_daily
     source: sensor.schlafzimmersteckdose_bett_links_energy_total
     cycle: daily
     name: um_sz_steckdose_bett_links_daily
   um_sz_steckdose_bett_links_weekly:
+    unique_id: um_sz_steckdose_bett_links_weekly
     source: sensor.schlafzimmersteckdose_bett_links_energy_total
     cycle: weekly
     name: um_sz_steckdose_bett_links_weekly
   um_sz_steckdose_bett_links_monthly:
+    unique_id: um_sz_steckdose_bett_links_monthly
     source: sensor.schlafzimmersteckdose_bett_links_energy_total
     cycle: monthly
     name: um_sz_steckdose_bett_links_monthly
   um_sz_steckdose_bett_links_yearly:
+    unique_id: um_sz_steckdose_bett_links_yearly
     source: sensor.schlafzimmersteckdose_bett_links_energy_total
     cycle: yearly
     name: um_sz_steckdose_bett_links_yearly
   um_sz_steckdose_bett_rechts_daily:
+    unique_id: um_sz_steckdose_bett_rechts_daily
     source: sensor.schlafzimmersteckdose_bett_rechts_energy_total
     cycle: daily
     name: um_sz_steckdose_bett_rechts_daily
   um_sz_steckdose_bett_rechts_weekly:
+    unique_id: um_sz_steckdose_bett_rechts_weekly
     source: sensor.schlafzimmersteckdose_bett_rechts_energy_total
     cycle: weekly
     name: um_sz_steckdose_bett_rechts_weekly
   um_sz_steckdose_bett_rechts_monthly:
+    unique_id: um_sz_steckdose_bett_rechts_monthly
     source: sensor.schlafzimmersteckdose_bett_rechts_energy_total
     cycle: monthly
     name: um_sz_steckdose_bett_rechts_monthly
   um_sz_steckdose_bett_rechts_yearly:
+    unique_id: um_sz_steckdose_bett_rechts_yearly
     source: sensor.schlafzimmersteckdose_bett_rechts_energy_total
     cycle: yearly
     name: um_sz_steckdose_bett_rechts_yearly
   um_sz_steckdose_ki_daily:
+    unique_id: um_sz_steckdose_ki_daily
     source: sensor.schlafzimmersteckdose_ki_energy_total
     cycle: daily
     name: um_sz_steckdose_ki_daily
   um_sz_steckdose_ki_weekly:
+    unique_id: um_sz_steckdose_ki_weekly
     source: sensor.schlafzimmersteckdose_ki_energy_total
     cycle: weekly
     name: um_sz_steckdose_ki_weekly
   um_sz_steckdose_ki_monthly:
+    unique_id: um_sz_steckdose_ki_monthly
     source: sensor.schlafzimmersteckdose_ki_energy_total
     cycle: monthly
     name: um_sz_steckdose_ki_monthly
   um_sz_steckdose_ki_yearly:
+    unique_id: um_sz_steckdose_ki_yearly
     source: sensor.schlafzimmersteckdose_ki_energy_total
     cycle: yearly
     name: um_sz_steckdose_ki_yearly
   um_ke_steckdose_waschmaschine_daily:
+    unique_id: um_ke_steckdose_waschmaschine_daily
     source: sensor.kellersteckdose_waschmaschine_energy_total
     cycle: daily
     name: um_ke_steckdose_waschmaschine_daily
   um_ke_steckdose_waschmaschine_weekly:
+    unique_id: um_ke_steckdose_waschmaschine_weekly
     source: sensor.kellersteckdose_waschmaschine_energy_total
     cycle: weekly
     name: um_ke_steckdose_waschmaschine_weekly
   um_ke_steckdose_waschmaschine_monthly:
+    unique_id: um_ke_steckdose_waschmaschine_monthly
     source: sensor.kellersteckdose_waschmaschine_energy_total
     cycle: monthly
     name: um_ke_steckdose_waschmaschine_monthly
   um_ke_steckdose_waschmaschine_yearly:
+    unique_id: um_ke_steckdose_waschmaschine_yearly
     source: sensor.kellersteckdose_waschmaschine_energy_total
     cycle: yearly
     name: um_ke_steckdose_waschmaschine_yearly
   um_ke_steckdose_trockner_daily:
+    unique_id: um_ke_steckdose_trockner_daily
     source: sensor.kellersteckdose_trockner_energy_total
     cycle: daily
     name: um_ke_steckdose_trockner_daily
   um_ke_steckdose_trockner_weekly:
+    unique_id: um_ke_steckdose_trockner_weekly
     source: sensor.kellersteckdose_trockner_energy_total
     cycle: weekly
     name: um_ke_steckdose_trockner_weekly
   um_ke_steckdose_trockner_monthly:
+    unique_id: um_ke_steckdose_trockner_monthly
     source: sensor.kellersteckdose_trockner_energy_total
     cycle: monthly
     name: um_ke_steckdose_trockner_monthly
   um_ke_steckdose_trockner_yearly:
+    unique_id: um_ke_steckdose_trockner_yearly     
     source: sensor.kellersteckdose_trockner_energy_total
     cycle: yearly
     name: um_ke_steckdose_trockner_yearly
   um_dg_steckdose_3d_drucker_daily:
+    unique_id: um_dg_steckdose_3d_drucker_daily
     source: sensor.dachgeschosssteckdose_3d_drucker_energy_total
     cycle: daily
     name: um_dg_steckdose_3d_drucker_daily
   um_dg_steckdose_3d_drucker_weekly:
+    unique_id: um_dg_steckdose_3d_drucker_weekly
     source: sensor.dachgeschosssteckdose_3d_drucker_energy_total
     cycle: weekly
     name: um_dg_steckdose_3d_drucker_weekly
   um_dg_steckdose_3d_drucker_monthly:
+    unique_id: um_dg_steckdose_3d_drucker_monthly
     source: sensor.dachgeschosssteckdose_3d_drucker_energy_total
     cycle: monthly
     name: um_dg_steckdose_3d_drucker_monthly
   um_dg_steckdose_3d_drucker_yearly:
+    unique_id: um_dg_steckdose_3d_drucker_yearly
     source: sensor.dachgeschosssteckdose_3d_drucker_energy_total
     cycle: yearly
     name: um_dg_steckdose_3d_drucker_yearly
   um_dg_steckdose_laptop_daily:
+    unique_id: um_dg_steckdose_laptop_daily
     source: sensor.dachgeschosssteckdose_laptop_energy_total
     cycle: daily
     name: um_dg_steckdose_laptop_daily
   um_dg_steckdose_laptop_weekly:
+    unique_id: um_dg_steckdose_laptop_weekly
     source: sensor.dachgeschosssteckdose_laptop_energy_total
     cycle: weekly
     name: um_dg_steckdose_laptop_weekly
   um_dg_steckdose_laptop_monthly:
+    unique_id: um_dg_steckdose_laptop_monthly
     source: sensor.dachgeschosssteckdose_laptop_energy_total
     cycle: monthly
     name: um_dg_steckdose_laptop_monthly
   um_dg_steckdose_laptop_yearly:
+    unique_id: um_dg_steckdose_laptop_yearly
     source: sensor.dachgeschosssteckdose_laptop_energy_total
     cycle: yearly
     name: um_dg_steckdose_laptop_yearly

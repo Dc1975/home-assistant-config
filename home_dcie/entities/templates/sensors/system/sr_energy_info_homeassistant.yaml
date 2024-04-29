@@ -1,0 +1,32 @@
+sensor:
+  - name: sr_energy_info_homeassistant_server
+    unique_id: sr_energy_info_homeassistant_server
+    icon: mdi:currency-eur
+    state: >
+        {% set myString = "" %}
+        {{ myString }}
+    attributes:
+      daily_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_homeassistant_server_daily', true)}}               
+      weekly_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_homeassistant_server_weekly', true)}}               
+      monthly_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_homeassistant_server_monthly', true)}}               
+      yearly_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_homeassistant_server_yearly', true)}}                    
+      daily: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_homeassistant_server_daily', false)}}               
+      weekly: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_homeassistant_server_weekly', false)}}               
+      monthly: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_homeassistant_server_monthly', false)}}               
+      yearly: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_homeassistant_server_yearly', false)}}       

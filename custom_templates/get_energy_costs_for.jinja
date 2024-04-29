@@ -1,0 +1,13 @@
+{% macro get_energy_costs_for(device, ex) %}
+  {% set entity_name = "sensor." + device %}
+  
+  {% if ex == true %}
+    {% set result =  (states(entity_name)|float(0) * states('input_number.in_ha_energy_price')|float(0)) | round(2)   %}
+    {% set prefix = states(entity_name)  + " kWh - " %}  
+    {% set result = prefix + result | string + " €" %}
+  {% else %} 
+    {% set result =  (states(entity_name)|float(0) * states('input_number.in_ha_energy_price')|float(0)) | round(2) | string + " €"  %}
+  {% endif %} 
+
+  {{result}}
+{% endmacro %} 

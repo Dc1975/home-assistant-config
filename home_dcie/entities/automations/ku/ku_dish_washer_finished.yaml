@@ -48,4 +48,13 @@
     data: {} 
     target: 
       entity_id: input_boolean.start_stopwatch_dish_washer        
+# calculate the energy costs
+  - service: input_number.set_value
+    metadata: {}
+    data:
+      value: >-
+        {{ (states('sensor.kuchensteckdose_spulmaschine_energy_today')|float(0) *
+        states('input_number.in_ha_energy_price')|float(0)) | round(2) }}
+    target:
+      entity_id: input_number.in_ha_dish_washer_energy_costs         
   mode: single

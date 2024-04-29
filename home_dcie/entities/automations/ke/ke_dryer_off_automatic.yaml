@@ -35,5 +35,5 @@
   - type: turn_off
     device_id: c9f3adb9682ccab5ba3a737d01c0ad2d
     entity_id: switch.kellersteckdose_trockner
-    domain: switch  
+    domain: switch   
   mode: single

@@ -44,4 +44,13 @@
     data: {} 
     target: 
       entity_id: input_boolean.start_stopwatch_dryer           
+# calculate the energy costs
+  - service: input_number.set_value
+    metadata: {}
+    data:
+      value: >-
+        {{ (states('sensor.kellersteckdose_trockner_energy_today')|float(0) *
+        states('input_number.in_ha_energy_price')|float(0)) | round(2) }}
+    target:
+      entity_id: input_number.in_ha_dryer_energy_costs       
   mode: single

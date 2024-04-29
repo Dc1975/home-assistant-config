@@ -1,0 +1,32 @@
+sensor:
+  - name: sr_energy_info_sz_bed_plug_left
+    unique_id: sr_energy_info_sz_bed_plug_left
+    icon: mdi:currency-eur
+    state: >
+        {% set myString = "" %}
+        {{ myString }}
+    attributes:
+      daily_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_sz_steckdose_bett_links_daily', true)}}            
+      weekly_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_sz_steckdose_bett_links_weekly', true)}}                     
+      monthly_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_sz_steckdose_bett_links_monthly', true)}}                    
+      yearly_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_sz_steckdose_bett_links_yearly', true)}}            
+      daily: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_sz_steckdose_bett_links_daily', false)}}          
+      weekly: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_sz_steckdose_bett_links_weekly', false)}}          
+      monthly: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_sz_steckdose_bett_links_monthly', false)}}          
+      yearly: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_sz_steckdose_bett_links_yearly', false)}}        

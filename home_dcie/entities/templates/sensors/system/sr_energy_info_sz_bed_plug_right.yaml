@@ -1,0 +1,32 @@
+sensor:
+  - name: sr_energy_info_sz_bed_plug_right
+    unique_id: sr_energy_info_sz_bed_plug_right
+    icon: mdi:currency-eur
+    state: >
+        {% set myString = "" %}
+        {{ myString }}
+    attributes:
+      daily_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_sz_steckdose_bett_rechts_daily', true)}}           
+      weekly_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_sz_steckdose_bett_rechts_weekly', true)}}           
+      monthly_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_sz_steckdose_bett_rechts_monthly', true)}}           
+      yearly_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_sz_steckdose_bett_rechts_yearly', true)}}           
+      daily: >
+        {{ (states('sensor.um_sz_steckdose_bett_rechts_daily')|float(0) *
+        states('input_number.in_ha_energy_price')|float(0)) | round(2) }} €
+      weekly: >
+        {{ (states('sensor.um_sz_steckdose_bett_rechts_weekly')|float(0) *
+        states('input_number.in_ha_energy_price')|float(0)) | round(2) }} €                
+      monthly: >
+        {{ (states('sensor.um_sz_steckdose_bett_rechts_monthly')|float(0) *
+        states('input_number.in_ha_energy_price')|float(0)) | round(2) }} €               
+      yearly: >
+        {{ (states('sensor.um_sz_steckdose_bett_rechts_yearly')|float(0) *
+        states('input_number.in_ha_energy_price')|float(0)) | round(2) }} €       

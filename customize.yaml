@@ -604,6 +604,14 @@ input_number.in_sz_vacaction_mode_offset:
   friendly_name: Verschiebung um
 input_number.in_az_vacaction_mode_offset:
   friendly_name: Verschiebung um
+input_number.in_ha_energy_price:
+  friendly_name: Strom Grundpreis eprimo ct/kWh
+input_number.in_ha_dryer_energy_costs:
+  friendly_name: Stromkosten
+input_number.in_ha_washing_machine_energy_costs:
+  friendly_name: Stromkosten
+input_number.in_ha_dish_washer_energy_costs:
+  friendly_name: Stromkosten  
 # timer
 timer.ti_sz_room_motion_lights:
   friendly_name: Timer Schlafzimmer

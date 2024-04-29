@@ -1,0 +1,32 @@
+sensor:
+  - name: sr_energy_info_laptop
+    unique_id: sr_energy_info_laptop
+    icon: mdi:currency-eur
+    state: >
+        {% set myString = "" %}
+        {{ myString }}
+    attributes:
+      daily_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_laptop_daily', true)}}        
+      weekly_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_laptop_weekly', true)}}                
+      monthly_ex: >          
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_laptop_monthly', true)}}        
+      yearly_ex: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_laptop_yearly', true)}}                
+      daily: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_laptop_daily', false)}}        
+      weekly: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_laptop_weekly', false)}}                
+      monthly: >          
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_laptop_monthly', false)}}        
+      yearly: >
+        {% from 'get_energy_costs_for.jinja' import get_energy_costs_for %}        
+        {{get_energy_costs_for('um_dg_steckdose_laptop_yearly', false)}}    
