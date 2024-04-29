@@ -2,11 +2,16 @@
   alias: AZ Bewegung erkannt Timer start
   description: ""
   trigger:
-    - type: motion
-      platform: device
-      device_id: 3117bf6e656720d90e8b658531ab8136
-      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_11
-      domain: binary_sensor
+#    - type: motion
+#      platform: device
+#      device_id: 3117bf6e656720d90e8b658531ab8136
+#      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_11
+#      domain: binary_sensor
+  - type: motion
+    platform: device
+    device_id: 197f39f3a0319415453e47c8663e44fd
+    entity_id: 292e927373f08f924be3579f4464f8b3
+    domain: binary_sensor
   condition:
     - condition: or
       conditions:
@@ -48,7 +53,7 @@
             # condition 2 Lichtverhältniss und (nach 8:45 an Werktagen oder nach 11:00 an Wochenenden) und vor 23:30 an allen Tagen
             - condition: template
               value_template: >
-                {{ state_attr('sensor.sr_ha_turn_on_lights', 'sz_az') }}
+                {{ state_attr('sensor.sr_ha_turn_on_lights', 'az') }}
             - condition: or
               conditions:
                 - condition: time
