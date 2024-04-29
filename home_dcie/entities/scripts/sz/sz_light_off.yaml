@@ -6,10 +6,6 @@ sz_light_off:
     entity_id: switch.schlafzimmerlicht
     domain: switch
   - type: turn_off
-    device_id: f0dd0d79f81f2be59baaa2d11656fe4c
-    entity_id: switch.ankleidezimmerlicht
-    domain: switch
-  - type: turn_off
     device_id: 25659d9518a8475b626a58ac86dacb68
     entity_id: switch.bettlicht_rechts
     domain: switch
