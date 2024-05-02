@@ -11,6 +11,9 @@
       {{(now() | as_local).strftime('%H:%M:%S') == (as_timestamp(today_at(states('input_datetime.idt_ku_cover_down_weekend'))) | as_datetime | as_local + timedelta(minutes=states('input_number.in_ha_covers_check_after_minutes') | int)).strftime('%H:%M:%S')}}                        
     id: down_we      
   condition:
+    - condition: state
+      entity_id: input_boolean.ib_ku_cover_used_in_automations
+      state: "on"       
     - condition: template
       value_template: >
         {{ state_attr('sensor.sr_ku_cover', 'is_open') == true }}
