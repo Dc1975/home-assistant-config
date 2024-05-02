@@ -654,6 +654,8 @@ input_boolean.ib_sz_cover_used_in_vacation_mode:
   friendly_name: Urlaubsmodus (Schlafzimmer)
 input_boolean.ib_az_cover_used_in_vacation_mode:
   friendly_name: Urlaubsmodus (Ankleidezimmer)
+input_boolean.ib_gr_terrace_lighting_on_by_sunset:
+  friendly_name: An bei Sonnenuntergang
 
 # keller
 #binary_sensor.Kellerfensterfeuchtigkeitssensor_vorne_feuchtigkeit:
