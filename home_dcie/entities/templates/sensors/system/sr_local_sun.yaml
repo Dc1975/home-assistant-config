@@ -24,6 +24,14 @@ sensor:
 #      {{ (state_attr('sun.sun', 'next_setting') | as_datetime | as_local).strftime('%H:%M:%S') }}
     availability: >
       {{ not state_attr('sun.sun', 'next_setting') is none }}
+
+  - name: sr_local_sun_set_simple
+    unique_id: sr_local_sun_set_simple
+    state: >
+      {{ as_timestamp(state_attr("sun.sun", "next_setting")) | timestamp_custom("%H:%M") }}
+#      {{ (state_attr('sun.sun', 'next_setting') | as_datetime | as_local).strftime('%H:%M:%S') }}
+    availability: >
+      {{ not state_attr('sun.sun', 'next_setting') is none }}      
       
   - name: sr_local_sun_set_in_hours
     unique_id: sr_local_sun_set_in_hours
