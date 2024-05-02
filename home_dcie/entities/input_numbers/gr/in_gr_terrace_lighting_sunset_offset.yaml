@@ -1,0 +1,8 @@
+in_gr_terrace_lighting_sunset_offset:
+  name: Versatz Sonnenuntergang
+  min: 0
+  max: 180
+  step: 1
+  unit_of_measurement: min
+  icon: mdi:timer
+  mode: box

@@ -1,0 +1,11 @@
+{% macro get_terrace_lighting_on(info) %}
+  {%if info == true %}
+    {{ ((as_timestamp(states('sensor.sun_next_setting')) +
+    (states('input_number.in_gr_terrace_lighting_sunset_offset') | int * 60)) |
+    timestamp_custom('%H:%M')) }}
+  {%else%}
+    {{ now().strftime('%H:%M') == ((as_timestamp(states('sensor.sun_next_setting'))
+        + (states('input_number.in_gr_terrace_lighting_sunset_offset') | int * 60))
+        | timestamp_custom('%H:%M')) }}
+  {%endif%}        
+{% endmacro %} 

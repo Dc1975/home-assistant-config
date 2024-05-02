@@ -8,6 +8,14 @@
     - platform: time
       at: input_datetime.idt_gr_terrace_lighting_on_weekend
       id: weekend_on
+    - platform: template
+      value_template: "{% from 'get_terrace_lighting_on.jinja' import get_terrace_lighting_on %}
+        {{get_terrace_lighting_on(false)}}"
+      id: sunset
+#    - platform: sun
+#      event: sunset
+#      offset: 0     
+#      id: sunset 
   condition:
     - condition: state
       entity_id: input_boolean.ib_gr_terrace_lighting_used_in_automations
@@ -25,7 +33,10 @@
               id: workday_on
             - condition: state
               entity_id: binary_sensor.workday_sensor
-              state: "on"
+              state: "on"                            
+            - condition: state
+              entity_id: input_boolean.ib_gr_terrace_lighting_on_by_sunset
+              state: "off"              
         - condition: and
           conditions:
             - condition: trigger
@@ -33,6 +44,16 @@
             - condition: state
               entity_id: binary_sensor.workday_sensor
               state: "off"
+            - condition: state
+              entity_id: input_boolean.ib_gr_terrace_lighting_on_by_sunset
+              state: "off"              
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: sunset   
+            - condition: state
+              entity_id: input_boolean.ib_gr_terrace_lighting_on_by_sunset
+              state: "on"                         
   action:
     - service: light.turn_on
       data: {}
