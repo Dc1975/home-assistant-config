@@ -387,8 +387,10 @@ cover.leinwand_tuya:
   friendly_name: Leinwand
 group.ha_grp_cover_position_changed:
   friendly_name: Manuell betätigt
+group.ha_grp_covers_use_summer_mode:
+  friendly_name: Sommermodus alle
 binary_sensor.bs_ha_covers_down_summer_mode:
-  friendly_name: Ausführungsstatus
+  friendly_name: Ausführungsstatus  
 # input_datetime
 input_datetime.idt_wz_door_cover_up_workday:
   friendly_name: WZ Türrolladen auf WT
