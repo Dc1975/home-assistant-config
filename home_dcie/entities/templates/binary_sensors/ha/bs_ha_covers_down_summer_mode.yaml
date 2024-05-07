@@ -6,21 +6,25 @@ binary_sensor:
         not states('input_number.in_ha_covers_lux_treshhold') is none and states('input_number.in_ha_covers_lux_treshhold') | is_number and
         not states('sensor.gw1100a_v2_2_3_outdoor_temperature') is none and states('sensor.gw1100a_v2_2_3_outdoor_temperature') | is_number and
         not states('input_number.in_ha_covers_temperature_treshhold') is none and states('input_number.in_ha_covers_temperature_treshhold') | is_number and
-        not states('input_datetime.idt_ha_covers_close_summer_before_front.idt_ha_covers_close_summer_after') is none  and
-        not states('input_datetime.idt_ha_covers_close_summer_before_front.idt_ha_covers_close_summer_before_back') is none
+        not states('input_datetime.idt_ha_covers_close_summer_before_front') is none  and
+        not states('input_datetime.idt_ha_covers_close_summer_after') is none  and
+        not states('input_datetime.idt_ha_covers_close_summer_before_back') is none 
       }} 
     state: >
-      {% set state_sensor = states('sensor.gw1100a_v2_2_3_solar_lux') %}
-      {% set state_threshold = states('input_number.in_ha_covers_lux_treshhold') %}
-      {% set state_sensor = states('sensor.gw1100a_v2_2_3_outdoor_temperature') %}
-      {% set state_threshold = states('input_number.in_ha_covers_temperature_treshhold') %}
-      {{ is_number(state_sensor) and is_number(state_threshold) and (state_sensor | float >= state_threshold | float)
+      {% set state_sensor_lux = states('sensor.gw1100a_v2_2_3_solar_lux') %}
+      {% set state_threshold_lux = states('input_number.in_ha_covers_lux_treshhold') %}
+      {% set state_sensor_temperature = states('sensor.gw1100a_v2_2_3_outdoor_temperature') %}
+      {% set state_threshold_temperature = states('input_number.in_ha_covers_temperature_treshhold') %}
+      {{ is_number(state_sensor_lux) and is_number(state_threshold_lux) and (state_sensor_lux | float >= state_threshold_lux | float)
         and           
-        is_number(state_sensor) and is_number(state_threshold) and (state_sensor | float >= state_threshold | float)
+        is_number(state_sensor_temperature) and is_number(state_threshold_temperature) and (state_sensor_temperature | float >= state_threshold_temperature | float)
         and
         now().month | string in states('input_text.it_ha_covers_close_summer_months')
         and
         today_at(now().strftime('%H:%M:%S')) > today_at(states('input_datetime.idt_ha_covers_close_summer_after')) 
         and
-        today_at(now().strftime('%H:%M:%S')) < today_at(states('input_datetime.idt_ha_covers_close_summer_before_back'))
+        (
+          today_at(now().strftime('%H:%M:%S')) < today_at(states('input_datetime.idt_ha_covers_close_summer_before_back')) or
+          today_at(now().strftime('%H:%M:%S')) < today_at(states('input_datetime.idt_ha_covers_close_summer_before_front'))
+        )
       }}
