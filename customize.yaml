@@ -649,7 +649,11 @@ switch.schlafzimmersteckdose_ki:
   friendly_name: Schlafzimmer KI
 input_datetime.idt_dg_printer_plug_off:
   friendly_name: Ausschaltzeitpunkt
+input_datetime.idt_dg_laptop_plug_on:
+  friendly_name: Einschaltzeitpunkt
 input_boolean.ib_dg_printer_plug_used_in_automations:
+  friendly_name: In Automationen benutzen
+input_boolean.ib_dg_laptop_plug_used_in_automations:
   friendly_name: In Automationen benutzen
 # input_boolean
 input_boolean.ib_sz_cover_used_in_vacation_mode:
