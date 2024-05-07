@@ -4,10 +4,10 @@
   trigger:
     - platform: time
       at: input_datetime.idt_gr_terrace_lighting_off_workday
-      id: workday_off
+      id: workday
     - platform: time
       at: input_datetime.idt_gr_terrace_lighting_off_weekend
-      id: weekend_off
+      id: weekend
   condition:
     # no other condition needed, turn always off
     - condition: or
@@ -15,17 +15,22 @@
         - condition: and
           conditions:
             - condition: trigger
-              id: workday_off
+              id: workday
             - condition: state
               entity_id: binary_sensor.workday_sensor
               state: "on"
         - condition: and
           conditions:
             - condition: trigger
-              id: weekend_off
-            - condition: state
-              entity_id: binary_sensor.workday_sensor
-              state: "off"
+              id: weekend
+            - condition: or
+              conditions:           
+                - condition: state
+                  entity_id: binary_sensor.workday_sensor
+                  state: "off"
+                - condition: state
+                  entity_id: binary_sensor.workday_sensor_tomorrow
+                  state: "on"
   action:
     - service: light.turn_off
       data: {}
