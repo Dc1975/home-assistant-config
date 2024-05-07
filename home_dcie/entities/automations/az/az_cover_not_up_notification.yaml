@@ -14,6 +14,9 @@
     - condition: state
       entity_id: input_boolean.ib_az_cover_used_in_automations
       state: "on"  
+    - condition: state
+      entity_id: input_boolean.ib_az_cover_used_in_vacation_mode
+      state: "off"                   
     - condition: template
       value_template: >
         {{ state_attr('sensor.sr_az_cover', 'is_closed') == true }}
