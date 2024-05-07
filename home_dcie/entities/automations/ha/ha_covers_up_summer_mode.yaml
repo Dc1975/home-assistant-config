@@ -72,8 +72,7 @@
           value_template: >
             {{ states('input_boolean.ib_wz_window_covers_closed_by_summer_mode') == 'on'
               and states('input_boolean.ib_wz_window_cover_used_in_automations') == 'on'
-              and states('sensor.sr_wz_xbox_series_x') == 'off'  
-             }}
+              and states('sensor.sr_wz_xbox_series_x') == 'off' }}
         - condition: trigger
           id: backside
       then:
@@ -356,3 +355,5 @@
       target:
         entity_id: input_boolean.ib_ha_covers_up_down_summer_mode_runs
   mode: single
+  trace:
+    stored_traces: 10
