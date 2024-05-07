@@ -1,0 +1,19 @@
+- id: "1714685779827"
+  alias: DG Steckdose Laptop ein
+  description: ""
+  trigger:
+  - platform: time
+    at: input_datetime.idt_dg_laptop_plug_on
+  condition:
+  - condition: state
+    entity_id: binary_sensor.workday_sensor
+    state: 'on'
+  - condition: state
+    entity_id: input_boolean.ib_dg_laptop_plug_used_in_automations
+    state: "on"    
+  action:
+  - type: turn_on
+    device_id: 0930eaf6d08665ef197bcd08c68db750
+    entity_id: 9507ae6af99003cb7ecc0678d731eec2
+    domain: switch
+  mode: single

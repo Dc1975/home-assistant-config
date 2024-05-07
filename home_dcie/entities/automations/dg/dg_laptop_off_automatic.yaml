@@ -1,0 +1,33 @@
+- id: '1714721315476'
+  alias: DG Laptop aus automatisch
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.dachgeschosssteckdose_laptop_energy_power
+    above: 0.5
+    below: 5
+    for: 00:02:00
+  condition: 
+  - condition: state
+    entity_id: switch.dachgeschosssteckdose_laptop
+    state: 'on' 
+  action:
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_handy_notification
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_general_notification_title')}} Laptop"
+        msg_message: "Der Laptop wird ausgeschaltet"
+  - service: notify.alexa_media_uberall
+    data:
+      title: "{{states('input_text.it_general_notification_title')}} Laptop"
+      message: "Der Laptop wird ausgeschaltet"
+      data:
+        type: announce
+        method: all  
+  - service: switch.turn_off
+    target:
+      entity_id: switch.dachgeschosssteckdose_laptop
+    data: {}  
+  mode: single
