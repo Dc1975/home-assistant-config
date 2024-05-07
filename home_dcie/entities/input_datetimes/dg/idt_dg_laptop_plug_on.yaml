@@ -1,6 +1,6 @@
 idt_dg_laptop_plug_on:
   name: idt_dg_laptop_plug_on
   #initial: ""
-  icon: mdi:power-plug-on
+  icon: mdi:power-plug
   has_time: true
   has_date: false
