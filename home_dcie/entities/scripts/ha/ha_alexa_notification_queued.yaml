@@ -1,0 +1,64 @@
+ha_alexa_notification_queued:
+# use this script to send notifications with queuing
+  alias: HA Alexa Benachrichtigung mit Warteschlange
+  fields:
+    msg_title:
+      selector:
+        text:    
+      description: The title of the message
+      example: 'Title of message'
+      name: msg_title
+      required: true
+    msg_message:
+      selector:
+        text:        
+      description: The message body
+      example: 'Here is the message'
+      name: msg_message
+      required: true
+    device:
+      selector:
+        text:        
+      description: The alexa media
+      example: "'media_player.echo_dachgeschoss' or 'media_player.echo_wohnzimmer,media_player.echo_dachgeschoss'"
+      name: device  
+      required: true  
+    type:
+      selector:
+        text:        
+      description: The type 
+      example: 'tts or announce'
+      name: type    
+      required: true      
+  sequence:
+  # don't use type: announce, cause we can't set it automatically to false
+  - choose:
+    - conditions:
+        # if at home, send the message
+      - condition: template
+        value_template: '{{ is_state(''person.dcie'', ''home'') }}'
+      sequence:
+      - service: notify.alexa_media
+        data:
+          target:  '{{ device }}'
+          message: '{{ msg_message }}'
+          title: '{{ msg_title }}'
+          data: 
+            type: '{{ type }}'    
+    - conditions:
+      # if not at home, queu the message    
+      - condition: template
+        value_template: '{{ is_state(''binary_sensor.bs_ha_dcie_at_home'', ''off'')
+          }}'
+      sequence:
+      - service: script.append_pending_notification
+        data:
+          title: '{{ msg_title }}'
+          message: '{{ msg_message }}'
+          device: '{{ device }}'
+          type: '{{ type }}'
+          data: '{{ data |default({}) }}'            
+  #mode: single
+  mode: parallel
+  max: 10    
+  icon: mdi:cellphone-text

@@ -1,4 +1,5 @@
 ha_alexa_wz_notification:
+# use this script to send notifications without queuing
   alias: HA Alexa Wohnzimmer Benachrichtigung
   fields:
     msg_title:

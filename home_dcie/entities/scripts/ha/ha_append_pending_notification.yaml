@@ -1,0 +1,48 @@
+append_pending_notification:
+  alias: Append pending notification
+  icon: mdi:notification-clear-all
+  mode: parallel
+  max: 10
+  fields:
+    title:
+      name: Title
+      description: Notification title
+      required: true
+    message:
+      name: Message
+      description: Notification message
+      required: true
+    device:
+      description: The alexa media
+      example: "'media_player.echo_dachgeschoss' or 'media_player.echo_wohnzimmer,media_player.echo_dachgeschoss'"
+      name: device  
+      required: true  
+    type:
+      description: The type 
+      example: 'tts or announce'
+      name: type    
+      required: true        
+    data:
+      name: Data
+      description: Additional notification data
+      required: false
+      advanced: true
+      default: {}
+  sequence:
+  - alias: Set variables
+    variables:
+      appending_notification:
+        title: '{{ title|default(None, true) }}'
+        message: '{{ message|default('''', true) }}'
+        device: '{{ device|default('''', true) }}'
+        type: '{{ type|default('''', true) }}'
+        data: '{{ data|default({}) }}'
+        timestamp: '{{ now() }}'
+      pending_notifications: '{{ (state_attr(''sensor.sr_ha_pending_notification'',
+        ''list'') | default([], true)) + [appending_notification]}}'
+  - event: set_entity_value
+    event_data:
+      entity_id: sensor.sr_ha_pending_notification
+      state: '{{ pending_notifications|length }}'
+      attr:
+        list: '{{ pending_notifications }}'

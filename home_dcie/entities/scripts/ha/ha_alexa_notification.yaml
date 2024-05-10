@@ -1,5 +1,6 @@
 ha_alexa_notification:
-  alias: HA Alexa Dachgeschoss Benachrichtigung
+# use this script to send notifications without queuing
+  alias: HA Alexa Benachrichtigung
   fields:
     msg_title:
       description: The title of the message
@@ -16,7 +17,7 @@ ha_alexa_notification:
     type:
       description: The type 
       example: 'tts or announce'
-      name: type          
+      name: type
   sequence:
   # don't use type: announce, cause we can't set it automatically to false
   - service: notify.alexa_media
@@ -26,5 +27,7 @@ ha_alexa_notification:
       title: '{{ msg_title }}'
       data: 
         type: '{{ type }}'
-  mode: single
+  #mode: single
+  mode: parallel
+  max: 10  
   icon: mdi:cellphone-text

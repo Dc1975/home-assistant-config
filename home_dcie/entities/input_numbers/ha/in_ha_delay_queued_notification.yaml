@@ -1,0 +1,8 @@
+in_ha_delay_queued_notification:
+  name: in_ha_delay_queued_notification
+  min: 0
+  max: 60
+  step: 1
+  unit_of_measurement: min
+  icon: mdi:timer-alert
+  mode: box

@@ -1,0 +1,13 @@
+trigger:
+- platform: event
+  event_type: set_entity_value
+  event_data:
+    entity_id: sensor.sr_ha_pending_notification
+sensor:
+- name: sr_ha_pending_notification
+  unique_id: sr_ha_pending_notification
+  unit_of_measurement: ""
+  icon: mdi:format-list-group
+  state: "{{ trigger.event.data.state }}"
+  attributes:
+    list: "{{ trigger.event.data.attr.list }}"

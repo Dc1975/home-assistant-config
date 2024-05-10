@@ -614,6 +614,9 @@ input_number.in_ha_washing_machine_energy_costs:
   friendly_name: Stromkosten
 input_number.in_ha_dish_washer_energy_costs:
   friendly_name: Stromkosten  
+input_number.in_ha_delay_queued_notification:
+  friendly_name: Verzögerung Warteschlange  
+
 # timer
 timer.ti_sz_room_motion_lights:
   friendly_name: Timer Schlafzimmer

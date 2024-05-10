@@ -25,13 +25,25 @@
       variables:
         msg_title: "{{states('input_text.it_general_notification_title')}} Spülmaschine"
         msg_message: "Die Spülmaschine wird ausgeschaltet"
-  - service: notify.alexa_media_uberall
+  
+#  - service: notify.alexa_media_uberall
+#    data:
+#      title: "{{states('input_text.it_general_notification_title')}} Spülmaschine"
+#      message: "Die Spülmaschine wird ausgeschaltet"
+#      data:
+#        type: announce
+#        method: all  
+
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_alexa_notification_queued
     data:
-      title: "{{states('input_text.it_general_notification_title')}} Spülmaschine"
-      message: "Die Spülmaschine wird ausgeschaltet"
-      data:
-        type: announce
-        method: all  
+      variables:
+        msg_title: "{{states('input_text.it_general_notification_title')}} Spülmaschine"
+        msg_message: "Die Spülmaschine wird ausgeschaltet"
+        device: "media_player.echo_wohnzimmer,media_player.echo_dachgeschoss"
+        type: "announce"
+
   - data:
       option: ausgeschaltet
     entity_id: input_select.is_ku_state_dish_washer

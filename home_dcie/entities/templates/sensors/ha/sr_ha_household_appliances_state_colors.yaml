@@ -1,0 +1,46 @@
+sensor:
+  # helper sensor for icon evaluation to avoid redundant code
+  - name: sr_get_dryer_running_or_finished_color
+    unique_id: sr_get_dryer_running_or_finished_color
+    state: >
+      {% if states('input_select.is_ke_state_dryer') == "fertig" or
+        states('input_select.is_ke_state_dryer') == "läuft"%}
+        --paper-item-icon-color: green;
+      {% endif %}
+
+  - name: sr_get_dryer_finished_color
+    unique_id: sr_get_dryer_finished_color
+    state: >
+      {% if states('input_select.is_ke_state_dryer') == "fertig" %}
+        --paper-item-icon-color: green;
+      {% endif %}
+
+  - name: sr_get_washing_machine_running_or_finished_color
+    unique_id: sr_get_washing_machine_running_or_finished_color
+    state: >
+      {% if states('input_select.is_ke_state_washing_machine') == "fertig" or
+        states('input_select.is_ke_state_washing_machine') == "läuft"%}
+        --paper-item-icon-color: green;
+      {% endif %}
+
+  - name: sr_get_washing_machine_finished_color
+    unique_id: sr_get_washing_machine_finished_color
+    state: >
+      {% if states('input_select.is_ke_state_washing_machine') == "fertig" %}
+        --paper-item-icon-color: green;
+      {% endif %}      
+
+  - name: sr_get_dish_washer_running_or_finished_color
+    unique_id: sr_get_dish_washer_running_or_finished_color
+    state: >
+      {% if states('input_select.is_ku_state_dish_washer') == "fertig" or
+        states('input_select.is_ku_state_dish_washer') == "läuft"%}
+        --paper-item-icon-color: green;
+      {% endif %}
+
+  - name: sr_get_dish_washer_finished_color
+    unique_id: sr_get_dish_washer_finished_color
+    state: >
+      {% if states('input_select.is_ku_state_dish_washer') == "fertig" %}
+        --paper-item-icon-color: green;
+      {% endif %}          

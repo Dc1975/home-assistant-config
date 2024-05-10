@@ -23,13 +23,25 @@
       variables:
         msg_title: "{{states('input_text.it_general_notification_title')}} Waschmaschine"
         msg_message: "Die Waschmaschine ist {{states('input_select.is_ke_state_washing_machine')}}"
-  - service: notify.alexa_media_uberall
+
+#  - service: notify.alexa_media_uberall
+#    data:
+#      title: "{{states('input_text.it_general_notification_title')}} Waschmaschine"
+#      message: "Die Waschmaschine ist {{states('input_select.is_ke_state_washing_machine')}}"
+#      data:
+#        type: announce
+#        method: all
+
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_alexa_notification_queued
     data:
-      title: "{{states('input_text.it_general_notification_title')}} Waschmaschine"
-      message: "Die Waschmaschine ist {{states('input_select.is_ke_state_washing_machine')}}"
-      data:
-        type: announce
-        method: all
+      variables:
+        msg_title: "{{states('input_text.it_general_notification_title')}} Waschmaschine"
+        msg_message: "Die Waschmaschine ist {{states('input_select.is_ke_state_washing_machine')}}"
+        device: "media_player.echo_wohnzimmer,media_player.echo_dachgeschoss"
+        type: "announce"
+
   - service: input_text.set_value
     data:
       value: >-

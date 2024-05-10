@@ -1,0 +1,5 @@
+binary_sensor:
+  - name: bs_ha_dcie_at_home
+    unique_id: bs_ha_dcie_at_home
+    state: >
+      {{is_state('person.dcie', 'home')}}
