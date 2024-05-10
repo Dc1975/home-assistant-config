@@ -1,17 +1,17 @@
 - id: '1697019293756'
   alias: GA Garageneinfahrt öffnen
+  variables:
+    response_type: '{{ trigger.event.data.event_response_type }}'
+    response: '{{ trigger.event.data.event_response }}'
+    alexa_device: media_player.echo_wohnzimmer
+    alexa_type: tts
   description: ''
   trigger:
   - platform: event
     event_type: alexa_actionable_notification
     event_data:
       event_id: actionable_notification_garage
-      event_response_type: ResponseYes
-  variables:
-    response_type: '{{ trigger.event.data.event_response_type }}'
-    response: '{{ trigger.event.data.event_response }}'
-    device: media_player.echo_wohnzimmer
-    type: tts
+      event_response_type: ResponseYes 
   condition: []
   action:
   - choose:
@@ -30,7 +30,7 @@
 #      - service: notify.alexa_media
 #        data:
 #          message: Garageneinfahrt wird geöffnet
-#          target:  '{{ device }}'
+#          target:  '{{ alexa_device }}'
       - service: script.turn_on
         target:
           entity_id: script.ha_alexa_notification
@@ -38,8 +38,8 @@
           variables:
             msg_title: "HomeAssistant - Haus verlassen"
             msg_message: "Garageneinfahrt wird geöffnet"
-            device: '{{ device }}'
-            type: '{{ type }}'
+            device: "{{ alexa_device }}"
+            type: "{{ alexa_type }}"
 
     default:
     - service: script.turn_on
@@ -49,6 +49,6 @@
         variables:
           msg_title: "HomeAssistant - Event"
           msg_message: "Oops, das sollte nicht passieren. Scripte überprüfen!"
-          device: '{{ device }}'
-          type: '{{ type }}'
+          device: '{{ alexa_device }}'
+          type: '{{ alexa_type }}'
   mode: single
