@@ -7,11 +7,11 @@ sensor:
     unique_id: remote_rpi_icon
     state: >
       {% if not state_attr('sensor.rpi_monitor_raspberrypi4_1', 'cpu') is none %}
-      {% if state_attr('sensor.rpi_monitor_raspberrypi4_1', 'cpu').model | contains('ARMv7') %}
-      mdi:cpu-32-bit
-      {% else %}
-      mdi:cpu-64-bit
-      {% endif %}
+        {% if state_attr('sensor.rpi_monitor_raspberrypi4_1', 'cpu').model | contains('ARMv7') %}
+          mdi:cpu-32-bit
+        {% else %}
+          mdi:cpu-64-bit
+        {% endif %}
       {% endif %}
 
   #- name: Zeitstempel
