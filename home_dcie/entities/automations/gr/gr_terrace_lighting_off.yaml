@@ -12,25 +12,40 @@
     # no other condition needed, turn always off
     - condition: or
       conditions:
+        # runs from monday to thursday (0-4)
         - condition: and
           conditions:
             - condition: trigger
               id: workday
             - condition: state
-              entity_id: binary_sensor.workday_sensor
+              entity_id: binary_sensor.sr_gr_terrace_lighting_workday_sensor
               state: "on"
+        # runs from friday to monday (0-4)              
         - condition: and
           conditions:
             - condition: trigger
-              id: weekend
+              id: weekend              
             - condition: or
-              conditions:           
+              conditions:
                 - condition: state
-                  entity_id: binary_sensor.workday_sensor
-                  state: "off"
-                - condition: state
-                  entity_id: binary_sensor.workday_sensor_tomorrow
-                  state: "on"
+                  entity_id: binary_sensor.sr_gr_terrace_lighting_workday_sensor
+                  state: "off"              
+                # it is a sunday trigger with a time above midnight
+                - condition: and
+                  conditions:                        
+                    - condition: template
+                      value_template: "{{ now().weekday()  == 0 }}"
+                    - condition: state
+                      entity_id: binary_sensor.sr_gr_terrace_lighting_workday_sensor
+                      state: "on"
+#            - condition: or
+#              conditions:           
+#                - condition: state
+#                  entity_id: binary_sensor.workday_sensor
+#                  state: "off"
+#                - condition: state
+#                  entity_id: binary_sensor.workday_sensor_tomorrow
+#                  state: "on"
   action:
     - service: light.turn_off
       data: {}
