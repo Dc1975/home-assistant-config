@@ -40,6 +40,7 @@ template:
         entity_id: input_boolean.tictac_stopwatch_dish_washer
     sensor:
       - name: "Stopwatch dish washer"
+        unique_id: stopwatch_dish_washer
         state: >-
           {% if is_state('input_boolean.reset_stopwatch_dish_washer','on') %}
               {{ '00:00:00' }}
