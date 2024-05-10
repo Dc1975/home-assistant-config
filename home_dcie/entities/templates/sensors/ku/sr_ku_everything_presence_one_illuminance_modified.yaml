@@ -4,7 +4,11 @@ sensor:
     icon: mdi:brightness-5
     unit_of_measurement: "lx"
     state: >
-      {{(states('sensor.everything_presence_one_illuminance') | float * 2 ** 2.6 + 0.02715248724 | log + 3.60629) | round(2)}}
+      {% set state_illuminance = states('sensor.everything_presence_one_illuminance') %}  
+      {%if state_illuminance == none or state_illuminance == "unavailable" or state_illuminance == "unknown"%}
+        {% set state_illuminance = 1 %}  
+      {%endif%}
+      {{(state_illuminance | float * 2 ** 2.6 + 0.02715248724 | log + 3.60629) | round(2)}}      
    
 
 
