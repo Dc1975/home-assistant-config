@@ -190,7 +190,6 @@ sensor.um_dg_steckdose_laptop_monthly:
   friendly_name: Laptop monatlich
 sensor.um_dg_steckdose_laptop_yearly:
   friendly_name: Laptop jährlich
-
 # EcoWitt
 sensor.gw1100a_v2_2_3_outdoor_temperature:
   friendly_name: Außentemperatur
@@ -322,6 +321,9 @@ sensor.sr_count_weather:
   friendly_name: Anzahl der Wetterstationen
 sensor.sr_count_code_lines:
   friendly_name: Anzahl der Codezeilen (YAML)
+# sensors
+sensor.sr_ha_pending_notifications_count:
+  friendly_name: Ausstehende Benachrichtigungen
 # some stuff
 sensor.local_ip:
   friendly_name: IP
@@ -390,7 +392,7 @@ group.ha_grp_cover_position_changed:
 group.ha_grp_covers_use_summer_mode:
   friendly_name: Sommermodus alle
 binary_sensor.bs_ha_covers_down_summer_mode:
-  friendly_name: Ausführungsstatus  
+  friendly_name: Ausführungsstatus
 # input_datetime
 input_datetime.idt_wz_door_cover_up_workday:
   friendly_name: WZ Türrolladen auf WT
@@ -613,10 +615,9 @@ input_number.in_ha_dryer_energy_costs:
 input_number.in_ha_washing_machine_energy_costs:
   friendly_name: Stromkosten
 input_number.in_ha_dish_washer_energy_costs:
-  friendly_name: Stromkosten  
+  friendly_name: Stromkosten
 input_number.in_ha_delay_queued_notification:
-  friendly_name: Verzögerung Warteschlange  
-
+  friendly_name: Verzögerung Warteschlange
 # timer
 timer.ti_sz_room_motion_lights:
   friendly_name: Timer Schlafzimmer

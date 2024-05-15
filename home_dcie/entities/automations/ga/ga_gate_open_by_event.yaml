@@ -21,7 +21,6 @@
         data: {}
         target:
           entity_id: cover.garageneinfahrt      
-
 #      - service: switch.toggle
 #        data: {}
 #        target:

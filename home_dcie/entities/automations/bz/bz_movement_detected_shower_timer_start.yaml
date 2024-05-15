@@ -20,17 +20,7 @@
         conditions:
           - condition: template
             value_template: >
-              {{ state_attr('sensor.sr_bz_cover', 'get_position') | int > states('input_number.in_ha_covers_open_threshold') | int }}          
-#        - condition: numeric_state
-#          entity_id: sun.sun
-#          attribute: elevation
-#          below: input_number.in_ha_sun_elevation_treshhold    
-#        - condition: template
-#          value_template: >
-#            {% if has_value('sensor.lumi_lumi_motion_ac02_illuminance_5') %}
-#              {{ states('sensor.lumi_lumi_motion_ac02_illuminance_5') |
-#              int <=  states('input_number.in_ha_lux_treshhold') | int }}
-#            {% endif %}
+              {{ state_attr('sensor.sr_bz_cover', 'get_position') | int > states('input_number.in_ha_covers_open_threshold') | int }}
           - condition: template
             value_template: >
               {{ state_attr('sensor.sr_ha_turn_on_lights', 'bz') }}                

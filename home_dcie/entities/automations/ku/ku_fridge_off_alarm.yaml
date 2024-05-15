@@ -1,5 +1,8 @@
 - id: '1682864063394'
   alias: KU Kühlschrank aus Alarm
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce   
   description: ''
   trigger:
   - platform: device
@@ -18,13 +21,24 @@
         msg_message: >
           {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
           {{states('input_text.it_ha_fridge_temperatur_alert_notification_message')}} Küchenkühlschrank ist {{locale.get(states('switch.kuchensteckdose_kuhlschrank'))}}        
-  - service: notify.alexa_media_uberall
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_alexa_notification_queued
     data:
-      title: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_title')}}"
-      message: >
-        {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
-        {{states('input_text.it_ha_fridge_temperatur_alert_notification_message')}} Küchenkühlschrank ist {{locale.get(states('switch.kuchensteckdose_kuhlschrank'))}}
-      data:
-        type: announce
-        method: all
+      variables:
+        msg_title: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_title')}}"
+        msg_message: >
+          {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
+          {{states('input_text.it_ha_fridge_temperatur_alert_notification_message')}} Küchenkühlschrank ist {{locale.get(states('switch.kuchensteckdose_kuhlschrank'))}}        
+        device: "{{ alexa_device }}"
+        type: "{{ alexa_type }}"              
+  # - service: notify.alexa_media_uberall
+  #   data:
+  #     title: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_title')}}"
+  #     message: >
+  #       {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
+  #       {{states('input_text.it_ha_fridge_temperatur_alert_notification_message')}} Küchenkühlschrank ist {{locale.get(states('switch.kuchensteckdose_kuhlschrank'))}}
+  #     data:
+  #       type: announce
+  #       method: all
   mode: single

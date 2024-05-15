@@ -27,7 +27,6 @@ ha_alexa_notification:
       title: '{{ msg_title }}'
       data: 
         type: '{{ type }}'
-  #mode: single
   mode: parallel
   max: 10  
   icon: mdi:cellphone-text

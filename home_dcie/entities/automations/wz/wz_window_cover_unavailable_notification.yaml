@@ -1,5 +1,8 @@
 - id: '1689608776122'
   alias: WZ Rolladenwarnung Fenster
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce   
   description: ''
   trigger:
   - platform: state
@@ -19,18 +22,27 @@
       variables:
         msg_title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
         msg_message: "Der {{state_attr('cover.wohnzimmerfensterrolladen_tuya', 'friendly_name')}} ist nicht verfügbar."
-  - if:
-      - condition: state
-        entity_id: person.dcie
-        state: home
-    then:        
-      - service: notify.alexa_media_uberall
-        data:      
-          title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
-          message: "Der {{state_attr('cover.wohnzimmerfensterrolladen_tuya', 'friendly_name')}} ist nicht verfügbar."
-          data:
-            type: announce
-            method: all
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_alexa_notification_queued
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
+        msg_message: "Der {{state_attr('cover.wohnzimmerfensterrolladen_tuya', 'friendly_name')}} ist nicht verfügbar."
+        device: "{{ alexa_device }}"
+        type: "{{ alexa_type }}"          
+  # - if:
+  #     - condition: state
+  #       entity_id: person.dcie
+  #       state: home
+  #   then:        
+  #     - service: notify.alexa_media_uberall
+  #       data:      
+  #         title: "{{states('input_text.it_general_notification_title')}}Rolladen-Warnung"
+  #         message: "Der {{state_attr('cover.wohnzimmerfensterrolladen_tuya', 'friendly_name')}} ist nicht verfügbar."
+  #         data:
+  #           type: announce
+  #           method: all
   # delay in s
   - delay: "00:00:{{states('input_number.in_ha_delay_covers_reconnect') | int}}"                        
   # the position of the cover changes if it went offline and online again  

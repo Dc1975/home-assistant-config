@@ -1,0 +1,6 @@
+sensor:
+  - name: sr_ha_pending_notifications_count
+    unique_id: sr_ha_pending_notifications_count
+    icon: mdi:information
+    state: >
+      {{ state_attr("sensor.sr_ha_pending_notification", "list") | default([], true) | count }}

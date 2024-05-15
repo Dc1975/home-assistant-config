@@ -1,5 +1,8 @@
 gr_lawn_sprinkler_emergency_off:
   alias: GR Rasenbewässerung Notfallabschaltung
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce   
   sequence:
   - service: switch.turn_off
     data: {}
@@ -12,11 +15,20 @@ gr_lawn_sprinkler_emergency_off:
       variables:
         msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
         msg_message: "Die Rasenbewässerung wird mit dem Schalter {{ state_attr('switch.garten', 'friendly_name') }} beendet."
-  - service: notify.alexa_media_uberall
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_alexa_notification_queued
     data:
-      title: "{{states('input_text.it_general_notification_title')}} Garten"
-      message: "Die Rasenbewässerung wird mit dem Schalter {{ state_attr('switch.garten', 'friendly_name') }} beendet."
-      data:
-        type: announce
-        method: all    
+      variables:
+        msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
+        msg_message: "Die Rasenbewässerung wird mit dem Schalter {{ state_attr('switch.garten', 'friendly_name') }} beendet."
+        device: "{{ alexa_device }}"
+        type: "{{ alexa_type }}"           
+  # - service: notify.alexa_media_uberall
+  #   data:
+  #     title: "{{states('input_text.it_general_notification_title')}} Garten"
+  #     message: "Die Rasenbewässerung wird mit dem Schalter {{ state_attr('switch.garten', 'friendly_name') }} beendet."
+  #     data:
+  #       type: announce
+  #       method: all    
   mode: single

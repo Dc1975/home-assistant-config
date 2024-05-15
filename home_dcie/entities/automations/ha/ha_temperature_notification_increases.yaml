@@ -1,5 +1,8 @@
 - id: '1689149263919'
   alias: HA Temperaturinfo steigt
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce   
   description: ''
   trigger:  
     - platform: numeric_state
@@ -14,11 +17,20 @@
       entity_id: person.dcie
       state: home            
   action:
-  - service: notify.alexa_media_uberall
-    data:
-      title: Temperaturinfo
-      message: Die Temperatur steigt über {{states('input_number.in_ha_temperature_notification_treshhold') | int }} Grad
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_alexa_notification
       data:
-        type: announce
-        method: all
+        variables:
+          msg_title: "Temperaturinfo"
+          msg_message: "Die Temperatur steigt über {{states('input_number.in_ha_temperature_notification_treshhold') | int }} Grad"
+          device: "{{ alexa_device }}"
+          type: "{{ alexa_type }}"      
+  # - service: notify.alexa_media_uberall
+  #   data:
+  #     title: Temperaturinfo
+  #     message: Die Temperatur steigt über {{states('input_number.in_ha_temperature_notification_treshhold') | int }} Grad
+  #     data:
+  #       type: announce
+  #       method: all
   mode: single

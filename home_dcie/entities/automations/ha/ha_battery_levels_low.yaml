@@ -1,5 +1,5 @@
 - id: '1679524591547'
-  alias: HA Batteriestände niedrig
+  alias: HA Batteriestände niedrig  
   description: ''
   trigger:
   - platform: time
@@ -37,23 +37,43 @@
         variables:
           msg_title: Niedrige Batteriestände
           msg_message: '{{sensors}}'
-    - if:
-      - condition: zone
-        entity_id: person.dcie
-        zone: zone.home
-      then:
-      - service: notify.alexa_media   
-        data:
-          title: HomeAssistant - Niedrige Batteriestände
-          message: Niedrige Batteriestände{{ ':' }} {{sensors}}
-          data:
-            type: announce
-            method: all
-          target:            
-            - media_player.echo_wohnzimmer            
-            - media_player.echo_dachgeschoss
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_alexa_notification_queued
+      data:
+        variables:
+          msg_title: "HomeAssistant - Niedrige Batteriestände"
+          msg_message: "Niedrige Batteriestände{{ ':' }} {{sensors}}"
+          device: "{{ alexa_device }}"
+          type: "{{ alexa_type }}"            
+    # - if:
+    #   - condition: zone
+    #     entity_id: person.dcie
+    #     zone: zone.home
+    #   then:
+    #   - service: script.turn_on
+    #     target:
+    #       entity_id: script.ha_alexa_notification
+    #     data:
+    #       variables:
+    #         msg_title: "HomeAssistant - Niedrige Batteriestände"
+    #         msg_message: "Niedrige Batteriestände{{ ':' }} {{sensors}}"
+    #         device: "{{ alexa_device }}"
+    #         type: "{{ alexa_type }}"
+#      - service: notify.alexa_media   
+#        data:
+#          title: HomeAssistant - Niedrige Batteriestände
+#          message: Niedrige Batteriestände{{ ':' }} {{sensors}}
+#          data:
+#            type: announce
+#            method: all
+#          target:            
+#            - media_player.echo_wohnzimmer            
+#            - media_player.echo_dachgeschoss
   mode: single
   variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: tts    
     sensors: "{% set exclude = namespace(entity_id=['binary_sensor.nuki_haustur_battery_critical',
       'binary_sensor.nuki_haustur_keypad_battery_critical']) %} {% set result = namespace(sensors=[])
       %} {% for state in states.sensor | selectattr('attributes.device_class', 'defined')

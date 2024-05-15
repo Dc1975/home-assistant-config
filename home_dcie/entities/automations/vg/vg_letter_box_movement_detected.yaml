@@ -1,5 +1,8 @@
 - id: '1675978780889'
   alias: VG Briefkasten Bewegung erkannt
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce   
   description: ''
   trigger:
   - type: vibration
@@ -16,13 +19,22 @@
       variables:
         msg_title: "{{states('input_text.it_post_notification_title')}}"
         msg_message: "{{states('input_text.it_post_notification_message')}}"
-  - service: notify.alexa_media_uberall
-    data:      
-      title: "{{states('input_text.it_post_notification_title')}}"
-      message: "{{states('input_text.it_post_notification_message')}}"
-      data:
-        type: announce
-        method: all
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_alexa_notification_queued
+    data:
+      variables:
+        msg_title: "{{states('input_text.it_post_notification_title')}}"
+        msg_message: "{{states('input_text.it_post_notification_message')}}"
+        device: "{{ alexa_device }}"
+        type: "{{ alexa_type }}"            
+  # - service: notify.alexa_media_uberall
+  #   data:      
+  #     title: "{{states('input_text.it_post_notification_title')}}"
+  #     message: "{{states('input_text.it_post_notification_message')}}"
+  #     data:
+  #       type: announce
+  #       method: all
   - service: input_text.set_value
     data:
       value: '{% set days = [''Montag'', ''Dienstag'', ''Mittwoch'', ''Donnerstag'',

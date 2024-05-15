@@ -1,5 +1,8 @@
 - id: '1697189561206'
   alias: HA Garageneinfahrt ist geöffnet
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce   
   description: ''
   trigger:
   - type: opened
@@ -13,18 +16,27 @@
       seconds: 0
   condition: []
   action:
-  - service: script.turn_on
-    target:
-      entity_id: script.ha_handy_notification
-    data:
-      variables:
-        msg_title: HomeAssistant - Warnung
-        msg_message: Die Garageneinfahrt ist länger als 5 Minuten geöffnet!
-  - service: notify.alexa_media_uberall
-    data:
-      title: HomeAssistant - Warnung
-      message: Die Garageneinfahrt ist länger als 5 Minuten geöffnet!
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_handy_notification
       data:
-        type: announce
-        method: all    
+        variables:
+          msg_title: HomeAssistant - Warnung
+          msg_message: Die Garageneinfahrt ist länger als 5 Minuten geöffnet!
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_alexa_notification_queued
+      data:
+        variables:
+          msg_title: HomeAssistant - Warnung
+          msg_message: Die Garageneinfahrt ist länger als 5 Minuten geöffnet!
+          device: "{{ alexa_device }}"
+          type: "{{ alexa_type }}"            
+  # - service: notify.alexa_media_uberall
+  #   data:
+  #     title: HomeAssistant - Warnung
+  #     message: Die Garageneinfahrt ist länger als 5 Minuten geöffnet!
+  #     data:
+  #       type: announce
+  #       method: all    
   mode: single

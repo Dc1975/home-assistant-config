@@ -1,5 +1,8 @@
 - id: '1685479368270'
   alias: GR Gartenbewässerung Überwachung Timer stop
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce   
   description: ''
   trigger:
 #    - platform: state
@@ -24,13 +27,22 @@
             variables:
               msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
               msg_message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
-        - service: notify.alexa_media_uberall
+        #- service: notify.alexa_media_uberall
+        #   data:
+        #     title: "{{states('input_text.it_general_notification_title')}} Garten"
+        #     message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
+        #     data:
+        #       type: announce
+        #       method: all 
+        - service: script.turn_on
+          target:
+            entity_id: script.ha_alexa_notification_queued
           data:
-            title: "{{states('input_text.it_general_notification_title')}} Garten"
-            message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
-            data:
-              type: announce
-              method: all              
+            variables:
+              msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
+              msg_message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
+              device: "{{ alexa_device }}"
+              type: "{{ alexa_type }}"                        
         - service: script.turn_on
           data: {}
           target:
@@ -53,12 +65,21 @@
                 variables:
                   msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
                   msg_message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
-            - service: notify.alexa_media_uberall
+            - service: script.turn_on
+              target:
+                entity_id: script.ha_alexa_notification_queued
               data:
-                title: "{{states('input_text.it_general_notification_title')}} Garten"
-                message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
-                data:
-                  type: announce
+                variables:
+                  msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
+                  msg_message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
+                  device: "{{ alexa_device }}"
+                  type: "{{ alexa_type }}"                      
+            # - service: notify.alexa_media_uberall
+            #   data:
+            #     title: "{{states('input_text.it_general_notification_title')}} Garten"
+            #     message: "Die Rasenbewässerung kann nicht abgeschaltet werden. Der Schalter {{ state_attr('switch.brunnen', 'friendly_name') }} ist nicht verfügbar."
+            #     data:
+            #       type: announce
                   method: all
             - service: script.turn_on
               data: {}
@@ -73,12 +94,22 @@
                   msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
                   msg_message: "Die Rasenbewässerung läuft länger als {{state_attr('input_number.in_gr_duration_lawn_sprinkler',
                     'max') | int}} Minuten und wird abgeschaltet"
-            - service: notify.alexa_media_uberall
+            - service: script.turn_on
+              target:
+                entity_id: script.ha_alexa_notification_queued
               data:
-                title: "{{states('input_text.it_general_notification_title')}} Garten"
-                message: "Die Rasenbewässerung läuft länger als {{state_attr('input_number.in_gr_duration_lawn_sprinkler',
-                  'max') | int}} Minuten und wird abgeschaltet"
-                data:
-                  type: announce
-                  method: all   
+                variables:
+                  msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
+                  msg_message: "Die Rasenbewässerung läuft länger als {{state_attr('input_number.in_gr_duration_lawn_sprinkler',
+                    'max') | int}} Minuten und wird abgeschaltet"
+                  device: "{{ alexa_device }}"
+                  type: "{{ alexa_type }}"                        
+            # - service: notify.alexa_media_uberall
+            #   data:
+            #     title: "{{states('input_text.it_general_notification_title')}} Garten"
+            #     message: "Die Rasenbewässerung läuft länger als {{state_attr('input_number.in_gr_duration_lawn_sprinkler',
+            #       'max') | int}} Minuten und wird abgeschaltet"
+            #     data:
+            #       type: announce
+            #       method: all   
   mode: single

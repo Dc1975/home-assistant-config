@@ -1,5 +1,5 @@
 - id: "1679779279929"
-  alias: AZ Bewegung erkannt Timer start
+  alias: AZ 
   description: ""
   trigger:
 #    - type: motion
@@ -93,7 +93,7 @@
             # condition 3 Rolladenstand und nach Sonnenaufgang und (nach 8:45 an Werktagen oder nach 11:00 an Wochenenden)
             - condition: template
               value_template: >
-                {{ state_attr('sensor.sr_az_cover', 'get_position') | int > states('input_number.in_ha_covers_open_threshold') | int }}
+                {{ state_attr('sensor.sr_az_cover', 'get_position') | int > states('input_number.in_ha_covers_open_threshold') | int }}          
             - condition: sun
               after: sunrise
             - condition: or

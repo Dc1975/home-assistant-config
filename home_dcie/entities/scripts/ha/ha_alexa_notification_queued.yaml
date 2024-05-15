@@ -58,7 +58,6 @@ ha_alexa_notification_queued:
           device: '{{ device }}'
           type: '{{ type }}'
           data: '{{ data |default({}) }}'            
-  #mode: single
   mode: parallel
   max: 10    
   icon: mdi:cellphone-text

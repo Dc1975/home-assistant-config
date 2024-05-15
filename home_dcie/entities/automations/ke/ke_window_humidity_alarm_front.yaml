@@ -1,5 +1,8 @@
 - id: '1700673242941'
   alias: KE Kellerfensterfeuchtigkeitsalarm vorne
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce   
   description: ''
   trigger:
   - platform: state
@@ -8,18 +11,27 @@
     to: 'on'
   condition: []
   action:
-  - service: script.turn_on
-    target:
-      entity_id: script.ha_handy_notification
-    data:
-      variables:
-        msg_title: "Achtung"
-        msg_message: "Wasser im Lichtschacht vorne"
-  - service: notify.alexa_media_uberall
-    data:
-      title: "Achtung"
-      message: "Wasser im Lichtschacht vorne"
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_handy_notification
       data:
-        type: announce
-        method: all
+        variables:
+          msg_title: "Achtung"
+          msg_message: "Wasser im Lichtschacht vorne"
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_alexa_notification_queued
+      data:
+        variables:
+          msg_title: "Achtung"
+          msg_message: "Wasser im Lichtschacht vorne"
+          device: "{{ alexa_device }}"
+          type: "{{ alexa_type }}"            
+  # - service: notify.alexa_media_uberall
+  #   data:
+  #     title: "Achtung"
+  #     message: "Wasser im Lichtschacht vorne"
+  #     data:
+  #       type: announce
+  #       method: all
   mode: single

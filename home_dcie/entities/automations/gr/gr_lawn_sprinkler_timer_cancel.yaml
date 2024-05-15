@@ -1,5 +1,8 @@
 - id: '1691141894818'
   alias: GR Gartenbewässerung Timer abbruch
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce   
   description: ''
   trigger:
 #    - platform: state
@@ -21,14 +24,23 @@
           msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
           msg_message: "Die Rasenbewässerung wurde abgebrochen."
           #msg_message: "Die Rasenbewässerung wurde nach {{states('input_number.in_gr_duration_lawn_sprinkler') | round(0) }} Minuten abgebrochen."
-    - service: notify.alexa_media_uberall
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_alexa_notification_queued
       data:
-        title: "{{states('input_text.it_general_notification_title')}} Garten"
-        message: "Die Rasenbewässerung wurde abgebrochen."        
-        #message: "Die Rasenbewässerung wurde nach {{states('input_number.in_gr_duration_lawn_sprinkler') | round(0) }} Minuten abgebrochen."
-        data:
-          type: announce
-          method: all
+        variables:
+          msg_title: "{{states('input_text.it_general_notification_title')}} Garten"
+          msg_message: "Die Rasenbewässerung wurde abgebrochen."        
+          device: "{{ alexa_device }}"
+          type: "{{ alexa_type }}"            
+    # - service: notify.alexa_media_uberall
+    #   data:
+    #     title: "{{states('input_text.it_general_notification_title')}} Garten"
+    #     message: "Die Rasenbewässerung wurde abgebrochen."        
+    #     #message: "Die Rasenbewässerung wurde nach {{states('input_number.in_gr_duration_lawn_sprinkler') | round(0) }} Minuten abgebrochen."
+    #     data:
+    #       type: announce
+    #       method: all
     # lawn sprinkler timer 
     # https://community.home-assistant.io/t/stopwatch-with-start-stop-resume-lap-and-reset/443994/49
     - service: input_boolean.turn_off 

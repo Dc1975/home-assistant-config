@@ -1,5 +1,8 @@
 - id: '1702224870038'
   alias: SZ Bettsteckdose links Alarm
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce   
   description: ''
   trigger:
   - platform: state
@@ -17,13 +20,24 @@
         msg_message: >
           {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
           {{states('input_text.it_sz_bed_plugs_off_alert_alert_notification_message')}} Bettsteckdose links ist {{locale.get(states('switch.schlafzimmersteckdose_bett_links'))}}        
-  - service: notify.alexa_media_uberall
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_alexa_notification_queued
     data:
-      title: "{{states('input_text.it_sz_bed_plugs_off_alert_notification_title')}}"
-      message: >
-        {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
-        {{states('input_text.it_sz_bed_plugs_off_alert_alert_notification_message')}} Bettsteckdose links ist {{locale.get(states('switch.schlafzimmersteckdose_bett_links'))}}
-      data:
-        type: announce
-        method: all
+      variables:
+        msg_title: "{{states('input_text.it_sz_bed_plugs_off_alert_notification_title')}}"
+        msg_message: >
+          {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
+          {{states('input_text.it_sz_bed_plugs_off_alert_alert_notification_message')}} Bettsteckdose links ist {{locale.get(states('switch.schlafzimmersteckdose_bett_links'))}}              
+        device: "{{ alexa_device }}"
+        type: "{{ alexa_type }}"             
+  # - service: notify.alexa_media_uberall
+  #   data:
+  #     title: "{{states('input_text.it_sz_bed_plugs_off_alert_notification_title')}}"
+  #     message: >
+  #       {% set locale = {'off':'ausgeschaltet', 'on':'eingeschaltet'} %}
+  #       {{states('input_text.it_sz_bed_plugs_off_alert_alert_notification_message')}} Bettsteckdose links ist {{locale.get(states('switch.schlafzimmersteckdose_bett_links'))}}
+  #     data:
+  #       type: announce
+  #       method: all
   mode: single

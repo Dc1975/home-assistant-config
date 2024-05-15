@@ -1,5 +1,8 @@
 - id: '1682777391351'
   alias: KU Kühlschranktemperatur Alarm
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce   
   description: ''
   trigger:
   - platform: template
@@ -22,11 +25,20 @@
       variables:
         msg_title: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_title')}}"
         msg_message: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_message')}} Küchenkühlschrank ist bei {{states('sensor.lumi_lumi_weather_temperature_10') | float}} °C"
-  - service: notify.alexa_media_uberall
+  - service: script.turn_on
+    target:
+      entity_id: script.ha_alexa_notification_queued
     data:
-      title: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_title')}}"
-      message: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_message')}} Küchenkühlschrank ist bei {{states('sensor.lumi_lumi_weather_temperature_10') | float}} Grad"
-      data:
-        type: announce
-        method: all
+      variables:
+        msg_title: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_title')}}"
+        msg_message: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_message')}} Küchenkühlschrank ist bei {{states('sensor.lumi_lumi_weather_temperature_10') | float}} Grad"
+        device: "{{ alexa_device }}"
+        type: "{{ alexa_type }}"         
+  # - service: notify.alexa_media_uberall
+  #   data:
+  #     title: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_title')}}"
+  #     message: "{{states('input_text.it_ha_fridge_temperatur_alert_notification_message')}} Küchenkühlschrank ist bei {{states('sensor.lumi_lumi_weather_temperature_10') | float}} Grad"
+  #     data:
+  #       type: announce
+  #       method: all
   mode: single

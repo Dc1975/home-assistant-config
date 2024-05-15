@@ -1,5 +1,8 @@
 - id: '1682262336868'
   alias: KE Trocker fertig
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce   
   description: ''
   trigger:
   - platform: numeric_state
@@ -39,8 +42,8 @@
       variables:
         msg_title: "{{states('input_text.it_general_notification_title')}} Trockner"
         msg_message: "Der Trockner ist {{states('input_select.is_ke_state_dryer')}}"
-        device: "media_player.echo_wohnzimmer,media_player.echo_dachgeschoss"
-        type: "announce"
+        device: "{{ alexa_device }}"
+        type: "{{ alexa_type }}"   
 
   - service: input_text.set_value
     data:

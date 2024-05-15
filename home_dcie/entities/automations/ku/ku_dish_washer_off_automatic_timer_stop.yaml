@@ -1,5 +1,8 @@
 - id: '1685127777818'
   alias: KU Geschirrslpüler aus automatisch Timer stop
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce   
   description: ''
   trigger:
 #    - platform: state
@@ -41,8 +44,8 @@
       variables:
         msg_title: "{{states('input_text.it_general_notification_title')}} Spülmaschine"
         msg_message: "Die Spülmaschine wird ausgeschaltet"
-        device: "media_player.echo_wohnzimmer,media_player.echo_dachgeschoss"
-        type: "announce"
+        device: "{{ alexa_device }}"
+        type: "{{ alexa_type }}"    
 
   - data:
       option: ausgeschaltet
