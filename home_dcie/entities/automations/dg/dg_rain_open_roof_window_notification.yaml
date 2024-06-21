@@ -1,0 +1,33 @@
+- id: "1716449952822"
+  alias: DG Regenwarnung Dachgeschossdachfenster
+  description: ""
+  trigger:
+    - platform: numeric_state
+      entity_id:
+        - sensor.gw1100a_v2_2_3_rain_rate
+      above: 0
+  condition:
+    - condition: state
+      entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_19
+      state: "on"
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_handy_notification
+      data:
+        variables:
+          msg_title: HomeAssistant - Warnung
+          msg_message: Regen, das Dachgeschossdachfenster ist geöffnet!
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_alexa_notification_queued
+      data:
+        variables:
+          msg_title: HomeAssistant - Warnung
+          msg_message: Regen, das Dachgeschossdachfenster ist geöffnet!
+          device: "{{ alexa_device }}"
+          type: "{{ alexa_type }}"
+  mode: single
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss,media_player.echo_badezimmer
+    alexa_type: announce
