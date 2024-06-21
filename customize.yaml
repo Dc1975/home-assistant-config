@@ -322,7 +322,7 @@ sensor.sr_count_weather:
 sensor.sr_count_code_lines:
   friendly_name: Anzahl der Codezeilen (YAML)
 # sensors
-sensor.sr_ha_pending_notifications_count:
+sensor.sr_ha_pending_notifications_info:
   friendly_name: Ausstehende Benachrichtigungen
 # some stuff
 sensor.local_ip:
@@ -389,6 +389,8 @@ cover.leinwand_tuya:
   friendly_name: Leinwand
 group.ha_grp_cover_position_changed:
   friendly_name: Manuell betätigt
+group.ha_grp_covers_closed_by_summer_mode:
+  friendly_name: Durch Automation geschlossen
 group.ha_grp_covers_use_summer_mode:
   friendly_name: Sommermodus alle
 binary_sensor.bs_ha_covers_down_summer_mode:
@@ -618,6 +620,8 @@ input_number.in_ha_dish_washer_energy_costs:
   friendly_name: Stromkosten
 input_number.in_ha_delay_queued_notification:
   friendly_name: Verzögerung Warteschlange
+input_number.in_dg_ki_off_delay:
+  friendly_name: Verzögerung KI ausschalten
 # timer
 timer.ti_sz_room_motion_lights:
   friendly_name: Timer Schlafzimmer
