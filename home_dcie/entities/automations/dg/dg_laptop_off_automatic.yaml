@@ -1,45 +1,49 @@
-- id: '1714721315476'
+- id: "1714721315476"
   alias: DG Laptop aus automatisch
   variables:
     alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
-    alexa_type: announce   
-  description: ''
+    alexa_type: announce
+  description: ""
   trigger:
-  - platform: numeric_state
-    entity_id: sensor.dachgeschosssteckdose_laptop_energy_power
-    above: 0.5
-    below: 5
-    for: 00:02:00
-  condition: 
-  - condition: state
-    entity_id: switch.dachgeschosssteckdose_laptop
-    state: 'on' 
-  action:
-  - service: script.turn_on
-    target:
-      entity_id: script.ha_handy_notification
-    data:
-      variables:
-        msg_title: "{{states('input_text.it_general_notification_title')}} Laptop"
-        msg_message: "Der Laptop wird ausgeschaltet"
-  - service: script.turn_on
-    target:
-      entity_id: script.ha_alexa_notification_queued
-    data:
-      variables:
-        msg_title: "{{states('input_text.it_general_notification_title')}} Laptop"
-        msg_message: "Der Laptop wird ausgeschaltet"
-        device: "{{ alexa_device }}"
-        type: "{{ alexa_type }}"          
-  # - service: notify.alexa_media_uberall
-  #   data:
-  #     title: "{{states('input_text.it_general_notification_title')}} Laptop"
-  #     message: "Der Laptop wird ausgeschaltet"
-  #     data:
-  #       type: announce
-  #       method: all  
-  - service: switch.turn_off
-    target:
+    - platform: numeric_state
+      entity_id: sensor.dachgeschosssteckdose_laptop_energy_power
+      #    above: 0.5
+      below: 5
+      for: 00:02:00
+    - platform: template
+      value_template: "{% if states('sensor.dachgeschosssteckdose_laptop_energy_power') | int == 0 %}true{% endif %}"
+      # If given, will trigger when template remains true for X time.
+      for: "00:01:00"
+  condition:
+    - condition: state
       entity_id: switch.dachgeschosssteckdose_laptop
-    data: {}  
+      state: "on"
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_handy_notification
+      data:
+        variables:
+          msg_title: "{{states('input_text.it_general_notification_title')}} Laptop"
+          msg_message: "Der Laptop wird ausgeschaltet"
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_alexa_notification_queued
+      data:
+        variables:
+          msg_title: "{{states('input_text.it_general_notification_title')}} Laptop"
+          msg_message: "Der Laptop wird ausgeschaltet"
+          device: "{{ alexa_device }}"
+          type: "{{ alexa_type }}"
+    # - service: notify.alexa_media_uberall
+    #   data:
+    #     title: "{{states('input_text.it_general_notification_title')}} Laptop"
+    #     message: "Der Laptop wird ausgeschaltet"
+    #     data:
+    #       type: announce
+    #       method: all
+    - service: switch.turn_off
+      target:
+        entity_id: switch.dachgeschosssteckdose_laptop
+      data: {}
   mode: single
