@@ -34,6 +34,20 @@
               entity_id: binary_sensor.workday_sensor
               state: "off"
   action:
+    - if:
+        # chair is occupied
+        - condition: state
+          entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_11
+          state: "off"
+      then:
+        - repeat:
+            sequence:            
+              - delay: "00:{{ states('input_number.in_dg_ki_off_delay') | int }}:00"
+            until:
+              # chair is empty
+              - condition: state
+                entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_11
+                state: "on"  
     - type: turn_off
       device_id: 66b9b925ffa5c9c28f1fac98d0dfbc29
       entity_id: switch.dachgeschoss_ki

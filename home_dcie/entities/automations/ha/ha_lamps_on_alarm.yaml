@@ -14,9 +14,7 @@
         - condition: template
           value_template: >-
             {% set count = states('sensor.sr_ha_lamps_on_count') | int(0) %}
-            {{           
-              ( count > 0 and count >= (states('input_number.in_ha_lamps_on_alarm_last_count') | int(0)))
-            }}
+            {{( count > 0 and count >= (states('input_number.in_ha_lamps_on_alarm_last_count') | int(0)))}}
       then:
         - service: script.turn_on
           target:
@@ -77,7 +75,7 @@
               type: "{{ alexa_type }}"
               msg_title: "{{states('input_text.it_ha_devices_on_alert_notification_title')}}"
               msg_message: >
-                "{{states('input_text.it_ha_devices_on_alert_notification_message')}}"
+                {{states('input_text.it_ha_devices_on_alert_notification_message')}}
                 {% set entitys_text_off = "Es sind keine Lampen eingeschaltet." %}
                 {% set entity_text_on = "Die Lampe" %}
                 {% set entitys_text_on = "Die Lampen" %}
