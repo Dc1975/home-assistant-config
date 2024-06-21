@@ -23,7 +23,7 @@
   {% if not state_attr(cover, 'current_position') is none %}            
     {{ state_attr(cover, 'current_position') | int }}                  
   {% else %}    
-    {{True}}    
+    {{100}}    
   {% endif %} 
 {% else %}    
   {{"unknown"}}    

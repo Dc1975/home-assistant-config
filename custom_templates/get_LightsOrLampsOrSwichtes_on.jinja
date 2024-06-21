@@ -56,7 +56,7 @@
 {% set output = namespace(out = "") %}
 
 {% if (switches | length) == 0 %}
-   {% set output.out = output.out + entitys_text_off %}
+  {% set output.out = output.out + entitys_text_off %}
 {% elif (switches | length) == 1 %}
   {% set output.out = output.out + entity_text_on + " " + switches[0] + " ist " + alarmText + "eingeschaltet." %}     
 {%- else  -%}
