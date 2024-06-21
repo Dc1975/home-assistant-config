@@ -11,6 +11,9 @@ activate_alexa_actionable_notification:
     alexa_device:
       description: Alexa device you want to trigger
       example: 'media_player.echo_wohnzimmer'
+    alexa_type:
+      description: The type 
+      example: 'tts or announce'
     suppress_confirmation:
       description: Set true if you want to suppress 'okay' confirmation
       example: 'true' 
@@ -18,8 +21,8 @@ activate_alexa_actionable_notification:
     - service: input_text.set_value
       data_template:
         entity_id: input_text.alexa_actionable_notification
-        value: '{"text": "{{ text }}", "event": "{{ event_id }}", "suppress_confirmation": "{{ suppress_confirmation }}"}'
-    - service: media_player.play_media
+        value: '{"text": "{{ text }}", "event": "{{ event_id }}", "suppress_confirmation": "{{ suppress_confirmation }}", "alexa_device": "{{ alexa_device }}", "alexa_type": "{{ alexa_type }}"}'
+    - service: media_player.play_media                 
       data_template:
         entity_id: "{{ alexa_device }}"
         media_content_type: skill

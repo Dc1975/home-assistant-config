@@ -1,0 +1,88 @@
+- id: '1718648948254'
+  alias: HA ausstehende Benachrichtigungen abspielen
+  variables:
+    response_type: '{{ trigger.event.data.event_response_type }}'
+    response: '{{ trigger.event.data.event_response }}'
+    alexa_type:  >
+      {% set variable1 = states('input_text.alexa_actionable_notification') %}
+      {% set replaced = variable1| replace("}", " ") %}
+      {% set replaced = replaced| replace("{", " ") %}
+      {% set list = replaced.split(',') %}
+      {% set value = list[4].split(':') %}
+      {% set value = value[1] | replace('"', " ") %}
+      {{value}}
+    alexa_device: >
+      {% set variable1 = states('input_text.alexa_actionable_notification') %}
+      {% set replaced = variable1| replace("}", " ") %}
+      {% set replaced = replaced| replace("{", " ") %}
+      {% set list = replaced.split(',') %}
+      {% set value = list[3].split(':') %}
+      {% set value = value[1] | replace('"', " ") %}
+      {{value}}
+  description: ''
+  trigger:
+  - platform: event
+    event_type: alexa_actionable_notification
+    event_data:
+      event_id: actionable_notification_should_pending_played
+      event_response_type: ResponseYes 
+  condition: []
+  action:
+  - choose:
+    - conditions: '{{ response_type == "ResponseYes" }}'
+      sequence:
+      - alias: Set variables
+        variables:
+          notifications:
+            '{{ state_attr("sensor.sr_ha_pending_notification", "list")
+            | default([], true) }}'
+      - delay: 15
+      # send header notification
+      - service: script.turn_on
+        target:
+          entity_id: script.ha_alexa_notification
+        data:
+          variables:
+            msg_title: "HomeAssistant - Ausstehende Benachrichtigungen"
+            msg_message: "Es werden {{states('sensor.sr_ha_pending_notifications_info')}} ausstehende Benachrichtigungen abgespielt"
+            device: "{{ alexa_device }}"
+            type: "{{ alexa_type }}"
+      - delay: 5
+      - repeat:
+          while:
+            - condition: template
+              value_template: "{{ repeat.index <= notifications|length}}"
+          sequence:
+            - alias: Set variables
+              variables:
+                index: "{{ repeat.index -1 }}"
+                notification: "{{ notifications[index] }}"
+            - service: script.turn_on
+              target:
+                #entity_id: script.notify_those_at_home
+                entity_id: script.ha_alexa_notification_queued
+              data:
+                variables:
+                  msg_title: "{{ notification.title }}"
+                  msg_message: "{{ notification.message }}"
+                  device: "{{ notification.device }}"
+                  type: "{{ notification.type }}"
+                  data: "{{ notification.data }}"
+                  #notify_when_away: false
+    default:
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_alexa_notification
+      data:
+        variables:
+          msg_title: "HomeAssistant - Event"
+          msg_message: "Oops, das sollte nicht passieren. Scripte überprüfen!"
+          device: '{{ alexa_device }}'
+          type: '{{ alexa_type }}'                  
+  - event: set_entity_value
+    event_data:
+      entity_id: sensor.sr_ha_pending_notification
+      state: "0"
+      attr:
+        list: ""
+  mode: single

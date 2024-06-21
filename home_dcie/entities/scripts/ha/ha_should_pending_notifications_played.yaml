@@ -1,0 +1,23 @@
+ha_should_pending_notifications_played:
+  alias: HA Sollen ausstehende Benachrichtigungen abgespielt werden
+  fields:
+    device:
+      description: Alexa device you want to trigger
+      example: 'media_player.echo_wohnzimmer'  
+    type:
+      description: The type 
+      example: 'tts or announce'
+  sequence:
+    - service: script.turn_on
+      data:
+        variables:
+          text: Sollen ausstehende Benachrichtigungen abgespielt werden?
+          event_id: actionable_notification_should_pending_played
+          alexa_device: '{{ device }}'
+          alexa_type: '{{ type }}'
+          suppress_confirmation: True
+      target:
+        entity_id:
+          - script.activate_alexa_actionable_notification
+  mode: single
+  icon: mdi:bullhorn
