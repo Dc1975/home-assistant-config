@@ -23,7 +23,7 @@
               {{ state_attr('sensor.sr_bz_cover', 'get_position') | int > states('input_number.in_ha_covers_open_threshold') | int }}
           - condition: template
             value_template: >
-              {{ state_attr('sensor.sr_ha_turn_on_lights', 'bz') }}                
+              {{ state_attr('sensor.sr_ha_turn_on_lights', 'bz_shower') }}                
   action:
     - service: switch.turn_on
       data: {}

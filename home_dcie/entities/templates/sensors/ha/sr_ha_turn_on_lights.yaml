@@ -35,6 +35,10 @@ sensor:
       bz: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
         {{get_turn_on_lights('lumi_lumi_motion_ac02_illuminance_9', 'in_bz_lux_treshhold', 0)}}
+      # Badezimmer
+      bz_shower: >
+        {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        
+        {{get_turn_on_lights('binary_sensor.sensor.lumi_lumi_motion_ac02_illuminance_5', 'in_bz_lux_shower_treshhold', 0)}}        
       # Schlafzimmer
       sz: >
         {% from 'get_turn_on_lights.jinja' import get_turn_on_lights %}        

@@ -1,5 +1,5 @@
-in_bz_lux_treshhold:
-  name: in_bz_lux_treshhold
+in_bz_lux_shower_treshhold:
+  name: in_bz_lux_shower_treshhold
   icon: mdi:brightness-percent
   min: -1
   max: 100
