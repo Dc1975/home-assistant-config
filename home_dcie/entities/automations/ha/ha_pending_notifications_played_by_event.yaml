@@ -44,7 +44,14 @@
         data:
           variables:
             msg_title: "HomeAssistant - Ausstehende Benachrichtigungen"
-            msg_message: "Es werden {{states('sensor.sr_ha_pending_notifications_info')}} ausstehende Benachrichtigungen abgespielt"
+            msg_message: >
+              {% set count = states('sensor.sr_ha_pending_notifications_info')|int %}                        
+              {% if count == 1 %}
+                {%set term  = "Benachrichtigung" %}                        
+              {% else %}
+                {%set term  = "Benachrichtigungen" %}                          
+              {% endif %}                        
+              {{"Es werden " + states('sensor.sr_ha_pending_notifications_info') + " ausstehende " + term +  " abgespielt"}}              
             device: "{{ alexa_device }}"
             type: "{{ alexa_type }}"
       - delay: 5

@@ -11,7 +11,14 @@ ha_should_pending_notifications_played:
     - service: script.turn_on
       data:
         variables:
-          text: Sollen ausstehende Benachrichtigungen abgespielt werden?
+          text: >
+            {% set count = states('sensor.sr_ha_pending_notifications_info')|int %}                        
+            {% if count == 1 %}
+              {%set term  = "Benachrichtigung, soll diese" %}                        
+            {% else %}
+              {%set term  = "Benachrichtigungen, sollen diese" %}                          
+            {% endif %}          
+            {{"Es gibt " + states('sensor.sr_ha_pending_notifications_info') + " ausstehende " + term +  " abgespielt werden?"}}
           event_id: actionable_notification_should_pending_played
           alexa_device: '{{ device }}'
           alexa_type: '{{ type }}'
