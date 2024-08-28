@@ -1,0 +1,45 @@
+- id: "1719082047577"
+  alias: DG Laptop aus kein Stromverbrauch
+  variables:
+    alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
+    alexa_type: announce
+  description: ""
+  trigger:
+    - platform: device
+      type: turned_on
+      device_id: 0930eaf6d08665ef197bcd08c68db750
+      entity_id: 9507ae6af99003cb7ecc0678d731eec2
+      domain: switch
+      for:
+        hours: 0
+        minutes: 15
+        seconds: 0
+  condition:
+    - type: is_power
+      condition: device
+      device_id: 0930eaf6d08665ef197bcd08c68db750
+      entity_id: a1115f350b18d7d2189e42d4de66e7e6
+      domain: sensor
+      below: 30
+  action:
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_handy_notification
+      data:
+        variables:
+          msg_title: "{{states('input_text.it_general_notification_title')}} Laptop"
+          msg_message: "Der Laptop verbraucht keinen Strom und wird ausgeschaltet"
+    - service: script.turn_on
+      target:
+        entity_id: script.ha_alexa_notification_queued
+      data:
+        variables:
+          msg_title: "{{states('input_text.it_general_notification_title')}} Laptop"
+          msg_message: "Der Laptop verbraucht keinen Strom und wird ausgeschaltet"
+          device: "{{ alexa_device }}"
+          type: "{{ alexa_type }}"
+    - service: switch.turn_off
+      target:
+        entity_id: switch.dachgeschosssteckdose_laptop
+      data: {}
+  mode: single
