@@ -1,4 +1,4 @@
 zha:
   zigpy_config:
     ota:
-      ikea_provider: true
+      extra_ikea_provider: true
