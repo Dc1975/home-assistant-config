@@ -1,0 +1,11 @@
+ha_clear_pending_notifications:
+# use this script to send notifications without queuing
+  alias: ha_clear_pending_notifications
+  sequence:
+  - event: set_entity_value
+    event_data:
+      entity_id: sensor.sr_ha_pending_notification
+      state: '0'
+      attr:
+        list: ''
+  mode: single
