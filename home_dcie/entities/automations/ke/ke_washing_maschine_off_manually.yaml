@@ -15,7 +15,7 @@
   condition:
   - condition: device
     type: is_on
-    device_id: 7309dd32c8b93a2a6ee0ac3f3aa567f4
+    device_id: 1c721b9e25b044149c84be80d5233d87
     entity_id: switch.kellersteckdose_waschmaschine
     domain: switch    
   action:
@@ -50,7 +50,7 @@
     entity_id: input_select.is_ke_state_washing_machine
     service: input_select.select_option        
   - type: turn_off
-    device_id: 7309dd32c8b93a2a6ee0ac3f3aa567f4
+    device_id: 1c721b9e25b044149c84be80d5233d87
     entity_id: switch.kellersteckdose_waschmaschine
     domain: switch  
   mode: single
