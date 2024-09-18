@@ -1,0 +1,11 @@
+{% macro get_translation_cacuum_cleaner_rooms(room) %}
+{% set rooms = [] %}
+{% set rooms = {
+  "Erdgeschoss": [19,16,18,17],
+  "Gästetoilette": [17],
+  "Flur": [18],
+  "Küche": [16],
+  "Wohnzimmer": [19]}
+%}
+{{rooms[room]}}
+{% endmacro %} 
