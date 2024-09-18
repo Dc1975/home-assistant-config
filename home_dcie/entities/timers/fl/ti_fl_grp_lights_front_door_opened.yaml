@@ -1,0 +1,4 @@
+ti_fl_grp_lights_front_door_opened:
+  duration: "00:00:00"
+  restore: true
+  name: ti_fl_grp_lights_front_door_opened

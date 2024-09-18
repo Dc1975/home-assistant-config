@@ -1,0 +1,30 @@
+- id: '1725953331539'
+  alias: FL Haustür öffnet erkannt Timer start
+  description: ''
+  trigger:
+  - platform: template
+    value_template: "{{states ('sensor.nuki_haustur_door_security_state') == 'Open'}}"  
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_7
+      state: 'off'
+    - condition: state
+      entity_id: light.fl_grp_lampen
+      state: 'off'
+    - condition: template
+      value_template: '{{ state_attr(''sensor.sr_ha_turn_on_lights'', ''fl'') }}'
+  action:
+  - action: light.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id: light.fl_grp_lampen
+  - action: timer.start
+    metadata: {}
+    data:
+      duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"
+    target:
+      entity_id: timer.ti_fl_grp_lights_front_door_opened
+  mode: single

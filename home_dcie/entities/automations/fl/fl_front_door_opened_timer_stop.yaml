@@ -1,0 +1,25 @@
+- id: '1725954523929'
+  alias: FL Haustür öffnet erkannt Timer stop
+  description: ''
+  trigger:
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.ti_fl_grp_lights_front_door_opened
+  condition: []
+  action:
+  - if:
+    - condition: state
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_7
+      state: 'on'
+    then:
+    - action: timer.start
+      data_template:
+        entity_id: timer.ti_fl_grp_lights_front_door_opened
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_secondary') | int}}"      
+    else:
+    - action: light.turn_off
+      data: {}
+      target:
+        entity_id: light.fl_grp_lampen      
+  mode: single
