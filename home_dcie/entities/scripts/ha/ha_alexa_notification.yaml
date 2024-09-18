@@ -3,30 +3,49 @@ ha_alexa_notification:
   alias: HA Alexa Benachrichtigung
   fields:
     msg_title:
+      selector:
+        text:
       description: The title of the message
-      example: 'Title of message'
+      example: "Title of message"
       name: msg_title
+      required: true
     msg_message:
+      selector:
+        text:
       description: The message body
-      example: 'Here is the message'
+      example: "Here is the message"
       name: msg_message
+      required: true
     device:
+      selector:
+        text:
       description: The alexa media
       example: "'media_player.echo_dachgeschoss' or 'media_player.echo_wohnzimmer,media_player.echo_dachgeschoss'"
-      name: device    
+      name: device
+      required: true
     type:
-      description: The type 
-      example: 'tts or announce'
+      selector:
+        text:
+      description: The type
+      example: "tts or announce"
       name: type
+      required: true      
   sequence:
   # don't use type: announce, cause we can't set it automatically to false
-  - service: notify.alexa_media
-    data:
-      target:  '{{ device }}'
-      message: '{{ msg_message }}'
-      title: '{{ msg_title }}'
-      data: 
-        type: '{{ type }}'
+  - choose:
+    - conditions:
+        # if alexa is not muted, send the message
+        - condition: state
+          entity_id: input_boolean.ib_alexa_is_muted
+          state: "off"  
+      sequence:
+      - service: notify.alexa_media
+        data:
+          target:  '{{ device }}'
+          message: '{{ msg_message }}'
+          title: '{{ msg_title }}'
+          data: 
+            type: '{{ type }}'
   mode: parallel
   max: 10  
   icon: mdi:cellphone-text

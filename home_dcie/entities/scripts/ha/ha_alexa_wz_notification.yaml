@@ -12,9 +12,17 @@ ha_alexa_wz_notification:
       name: msg_message
   sequence:
   # don't use type: announce, cause we can't set it automatically to false
-  - service: notify.alexa_media_echo_wohnzimmer
-    data:
-      message: '{{ msg_message }}'
-      title: '{{ msg_title }}'
+  - choose:
+    - conditions:
+        # if alexa is not muted, send the message
+        - condition: state
+          entity_id: input_boolean.ib_alexa_is_muted
+          state: "off"  
+      sequence:
+      # don't use type: announce, cause we can't set it automatically to false
+      - service: notify.alexa_media_echo_wohnzimmer
+        data:
+          message: '{{ msg_message }}'
+          title: '{{ msg_title }}'
   mode: single
   icon: mdi:cellphone-text
