@@ -1,0 +1,35 @@
+ha_todo_liste_loschen:
+  alias: HA ToDo Liste löschen
+  fields:
+    list_to_clear:
+      selector:
+        entity:
+          domain: todo
+          multiple: false
+      name: List to clear
+      required: true
+      default: todo.einkaufliste
+  variables:
+    items: '{{ [list_to_clear] if list_to_clear is string else list_to_clear }}'
+  sequence:
+  - target:
+      entity_id: '{{ items }}'
+    data: {}
+    response_variable: todo_list
+    action: todo.get_items
+  - repeat:
+      for_each: '{{ items }}'
+      sequence:
+      - variables:
+          todo: '{{ repeat.item }}'
+      - repeat:
+          for_each: '{{ todo_list[todo][''items''] }}'
+          sequence:
+          - data:
+              item: '{{ repeat.item.summary }}'
+            target:
+              entity_id: '{{ list_to_clear }}'
+            action: todo.remove_item
+  mode: single
+  icon: mdi:playlist-remove
+  description: ''
