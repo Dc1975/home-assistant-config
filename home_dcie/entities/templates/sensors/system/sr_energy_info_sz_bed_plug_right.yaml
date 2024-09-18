@@ -20,13 +20,13 @@ sensor:
         {{get_energy_costs_for('um_sz_steckdose_bett_rechts_yearly', true)}}           
       daily: >
         {{ (states('sensor.um_sz_steckdose_bett_rechts_daily')|float(0) *
-        states('input_number.in_ha_energy_price')|float(0)) | round(2) }} €
+        states('input_number.in_ha_electricity_price')|float(0)) | round(2) }} €
       weekly: >
         {{ (states('sensor.um_sz_steckdose_bett_rechts_weekly')|float(0) *
-        states('input_number.in_ha_energy_price')|float(0)) | round(2) }} €                
+        states('input_number.in_ha_electricity_price')|float(0)) | round(2) }} €                
       monthly: >
         {{ (states('sensor.um_sz_steckdose_bett_rechts_monthly')|float(0) *
-        states('input_number.in_ha_energy_price')|float(0)) | round(2) }} €               
+        states('input_number.in_ha_electricity_price')|float(0)) | round(2) }} €               
       yearly: >
         {{ (states('sensor.um_sz_steckdose_bett_rechts_yearly')|float(0) *
-        states('input_number.in_ha_energy_price')|float(0)) | round(2) }} €       
+        states('input_number.in_ha_electricity_price')|float(0)) | round(2) }} €       

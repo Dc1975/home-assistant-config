@@ -7,7 +7,7 @@ sensor:
     icon: mdi:currency-eur
     state: >
         {{ (states('sensor.um_dg_steckdose_laptop_daily')|float(0) *
-        states('input_number.in_ha_energy_price')|float(0)) | round(2) }}
+        states('input_number.in_ha_electricity_price')|float(0)) | round(2) }}
 
   - name: dg_steckdose_laptop_weekly_energy_costs
     unique_id: dg_steckdose_laptop_weekly_energy_costs
@@ -17,7 +17,7 @@ sensor:
     icon: mdi:currency-eur
     state: >
         {{ (states('sensor.um_dg_steckdose_laptop_weekly')|float(0) *
-        states('input_number.in_ha_energy_price')|float(0)) | round(2) }}      
+        states('input_number.in_ha_electricity_price')|float(0)) | round(2) }}      
 
   - name: dg_steckdose_laptop_monthly_energy_costs
     unique_id: dg_steckdose_laptop_monthly_energy_costs
@@ -27,7 +27,7 @@ sensor:
     icon: mdi:currency-eur
     state: >
         {{ (states('sensor.um_dg_steckdose_laptop_monthly')|float(0) *
-        states('input_number.in_ha_energy_price')|float(0)) | round(2) }}     
+        states('input_number.in_ha_electricity_price')|float(0)) | round(2) }}     
 
   - name: dg_steckdose_laptop_yearly_energy_costs
     unique_id: dg_steckdose_laptop_yearly_energy_costs
@@ -37,4 +37,4 @@ sensor:
     icon: mdi:currency-eur
     state: >
         {{ (states('sensor.um_dg_steckdose_laptop_yearly')|float(0) *
-        states('input_number.in_ha_energy_price')|float(0)) | round(2) }}       
+        states('input_number.in_ha_electricity_price')|float(0)) | round(2) }}       

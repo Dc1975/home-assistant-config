@@ -1,0 +1,8 @@
+in_ha_electricity_price:
+  name: in_ha_electricity_price
+  icon: mdi:home-lightning-bolt
+  min: 0
+  max: 100
+  step: 0.001
+  unit_of_measurement: €/kWh
+  mode: box

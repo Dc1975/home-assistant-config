@@ -1,0 +1,6 @@
+idt_ha_electricity_contract_ends:
+  name: idt_ha_electricity_contract_ends
+  #initial: ""
+  icon: mdi:calendar-month
+  has_time: false
+  has_date: true  

@@ -1,0 +1,5 @@
+sensor:
+  - name: sr_ha_electricity_contract_live_time_month
+    state: >
+      {{ ((as_timestamp(states('input_datetime.idt_ha_electricity_contract_ends'),0) - as_timestamp(states('input_datetime.idt_ha_electricity_contract_start'),0)) / 3600 / 24 / 30) | round(default=0) }}
+    unit_of_measurement: Monate        

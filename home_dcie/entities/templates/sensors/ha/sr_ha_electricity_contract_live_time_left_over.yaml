@@ -1,0 +1,12 @@
+sensor:
+  - name: sr_ha_electricity_contract_live_time_left_over
+    state: >
+        {% set end = as_timestamp(states('input_datetime.idt_ha_electricity_contract_ends')) %}
+        {% set now = as_timestamp(now()) %}
+        {% set time = end - now | int(0) %}
+        {% set days = (time/86400) | int %}         
+        {% set hours = (time / 3600 % 24) | int %}
+        {% set minutes = (((time / 3600) % 1) * 60) | int %}
+        {% set month = days / 365 * 12   %}
+        {{ 12 - month | round(0)}}      
+    unit_of_measurement: Monate        

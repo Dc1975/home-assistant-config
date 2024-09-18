@@ -1,0 +1,4 @@
+it_ha_electricity_provider:
+  name: it_ha_electricity_provider
+  icon: mdi:home-lightning-bolt
+  max: 255
