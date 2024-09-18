@@ -540,6 +540,10 @@ input_datetime.idt_ha_covers_close_summer_before_front:
   friendly_name: Sommermodus vorne bis
 input_datetime.idt_ha_covers_close_summer_before_back:
   friendly_name: Sommermodus hinten bis
+input_datetime.idt_ha_electricity_contract_start:
+  friendly_name: Vertragsbeginn
+input_datetime.idt_ha_electricity_contract_ends:
+  friendly_name: Vertragsende
 # input_text
 input_text.it_ha_covers_close_summer_months:
   friendly_name: Sommermonate
@@ -563,6 +567,8 @@ input_text.it_ha_fridge_temperatur_alert_notification_message:
   friendly_name: "Benachrichtigung Kühlschrank - Text:"
 input_text.it_ha_fridge_temperatur_alert_notification_title:
   friendly_name: "Benachrichtigung Kühlschrank - Titel:"
+input_text.it_ha_electricity_provider:
+  friendly_name: "Anbieter"
 # input_number
 input_number.in_mm_onkyo_volume_factor:
   friendly_name: Onkyo Lautstärkefaktor
@@ -610,8 +616,10 @@ input_number.in_sz_vacaction_mode_offset:
   friendly_name: Verschiebung um
 input_number.in_az_vacaction_mode_offset:
   friendly_name: Verschiebung um
-input_number.in_ha_energy_price:
-  friendly_name: Strom Grundpreis eprimo ct/kWh
+input_number.in_ha_electricity_price:
+  friendly_name: Tarif ct/kWh
+input_number.in_ha_energy_base_price:
+  friendly_name: Grundpreis €/Monat
 input_number.in_ha_dryer_energy_costs:
   friendly_name: Stromkosten
 input_number.in_ha_washing_machine_energy_costs:
@@ -670,6 +678,8 @@ input_boolean.ib_az_cover_used_in_vacation_mode:
   friendly_name: Urlaubsmodus (Ankleidezimmer)
 input_boolean.ib_gr_terrace_lighting_on_by_sunset:
   friendly_name: An bei Sonnenuntergang
+input_boolean.ib_alexa_is_muted:
+  friendly_name: Alexa stunn geschaltet
 
 # keller
 #binary_sensor.Kellerfensterfeuchtigkeitssensor_vorne_feuchtigkeit:
