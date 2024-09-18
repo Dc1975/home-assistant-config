@@ -46,30 +46,6 @@
           msg_message: "Niedrige Batteriestände{{ ':' }} {{sensors}}"
           device: "{{ alexa_device }}"
           type: "{{ alexa_type }}"            
-    # - if:
-    #   - condition: zone
-    #     entity_id: person.dcie
-    #     zone: zone.home
-    #   then:
-    #   - service: script.turn_on
-    #     target:
-    #       entity_id: script.ha_alexa_notification
-    #     data:
-    #       variables:
-    #         msg_title: "HomeAssistant - Niedrige Batteriestände"
-    #         msg_message: "Niedrige Batteriestände{{ ':' }} {{sensors}}"
-    #         device: "{{ alexa_device }}"
-    #         type: "{{ alexa_type }}"
-#      - service: notify.alexa_media   
-#        data:
-#          title: HomeAssistant - Niedrige Batteriestände
-#          message: Niedrige Batteriestände{{ ':' }} {{sensors}}
-#          data:
-#            type: announce
-#            method: all
-#          target:            
-#            - media_player.echo_wohnzimmer            
-#            - media_player.echo_dachgeschoss
   mode: single
   variables:
     alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss

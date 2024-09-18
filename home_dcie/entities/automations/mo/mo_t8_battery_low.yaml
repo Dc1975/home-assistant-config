@@ -33,18 +33,6 @@
         after: input_datetime.idt_ha_low_battery_weekend_after_notify
         before: input_datetime.idt_ha_low_battery_weekend_before_notify
   action:
-#    - service: notify.alexa_media   
-#      data:
-#        title: "{{states('input_text.it_battery_level_notification_title')}} {{states('input_number.in_ha_batteries_threshold') | int}}%"
-#        message: >
-#          {{states('input_text.it_battery_level_notification_message')}} von Deinem Tablet, 
-#          {{states('sensor.sm_t825_battery_level') | int}}%      
-#        data:
-#          type: announce
-#          method: all
-#        target:            
-#          - media_player.echo_wohnzimmer            
-#          - media_player.echo_dachgeschoss    
     - service: script.turn_on
       target:
         entity_id: script.ha_alexa_notification

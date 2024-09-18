@@ -1,5 +1,5 @@
 - id: "1679779279929"
-  alias: AZ 
+  alias: AZ Bewegung erkannt Timer start 
   description: ""
   trigger:
 #    - type: motion
