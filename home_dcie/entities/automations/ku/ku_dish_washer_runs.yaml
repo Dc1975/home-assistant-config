@@ -26,12 +26,11 @@
     data:
       value: '{{ now().timestamp() }}'       
 # dish washer timer 
-  - service: input_boolean.turn_on 
+  - action: input_boolean.turn_on
+    metadata: {}
     data: {} 
     target: 
-      entity_id: input_boolean.reset_stopwatch_dish_washer 
-  - service: input_boolean.turn_on 
-    data: {} 
-    target: 
-      entity_id: input_boolean.start_stopwatch_dish_washer            
+      entity_id:
+        - input_boolean.reset_stopwatch_dish_washer
+        - input_boolean.start_stopwatch_dish_washer
   mode: single
