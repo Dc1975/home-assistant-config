@@ -1,0 +1,27 @@
+ha_start_cleaning_by_param:
+  alias: HA reinigen (Parameter)
+  description: Wischen und Saugen
+  fields:
+    segment_to_clean:
+      name: Segment to clean
+      required: true  
+  sequence:
+  - action: vacuum.send_command
+    metadata: {}
+    data:
+      command: set_custom_mode
+      params: 104
+    target:
+      entity_id: vacuum.roborock_qrevo_s
+  - action: vacuum.send_command
+    metadata: {}
+    data:
+      command: set_water_box_custom_mode
+      params: 202
+    target:
+      entity_id: vacuum.roborock_qrevo_s
+  - action: roborock.vacuum_clean_segment
+    target:
+      entity_id: vacuum.roborock_qrevo_s
+    data:
+      segments: '{{ segment_to_clean }}'

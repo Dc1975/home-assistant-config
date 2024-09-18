@@ -1,0 +1,12 @@
+ha_start_cleaning_by_input_select:
+  alias: HA reinigen (Auswahl)
+  sequence:
+  - variables:
+      room: '{% set selected_room = states(''input_select.is_ha_vacuum_cleaner_room'')
+        %} {% from ''get_translation_cacuum_cleaner_rooms.jinja'' import get_translation_cacuum_cleaner_rooms
+        %} {{get_translation_cacuum_cleaner_rooms(selected_room) }}'
+  - action: script.ha_start_cleaning_by_param
+    metadata: {}
+    data:
+      segment_to_clean: '{{room}}'
+  description: ''

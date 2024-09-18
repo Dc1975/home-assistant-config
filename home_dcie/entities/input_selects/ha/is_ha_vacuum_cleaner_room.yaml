@@ -1,0 +1,10 @@
+is_ha_vacuum_cleaner_room:
+  name: Raum
+  icon: mdi:vacuum
+  options:
+    - Erdgeschoss
+    - Gästetoilette
+    - Flur
+    - Küche
+    - Wohnzimmer
+  initial: Erdgeschoss
