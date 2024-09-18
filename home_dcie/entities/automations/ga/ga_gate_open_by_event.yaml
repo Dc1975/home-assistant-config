@@ -21,15 +21,6 @@
         data: {}
         target:
           entity_id: cover.garageneinfahrt      
-#      - service: switch.toggle
-#        data: {}
-#        target:
-#          entity_id: switch.dachgeschosswandlicht
-
-#      - service: notify.alexa_media
-#        data:
-#          message: Garageneinfahrt wird geöffnet
-#          target:  '{{ alexa_device }}'
       - service: script.turn_on
         target:
           entity_id: script.ha_alexa_notification

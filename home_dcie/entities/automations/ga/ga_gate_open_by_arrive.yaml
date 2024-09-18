@@ -1,0 +1,59 @@
+- id: "1725270110565"
+  alias: GA Garageneinfahrt automatisch öffnen
+  description: ""
+  trigger:
+    - platform: state
+      entity_id:
+        - sensor.homeofdcie_dcie_fahrtrichtung
+      from: towards
+      to: arrived
+  condition:
+    - condition: state
+      entity_id: cover.garageneinfahrt
+      state: closed
+    - condition: template
+      value_template:
+        '{{ state_attr("automation.ga_garage_gate_opens_automatically", "last_triggered")
+        == None or ( as_timestamp(now()) - as_timestamp(state_attr("automation.ga_garage_gate_opens_automatically",
+        "last_triggered")) |int(0) ) > 300 }}'
+  action:
+    - variables:
+        action_open: "{{ 'OPEN_' ~ context.id }}"
+        action_no: "{{ 'NO_' ~ context.id }}"
+    - action: notify.mobile_app_sm_s916b
+      data:
+        message: Soll die Garageneinfahrt geöffnet werden? (Geht 5 Min.)
+        data:
+          actions:
+            - action: "{{ action_open }}"
+              title: Öffnen
+            - action: "{{ action_no }}"
+              title: Nein
+        title: Bitte gedrückt halten!
+    - wait_for_trigger:
+        - platform: event
+          event_type: mobile_app_notification_action
+          event_data:
+            action: "{{ action_open }}"
+      continue_on_timeout: false
+      timeout:
+        hours: 0
+        minutes: 5
+        seconds: 0
+        milliseconds: 0
+    - parallel:
+        - if:
+            - condition: state
+              entity_id: cover.garageneinfahrt
+              state: closed
+          then:
+            - action: notify.mobile_app_sm_s916b
+              data:
+                message: Garageeninfahrt wird geöffnet
+                title: HomeAssistant - Garageeninfahrt
+            - action: cover.open_cover
+              target:
+                entity_id: cover.garageneinfahrt
+              data: {}
+  mode: parallel
+  max: 2
