@@ -1,36 +1,36 @@
-mm_onkyo_set_volume :
+mm_onkyo_set_volume:
   alias: MM Onkyo Lautstärke setzem
-  fields:    
+  fields:
     volume:
       # All sub-options are only used for creating a representation of this script in the UI.
       description: Volume to set"
       example: "24"
-      name: volume   
+      name: volume
   sequence:
     - service: media_player.volume_set
       data:
         # at this time the volume factor is 0.0125 <=> 1
-        volume_level: "{{ (volume * states('input_number.in_mm_onkyo_volume_factor') | float) | round(4)}}"      
+        volume_level: "{{ (volume * states('input_number.in_mm_onkyo_volume_factor') | float) | round(4)}}"
       target:
-        entity_id: media_player.onkyo_2
+        entity_id: media_player.onkyo_tx_nr646
     # delay in s
-    - delay: "00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"            
+    - delay: "00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"
     - service: timer.start
       data_template:
-        entity_id: timer.ti_mm_onkyo_response_timeout            
-        duration: "00:00:{{states('input_number.in_mm_onkyo_response_timeout') | int}}"	
+        entity_id: timer.ti_mm_onkyo_response_timeout
+        duration: "00:00:{{states('input_number.in_mm_onkyo_response_timeout') | int}}"
     - repeat:
         until:
           - condition: or
             conditions:
               - condition: state
-                entity_id: media_player.onkyo_2
+                entity_id: media_player.onkyo_tx_nr646
                 state: "playing"
-#              - condition: state
-#                entity_id: media_player.onkyo_2
-#                state: "on"            
+              #              - condition: state
+              #                entity_id: media_player.onkyo_2
+              #                state: "on"
               - condition: state
-                entity_id: media_player.onkyo_2
+                entity_id: media_player.onkyo_tx_nr646
                 state: "available"
               - condition: template
                 value_template: >
@@ -38,7 +38,7 @@ mm_onkyo_set_volume :
                     true
                   {% else %}  
                     false
-                  {% endif %}                      
+                  {% endif %}
         sequence:
           # delay in s
           - delay: "00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"
@@ -47,9 +47,9 @@ mm_onkyo_set_volume :
           - service: media_player.volume_set
             data:
               # at this time the volume factor is 0.0125 <=> 1
-              volume_level: "{{ (volume * states('input_number.in_mm_onkyo_volume_factor') | float) | round(4)}}"      
+              volume_level: "{{ (volume * states('input_number.in_mm_onkyo_volume_factor') | float) | round(4)}}"
             target:
-              entity_id: media_player.onkyo_2
+              entity_id: media_player.onkyo_tx_nr646
           # delay in s
           - delay: "00:00:{{states('input_number.in_ha_delay_default_sleep') | int}}"
   icon: mdi:remote-tv
