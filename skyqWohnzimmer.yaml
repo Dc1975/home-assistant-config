@@ -42,30 +42,6 @@
             seconds: 10
       turn_off:
         stop:
-    skyq_historychannelhdwohnzimmer:
-      value_template: '{{"off"}}'
-      friendly_name: 'HISTORY Channel HD in the Wohnzimmer'
-      turn_on:
-        - service: media_player.select_source
-          data:
-            entity_id: media_player.sky_q
-            source: 'HISTORY Channel HD'
-        - delay:
-            seconds: 10
-      turn_off:
-        stop:
-    skyq_discoveryhdwohnzimmer:
-      value_template: '{{"off"}}'
-      friendly_name: 'Discovery HD in the Wohnzimmer'
-      turn_on:
-        - service: media_player.select_source
-          data:
-            entity_id: media_player.sky_q
-            source: 'Discovery HD'
-        - delay:
-            seconds: 10
-      turn_off:
-        stop:
     skyq_daserstehdwohnzimmer:
       value_template: '{{"off"}}'
       friendly_name: 'Das Erste HD in the Wohnzimmer'
@@ -290,6 +266,18 @@
           data:
             entity_id: media_player.sky_q
             source: 'SUPER RTL HD'
+        - delay:
+            seconds: 10
+      turn_off:
+        stop:
+    skyq_voxwohnzimmer:
+      value_template: '{{"off"}}'
+      friendly_name: 'VOX in the Wohnzimmer'
+      turn_on:
+        - service: media_player.select_source
+          data:
+            entity_id: media_player.sky_q
+            source: 'VOX'
         - delay:
             seconds: 10
       turn_off:

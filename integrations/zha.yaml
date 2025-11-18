@@ -1,4 +1,5 @@
 zha:
   zigpy_config:
+    source_routing: true
     ota:
       extra_ikea_provider: true

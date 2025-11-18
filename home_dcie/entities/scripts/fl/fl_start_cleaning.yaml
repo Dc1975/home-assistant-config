@@ -1,0 +1,12 @@
+fl_start_cleaning:
+  alias: FL reinigen
+  sequence:
+  - variables:
+      room: >
+        {% from "get_translation_cacuum_cleaner_rooms.jinja" import get_translation_cacuum_cleaner_rooms %}
+        {{get_translation_cacuum_cleaner_rooms("Flur")}}
+  - action: script.ha_start_cleaning_by_param
+    metadata: {}
+    data:
+      segment_to_clean: '{{room}}'
+  description: ''

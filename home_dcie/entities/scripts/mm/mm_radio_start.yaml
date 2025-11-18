@@ -11,7 +11,7 @@ mm_radio_start:
     domain: remote
   - device_id: 1aa4cb31590d29e7150e342946e029b1
     domain: select
-    entity_id: select.harmonyelitehubby_activities
+    entity_id: 58f6eb1f8357324de2efd2f551d145ad
     type: select_option
     option: Radio  
 #  - delay: "00:00:{{ states('input_number.in_mm_onkyo_response_timeout') | int }}"

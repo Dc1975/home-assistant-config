@@ -10,9 +10,9 @@ ha_handy_notification:
       example: Here is the message
       name: msg_message
   sequence:
-  - service: notify.mobile_app_sm_s916b
-    data:
-      message: '{{ msg_message }}'
-      title: '{{ msg_title }}'
+    - service: notify.mobile_app_s25_sm_s936b
+      data:
+        message: "{{ msg_message }}"
+        title: "{{ msg_title }}"
   mode: parallel
   icon: mdi:cellphone-text

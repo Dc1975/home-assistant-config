@@ -1,0 +1,4 @@
+ti_of_motion_lights:
+  duration: "00:00:00"
+  restore: true
+  name: ti_of_motion_lights

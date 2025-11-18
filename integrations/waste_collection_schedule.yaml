@@ -3,7 +3,7 @@ waste_collection_schedule:
     - name: ics
       args:
         #file: "www/group.calendar.google.com.ics"
-        file: "www/Abfallkalender_ZBG_2024.ics"
+        file: "www/Abfallkalender_ZBG_2025.ics"
       customize:
         - type: Braune Tonne
           alias: braun
