@@ -1,12 +1,20 @@
-{% macro get_turn_on_lights(entity_lux, entity_treshhold, lux_offset) %}
+{% macro get_turn_on_lights(entity_lux, entity_treshhold, entity_illuminance_offset) %}
 {% set sensor_lux = "sensor." +  entity_lux %}
 {% set input_number_treshhold = "input_number." +  entity_treshhold %}
+
+{% if entity_illuminance_offset == '' %}
+  {% set value_input_number_illuminance_offset = 0 %}
+{% else %}
+  {% set input_number_illuminance_offset = "input_number." +  entity_illuminance_offset %}
+  {% set  value_input_number_illuminance_offset = states(input_number_illuminance_offset) | float %}
+{% endif %}
+
 {% if state_attr('sun.sun', 'elevation') < states('input_number.in_ha_sun_elevation_treshhold') | float %}
   {{true}}
 {% else %} 
   {% if has_value(sensor_lux) == true %}
     {% set  value_sensor = states(sensor_lux) | float %}
-    {% set  value_sensor = value_sensor + lux_offset %}
+    {% set  value_sensor = value_sensor + value_input_number_illuminance_offset %}  
     {% if states(input_number_treshhold) == 'unknown' %}
       {# return default value #}            
       {{ value_sensor |

@@ -1,5 +1,5 @@
 {% macro get_batteries_info_name(operator) %}
-{% set toExclucde = namespace(entities=['binary_sensor.nuki_haustur_battery_critical', 'binary_sensor.nuki_haustur_keypad_battery_critical']) %}
+{% set toExclucde = namespace(entities=['binary_sensor.haustur_door_sensor_battery_critical']) %}
 {% set result = namespace(sensors=[]) %}
 {%- for state in states.sensor | selectattr('attributes.device_class', 'defined')
     | selectattr('attributes.device_class', 'eq', 'battery') -%}

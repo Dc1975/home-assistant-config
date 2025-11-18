@@ -10,7 +10,7 @@
 {% elif device == "dishwasher" %} 
   {% set result = 'Der Geschirrspüler' %}
   {% set device_state = states('input_select.is_ku_state_dish_washer') %}
-  {% set entity_name = "sensor.stopwatch_washing_machine" %}  
+  {% set entity_name = "sensor.stopwatch_dish_washer" %}  
 {% else %} 
   {% set result = 'unknown' %}
   {% set device_state = 'unknown' %}
