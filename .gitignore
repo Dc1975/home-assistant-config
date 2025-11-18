@@ -38,3 +38,4 @@ known_devices.yaml
 watchman_report.txt
 go2rtc*
 .shopping_list.json
+.ha_run.lock
