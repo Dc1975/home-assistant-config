@@ -1,19 +1,27 @@
-- id: '1678484079664'
+- id: "1678484079664"
   alias: HA Haustür ist geöffnet
   variables:
     alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
-    alexa_type: announce   
-  description: ''
+    alexa_type: announce
+  description: ""
   trigger:
-  - type: opened
-    platform: device
-    device_id: 5ecce7454d5c2af9b9ca372854ea55bf
-    entity_id: binary_sensor.nuki_haustur_door_open
-    domain: binary_sensor
-    for:
-      hours: 0
-      minutes: 5
-      seconds: 0
+    #  - type: opened
+    #    platform: device
+    #    device_id: 5ecce7454d5c2af9b9ca372854ea55bf
+    #    entity_id: binary_sensor.nuki_haustur_door_open
+    #    domain: binary_sensor
+    #    for:
+    #      hours: 0
+    #      minutes: 5
+    #      seconds: 0
+    - trigger: state
+      entity_id:
+        - binary_sensor.haustur_door_sensor
+      to: "on"
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
   condition: []
   action:
     - service: script.turn_on
@@ -31,12 +39,12 @@
           msg_title: HomeAssistant - Warnung
           msg_message: Die Haustür ist länger als 5 Minuten geöffnet!
           device: "{{ alexa_device }}"
-          type: "{{ alexa_type }}"          
+          type: "{{ alexa_type }}"
   # - service: notify.alexa_media_uberall
   #   data:
   #     title: HomeAssistant - Warnung
   #     message: Die Haustür ist länger als 5 Minuten geöffnet!
   #     data:
   #       type: announce
-  #       method: all    
+  #       method: all
   mode: single

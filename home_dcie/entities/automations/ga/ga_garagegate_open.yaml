@@ -5,11 +5,19 @@
     alexa_type: announce
   description: ""
   trigger:
-    - type: opened
-      platform: device
-      device_id: 5ecce7454d5c2af9b9ca372854ea55bf
-      entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_18
-      domain: binary_sensor
+    #    - type: opened
+    #      platform: device
+    #      device_id: 5ecce7454d5c2af9b9ca372854ea55bf
+    #      entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_18
+    #      domain: binary_sensor
+    #      for:
+    #        hours: 0
+    #        minutes: 5
+    #        seconds: 0
+    - trigger: state
+      entity_id:
+        - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_18
+      to: "on"
       for:
         hours: 0
         minutes: 5

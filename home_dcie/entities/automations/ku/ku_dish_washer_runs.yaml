@@ -1,36 +1,42 @@
-- id: '1682262043138'
+- id: "1682262043138"
   alias: KU Spülmaschien läuftet
-  description: ''
+  description: ""
   trigger:
-  - platform: numeric_state
-    entity_id: sensor.kuchensteckdose_spulmaschine_energy_power
-    above: 10
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 30
-  condition: 
-  # to avoid the automation being called more than once during operation
+    - platform: numeric_state
+      entity_id: sensor.kuchensteckdose_spulmaschine_energy_power
+      above: 10
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
+  condition:
+    # to avoid the automation being called more than once during operation
     - condition: state
       entity_id: input_select.is_ku_state_dish_washer
-      state: ausgeschaltet    
+      state: ausgeschaltet
   action:
-  - service: input_select.select_option
-    data:
-      option: läuft
-    target:
-      entity_id: input_select.is_ku_state_dish_washer
-  - service: input_text.set_value
-    target:
-      entity_id: input_text.it_ku_dishwasher_last_machine_time_helper
-    data:
-      value: '{{ now().timestamp() }}'       
-# dish washer timer 
-  - action: input_boolean.turn_on
-    metadata: {}
-    data: {} 
-    target: 
-      entity_id:
-        - input_boolean.reset_stopwatch_dish_washer
-        - input_boolean.start_stopwatch_dish_washer
+    - service: input_select.select_option
+      data:
+        option: läuft
+      target:
+        entity_id: input_select.is_ku_state_dish_washer
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.it_ku_dishwasher_last_machine_time_helper
+      data:
+        value: "{{ now().timestamp() }}"
+    # dish washer timer
+    - action: input_boolean.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.reset_stopwatch_dish_washer
+    - delay: "00:00:{{ states('input_number.in_ha_delay_default_automations') | int }}"
+    - action: input_boolean.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.start_stopwatch_dish_washer
   mode: single

@@ -1,16 +1,16 @@
-- id: '1679516170643'
-  alias: FL Haustüschlosssensorbatterie niedrig
+- id: '1728299983433'
+  alias: OF Bewegungsmelderbatterie niedrig
   description: ''
-  trigger:
+  trigger:  
   - platform: template
     value_template: >
-      {% set state_sensor = states('sensor.haustur_battery') %}
+      {% set state_sensor = states('sensor.lumi_lumi_motion_ac02_illuminance_10') %}
       {% set state_threshold = states('input_number.in_ha_batteries_threshold') %}
       {% if is_number(state_sensor) and is_number(state_threshold) and state_sensor | int <= state_threshold | int  %}
         true
       {% else %}
         false
-      {% endif %}                        
+      {% endif %}                  
   condition:
   - condition: or
     conditions:
@@ -28,7 +28,7 @@
           - sat
           - sun
         after: input_datetime.idt_ha_low_battery_weekend_after_notify
-        before: input_datetime.idt_ha_low_battery_weekend_before_notify  
+        before: input_datetime.idt_ha_low_battery_weekend_before_notify
   action:
   - service: script.turn_on
     target:
@@ -37,6 +37,6 @@
       variables:
         msg_title: "{{states('input_text.it_battery_level_notification_title')}} {{states('input_number.in_ha_batteries_threshold') | int}}%"
         msg_message: > 
-          {{states('input_text.it_battery_level_notification_message')}} Haustürschlosssensor, 
-          {{states('sensor.haustur_battery') | int}}%
+          {{states('input_text.it_battery_level_notification_message')}} Treppenhauslichtsensor mitte, 
+          {{states('sensor.lumi_lumi_motion_ac02_illuminance_10') | int}}%
   mode: parallel

@@ -39,12 +39,36 @@
             value_template: >
               {{ state_attr('sensor.sr_ha_turn_on_lights', 'fl') }} 
   action:
-    - service: light.turn_on
-      data: {}
-      target:
-        entity_id: light.lampe_flur_4_2
-    - service: timer.start
-      data_template:
-        entity_id: timer.ti_fl_motion_lights
-        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"			    
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 10
+      kelvin: 2000
+    target:
+      entity_id: light.lampe_flur_1_2
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 10
+      kelvin: 2000
+    target:
+      entity_id: light.lampe_flur_2_2
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 10
+      kelvin: 2000
+    target:
+      entity_id: light.lampe_flur_3_2
+  - action: light.turn_on
+    metadata: {}
+    data:
+      brightness_pct: 10
+      kelvin: 2000
+    target:
+      entity_id: light.lampe_flur_4_2      
+  - service: timer.start
+    data_template:
+      entity_id: timer.ti_fl_motion_lights
+      duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"			    
   mode: single

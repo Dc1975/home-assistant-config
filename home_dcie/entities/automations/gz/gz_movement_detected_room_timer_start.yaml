@@ -1,0 +1,39 @@
+- id: "1731063416741"
+  alias: GZ Raum Bewegung erkannt Timer start
+  description: ""
+  trigger:
+    - type: motion
+      device_id: 2c7cdf947529567c07acade0b3870e20
+      entity_id: 3278c8c8ba53f5179537538ec80ad405
+      domain: binary_sensor
+      trigger: device      
+  condition:
+    - condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.ib_gz_switch_motion_detector
+          state: "on"      
+      # use this condition to prevent light turn off if they werere manually turned on
+        - condition: device
+          type: is_off
+          device_id: fce120d9035154afcd9c79733eb8ea1a
+          entity_id: 39a6040bceb42a4d0922fe66f33ba697
+          domain: switch
+        - condition: or
+          conditions:
+          - condition: template
+            value_template: >
+              {{ state_attr('sensor.sr_gz_cover', 'get_position') | int > states('input_number.in_ha_covers_open_threshold') | int }}
+          - condition: template
+            value_template: >
+              {{ state_attr('sensor.sr_ha_turn_on_lights', 'gz') }}
+  action:
+    - type: turn_on
+      device_id: fce120d9035154afcd9c79733eb8ea1a
+      entity_id: 39a6040bceb42a4d0922fe66f33ba697
+      domain: switch
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_gz_motion_lights
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"
+  mode: single

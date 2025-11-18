@@ -3,9 +3,9 @@
 speech:
   type: plain
   text: >
-    {% set opened = states('sensor.nuki_haustur_door_state') %}
-    {% if opened == 'door closed' %}      
+    {% set opened = states('binary_sensor.haustur_door_sensor') %}
+    {% if opened == 'off' %}      
       Die Haustür ist geschlossen.
     {% else %}
       Die Haustür ist geöffnet.
-    {% endif %}  
+    {% endif %}

@@ -1,19 +1,19 @@
-- id: '1699389304427'
-  alias: SZ Raum Bewegung erkannt Timer restart
+- id: '1731064167973'
+  alias: GZ Raum Bewegung erkannt Timer restart
   description: ''
   trigger:
     - type: motion
-      platform: device
-      device_id: 3117bf6e656720d90e8b658531ab8136
-      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion
+      device_id: 2c7cdf947529567c07acade0b3870e20
+      entity_id: 3278c8c8ba53f5179537538ec80ad405
       domain: binary_sensor
+      trigger: device        
   condition:
     - condition: state
-      entity_id: timer.ti_sz_room_motion_lights
+      entity_id: timer.ti_gz_motion_lights
       state: active
   action:
     - service: timer.start
       data_template:
-        entity_id: timer.ti_sz_room_motion_lights
+        entity_id: timer.ti_gz_motion_lights
         duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"
   mode: single

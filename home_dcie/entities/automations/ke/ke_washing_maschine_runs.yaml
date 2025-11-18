@@ -1,36 +1,42 @@
-- id: '1682260977336'
+- id: "1682260977336"
   alias: KE Waschmaschine läuft
-  description: ''
+  description: ""
   trigger:
-  - platform: numeric_state
-    entity_id: sensor.kellersteckdose_waschmaschine_energy_power
-    above: 10
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 30
+    - platform: numeric_state
+      entity_id: sensor.kellersteckdose_waschmaschine_energy_power
+      above: 10
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 30
   condition:
-  # to avoid the automation being called more than once during operation
+    # to avoid the automation being called more than once during operation
     - condition: state
       entity_id: input_select.is_ke_state_washing_machine
       state: ausgeschaltet
   action:
-  - service: input_select.select_option
-    data:
-      option: läuft
-    target:
-      entity_id: input_select.is_ke_state_washing_machine
-  - service: input_text.set_value
-    target:
-      entity_id: input_text.it_ke_washing_machine_last_machine_time_helper
-    data:
-      value: '{{ now().timestamp() }}'
-# washing machine timer 
-  - action: input_boolean.turn_on
-    metadata: {}
-    data: {}
-    target:
-      entity_id: 
-        - input_boolean.reset_stopwatch_washing_machine
-        - input_boolean.start_stopwatch_washing_machine
+    - service: input_select.select_option
+      data:
+        option: läuft
+      target:
+        entity_id: input_select.is_ke_state_washing_machine
+    - service: input_text.set_value
+      target:
+        entity_id: input_text.it_ke_washing_machine_last_machine_time_helper
+      data:
+        value: "{{ now().timestamp() }}"
+    # washing machine timer
+    - action: input_boolean.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.reset_stopwatch_washing_machine
+    - delay: "00:00:{{ states('input_number.in_ha_delay_default_automations') | int }}"
+    - action: input_boolean.turn_on
+      metadata: {}
+      data: {}
+      target:
+        entity_id:
+          - input_boolean.start_stopwatch_washing_machine
   mode: single

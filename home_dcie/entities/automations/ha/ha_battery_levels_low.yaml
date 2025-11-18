@@ -1,57 +1,57 @@
-- id: '1679524591547'
-  alias: HA Batteriestände niedrig  
-  description: ''
+- id: "1679524591547"
+  alias: HA Batteriestände niedrig
+  description: ""
   trigger:
-  - platform: time
-    at: input_datetime.idt_ha_low_batteries_workday_notify
-    id: workday
-  - platform: time
-    at: input_datetime.idt_ha_low_batteries_wekeend_notify
-    id: weekend
+    - platform: time
+      at: input_datetime.idt_ha_low_batteries_workday_notify
+      id: workday
+    - platform: time
+      at: input_datetime.idt_ha_low_batteries_wekeend_notify
+      id: weekend
   condition:
-  - condition: or
-    conditions:
-    - condition: and
+    - condition: or
       conditions:
-      - condition: trigger
-        id: workday
-      - condition: state
-        entity_id: binary_sensor.workday_sensor
-        state: 'on'
-    - condition: and
-      conditions:
-      - condition: trigger
-        id: weekend
-      - condition: state
-        entity_id: binary_sensor.workday_sensor
-        state: 'off'
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: workday
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "on"
+        - condition: and
+          conditions:
+            - condition: trigger
+              id: weekend
+            - condition: state
+              entity_id: binary_sensor.workday_sensor
+              state: "off"
   action:
-  - if:
-    - condition: template
-      value_template: '{{ sensors | length > 0 }}'
-    then:
-    - service: script.turn_on
-      target:
-        entity_id: script.ha_handy_notification
-      data:
-        variables:
-          msg_title: Niedrige Batteriestände
-          msg_message: '{{sensors}}'
-    - service: script.turn_on
-      target:
-        entity_id: script.ha_alexa_notification_queued
-      data:
-        variables:
-          msg_title: "HomeAssistant - Niedrige Batteriestände"
-          msg_message: "Niedrige Batteriestände{{ ':' }} {{sensors}}"
-          device: "{{ alexa_device }}"
-          type: "{{ alexa_type }}"            
+    - if:
+        - condition: template
+          value_template: "{{ sensors | length > 0 }}"
+      then:
+        - service: script.turn_on
+          target:
+            entity_id: script.ha_handy_notification
+          data:
+            variables:
+              msg_title: Niedrige Batteriestände
+              msg_message: "{{sensors}}"
+        - service: script.turn_on
+          target:
+            entity_id: script.ha_alexa_notification_queued
+          data:
+            variables:
+              msg_title: "HomeAssistant - Niedrige Batteriestände"
+              msg_message: "Niedrige Batteriestände{{ ':' }} {{sensors}}"
+              device: "{{ alexa_device }}"
+              type: "{{ alexa_type }}"
   mode: single
   variables:
     alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
-    alexa_type: tts    
-    sensors: "{% set exclude = namespace(entity_id=['binary_sensor.nuki_haustur_battery_critical',
-      'binary_sensor.nuki_haustur_keypad_battery_critical']) %} {% set result = namespace(sensors=[])
+    alexa_type: tts
+    sensors:
+      "{% set exclude = namespace(entity_id=['binary_sensor.haustur_door_sensor_battery_critical']) %} {% set result = namespace(sensors=[])
       %} {% for state in states.sensor | selectattr('attributes.device_class', 'defined')
       | selectattr('attributes.device_class', '==', 'battery') %}\n  {% if 0 <= state.state
       | int(-1) <= states('input_number.in_ha_batteries_threshold') | int and not state.entity_id

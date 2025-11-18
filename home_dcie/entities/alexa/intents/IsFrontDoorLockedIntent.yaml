@@ -5,9 +5,9 @@
 speech:
   type: plain
   text: >
-    {% set locked = states('sensor.nuki_haustur_state') %}
-    {% if locked == 'locked' %}
-      Die Haustür ist verriegelt.
-    {% else %}
+    {% set locked = states('lock.haustur') %}
+    {% if locked == 'unlocked' %}
       Die Haustür ist entriegelt.
-    {% endif %}  
+    {% else %}
+      Die Haustür ist verriegelt.      
+    {% endif %}

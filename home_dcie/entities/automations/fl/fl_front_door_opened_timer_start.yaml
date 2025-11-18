@@ -3,7 +3,7 @@
   description: ''
   trigger:
   - platform: template
-    value_template: "{{states ('sensor.nuki_haustur_door_security_state') == 'Open'}}"  
+    value_template: "{{states ('sensor.sr_fl_nuki_frontdoor_security_state') == 'open'}}"  
   condition:
   - condition: and
     conditions:

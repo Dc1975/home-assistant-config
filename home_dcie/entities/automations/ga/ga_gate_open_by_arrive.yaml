@@ -20,7 +20,7 @@
     - variables:
         action_open: "{{ 'OPEN_' ~ context.id }}"
         action_no: "{{ 'NO_' ~ context.id }}"
-    - action: notify.mobile_app_sm_s916b
+    - action: notify.mobile_app_s25_sm_s936b
       data:
         message: Soll die Garageneinfahrt geöffnet werden? (Geht 5 Min.)
         data:
@@ -47,7 +47,8 @@
               entity_id: cover.garageneinfahrt
               state: closed
           then:
-            - action: notify.mobile_app_sm_s916b
+            - action: notify.mobile_app_s25_sm_s936b
+
               data:
                 message: Garageeninfahrt wird geöffnet
                 title: HomeAssistant - Garageeninfahrt

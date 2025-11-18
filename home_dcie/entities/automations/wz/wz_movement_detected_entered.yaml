@@ -1,0 +1,44 @@
+- id: '1733320641309'
+  alias: WZ Betreten
+  description: ''
+  triggers:
+  - type: motion
+    device_id: bc36170962c50ccac0076ecc5b10a564
+    entity_id: 43009b219c4b6d91fb84641cf31ae907
+    domain: binary_sensor
+    trigger: device
+  conditions:
+  - condition: state
+    entity_id: input_boolean.ib_ha_schlafen_runs
+    state: 'off'
+  - condition: state
+    entity_id: switch.thekenlicht
+    state: 'off'
+  - condition: state
+    entity_id: switch.esstischlicht
+    state: 'off'
+  - condition: state
+    entity_id: switch.kaminlicht
+    state: 'off'
+  - condition: device
+    type: is_off
+    device_id: bb07faad5b2c3a11732aca0a5defab90
+    entity_id: e3240b61978860302e2989ff3df316f3
+    domain: light
+  - condition: template
+    value_template: >
+      {{ state_attr('sensor.sr_ha_turn_on_lights', 'wz') }}
+  - condition: or
+    conditions:
+      - condition: sun
+        after: sunset
+      - condition: sun
+        before: sunrise    
+  actions:
+  - action: switch.turn_on
+    metadata: {}
+    data: {}
+    target:
+      entity_id:
+      - switch.thekenlicht
+  mode: single

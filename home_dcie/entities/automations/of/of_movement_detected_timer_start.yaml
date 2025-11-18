@@ -1,0 +1,41 @@
+- id: '1728300008775'
+  alias: OF Bewegung erkannt Timer start
+  description: ''
+  trigger:
+    - type: motion
+      platform: device
+      device_id: e2c168f8256292051dc7dc629a534709
+      entity_id: binary_sensor.lumi_lumi_motion_ac02_motion_10
+      domain: binary_sensor
+  condition:
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: input_boolean.ib_of_switch_motion_detector
+        state: "on"      
+      # use this condition to prevent light turn off if they werere manually turned on      
+      - condition: state
+        entity_id: light.of_grp_lampen
+        state: "off"             
+      - condition: state
+        entity_id: input_boolean.ib_ha_schlafen_runs
+        state: 'off'
+#      - condition: numeric_state
+#        entity_id: sun.sun
+#        attribute: elevation
+#        below: input_number.in_ha_sun_elevation_treshhold     
+      - condition: template
+        value_template: >
+          {{ state_attr('sensor.sr_ha_turn_on_lights', 'of') }}    
+  action:
+    - service: light.turn_on
+      data:
+        brightness: 5
+        color_temp: 500    
+      target:
+        entity_id: light.of_grp_lampen
+    - service: timer.start
+      data_template:
+        entity_id: timer.ti_of_motion_lights
+        duration: "00:00:{{states('input_number.in_ha_delay_in_motion_lights_off_primary') | int}}"			    
+  mode: single

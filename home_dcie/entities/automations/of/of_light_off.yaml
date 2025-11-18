@@ -1,0 +1,19 @@
+
+- id: '1728299991046'
+  alias: OF Licht aus
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - light.of_grp_lampen
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: timer.ti_of_motion_lights
+    state: active
+  action:
+  - service: timer.finish
+    data: {}
+    target:
+      entity_id: timer.ti_of_motion_lights
+  mode: single

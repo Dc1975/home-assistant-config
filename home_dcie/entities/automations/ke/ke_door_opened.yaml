@@ -1,17 +1,16 @@
-- id: '1680098099253'
+- id: "1680098099253"
   alias: KE Kellertür geöffnet
-  description: ''
+  description: ""
   trigger:
-  - type: opened
-    platform: device
-    device_id: 592d970e006dff95f733c4ace9b81931
-    entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_10
-    domain: binary_sensor
+    - type: opened
+      platform: device
+      device_id: 592d970e006dff95f733c4ace9b81931
+      entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_10
+      domain: binary_sensor
   condition: []
   action:
-  - type: turn_on
-    device_id: 19318c94a454b8e151de37d2f9ee0fb1
-    entity_id: switch.kellerlicht
-    domain: switch
+    - type: turn_on
+      device_id: 75b56f5f1a6eb5bc9416b8dbc8698d6f
+      entity_id: 11859e04f4c6b72a16ed75208d3988db
+      domain: switch
   mode: single
-

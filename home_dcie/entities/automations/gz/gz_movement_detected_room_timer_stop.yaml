@@ -1,0 +1,20 @@
+- id: '1731063821158'
+  alias: GZ Raum Bewegung erkannt Timer stop
+  description: ''
+  trigger:
+#    - platform: state
+#      entity_id:
+#      - timer.ti_sz_motion_lights
+#      to: idle
+# see Bug https://github.com/home-assistant/home-assistant.io/pull/26352
+    - platform: event
+      event_type: timer.finished
+      event_data:
+        entity_id: timer.ti_gz_motion_lights      
+  condition: []
+  action:
+    - type: turn_off
+      device_id: fce120d9035154afcd9c79733eb8ea1a
+      entity_id: 39a6040bceb42a4d0922fe66f33ba697
+      domain: switch
+  mode: single
