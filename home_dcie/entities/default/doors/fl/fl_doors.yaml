@@ -1,2 +1,3 @@
-- binary_sensor.nuki_haustur_door_open
+# - binary_sensor.nuki_haustur_door_open
+- binary_sensor.haustur_door_sensor
 - binary_sensor.lumi_lumi_sensor_magnet_aq2_opening_20

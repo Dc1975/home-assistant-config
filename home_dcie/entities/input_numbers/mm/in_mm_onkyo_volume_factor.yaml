@@ -2,7 +2,6 @@ in_mm_onkyo_volume_factor:
   name: in_mm_onkyo_volume_factor
   min: 0
   max: 1
-  step: 0.0125  
+  step: 0.0001
   icon: mdi:volume-source
   mode: box
-

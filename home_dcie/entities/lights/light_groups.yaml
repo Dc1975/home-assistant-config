@@ -79,3 +79,13 @@
   name: wz_grp_lampen
   entities: !include_dir_merge_list ../default/lights/wz
   unique_id: wz_grp_lampen
+
+- platform: group
+  name: az_grp_lampen
+  entities: !include_dir_merge_list ../default/lights/az
+  unique_id: az_grp_lampen
+
+- platform: group
+  name: gz_grp_lampen
+  entities: !include_dir_merge_list ../default/lights/gz
+  unique_id: gz_grp_lampen

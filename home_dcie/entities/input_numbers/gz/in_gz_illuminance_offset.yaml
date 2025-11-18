@@ -1,0 +1,8 @@
+in_gz_illuminance_offset:
+  name: in_gz_illuminance_offset
+  icon: mdi:brightness-percent
+  min: 0
+  max: 100
+  step: 1
+  unit_of_measurement: lx
+  mode: box

@@ -14,4 +14,5 @@ ha_grp_motion_detectors:
 #    - binary_sensor.everything_presence_one_pir
     - binary_sensor.everything_presence_one_mmwave
     - binary_sensor.presence_sensor_fp2_d6a5_presence_sensor_2
+    - binary_sensor.lumi_lumi_motion_ac02_motion_12
   all: true    
