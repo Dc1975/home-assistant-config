@@ -1,13 +1,13 @@
-- id: '1679517138335'
-  alias: MO T8 Akku niedrig
+- id: '1678280631670'
+  alias: MO S23 Akku niedrig
   variables:
     alexa_device: media_player.echo_wohnzimmer,media_player.echo_dachgeschoss
-    alexa_type: tts   
+    alexa_type: tts  
   description: ''
   trigger:
   - platform: template
     value_template: >      
-      {% set state_sensor = states('sensor.sm_t825_battery_level') %}
+      {% set state_sensor = states('sensor.sm_s916b_battery_level') %}
       {% set state_threshold = states('input_number.in_ha_batteries_threshold') %}
       {% if is_number(state_sensor) and is_number(state_threshold) and state_sensor | int <= state_threshold | int  %}
         true
@@ -40,8 +40,8 @@
         variables:
           msg_title: "{{states('input_text.it_battery_level_notification_title')}} {{states('input_number.in_ha_batteries_threshold') | int}}%"
           msg_message: >
-            {{states('input_text.it_battery_level_notification_message')}} von Deinem Tablet, 
-            {{states('sensor.sm_t825_battery_level') | int}}%
+            {{states('input_text.it_battery_level_notification_message')}} Dein Handy, 
+            {{states('sensor.sm_s916b_battery_level') | int}}%      
           device: "{{ alexa_device }}"
-          type: "{{ alexa_type }}"               
-  mode: parallel
+          type: "{{ alexa_type }}"  
+  mode: parallel  
