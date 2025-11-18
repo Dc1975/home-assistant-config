@@ -324,6 +324,14 @@ sensor.sr_count_code_lines:
 # sensors
 sensor.sr_ha_pending_notifications_info:
   friendly_name: Ausstehende Benachrichtigungen
+sensor.lumi_lumi_motion_ac02_illuminance_8:
+  friendly_name: Beleuchtungsstärke Mitte
+sensor.lumi_lumi_motion_ac02_illuminance_4:
+  friendly_name: Beleuchtungsstärke Oben
+sensor.lumi_lumi_motion_ac02_illuminance_3:
+  friendly_name: Beleuchtungsstärke Unten  
+# binary sensors
+
 # some stuff
 sensor.local_ip:
   friendly_name: IP
@@ -334,6 +342,8 @@ input_boolean.ib_bz_switch_motion_detector:
   friendly_name: Badezimmer Bewegungsmelder
 input_boolean.ib_bz_switch_motion_detector_shower:
   friendly_name: Badezimmerdusche Bewegungsmelder
+input_boolean.ib_gz_switch_motion_detector:
+  friendly_name: Gästezimmer Bewegungsmelder  
 input_boolean.ib_ku_switch_motion_detector:
   friendly_name: Küche Bewegungsmelder
 input_boolean.ib_sz_switch_motion_detector:
@@ -350,6 +360,10 @@ input_boolean.ib_tr_center_switch_motion_detector:
   friendly_name: Treppnehaus mitte Bewegungsmelder
 input_boolean.ib_tr_below_switch_motion_detector:
   friendly_name: Treppnehaus unten Bewegungsmelder
+input_boolean.ib_of_switch_motion_detector:
+  friendly_name: Obergeschossflur Bewegungsmelder
+input_boolean.ib_wz_switch_motion_detector:
+  friendly_name: Wohnzimmer Bewegungsmelder  
 # covers
 input_boolean.ib_wz_door_cover_used_in_automations:
   friendly_name: In Automationen benutzen (Tür)
@@ -515,6 +529,8 @@ input_number.in_tr_center_lux_treshhold:
   friendly_name: Luxschwelle Bewegung TR mitte
 input_number.in_tr_below_lux_treshhold:
   friendly_name: Luxschwelle Bewegung TR unten
+input_number.in_tr_below_illuminance_offset:
+  friendly_name: Beleuchtungsstärke-Offset TR unten
 input_number.in_fl_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Flur
 input_number.in_ku_lux_treshhold:
@@ -523,6 +539,10 @@ input_number.in_bz_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Badezimmer
 input_number.in_bz_lux_shower_treshhold:
   friendly_name: Luxschwelle Bewegung Badezimmerdusche
+input_number.in_gz_lux_treshhold:
+  friendly_name: Luxschwelle Bewegung Gästezimmer
+input_number.in_gz_illuminance_offset:
+  friendly_name: Beleuchtungsstärke-Offset Gästezimmer  
 input_number.in_dg_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Dachgeschoss
 input_number.in_gt_lux_treshhold:
@@ -531,6 +551,10 @@ input_number.in_az_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Ankleidezimmer
 input_number.in_sz_lux_treshhold:
   friendly_name: Luxschwelle Bewegung Schlafzimmer
+input_number.in_of_lux_treshhold:
+  friendly_name: Luxschwelle Bewegung Obergeschossflur  
+input_number.in_wz_lux_treshhold:
+  friendly_name: Luxschwelle Bewegung Wohnzimmer  
 input_number.in_ku_lux_offset:
   friendly_name: Luxoffset Bewegung Küche
 # input_datetime
@@ -632,13 +656,27 @@ input_number.in_dg_ki_off_delay:
   friendly_name: Verzögerung KI ausschalten
 # timer
 timer.ti_sz_room_motion_lights:
-  friendly_name: Timer Schlafzimmer
+  friendly_name: Timer Schlafzimmerlicht
 timer.ti_sz_motion_lights:
   friendly_name: Timer Schlafzimmerbettlicht
 timer.ti_az_motion_lights:
-  friendly_name: Timer Ankleidezimmer
+  friendly_name: Timer Ankleidezimmerlicht
+timer.ti_bz_motion_lights:
+  friendly_name: Timer Badezimmerlicht
 timer.ti_bz_motion_lights_shower:
   friendly_name: Timer Badezimmerdusche
+timer.ti_gz_motion_lights:
+  friendly_name: Timer Gästezimmerlicht  
+timer.ti_of_motion_lights:
+  friendly_name: Timer Obergeschossflurlicht
+timer.ti_gt_motion_lights:
+  friendly_name: Timer Gästetoilettenlicht  
+timer.ti_tr_unten_motion_lights:
+  friendly_name: Timer Treppenhaus unten 
+timer.ti_tr_mitte_motion_lights:
+  friendly_name: Timer Treppenhaus mitte
+timer.ti_tr_oben_motion_lights:
+  friendly_name: Timer Treppenhaus oben  
   # KI's
 input_boolean.ib_dg_ki_used_in_automations:
   friendly_name: In Automationen benutzen
@@ -679,7 +717,7 @@ input_boolean.ib_az_cover_used_in_vacation_mode:
 input_boolean.ib_gr_terrace_lighting_on_by_sunset:
   friendly_name: An bei Sonnenuntergang
 input_boolean.ib_alexa_is_muted:
-  friendly_name: Alexa stunn geschaltet
+  friendly_name: Alexa stumm geschaltet
 
 # keller
 #binary_sensor.Kellerfensterfeuchtigkeitssensor_vorne_feuchtigkeit:
